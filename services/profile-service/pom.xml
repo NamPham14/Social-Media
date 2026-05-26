@@ -6,12 +6,12 @@
         <groupId>com.social_media</groupId>
         <artifactId>Social_Media_Platform</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>   <!-- lookup parent from repository -->
+        <relativePath>../../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>common-security</artifactId>
-    <name>common-security</name>
-    <description>common-security</description>
+    <artifactId>profile-service</artifactId>
+    <name>profile-service</name>
+    <description>profile-service</description>
 
     <dependencies>
         <dependency>
@@ -20,9 +20,18 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -33,21 +42,14 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- Spring Security & Resource Server (Để validate JWT cực nhanh) -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.social_media</groupId>
             <artifactId>common-web</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-crypto</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-neo4j</artifactId>
         </dependency>
     </dependencies>
 

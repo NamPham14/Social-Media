@@ -1,0 +1,30 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: identify-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/social_media
+    username: postgres
+    password: 123456
+
+
+  jpa:
+    hibernate:
+        ddl-auto: update
+      # Th?m d?ng n?y ?? Hibernate bi?t ?ang n?i chuy?n v?i PostgreSQL
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+      # Hi?n SQL ra console ?? d? debug
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+          # Hi?n th? gi? tr? c?a c?c tham s? truy?n v?o c?u SQL
+        use_sql_comments: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
