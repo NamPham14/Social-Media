@@ -36,3 +36,10 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# Documentation & Plans
+docs.md
+Lo_trinh_hoc.md
+Plan.md
+TODO_NEXT_STEPS.md
+database_schema.md
