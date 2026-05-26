@@ -22,7 +22,8 @@
         <module>shared/common-web</module>
         <module>infra/api-gateway</module>
         <module>infra/eureka-server</module>
-        <module>services/users-service</module>
+        <module>services/identity-service</module>
+        <module>services/profile-service</module>
         <module>shared/common-events</module>
         <module>shared/common-security</module>
     </modules>

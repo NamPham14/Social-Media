@@ -21,7 +21,7 @@ public enum ErrorCode {
     FORBIDDEN(1010, "Forbidden", HttpStatus.FORBIDDEN),
     EMAIL_LIMIT_EXCEEDED(1011,"Email limit exceed",HttpStatus.BAD_REQUEST),
 
-    UNAUTHENTICATED(1011, "Unauthenticated", HttpStatus.UNAUTHORIZED),
+    UNAUTHENTICATED(1012, "Unauthenticated", HttpStatus.UNAUTHORIZED),
 
    ;
 
