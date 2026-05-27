@@ -9,13 +9,18 @@ spring:
     password: 1234
   jpa:
     hibernate:
-      ddl-auto: update    # dev only, prod ??i qua Flyway
+      ddl-auto: create    # dev only, prod ??i qua Flyway
     properties.hibernate.format_sql: true
 management:
   endpoints:
     web:
       exposure:
         include: health,info
+
+cloudinary:
+  cloud-name: dfvq2ckbi
+  api-key: 283211323636595
+  api-secret: pGxOZ7KcTVk76ETXvGsiWgPYtLQ
 
 
 eureka:
