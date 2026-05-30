@@ -24,6 +24,11 @@ spring:
               filters:
                 - StripPrefix=1
 
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    com.social_media: DEBUG
+
 # CẤU HÌNH JWT CHO GATEWAY
 application:
   security:

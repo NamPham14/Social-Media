@@ -43,12 +43,13 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
 
         // 3. Kiểm tra token
         try {
+            log.debug("Verifying token for path: {}", path);
             if (!jwtProvider.verifyToken(token)) {
-                log.warn("Invalid token for path: {}", path);
+                log.warn("Invalid token for path: {}. Token might be expired or signature is invalid.", path);
                 return unauthenticated(exchange);
             }
         } catch (Exception e) {
-            log.error("Token verification error: {}", e.getMessage());
+            log.error("Token verification error for path {}: {}", path, e.getMessage(), e);
             return unauthenticated(exchange);
         }
 
