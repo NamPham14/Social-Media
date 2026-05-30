@@ -34,12 +34,11 @@ public class UserController {
     @PostMapping(ApiPath.USERS + ApiPath.REGISTER)
     public ResponseEntity<ApiResponse<UserResponse>> registerUser(@Valid @RequestBody RegisterRequest request) {
 
-        RegisterCommand registerCommand = new RegisterCommand(
-                request.getUsername(),
-                request.getEmail(),
-                request.getPassword()
-        );
-
+      RegisterCommand registerCommand = RegisterCommand.builder()
+            .username(request.getUsername())
+               .password(request.getPassword())
+              .email(request.getEmail())
+              .build();
         User user = registerUseCase.register(registerCommand);
 
         // Map Entity sang DTO để trả về

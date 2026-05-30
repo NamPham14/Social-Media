@@ -1,15 +1,13 @@
 package com.social_media.identityservice.application.command;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class RegisterCommand {
     private String username;
     private String password;

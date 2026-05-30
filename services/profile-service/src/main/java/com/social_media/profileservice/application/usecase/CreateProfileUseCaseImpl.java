@@ -3,6 +3,7 @@ package com.social_media.profileservice.application.usecase;
 import com.social_media.profileservice.application.command.CreateProfileCommand;
 import com.social_media.profileservice.domain.ProfileRepository;
 import com.social_media.profileservice.domain.UserProfile;
+import com.social_media.profileservice.domain.exception.DuplicateProfileException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +19,7 @@ public class CreateProfileUseCaseImpl implements CreateProfileUseCase {
     public UserProfile execute(CreateProfileCommand command) {
 
         if (profileRepository.findById(command.getId()).isPresent()) {
-            throw new DuplicateProfileException();
+            throw new DuplicateProfileException("Profile with id " + command.getId() + " already exists");
         }
 
 
