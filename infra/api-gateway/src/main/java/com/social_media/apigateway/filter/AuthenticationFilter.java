@@ -25,12 +25,12 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         String path = exchange.getRequest().getURI().getPath();
 
-        // 1. Endpoint công khai
+        //  Endpoint công khai
         if (path.contains("/auth/login") || path.contains("/users/register")) {
             return chain.filter(exchange);
         }
 
-        // 2. Lấy Authorization Header
+        //  Lấy Authorization Header
         String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
         
         if (authHeader == null || !authHeader.toLowerCase().startsWith("bearer")) {
@@ -38,10 +38,10 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
             return unauthenticated(exchange);
         }
 
-        // CÁCH LẤY TOKEN MỚI: Cực kỳ an toàn, loại bỏ "Bearer" và khoảng trắng dư thừa
+
         String token = authHeader.replaceFirst("(?i)Bearer", "").trim();
 
-        // 3. Kiểm tra token
+        //  Kiểm tra token
         try {
             log.debug("Verifying token for path: {}", path);
             if (!jwtProvider.verifyToken(token)) {
