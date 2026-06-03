@@ -1,7 +1,8 @@
 package com.social_media.postservice.application.usecase;
 
+import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.dto.PostResponse;
-import com.social_media.postservice.domain.exception.EmptyException;
+import com.social_media.postservice.domain.exception.ErrorCode;
 import com.social_media.postservice.domain.model.Post;
 import com.social_media.postservice.domain.repository.PostRepository;
 import lombok.AccessLevel;
@@ -22,7 +23,7 @@ public class SearchPostsUseCase {
         Page<Post> page = postRepository.searchByKeyword("%" + keyword + "%", pageable);
 
         if (page.isEmpty()) {
-            throw new EmptyException("List is empty");
+            throw new AppException(ErrorCode.RESOURCE_NOT_FOUND);
         }
 
         return page.map(PostResponse::from);

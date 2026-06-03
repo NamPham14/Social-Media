@@ -1,7 +1,8 @@
 package com.social_media.postservice.application.usecase;
 
+import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.command.RejectPostCommand;
-import com.social_media.postservice.domain.exception.NotFoundException;
+import com.social_media.postservice.domain.exception.ErrorCode;
 import com.social_media.postservice.domain.model.Post;
 import com.social_media.postservice.domain.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class RejectPostUseCase {
     @Transactional
     public void execute(RejectPostCommand command) {
         Post post = postRepository.findById(command.getPostId())
-                .orElseThrow(() -> new NotFoundException("Not found post with id: " + command.getPostId()));
+                .orElseThrow(() -> new AppException(ErrorCode.EMPTY_RESOURCE));
 
         post.reject(command.getAdminId(), command.getReason());
 

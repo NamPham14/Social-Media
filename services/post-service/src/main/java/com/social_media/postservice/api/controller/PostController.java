@@ -1,7 +1,8 @@
 package com.social_media.postservice.api.controller;
 
 
-import com.social_media.postservice.api.dto.ApiResponse;
+//import com.social_media.postservice.api.dto.ApiResponse;
+import com.social_media.common.api.ApiResponse;
 import com.social_media.postservice.api.dto.ApprovePostRequest;
 import com.social_media.postservice.api.dto.DeletePostRequest;
 import com.social_media.postservice.api.dto.DraftPostRequest;
@@ -61,7 +62,7 @@ public class PostController {
         return ApiResponse.<PostResponse>builder()
                 .code(HttpStatus.OK.value())
                 .message("Get Post Success")
-                .result(getPostByPostIdUseCase.execute(postId))
+                .data(getPostByPostIdUseCase.execute(postId))
                 .build();
     }
 
@@ -71,7 +72,7 @@ public class PostController {
         return ApiResponse.<Page<PostResponse>>builder()
                 .code(HttpStatus.OK.value())
                 .message("Get Posts By Author Success")
-                .result(findPostsByAuthorIdUseCase.execute(userId, pageable))
+                .data(findPostsByAuthorIdUseCase.execute(userId, pageable))
                 .build();
     }
 
@@ -80,7 +81,7 @@ public class PostController {
         return ApiResponse.<Page<PostResponse>>builder()
                 .code(HttpStatus.OK.value())
                 .message("Get All Posts Success")
-                .result(findAllPostsUseCase.execute(pageable))
+                .data(findAllPostsUseCase.execute(pageable))
                 .build();
     }
 
@@ -90,7 +91,7 @@ public class PostController {
         return ApiResponse.<Page<PostResponse>>builder()
                 .code(HttpStatus.OK.value())
                 .message("Search Posts Success")
-                .result(searchPostsUseCase.execute(keyword, pageable))
+                .data(searchPostsUseCase.execute(keyword, pageable))
                 .build();
     }
 
@@ -104,7 +105,7 @@ public class PostController {
         return ApiResponse.<PostResponse>builder()
                 .code(HttpStatus.CREATED.value())
                 .message("Draft Post Success")
-                .result(draftPostUseCase.execute(command))
+                .data(draftPostUseCase.execute(command))
                 .build();
     }
 
@@ -159,7 +160,7 @@ public class PostController {
         return ApiResponse.<PostResponse>builder()
                 .code(HttpStatus.OK.value())
                 .message("Update Post Success")
-                .result(updatePostUseCase.execute(command))
+                .data(updatePostUseCase.execute(command))
                 .build();
     }
 

@@ -9,7 +9,7 @@ spring:
     password: 1234
   jpa:
     hibernate:
-      ddl-auto: create    # dev only, prod ??i qua Flyway
+      ddl-auto: update    # dev only, prod ??i qua Flyway
     properties.hibernate.format_sql: true
 management:
   endpoints:

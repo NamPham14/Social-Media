@@ -1,9 +1,9 @@
 package com.social_media.postservice.application.usecase;
 
+import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.command.DeletePostCommand;
 import com.social_media.postservice.application.service.MediaService;
-import com.social_media.postservice.domain.exception.ErrorPermission;
-import com.social_media.postservice.domain.exception.NotFoundException;
+import com.social_media.postservice.domain.exception.ErrorCode;
 import com.social_media.postservice.domain.model.Post;
 import com.social_media.postservice.domain.model.PostMedia;
 import com.social_media.postservice.domain.repository.PostRepository;
@@ -29,10 +29,10 @@ public class DeletePostUseCase {
 
     public void execute(DeletePostCommand command) {
         Post post = postRepository.findById(command.getPostId())
-                .orElseThrow(() -> new NotFoundException(command.getPostId().toString()));
+                .orElseThrow(() -> new AppException(ErrorCode.EMPTY_RESOURCE));
 
         if (!post.getUserId().equals(command.getUserId())) {
-            throw new ErrorPermission("You don't have permission to delete this post");
+            throw new AppException(ErrorCode.UNAUTHORIZED_ACTION);
         }
 
         post.softDelete();

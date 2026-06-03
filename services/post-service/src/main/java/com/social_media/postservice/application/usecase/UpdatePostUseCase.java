@@ -1,10 +1,10 @@
 package com.social_media.postservice.application.usecase;
+import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.command.UpdatePostCommand;
 import com.social_media.postservice.application.dto.PostResponse;
 import com.social_media.postservice.application.dto.UploadResponse;
 import com.social_media.postservice.application.service.MediaService;
-import com.social_media.postservice.domain.exception.ErrorCloudary;
-import com.social_media.postservice.domain.exception.NotFoundException;
+import com.social_media.postservice.domain.exception.ErrorCode;
 import com.social_media.postservice.domain.model.Post;
 import com.social_media.postservice.domain.model.PostMedia;
 import com.social_media.postservice.domain.repository.PostRepository;
@@ -29,7 +29,7 @@ public class UpdatePostUseCase {
     public PostResponse execute(UpdatePostCommand command) {
 
         Post post = postRepository.findById(command.getId())
-                .orElseThrow(() -> new NotFoundException("No post found with id: " + command.getId()));
+                .orElseThrow(() -> new AppException(ErrorCode.RESOURCE_NOT_FOUND));
 
         post.update(command.getCaption(), command.getLocationName());
 
@@ -83,7 +83,7 @@ public class UpdatePostUseCase {
                     log.error("Failed to rollback new image on Cloudinary: " + file.getPublicId(), ex);
                 }
             }
-            throw new ErrorCloudary("Cannot save post data, cloud images rolled back.");
+            throw new AppException(ErrorCode.CLOUDINARY_ERROR);
         }
     }
 
