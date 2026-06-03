@@ -9,9 +9,9 @@
         <relativePath>../../pom.xml</relativePath><!-- lookup parent from repository -->
     </parent>
 
-    <artifactId>users-service</artifactId>
-    <name>users-service</name>
-    <description>users-service</description>
+    <artifactId>profile-service</artifactId>
+    <name>profile-service</name>
+    <description>profile-service</description>
 
     <dependencies>
         <dependency>

@@ -1,12 +1,12 @@
 server:
-  port: 8081
+  port: 8082
 spring:
   application:
-    name: user-service
+    name: post-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/social_media_platform
+    url: jdbc:postgresql://localhost:5432/post_service
     username: postgres
-    password: 123456
+    password: 1234
   jpa:
     hibernate:
       ddl-auto: update    # dev only, prod ??i qua Flyway
