@@ -27,6 +27,7 @@
         <module>shared/common-events</module>
         <module>shared/common-security</module>
         <module>services/post-service</module>
+        <module>services/notification-service</module>
     </modules>
 
 

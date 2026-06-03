@@ -1,4 +1,4 @@
-package com.talenthub.notificationservice;
+package com.social_media.notificationservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
