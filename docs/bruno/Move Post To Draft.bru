@@ -1,0 +1,18 @@
+meta {
+  name: Move Post To Draft
+  type: http
+  seq: 7
+}
+
+put {
+  url: http://localhost:8082/api/v1/posts/draft
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "postId": "{{postId}}",
+    "userId": "{{userId}}"
+  }
+}

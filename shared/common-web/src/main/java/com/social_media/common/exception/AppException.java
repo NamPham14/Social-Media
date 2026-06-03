@@ -1,14 +1,15 @@
 package com.social_media.common.exception;
 
-import lombok.AllArgsConstructor;
+import com.social_media.common.base.BaseErrorCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class AppException extends RuntimeException {
-    private ErrorCode errorCode;
+
+    private final BaseErrorCode errorCode;
+
+    public AppException(BaseErrorCode errorCode) {
+        super(errorCode.getMessage());
+        this.errorCode = errorCode;
+    }
 }

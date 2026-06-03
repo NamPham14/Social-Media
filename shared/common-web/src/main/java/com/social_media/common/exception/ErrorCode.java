@@ -1,12 +1,13 @@
 package com.social_media.common.exception;
 
+import com.social_media.common.base.BaseErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
-public enum ErrorCode {
+public enum ErrorCode implements BaseErrorCode {
     UNCATEGORIZED_EXCEPTION(9999, "Uncategorized error", HttpStatus.INTERNAL_SERVER_ERROR),
     INVALID_KEY(8888, "Invalid message key", HttpStatus.BAD_REQUEST),
     USER_EXISTED(1001, "User already exists", HttpStatus.CONFLICT),
@@ -27,6 +28,5 @@ public enum ErrorCode {
 
     private final int code;
     private final String message;
-    private final HttpStatus status;
-
+    private final HttpStatus httpStatus;
 }

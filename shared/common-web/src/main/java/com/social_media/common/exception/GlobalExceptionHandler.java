@@ -1,6 +1,7 @@
 package com.social_media.common.exception;
 
 import com.social_media.common.api.ApiResponse;
+import com.social_media.common.base.BaseErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +19,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(AppException.class)
     public ResponseEntity<ApiResponse<Object>> handleAppException(AppException e) {
-        ErrorCode errorCode = e.getErrorCode();
-        return ResponseEntity.status(errorCode.getStatus()).body(
+        BaseErrorCode errorCode = e.getErrorCode();
+        return ResponseEntity.status(errorCode.getHttpStatus()).body(
                 ApiResponse.builder()
-                        .status(errorCode.getStatus().value())
+                        .status(errorCode.getHttpStatus().value())
                         .code(errorCode.getCode())
                         .message(errorCode.getMessage())
                         .build()

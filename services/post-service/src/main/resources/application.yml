@@ -17,6 +17,11 @@ management:
       exposure:
         include: health,info
 
+cloudinary:
+  cloud-name: dfvq2ckbi
+  api-key: 283211323636595
+  api-secret: pGxOZ7KcTVk76ETXvGsiWgPYtLQ
+
 
 eureka:
   client:
