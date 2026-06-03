@@ -12,6 +12,7 @@
         <option value="$PROJECT_DIR$/common-security/pom.xml" />
         <option value="$PROJECT_DIR$/shared/common-security/pom.xml" />
         <option value="$PROJECT_DIR$/services/users-service/pom.xml" />
+        <option value="$PROJECT_DIR$/services/follower-service/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
