@@ -1,5 +1,6 @@
 package com.social_media.followerservice.application.command;
 
-public class FollowUserCommand {
+import com.social_media.followerservice.domain.model.UserId;
 
+public record FollowUserCommand(UserId followerId, UserId followingId) {
 }
