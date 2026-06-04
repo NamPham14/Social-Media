@@ -26,6 +26,8 @@
         <module>services/profile-service</module>
         <module>shared/common-events</module>
         <module>shared/common-security</module>
+        <module>services/post-service</module>
+        <module>services/notification-service</module>
     </modules>
 
 
@@ -45,16 +47,21 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombook.version}</version>
-                <scope>provided</scope>
-            </dependency>
+
 
 
         </dependencies>
     </dependencyManagement>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombook.version}</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <pluginManagement>

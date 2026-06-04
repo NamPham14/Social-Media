@@ -2,7 +2,9 @@ package com.social_media.commonsecurity.jwt;
 
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.MACSigner;
+import com.nimbusds.jose.crypto.MACVerifier;
 import com.nimbusds.jwt.JWTClaimsSet;
+import com.nimbusds.jwt.SignedJWT;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -20,7 +22,7 @@ import java.util.Date;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class JwtProvider {
 
-    @Value("${application.security.jwt.secret-key}")
+    @Value("${application.security.jwt.secretKey}")
     private String signerKey;
 
     public String generateToken(String username){
@@ -42,6 +44,21 @@ public class JwtProvider {
         catch(JOSEException e){
             log.error("Cannot create token", e);
             throw new RuntimeException(e);
+        }
+    }
+
+    public boolean verifyToken(String token) {
+        try {
+            SignedJWT signedJWT = SignedJWT.parse(token);
+            JWSVerifier verifier = new MACVerifier(signerKey.getBytes());
+
+            Date expirationTime = signedJWT.getJWTClaimsSet().getExpirationTime();
+            boolean verified = signedJWT.verify(verifier);
+
+            return verified && expirationTime.after(new Date());
+        } catch (Exception e) {
+            log.error("Token verification failed: {}", e.getMessage());
+            return false;
         }
     }
 }

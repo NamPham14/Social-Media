@@ -1,16 +1,16 @@
 package com.social_media.identityservice.application.usecase;
 
-
 import com.social_media.common.exception.AppException;
 import com.social_media.common.exception.ErrorCode;
-import com.social_media.identityservice.api.dto.UserResponse;
+import com.social_media.identityservice.api.dto.ProfileCreationRequest;
 import com.social_media.identityservice.application.command.RegisterCommand;
 import com.social_media.identityservice.domain.User;
 import com.social_media.identityservice.domain.UserRepository;
+import com.social_media.identityservice.infrastructure.client.ProfileClient;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
@@ -19,12 +19,14 @@ import java.util.Set;
 public class RegisterUseCase {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ProfileClient profileClient;
 
-    public User register(RegisterCommand command){
+    @Transactional
+    public User register(RegisterCommand command) {
         if (userRepository.existsByEmail(command.getEmail())) {
             throw new AppException(ErrorCode.USER_EXISTED);
         }
-        if(userRepository.existsByUsername(command.getUsername())) {
+        if (userRepository.existsByUsername(command.getUsername())) {
             throw new AppException(ErrorCode.USER_EXISTED);
         }
 
@@ -35,6 +37,15 @@ public class RegisterUseCase {
                 .roles(Set.of("USER"))
                 .build();
 
-        return userRepository.save(user);
+        User savedUser = userRepository.save(user);
+
+        // Gọi sang Profile Service để tạo profile tương ứng
+        profileClient.createProfile(ProfileCreationRequest.builder()
+                .id(savedUser.getId())
+                .username(savedUser.getUsername())
+                .fullName(savedUser.getUsername()) // Tạm thời lấy username làm fullName
+                .build());
+
+        return savedUser;
     }
 }

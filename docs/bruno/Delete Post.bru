@@ -1,0 +1,18 @@
+meta {
+  name: Delete Post
+  type: http
+  seq: 10
+}
+
+delete {
+  url: http://localhost:8082/api/v1/posts/delete
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "postId": "{{postId}}",
+    "userId": "{{userId}}"
+  }
+}

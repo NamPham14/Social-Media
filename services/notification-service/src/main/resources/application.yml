@@ -1,0 +1,29 @@
+server:
+  port: 8087
+spring:
+  application:
+    name: post-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/notification_service
+    username: postgres
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties.hibernate.format_sql: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+cloudinary:
+  cloud-name: dfvq2ckbi
+  api-key: 283211323636595
+  api-secret: pGxOZ7KcTVk76ETXvGsiWgPYtLQ
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
