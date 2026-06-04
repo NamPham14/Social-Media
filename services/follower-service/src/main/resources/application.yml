@@ -1,25 +1,32 @@
-
-server:
-  port: 8081
 spring:
   application:
-    name: followe-service
+    name: follower-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/social_media_platform
+    url: jdbc:postgresql://localhost:5432/social_media
     username: postgres
     password: 123456
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update    # dev only, prod ??i qua Flyway
-    properties.hibernate.format_sql: true
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
+application:
+  security:
+    jwt:
+      secretKey: "12345678901234567890123456789012"
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8084
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    com.social_media: DEBUG
