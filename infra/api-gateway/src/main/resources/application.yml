@@ -23,6 +23,30 @@ spring:
                 - Path=/profile/**
               filters:
                 - StripPrefix=1
+            - id: post-service
+              uri: lb://post-service
+              predicates:
+                - Path=/post/**
+              filters:
+                - StripPrefix=1
+            - id: comment-service
+              uri: lb://comment-service
+              predicates:
+                - Path=/comment/**
+              filters:
+                - StripPrefix=1
+            - id: interaction-service
+              uri: lb://interaction-service
+              predicates:
+                - Path=/interaction/**
+              filters:
+                - StripPrefix=1
+            - id: notification-service
+              uri: lb://notification-service
+              predicates:
+                - Path=/notification/**
+              filters:
+                - StripPrefix=1
 
 logging:
   level:
