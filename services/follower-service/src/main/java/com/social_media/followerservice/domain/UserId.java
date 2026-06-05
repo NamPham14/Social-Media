@@ -1,5 +1,8 @@
-package com.social_media.followerservice.domain.model;
+package com.social_media.followerservice.domain;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public record UserId(Long value) {
     public UserId {
         if (value == null) {

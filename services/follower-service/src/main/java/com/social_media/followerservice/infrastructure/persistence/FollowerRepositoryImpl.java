@@ -1,8 +1,8 @@
 package com.social_media.followerservice.infrastructure.persistence;
 
-import com.social_media.followerservice.domain.model.Follower;
-import com.social_media.followerservice.domain.model.UserId;
-import com.social_media.followerservice.domain.repository.FollowerRepository;
+import com.social_media.followerservice.domain.Follower;
+import com.social_media.followerservice.domain.FollowerRepository;
+import com.social_media.followerservice.domain.UserId;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,23 +19,12 @@ public class FollowerRepositoryImpl implements FollowerRepository {
 
     @Override
     public Follower save(Follower follower) {
-        FollowerEntity entity = new FollowerEntity(
-                follower.getFollowerId().value(),
-                follower.getFollowingId().value()
-        );
-        FollowerEntity savedEntity = springDataFollowerRepository.save(entity);
-        
-        Follower savedFollower = Follower.create(
-                new UserId(savedEntity.getFollowerId()),
-                new UserId(savedEntity.getFollowingId())
-        );
-        savedFollower.setId(savedEntity.getId());
-        return savedFollower;
+        return springDataFollowerRepository.save(follower);
     }
 
     @Override
     public boolean exists(UserId followerId, UserId followingId) {
-        return springDataFollowerRepository.existsByFollowerIdAndFollowingId(
+        return springDataFollowerRepository.existsByFollowerIdValueAndFollowingIdValue(
                 followerId.value(), 
                 followingId.value()
         );
@@ -43,14 +32,14 @@ public class FollowerRepositoryImpl implements FollowerRepository {
 
     @Override
     public List<UserId> findFollowingIdsByFollowerId(UserId followerId) {
-        List<FollowerEntity> entities = springDataFollowerRepository.findByFollowerId(followerId.value());
-        return entities.stream()
-                .map(e -> new UserId(e.getFollowingId()))
+        List<Follower> followers = springDataFollowerRepository.findByFollowerIdValue(followerId.value());
+        return followers.stream()
+                .map(Follower::getFollowingId)
                 .collect(Collectors.toList());
     }
 
     @Override
     public void delete(UserId followerId, UserId followingId) {
-        springDataFollowerRepository.deleteByFollowerIdAndFollowingId(followerId.value(), followingId.value());
+        springDataFollowerRepository.deleteByFollowerIdValueAndFollowingIdValue(followerId.value(), followingId.value());
     }
 }
