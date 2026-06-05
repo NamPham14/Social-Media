@@ -46,7 +46,9 @@ public class UserController {
                 .id(user.getId())
                 .username(user.getUsername())
                 .email(user.getEmail())
-                .roles(user.getRoles())
+                .roles(user.getRoles().stream()
+                        .map(role -> role.getName())
+                        .collect(java.util.stream.Collectors.toSet()))
                 .build();
 
         return ResponseEntity.ok(
