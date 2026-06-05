@@ -4,6 +4,8 @@ import com.social_media.common.exception.AppException;
 import com.social_media.common.exception.ErrorCode;
 import com.social_media.identityservice.api.dto.ProfileCreationRequest;
 import com.social_media.identityservice.application.command.RegisterCommand;
+import com.social_media.identityservice.domain.Role;
+import com.social_media.identityservice.domain.RoleRepository;
 import com.social_media.identityservice.domain.User;
 import com.social_media.identityservice.domain.UserRepository;
 import com.social_media.identityservice.infrastructure.client.ProfileClient;
@@ -18,6 +20,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class RegisterUseCase {
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final ProfileClient profileClient;
 
@@ -30,11 +33,14 @@ public class RegisterUseCase {
             throw new AppException(ErrorCode.USER_EXISTED);
         }
 
+        Role userRole = roleRepository.findByName("USER")
+                .orElseGet(() -> roleRepository.save(Role.builder().name("USER").build()));
+
         User user = User.builder()
                 .username(command.getUsername())
                 .password(passwordEncoder.encode(command.getPassword()))
                 .email(command.getEmail())
-                .roles(Set.of("USER"))
+                .roles(Set.of(userRole))
                 .build();
 
         User savedUser = userRepository.save(user);
