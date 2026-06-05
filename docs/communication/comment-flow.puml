@@ -1,0 +1,51 @@
+@startuml
+title Comment Service - Create Comment/Reply Communication Flow
+
+skinparam sequenceMessageAlign center
+skinparam ParticipantPadding 24
+skinparam BoxPadding 12
+
+actor User
+participant "Client" as Client
+participant "API Gateway\n:8888" as Gateway
+participant "Comment Service\n:8085" as CommentService
+participant "Comment Application\nCreateCommentUseCase" as UseCase
+participant "Comment Aggregate\n(Domain)" as CommentAggregate
+database "comment_db\ncomments" as CommentDb
+queue "Message Broker\nKafka/RabbitMQ" as Broker
+participant "Post Service\n:8083" as PostService
+database "post_db\nposts" as PostDb
+participant "Notification Service\n:8087" as NotificationService
+database "notification_db\nnotifications" as NotificationDb
+
+User -> Client: submit comment/reply
+Client -> Gateway: POST /comments\nAuthorization: Bearer JWT
+Gateway -> Gateway: validate JWT
+Gateway -> CommentService: forward authenticated request
+
+CommentService -> UseCase: CreateCommentCommand(postId, userId,\nparentCommentId?, content)
+UseCase -> CommentAggregate: Comment.create(...)
+CommentAggregate -> CommentAggregate: validate content not blank\nand parent rule if reply
+UseCase -> CommentDb: INSERT comments(post_id, user_id,\nparent_id, content, is_deleted=false)
+CommentDb --> UseCase: saved comment
+
+UseCase -> Broker: publish CommentCreatedEvent
+CommentService --> Gateway: 201 Created
+Gateway --> Client: ApiResponse(comment)
+
+Broker -> PostService: CommentCreatedEvent(postId, commentId, userId)
+PostService -> PostDb: atomic increment comment_count
+PostDb --> PostService: updated
+
+Broker -> NotificationService: CommentCreatedEvent(...)
+NotificationService -> NotificationDb: create notification for post owner\nor parent comment owner
+NotificationDb --> NotificationService: saved
+
+note right of CommentAggregate
+DDD mapping:
+- Aggregate Root: Comment
+- Value Objects: CommentId, PostId, UserId,
+  ParentCommentId, CommentContent, CommentStatus
+- Rule: deleted comments cannot be edited
+end note
+@enduml
