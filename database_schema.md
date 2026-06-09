@@ -193,7 +193,7 @@ CREATE TABLE comments (
 ---
 
 ## 4. Interaction Service Database (`interaction_db`)
-**Responsibility:** Likes, Claps, and Bookmarks. Solves Race Conditions.
+**Responsibility:** Likes and Claps. Solves Race Conditions.
 
 ### ER Diagram
 ```mermaid
@@ -203,7 +203,7 @@ erDiagram
         bigint user_id "Ref to user_db"
         varchar target_type "ARTICLE, COMMENT"
         bigint target_id
-        varchar reaction_type "LIKE, CLAP, BOOKMARK"
+        varchar reaction_type "LIKE, CLAP"
         boolean is_deleted "For Saga"
         timestamp created_at
     }
@@ -213,7 +213,6 @@ erDiagram
         bigint target_id PK
         int like_count
         int clap_count
-        int bookmark_count
         timestamp updated_at
     }
 ```
@@ -238,7 +237,6 @@ CREATE TABLE interaction_counters (
     target_id BIGINT,
     like_count INT DEFAULT 0,
     clap_count INT DEFAULT 0,
-    bookmark_count INT DEFAULT 0,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (target_type, target_id)
 );
@@ -246,7 +244,56 @@ CREATE TABLE interaction_counters (
 
 ---
 
-## 5. Follower Service Database (`follower_db`)
+## 5. Post Service Database (`post_service_db`)
+**Responsibility:** Posts, media, and bookmarks management.
+
+### ER Diagram
+```mermaid
+erDiagram
+    POSTS ||--o{ BOOKMARKS : has
+    POSTS ||--o{ MEDIA : contains
+
+    POSTS {
+        uuid id PK
+        uuid author_id "Ref to user_db"
+        varchar content
+        varchar status "PUBLIC, PRIVATE, DELETED"
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    MEDIA {
+        uuid id PK
+        uuid post_id FK
+        varchar url
+        varchar type "IMAGE, VIDEO"
+        timestamp created_at
+    }
+
+    BOOKMARKS {
+        uuid id PK
+        uuid user_id "Ref to user_db"
+        uuid post_id FK
+        timestamp created_at
+    }
+```
+
+### SQL Scripts
+```sql
+CREATE TABLE bookmarks (
+    id UUID PRIMARY KEY,
+    user_id UUID NOT NULL,
+    post_id UUID NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (user_id, post_id)
+);
+
+CREATE INDEX idx_bookmarks_user_id ON bookmarks (user_id);
+```
+
+---
+
+## 6. Follower Service Database (`follower_db`)
 **Responsibility:** User following relationships.
 
 ### ER Diagram
@@ -274,7 +321,7 @@ CREATE UNIQUE INDEX idx_follower_following ON follows (follower_id, following_id
 
 ---
 
-## 6. Notification Service Database (`notification_db`)
+## 7. Notification Service Database (`notification_db`)
 **Responsibility:** Receiving events and storing alerts for users.
 
 ### ER Diagram

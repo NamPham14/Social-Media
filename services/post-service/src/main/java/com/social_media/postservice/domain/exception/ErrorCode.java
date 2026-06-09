@@ -31,6 +31,18 @@ public enum ErrorCode implements BaseErrorCode {
             4001,
             "Unauthorized action",
             HttpStatus.UNAUTHORIZED
+    ),
+
+    REPORT_ALREADY_PROCESSED(
+            4002,
+            "Report has already been processed",
+            HttpStatus.BAD_REQUEST
+    ),
+
+    DUPLICATE_RESOURCE(
+            4009,
+            "Resource already exists",
+            HttpStatus.CONFLICT
     );
 
     private final int code;

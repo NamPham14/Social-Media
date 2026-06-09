@@ -1,6 +1,6 @@
 package com.social_media.postservice.infrastructure.repository;
 
-import com.social_media.postservice.domain.model.Post;
+import com.social_media.postservice.domain.aggreate.Post;
 import com.social_media.postservice.domain.repository.PostRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

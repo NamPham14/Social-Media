@@ -12,10 +12,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ApprovePostRequest {
-    @NotNull(message = "Post ID is required")
-    private UUID postId;
+public class BookmarkRequest {
 
-    @NotNull(message = "Admin ID is required")
-    private UUID adminId;
+    @NotNull
+    private UUID userId;
+
+    @NotNull
+    private UUID postId;
 }

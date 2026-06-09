@@ -12,10 +12,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-public class SubmitPostRequest {
-    @NotNull(message = "Post ID is required")
-    private UUID postId;
+public class ReviewReportRequest {
 
-    @NotNull(message = "User ID is required")
-    private UUID userId;
+    @NotNull
+    private UUID adminId;
 }

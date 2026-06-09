@@ -11,7 +11,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-public class MovePostToDraftCommand {
-    private UUID postId;
-    private UUID userId;
+public class ReviewReportCommand {
+
+    private UUID reportId;
+    private UUID adminId;
 }

@@ -1,34 +1,21 @@
 package com.social_media.postservice.api.controller;
 
 
-//import com.social_media.postservice.api.dto.ApiResponse;
 import com.social_media.common.api.ApiResponse;
-import com.social_media.postservice.api.dto.ApprovePostRequest;
+import com.social_media.postservice.api.dto.CreatePostRequest;
 import com.social_media.postservice.api.dto.DeletePostRequest;
-import com.social_media.postservice.api.dto.DraftPostRequest;
-import com.social_media.postservice.api.dto.MovePostToDraftRequest;
-import com.social_media.postservice.api.dto.RejectPostRequest;
-import com.social_media.postservice.api.dto.SubmitPostRequest;
 import com.social_media.postservice.api.dto.UpdatePostRequest;
 import com.social_media.postservice.api.path.ApiPath;
-import com.social_media.postservice.application.command.ApprovePostCommand;
 import com.social_media.postservice.application.command.DeletePostCommand;
-import com.social_media.postservice.application.command.DraftPostCommand;
-import com.social_media.postservice.application.command.MovePostToDraftCommand;
-import com.social_media.postservice.application.command.RejectPostCommand;
-import com.social_media.postservice.application.command.SubmitPostCommand;
+import com.social_media.postservice.application.command.CreatePostCommand;
 import com.social_media.postservice.application.command.UpdatePostCommand;
 import com.social_media.postservice.application.dto.PostResponse;
-import com.social_media.postservice.application.usecase.ApprovePostUseCase;
+import com.social_media.postservice.application.usecase.CreatePostUseCase;
 import com.social_media.postservice.application.usecase.DeletePostUseCase;
-import com.social_media.postservice.application.usecase.DraftPostUseCase;
 import com.social_media.postservice.application.usecase.FindAllPostsUseCase;
 import com.social_media.postservice.application.usecase.FindPostsByAuthorIdUseCase;
 import com.social_media.postservice.application.usecase.GetPostByPostIdUseCase;
-import com.social_media.postservice.application.usecase.MovePostToDraftUseCase;
-import com.social_media.postservice.application.usecase.RejectPostUseCase;
 import com.social_media.postservice.application.usecase.SearchPostsUseCase;
-import com.social_media.postservice.application.usecase.SubmitPostUseCase;
 import com.social_media.postservice.application.usecase.UpdatePostUseCase;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -49,12 +36,8 @@ public class PostController {
     private final FindPostsByAuthorIdUseCase findPostsByAuthorIdUseCase;
     private final FindAllPostsUseCase findAllPostsUseCase;
     private final SearchPostsUseCase searchPostsUseCase;
-    private final DraftPostUseCase draftPostUseCase;
+    private final CreatePostUseCase createPostUseCase;
     private final DeletePostUseCase deletePostUseCase;
-    private final SubmitPostUseCase submitPostUseCase;
-    private final MovePostToDraftUseCase movePostToDraftUseCase;
-    private final ApprovePostUseCase approvePostUseCase;
-    private final RejectPostUseCase rejectPostUseCase;
     private final UpdatePostUseCase updatePostUseCase;
 
     @GetMapping(ApiPath.POST_BY_ID)
@@ -96,16 +79,16 @@ public class PostController {
     }
 
     @PostMapping(value = ApiPath.POSTS, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ApiResponse<PostResponse> draftPost(@Valid @ModelAttribute DraftPostRequest request) {
-        DraftPostCommand command = new DraftPostCommand();
+    public ApiResponse<PostResponse> createPost(@Valid @ModelAttribute CreatePostRequest request) {
+        CreatePostCommand command = new CreatePostCommand();
         command.setUserId(request.getUserId());
         command.setCaption(request.getCaption());
         command.setLocationName(request.getLocationName());
         command.setImages(request.getImages());
         return ApiResponse.<PostResponse>builder()
                 .code(HttpStatus.CREATED.value())
-                .message("Draft Post Success")
-                .data(draftPostUseCase.execute(command))
+                .message("Create Post Success")
+                .data(createPostUseCase.execute(command))
                 .build();
     }
 
@@ -119,32 +102,6 @@ public class PostController {
         return ApiResponse.<Void>builder()
                 .code(HttpStatus.OK.value())
                 .message("Delete Post Success")
-                .build();
-    }
-
-    @PutMapping(ApiPath.POST_SUBMIT)
-    public ApiResponse<Void> submitPost(@Valid @RequestBody SubmitPostRequest request) {
-        SubmitPostCommand command = new SubmitPostCommand(
-                request.getPostId(),
-                request.getUserId()
-        );
-        submitPostUseCase.execute(command);
-        return ApiResponse.<Void>builder()
-                .code(HttpStatus.OK.value())
-                .message("Submit Post Success")
-                .build();
-    }
-
-    @PutMapping(ApiPath.POST_MOVE_TO_DRAFT)
-    public ApiResponse<Void> movePostToDraft(@Valid @RequestBody MovePostToDraftRequest request) {
-        MovePostToDraftCommand command = new MovePostToDraftCommand(
-                request.getPostId(),
-                request.getUserId()
-        );
-        movePostToDraftUseCase.execute(command);
-        return ApiResponse.<Void>builder()
-                .code(HttpStatus.OK.value())
-                .message("Move Post To Draft Success")
                 .build();
     }
 
@@ -163,30 +120,4 @@ public class PostController {
                 .data(updatePostUseCase.execute(command))
                 .build();
     }
-
-    @PutMapping(ApiPath.POST_APPROVE)
-    public ApiResponse<Void> approvePost(@Valid @RequestBody ApprovePostRequest request) {
-        ApprovePostCommand command = new ApprovePostCommand();
-        command.setPostId(request.getPostId());
-        command.setAdminId(request.getAdminId());
-        approvePostUseCase.execute(command);
-        return ApiResponse.<Void>builder()
-                .code(HttpStatus.OK.value())
-                .message("Approve Post Success")
-                .build();
-    }
-
-    @PutMapping(ApiPath.POST_REJECT)
-    public ApiResponse<Void> rejectPost(@Valid @RequestBody RejectPostRequest request) {
-        RejectPostCommand command = new RejectPostCommand();
-        command.setPostId(request.getPostId());
-        command.setAdminId(request.getAdminId());
-        command.setReason(request.getReason());
-        rejectPostUseCase.execute(command);
-        return ApiResponse.<Void>builder()
-                .code(HttpStatus.OK.value())
-                .message("Reject Post Success")
-                .build();
-    }
-
 }

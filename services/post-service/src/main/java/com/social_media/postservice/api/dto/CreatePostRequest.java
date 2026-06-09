@@ -1,6 +1,5 @@
 package com.social_media.postservice.api.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -16,7 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-public class DraftPostRequest {
+public class CreatePostRequest {
     @NotNull(message = "User ID is required")
     private UUID userId;
 
