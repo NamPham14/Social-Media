@@ -1,6 +1,6 @@
 package com.social_media.postservice.infrastructure.mapper;
 
-import com.social_media.postservice.domain.aggreate.Bookmark;
+import com.social_media.postservice.domain.aggregate.Bookmark;
 import com.social_media.postservice.infrastructure.entity.BookmarkEntity;
 import org.mapstruct.Mapper;
 

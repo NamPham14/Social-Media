@@ -1,4 +1,4 @@
-package com.social_media.postservice.domain.aggreate;
+package com.social_media.postservice.domain.aggregate;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

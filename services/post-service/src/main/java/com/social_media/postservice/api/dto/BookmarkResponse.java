@@ -1,6 +1,6 @@
 package com.social_media.postservice.api.dto;
 
-import com.social_media.postservice.domain.aggreate.Bookmark;
+import com.social_media.postservice.domain.aggregate.Bookmark;
 import lombok.Getter;
 import lombok.Setter;
 

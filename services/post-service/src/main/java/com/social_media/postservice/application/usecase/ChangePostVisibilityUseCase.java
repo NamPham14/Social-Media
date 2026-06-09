@@ -3,7 +3,7 @@ package com.social_media.postservice.application.usecase;
 import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.command.ChangePostVisibilityCommand;
 import com.social_media.postservice.domain.exception.ErrorCode;
-import com.social_media.postservice.domain.aggreate.Post;
+import com.social_media.postservice.domain.aggregate.Post;
 import com.social_media.postservice.domain.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
