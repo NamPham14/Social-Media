@@ -5,9 +5,10 @@ import com.social_media.postservice.application.dto.PostResponse;
 import com.social_media.postservice.application.dto.UploadResponse;
 import com.social_media.postservice.application.service.MediaService;
 import com.social_media.postservice.domain.exception.ErrorCode;
-import com.social_media.postservice.domain.model.Post;
-import com.social_media.postservice.domain.model.PostMedia;
+import com.social_media.postservice.domain.aggreate.Post;
+import com.social_media.postservice.domain.aggreate.PostMedia;
 import com.social_media.postservice.domain.repository.PostRepository;
+import com.social_media.postservice.domain.valueobject.MediaType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,6 @@ public class UpdatePostUseCase {
 
         List<PostMedia> mediasToDelete = new ArrayList<>();
 
-
         for (PostMedia media : post.getMedias()) {
             if (!remainImageUrls.contains(media.getMediaUrl())) {
                 mediasToDelete.add(media);
@@ -55,7 +55,7 @@ public class UpdatePostUseCase {
             PostMedia media = PostMedia.create(
                     file.getPublicId(),
                     file.getUrl(),
-                    PostMedia.MediaType.IMAGE,
+                    MediaType.IMAGE,
                     nextIndex++
             );
             post.addMedia(media);
@@ -86,6 +86,4 @@ public class UpdatePostUseCase {
             throw new AppException(ErrorCode.CLOUDINARY_ERROR);
         }
     }
-
-
 }

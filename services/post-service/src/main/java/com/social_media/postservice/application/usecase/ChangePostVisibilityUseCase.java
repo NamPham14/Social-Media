@@ -3,13 +3,11 @@ package com.social_media.postservice.application.usecase;
 import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.command.ChangePostVisibilityCommand;
 import com.social_media.postservice.domain.exception.ErrorCode;
-import com.social_media.postservice.domain.model.Post;
+import com.social_media.postservice.domain.aggreate.Post;
 import com.social_media.postservice.domain.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +20,6 @@ public class ChangePostVisibilityUseCase {
 
         Post post = postRepository.findById(app.getPostId())
                 .orElseThrow(() -> new AppException(ErrorCode.EMPTY_RESOURCE));
-
 
         if (!post.getUserId().equals(app.getUserId())) {
             throw new AppException(ErrorCode.UNAUTHORIZED_ACTION);

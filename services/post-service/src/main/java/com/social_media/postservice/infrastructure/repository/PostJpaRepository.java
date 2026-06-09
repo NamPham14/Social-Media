@@ -1,7 +1,7 @@
 package com.social_media.postservice.infrastructure.repository;
 
 
-import com.social_media.postservice.domain.model.Post;
+import com.social_media.postservice.domain.aggreate.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

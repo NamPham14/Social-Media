@@ -2,14 +2,15 @@ package com.social_media.postservice.application.usecase;
 
 
 import com.social_media.common.exception.AppException;
-import com.social_media.postservice.application.command.DraftPostCommand;
+import com.social_media.postservice.application.command.CreatePostCommand;
 import com.social_media.postservice.application.dto.PostResponse;
 import com.social_media.postservice.application.dto.UploadResponse;
 import com.social_media.postservice.application.service.MediaService;
 import com.social_media.postservice.domain.exception.ErrorCode;
-import com.social_media.postservice.domain.model.Post;
-import com.social_media.postservice.domain.model.PostMedia;
+import com.social_media.postservice.domain.aggreate.Post;
+import com.social_media.postservice.domain.aggreate.PostMedia;
 import com.social_media.postservice.domain.repository.PostRepository;
+import com.social_media.postservice.domain.valueobject.MediaType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -20,16 +21,15 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class DraftPostUseCase {
+public class CreatePostUseCase {
 
     private final MediaService mediaService;
     private final PostRepository postRepository;
 
     @Transactional
-    public PostResponse execute(DraftPostCommand command) {
+    public PostResponse execute(CreatePostCommand command) {
 
-
-        Post post = Post.draft(command.getUserId(), command.getCaption(), command.getLocationName());
+        Post post = Post.create(command.getUserId(), command.getCaption(), command.getLocationName());
         List<UploadResponse> uploads = mediaService.upload(command.getImages());
 
         int index = 0;
@@ -37,7 +37,7 @@ public class DraftPostUseCase {
             PostMedia media = PostMedia.create(
                     file.getPublicId(),
                     file.getUrl(),
-                    PostMedia.MediaType.IMAGE,
+                    MediaType.IMAGE,
                     index++
             );
             post.addMedia(media);

@@ -16,6 +16,7 @@
         <spring-boot.version>3.5.14</spring-boot.version>
         <spring-cloud.version>2025.0.0</spring-cloud.version>
         <lombook.version>1.18.46</lombook.version>
+        <mapstruct.version>1.6.3</mapstruct.version>
     </properties>
 
     <modules>
@@ -51,7 +52,17 @@
             </dependency>
 
 
-
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

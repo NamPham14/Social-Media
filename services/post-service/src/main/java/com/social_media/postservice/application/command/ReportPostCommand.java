@@ -1,5 +1,6 @@
 package com.social_media.postservice.application.command;
 
+import com.social_media.postservice.domain.valueobject.ReportReason;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +12,10 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-public class SubmitPostCommand {
+public class ReportPostCommand {
+
     private UUID postId;
-    private UUID userId;
+    private UUID reporterId;
+    private ReportReason reason;
+    private String description;
 }

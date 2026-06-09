@@ -1,5 +1,6 @@
 package com.social_media.postservice.api.dto;
 
+import com.social_media.postservice.domain.valueobject.ReportReason;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,12 +13,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @Getter
 @Setter
-public class RejectPostRequest {
-    @NotNull(message = "Post ID is required")
-    private UUID postId;
+public class ReportPostRequest {
 
-    @NotNull(message = "Admin ID is required")
-    private UUID adminId;
+    @NotNull
+    private UUID reporterId;
 
-    private String reason;
+    @NotNull
+    private ReportReason reason;
+
+    private String description;
 }

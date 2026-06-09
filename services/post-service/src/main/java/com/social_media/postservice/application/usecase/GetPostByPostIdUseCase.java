@@ -4,7 +4,7 @@ package com.social_media.postservice.application.usecase;
 import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.dto.PostResponse;
 import com.social_media.postservice.domain.exception.ErrorCode;
-import com.social_media.postservice.domain.model.Post;
+import com.social_media.postservice.domain.aggreate.Post;
 import com.social_media.postservice.domain.repository.PostRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
