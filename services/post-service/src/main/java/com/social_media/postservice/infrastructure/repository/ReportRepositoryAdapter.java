@@ -1,6 +1,6 @@
 package com.social_media.postservice.infrastructure.repository;
 
-import com.social_media.postservice.domain.aggreate.Report;
+import com.social_media.postservice.domain.aggregate.Report;
 import com.social_media.postservice.domain.repository.ReportRepository;
 import com.social_media.postservice.domain.valueobject.ReportStatus;
 import com.social_media.postservice.infrastructure.entity.ReportEntity;

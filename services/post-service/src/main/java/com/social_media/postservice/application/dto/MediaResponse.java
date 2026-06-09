@@ -1,5 +1,5 @@
 package com.social_media.postservice.application.dto;
-import com.social_media.postservice.domain.aggreate.PostMedia;
+import com.social_media.postservice.domain.aggregate.PostMedia;
 import lombok.Getter;
 
 import java.util.UUID;

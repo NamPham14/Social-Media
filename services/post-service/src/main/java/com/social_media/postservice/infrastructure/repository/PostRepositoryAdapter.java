@@ -1,7 +1,9 @@
 package com.social_media.postservice.infrastructure.repository;
 
-import com.social_media.postservice.domain.aggreate.Post;
+import com.social_media.postservice.domain.aggregate.Post;
 import com.social_media.postservice.domain.repository.PostRepository;
+import com.social_media.postservice.infrastructure.entity.PostEntity;
+import com.social_media.postservice.infrastructure.mapper.PostMapper;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -21,34 +23,42 @@ import java.util.UUID;
 public class PostRepositoryAdapter implements PostRepository {
 
     PostJpaRepository postJpaRepository;
+    PostMapper postMapper;
 
     @Override
     public Optional<Post> findById(UUID id) {
-        return  postJpaRepository.findById(id);
+        return postJpaRepository.findById(id)
+                .map(postMapper::toDomain);
     }
 
     @Override
     public Page<Post> findByAuthorId(UUID userId, Pageable pageable) {
-        return postJpaRepository.findPostByUserId(userId, pageable);
+        return postJpaRepository.findPostEntityByUserId(userId, pageable)
+                .map(postMapper::toDomain);
     }
 
     @Override
     public Page<Post> findAll(Pageable pageable) {
-        return postJpaRepository.findAll(pageable);
+        return postJpaRepository.findAll(pageable)
+                .map(postMapper::toDomain);
     }
 
     @Override
     public Page<Post> searchByKeyword(String keyword, Pageable pageable) {
-        return postJpaRepository.findByCaptionLikeIgnoreCase(keyword, pageable);
+        return postJpaRepository.findByCaptionLikeIgnoreCase(keyword, pageable)
+                .map(postMapper::toDomain);
     }
 
     @Override
     public Post save(Post post) {
-        return postJpaRepository.save(post);
+        PostEntity entity = postMapper.toEntity(post);
+        PostEntity saved = postJpaRepository.save(entity);
+        return postMapper.toDomain(saved);
     }
 
     @Override
     public void delete(Post post) {
-        postJpaRepository.delete(post);
+        PostEntity entity = postMapper.toEntity(post);
+        postJpaRepository.delete(entity);
     }
 }

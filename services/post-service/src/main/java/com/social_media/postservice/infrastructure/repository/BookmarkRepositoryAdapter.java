@@ -1,6 +1,6 @@
 package com.social_media.postservice.infrastructure.repository;
 
-import com.social_media.postservice.domain.aggreate.Bookmark;
+import com.social_media.postservice.domain.aggregate.Bookmark;
 import com.social_media.postservice.domain.repository.BookmarkRepository;
 import com.social_media.postservice.infrastructure.entity.BookmarkEntity;
 import com.social_media.postservice.infrastructure.mapper.BookmarkMapper;
