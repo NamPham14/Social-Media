@@ -1,0 +1,20 @@
+meta {
+  name: Update Post
+  type: http
+  seq: 11
+}
+
+put {
+  url: http://localhost:8082/api/v1/posts/update
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  postId: {{postId}}
+  userId: {{userId}}
+  caption: Updated caption
+  locationName: Updated Location
+  remainImageUrls: http://example.com/image1.jpg
+  newImages: @file(C:\Users\gtrun\Downloads\new_image.jpg)
+}

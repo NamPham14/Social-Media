@@ -1,7 +1,7 @@
 package com.social_media.postservice.infrastructure.entity;
 
-import com.social_media.postservice.domain.valueobject.ReportReason;
-import com.social_media.postservice.domain.valueobject.ReportStatus;
+import com.social_media.postservice.domain.model.report.valueobject.ReportReason;
+import com.social_media.postservice.domain.model.report.valueobject.ReportStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -53,3 +53,4 @@ public class ReportEntity {
         }
     }
 }
+

@@ -1,0 +1,11 @@
+meta {
+  name: Unbookmark Post
+  type: http
+  seq: 13
+}
+
+delete {
+  url: http://localhost:8082/api/v1/bookmarks/{{userId}}/{{postId}}
+  body: none
+  auth: none
+}

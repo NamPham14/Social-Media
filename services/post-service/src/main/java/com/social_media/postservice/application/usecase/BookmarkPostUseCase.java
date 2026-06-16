@@ -3,8 +3,9 @@ package com.social_media.postservice.application.usecase;
 import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.command.BookmarkPostCommand;
 import com.social_media.postservice.domain.exception.ErrorCode;
-import com.social_media.postservice.domain.aggregate.Bookmark;
-import com.social_media.postservice.domain.aggregate.Post;
+//import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
+import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
+import com.social_media.postservice.domain.model.post.aggregate.Post;
 import com.social_media.postservice.domain.repository.BookmarkRepository;
 import com.social_media.postservice.domain.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -31,3 +32,4 @@ public class BookmarkPostUseCase {
         bookmarkRepository.save(bookmark);
     }
 }
+

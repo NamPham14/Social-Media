@@ -1,6 +1,7 @@
 package com.social_media.postservice.application.usecase;
 
-import com.social_media.postservice.domain.aggregate.Bookmark;
+//import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
+import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
 import com.social_media.postservice.domain.repository.BookmarkRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -21,3 +22,4 @@ public class GetUserBookmarksUseCase {
         return bookmarkRepository.findByUserIdOrderByCreatedAtDesc(userId, pageable);
     }
 }
+

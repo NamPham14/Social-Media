@@ -3,7 +3,7 @@ package com.social_media.postservice.application.usecase;
 import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.command.ReviewReportCommand;
 import com.social_media.postservice.domain.exception.ErrorCode;
-import com.social_media.postservice.domain.aggregate.Report;
+import com.social_media.postservice.domain.model.report.aggregate.Report;
 import com.social_media.postservice.domain.repository.ReportRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,3 +24,4 @@ public class DismissReportUseCase {
         reportRepository.save(report);
     }
 }
+

@@ -1,7 +1,7 @@
 package com.social_media.postservice.application.dto;
 
 
-import com.social_media.postservice.domain.aggregate.Post;
+import com.social_media.postservice.domain.model.post.aggregate.Post;
 import lombok.Getter;
 import lombok.Setter;
 

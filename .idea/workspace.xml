@@ -5,8 +5,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="646b37f5-f427-4908-95f7-28e8e994646f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/config/PropagationConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/domain/RateLimitConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/security/RateLimitFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/utils/ApiConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/utils/GatewayConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/utils/RateLimitUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/logback-spring.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/doc/todo/01-Sercurity/Sercurity.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/config/CustomAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/config/PostServiceFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/model/bookmark/aggreate/Bookmark.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/model/post/aggregate/Post.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/model/post/valueobject/MediaType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/model/post/valueobject/ModerationStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/model/post/valueobject/PostStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/model/report/aggreate/Report.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/model/report/valueobject/ReportReason.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/model/report/valueobject/ReportStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/adapter/BookmarkRepositoryAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/adapter/PostRepositoryAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/adapter/ReportRepositoryAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/utils/UserUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bruno/Approve Post.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bruno/Draft Post.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bruno/Move Post To Draft.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bruno/Reject Post.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bruno/Search Posts.bru" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bruno/Search Posts.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bruno/Submit Post.bru" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/controller/BookmarkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/controller/BookmarkController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/controller/ReportController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/BookmarkResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/BookmarkResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/ReportPostRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/ReportPostRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/ReportResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/ReportResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/BookmarkPostCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/BookmarkPostCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/ChangePostVisibilityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/ChangePostVisibilityCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/CreatePostCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/CreatePostCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/DeletePostCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/DeletePostCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/ReportPostCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/ReportPostCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/ReviewReportCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/ReviewReportCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/UnbookmarkPostCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/UnbookmarkPostCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/UpdatePostCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/UpdatePostCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/dto/MediaResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/dto/MediaResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/dto/PostResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/dto/PostResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/BookmarkPostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/BookmarkPostUseCase.java" afterDir="false" />
@@ -24,21 +70,29 @@
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/SearchPostsUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/SearchPostsUseCase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/UnbookmarkPostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/UnbookmarkPostUseCase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/UpdatePostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/UpdatePostUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/aggreate/Bookmark.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/aggreate/Post.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/aggreate/PostMedia.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/aggreate/Report.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/aggregate/Bookmark.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/aggregate/Post.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/aggregate/PostMedia.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/aggregate/Report.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/BookmarkRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/BookmarkRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/PostRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/ReportRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/ReportRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/valueobject/MediaType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/valueobject/ModerationStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/valueobject/PostStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/valueobject/ReportReason.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/valueobject/ReportStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/entity/PostEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/entity/PostEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/entity/PostMediaEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/entity/PostMediaEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/entity/ReportEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/entity/ReportEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mapper/BookmarkMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mapper/BookmarkMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mapper/PostMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mapper/PostMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mapper/PostMediaMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mapper/PostMediaMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mapper/ReportMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mapper/ReportMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/BookmarkRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/BookmarkRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/ReportRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/ReportRepositoryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/BookmarkRepositoryAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostRepositoryAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/ReportJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/ReportJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/ReportRepositoryAdapter.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,9 +132,14 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.ApiGatewayApplication.executor": "Run",
+    "Spring Boot.CommonSecurityApplication.executor": "Run",
+    "Spring Boot.EurekaServerApplication.executor": "Run",
+    "Spring Boot.IdentityServiceApplication.executor": "Run",
     "Spring Boot.PostServiceApplication.executor": "Run",
     "git-widget-placeholder": "SMP-3-post-service",
-    "last_opened_file_path": "E:/SU26/MSS/ProjectClass/Social-Media/services/post-service/src/main/java/com/social_media/postservice/infrastructure",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/SU26/MSS/ProjectClass/project-assignment/Social-Media",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -92,10 +151,17 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\SU26\MSS\ProjectClass\project-assignment\Social-Media\services\post-service\src\main\java\com\social_media\postservice\domain\model\postmedia" />
+      <recent name="E:\SU26\MSS\ProjectClass\project-assignment\Social-Media\services\post-service\src\main\java\com\social_media\postservice\domain\model\report\valueobject" />
+      <recent name="E:\SU26\MSS\ProjectClass\project-assignment\Social-Media\services\post-service\src\main\java\com\social_media\postservice\domain\model\report" />
       <recent name="E:\SU26\MSS\ProjectClass\Social-Media\services\post-service\src\main\java\com\social_media\postservice\infrastructure" />
       <recent name="E:\SU26\MSS\ProjectClass\Social-Media\services\post-service\src\main\java\com\social_media\postservice\domain" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.social_media.postservice.domain.model.postmedia.valueobject" />
+      <recent name="com.social_media.postservice.domain.model.postmedia.aggreate" />
+      <recent name="com.social_media.postservice.domain.model.report.aggreate" />
+      <recent name="com.social_media.postservice.domain.model.bookmark.aggreate" />
       <recent name="com.social_media.postservice.infrastructure.entity" />
     </key>
   </component>
@@ -107,19 +173,8 @@
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
-    <option name="configurationStatuses">
-      <map>
-        <entry key="SpringBootApplicationConfigurationType">
-          <value>
-            <map>
-              <entry key="PostServiceApplication" value="FAILED" />
-            </map>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.PostServiceApplication">
+  <component name="RunManager" selected="Spring Boot.ApiGatewayApplication">
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="api-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.apigateway.ApiGatewayApplication" />
@@ -217,6 +272,18 @@
       <workItem from="1780974698996" duration="774000" />
       <workItem from="1780975506774" duration="880000" />
       <workItem from="1780976403713" duration="712000" />
+      <workItem from="1780989158226" duration="350000" />
+      <workItem from="1780989531691" duration="1176000" />
+      <workItem from="1780992585002" duration="2728000" />
+      <workItem from="1781015668705" duration="4906000" />
+      <workItem from="1781052270973" duration="3047000" />
+      <workItem from="1781055729560" duration="419000" />
+      <workItem from="1781056180498" duration="12421000" />
+      <workItem from="1781184067972" duration="15305000" />
+      <workItem from="1781225519770" duration="3285000" />
+      <workItem from="1781483466083" duration="5811000" />
+      <workItem from="1781489324565" duration="1311000" />
+      <workItem from="1781535719440" duration="12005000" />
     </task>
     <servers />
   </component>

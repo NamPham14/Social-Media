@@ -1,18 +1,27 @@
 package com.social_media.postservice.application.command;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.social_media.common.exception.AppException;
+import com.social_media.postservice.domain.exception.ErrorCode;
+import lombok.Builder;
+import lombok.Value;
 
 import java.util.UUID;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
+@Value
+@Builder
 public class UnbookmarkPostCommand {
+    UUID userId;
+    UUID postId;
 
-    private UUID userId;
-    private UUID postId;
+    public UnbookmarkPostCommand(UUID userId, UUID postId) {
+        this.userId = userId;
+        this.postId = postId;
+        validate();
+    }
+
+    private void validate() {
+        if (userId == null || postId == null) {
+            throw new AppException(ErrorCode.RESOURCE_NOT_FOUND);
+        }
+    }
 }

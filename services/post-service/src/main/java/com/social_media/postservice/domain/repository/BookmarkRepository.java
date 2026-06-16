@@ -1,6 +1,7 @@
 package com.social_media.postservice.domain.repository;
 
-import com.social_media.postservice.domain.aggregate.Bookmark;
+//import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
+import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -21,3 +22,4 @@ public interface BookmarkRepository {
 
     void delete(Bookmark bookmark);
 }
+

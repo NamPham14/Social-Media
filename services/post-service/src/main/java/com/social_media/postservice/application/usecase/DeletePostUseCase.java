@@ -4,8 +4,9 @@ import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.command.DeletePostCommand;
 import com.social_media.postservice.application.service.MediaService;
 import com.social_media.postservice.domain.exception.ErrorCode;
-import com.social_media.postservice.domain.aggregate.Post;
-import com.social_media.postservice.domain.aggregate.PostMedia;
+import com.social_media.postservice.domain.model.post.aggregate.Post;
+//import com.social_media.postservice.domain.model.post.entity.PostMedia;
+import com.social_media.postservice.domain.model.post.entity.PostMedia;
 import com.social_media.postservice.domain.repository.PostRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -49,3 +50,4 @@ public class DeletePostUseCase {
         }
     }
 }
+

@@ -1,6 +1,7 @@
 package com.social_media.postservice.infrastructure.mapper;
 
-import com.social_media.postservice.domain.aggregate.PostMedia;
+//import com.social_media.postservice.domain.model.post.entity.PostMedia;
+import com.social_media.postservice.domain.model.post.entity.PostMedia;
 import com.social_media.postservice.infrastructure.entity.PostMediaEntity;
 import org.mapstruct.Mapper;
 
@@ -11,3 +12,4 @@ public interface PostMediaMapper {
 
     PostMedia toDomain(PostMediaEntity entity);
 }
+

@@ -1,6 +1,6 @@
 package com.social_media.postservice.infrastructure.entity;
 
-import com.social_media.postservice.domain.valueobject.MediaType;
+import com.social_media.postservice.domain.model.post.valueobject.MediaType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -37,3 +37,4 @@ public class PostMediaEntity {
     @Builder.Default
     private Integer orderIndex = 0;
 }
+
