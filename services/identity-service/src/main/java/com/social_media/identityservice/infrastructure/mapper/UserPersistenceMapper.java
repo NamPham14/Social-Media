@@ -22,7 +22,8 @@ public class UserPersistenceMapper {
                 entity.getEmail(),
                 entity.getRoles().stream()
                         .map(role -> RoleId.from(role.getName()))
-                        .collect(Collectors.toSet())
+                        .collect(Collectors.toSet()),
+                entity.getStatus()
         );
     }
 
@@ -34,6 +35,7 @@ public class UserPersistenceMapper {
                 .username(domain.getUsername())
                 .password(domain.getPassword())
                 .email(domain.getEmail())
+                .status(domain.getStatus())
                 .roles(domain.getRoles().stream()
                         .map(roleId -> RoleEntity.builder().name(roleId.value()).build())
                         .collect(Collectors.toSet()))

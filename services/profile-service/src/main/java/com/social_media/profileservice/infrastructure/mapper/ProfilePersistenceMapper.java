@@ -1,7 +1,7 @@
 package com.social_media.profileservice.infrastructure.mapper;
 
 
-import com.social_media.profileservice.domain.model.aggregate.Profile;
+import com.social_media.profileservice.domain.model.profile.aggregate.Profile;
 import com.social_media.profileservice.domain.shared.valueobject.UserProfileId;
 import com.social_media.profileservice.infrastructure.persistence.entity.UserProfile;
 import org.mapstruct.Mapper;

@@ -2,7 +2,7 @@ package com.social_media.profileservice.application.mapper;
 
 
 import com.social_media.profileservice.api.dto.ProfileResponse;
-import com.social_media.profileservice.domain.model.aggregate.Profile;
+import com.social_media.profileservice.domain.model.profile.aggregate.Profile;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

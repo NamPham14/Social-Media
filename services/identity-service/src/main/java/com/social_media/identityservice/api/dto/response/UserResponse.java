@@ -1,5 +1,6 @@
 package com.social_media.identityservice.api.dto.response;
 
+import com.social_media.identityservice.domain.shared.valueobject.UserStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,4 +18,5 @@ public class UserResponse {
     private String username;
     private String email;
     private Set<String> roles;
+    private UserStatus status;
 }
