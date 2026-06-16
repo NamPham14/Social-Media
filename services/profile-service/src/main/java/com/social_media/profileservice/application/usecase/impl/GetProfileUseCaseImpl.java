@@ -3,7 +3,7 @@ package com.social_media.profileservice.application.usecase.impl;
 
 import com.social_media.profileservice.application.usecase.GetProfileUseCase;
 import com.social_media.profileservice.application.exception.ProfileNotFoundException;
-import com.social_media.profileservice.domain.model.aggregate.Profile;
+import com.social_media.profileservice.domain.model.profile.aggregate.Profile;
 import com.social_media.profileservice.domain.repository.ProfileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

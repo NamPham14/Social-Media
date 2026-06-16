@@ -16,18 +16,21 @@ public class SecurityHeaderFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        return chain.filter(exchange).then(Mono.fromRunnable(() -> {
-            ServerHttpResponse response = exchange.getResponse();
-            HttpHeaders headers = response.getHeaders();
-            
-            // Add security headers
-            headers.add("X-Content-Type-Options", "nosniff");
-            headers.add("X-Frame-Options", "DENY");
-            headers.add("X-XSS-Protection", "1; mode=block");
-            headers.add("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
-            headers.add("Content-Security-Policy", "default-src 'self'");
-            headers.add("Referrer-Policy", "strict-origin-when-cross-origin");
-        }));
+
+        // Đăng ký hành động sẽ chạy "trước khi commit response"
+        exchange.getResponse().beforeCommit(() -> {
+            exchange.getResponse().getHeaders().add("X-Content-Type-Options", "nosniff");
+            exchange.getResponse().getHeaders().add("X-Frame-Options", "DENY");
+            exchange.getResponse().getHeaders().add("X-XSS-Protection", "1; mode=block");
+            exchange.getResponse().getHeaders().add("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
+            exchange.getResponse().getHeaders().add("Content-Security-Policy", "default-src 'self'");
+            exchange.getResponse().getHeaders().add("Referrer-Policy", "strict-origin-when-cross-origin");
+
+            return Mono.empty();
+        });
+
+        // Tiếp tục cho request đi qua các filter khác và xuống service
+        return chain.filter(exchange);
     }
 
     @Override

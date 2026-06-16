@@ -4,6 +4,7 @@ package com.social_media.identityservice.domain.model.user.aggregate;
 import com.social_media.identityservice.domain.shared.valueobject.UserId;
 import com.social_media.identityservice.domain.shared.valueobject.RoleId;
 import com.social_media.identityservice.domain.model.user.exception.InvalidUserIdentityException;
+import com.social_media.identityservice.domain.shared.valueobject.UserStatus;
 import lombok.*;
 
 
@@ -17,18 +18,19 @@ public class User {
     private String password;
     private String email;
     private Set<RoleId> roles; // Reference by ID
-
+    private UserStatus status;
 
 
     private User() {}
 
-    public static User reconstruct(UserId id, String username, String password, String email, Set<RoleId> roles) {
+    public static User reconstruct(UserId id, String username, String password, String email, Set<RoleId> roles,UserStatus status) {
         User user = new User();
         user.id = id;
         user.username = username;
         user.password = password;
         user.email = email;
         user.roles = roles;
+        user.status = status;
         return user;
     }
 
@@ -43,10 +45,13 @@ public class User {
         user.email = email;
         user.password = encodedPassword;
         user.roles = roles;
-        
+        user.status = UserStatus.ACTIVE;
 
         return user;
     }
 
+    public void banAccount(){
+        this.status = UserStatus.BANNED;
+    }
 
 }

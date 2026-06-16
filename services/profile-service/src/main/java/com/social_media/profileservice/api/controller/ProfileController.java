@@ -9,7 +9,8 @@ import com.social_media.profileservice.application.mapper.ProfileApiMapper;
 import com.social_media.profileservice.application.usecase.CreateProfileUseCase;
 import com.social_media.profileservice.application.usecase.GetProfileUseCase;
 import com.social_media.profileservice.application.usecase.UpdateProfileUseCase;
-import com.social_media.profileservice.domain.model.aggregate.Profile;
+
+import com.social_media.profileservice.domain.model.profile.aggregate.Profile;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -50,7 +51,7 @@ public class ProfileController {
     public ResponseEntity<ApiResponse<ProfileResponse>> getProfile(@PathVariable("id") UUID id) {
         Profile profile = getProfileUseCase.execute(id);
 
-        ;
+
 
         return ResponseEntity.ok(ApiResponse.<ProfileResponse>builder()
                 .status(HttpStatus.OK.value())
