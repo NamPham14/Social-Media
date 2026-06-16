@@ -24,7 +24,8 @@ public enum ErrorCode implements BaseErrorCode {
 
     UNAUTHENTICATED(1012, "Unauthenticated", HttpStatus.UNAUTHORIZED),
 
-   ;
+    FEIGN_COMMUNICATION_ERROR(2002, "Error occurred while communicating with other services", HttpStatus.INTERNAL_SERVER_ERROR),
+    ;
 
     private final int code;
     private final String message;

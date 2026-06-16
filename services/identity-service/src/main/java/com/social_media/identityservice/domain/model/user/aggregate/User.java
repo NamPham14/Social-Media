@@ -54,4 +54,19 @@ public class User {
         this.status = UserStatus.BANNED;
     }
 
+    public void unBanAccount(){
+        if(this.status == UserStatus.ACTIVE){
+            throw new InvalidUserIdentityException("Tài khoản đang ở trạng thái ACTIVE, không thể mở khóa!");
+        }
+        this.status = UserStatus.ACTIVE;
+    }
+
+    public void changePassword(String newEncodePassword){
+
+        if(newEncodePassword == null || newEncodePassword.length() < 4){
+            throw new InvalidUserIdentityException("Password must be at least 4 characters");
+        }
+        this.password = newEncodePassword;
+    }
+
 }

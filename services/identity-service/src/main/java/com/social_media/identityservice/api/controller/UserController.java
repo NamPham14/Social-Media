@@ -1,24 +1,16 @@
 package com.social_media.identityservice.api.controller;
 
 import com.social_media.common.api.ApiResponse;
-import com.social_media.identityservice.api.dto.request.LoginRequest;
-import com.social_media.identityservice.api.dto.request.RegisterRequest;
-import com.social_media.identityservice.api.dto.response.LoginResponse;
+import com.social_media.identityservice.api.dto.request.ChangePasswordRequest;
+import com.social_media.identityservice.api.dto.response.ChangePasswordResponse;
 import com.social_media.identityservice.api.dto.response.UserResponse;
-import com.social_media.identityservice.application.command.LoginCommand;
-import com.social_media.identityservice.application.command.RegisterCommand;
-import com.social_media.identityservice.application.mapper.IdentityApiMapper;
-import com.social_media.identityservice.application.usecase.BanUserUseCase;
-import com.social_media.identityservice.application.usecase.GetUserStatusUseCase;
-import com.social_media.identityservice.application.usecase.LoginUseCase;
-import com.social_media.identityservice.application.usecase.RegisterUseCase;
-import com.social_media.identityservice.domain.model.user.aggregate.User;
+import com.social_media.identityservice.application.command.ChangePasswordCommand;
+import com.social_media.identityservice.application.usecase.ChangePasswordUseCase;
 import com.social_media.identityservice.domain.shared.valueobject.UserId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.UUID;
 
 @RestController
@@ -26,60 +18,30 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final RegisterUseCase registerUseCase;
-    private final LoginUseCase loginUseCase;
-    private final IdentityApiMapper identityMapper;
-    private final BanUserUseCase banUserUseCase;
-    private final GetUserStatusUseCase getUserStatusUseCase;
+    private final ChangePasswordUseCase changePasswordUseCase;
 
-    @PostMapping(ApiPath.USERS + ApiPath.REGISTER)
-    public ResponseEntity<ApiResponse<UserResponse>> register(@RequestBody RegisterRequest request) {
-        RegisterCommand command = RegisterCommand.builder()
-                .username(request.getUsername())
-                .password(request.getPassword())
-                .email(request.getEmail())
+
+    @PutMapping("/change-pwd/{userId}")
+    public ResponseEntity<ApiResponse<ChangePasswordResponse>>  changePassword (@RequestBody ChangePasswordRequest changePasswordRequest,
+                                                                @PathVariable("userId") UUID userId){
+
+        ChangePasswordCommand command = ChangePasswordCommand.builder()
+                .newPassword(changePasswordRequest.getNewPassword())
+                .oldPassword(changePasswordRequest.getOldPassword())
                 .build();
 
-        User user = registerUseCase.register(command);
-        UserResponse response = identityMapper.toResponse(user);
+        changePasswordUseCase.execute(UserId.from(userId),command);
+        ChangePasswordResponse response = new ChangePasswordResponse(true, "Password changed!");
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(
-                ApiResponse.<UserResponse>builder()
-                        .status(HttpStatus.CREATED.value())
+        return ResponseEntity.ok(ApiResponse.<ChangePasswordResponse>builder()
+                        .status(HttpStatus.OK.value())
                         .code(1000)
-                        .message("User registered successfully")
+                        .message("Change Password successfully")
                         .data(response)
-                        .build()
-        );
-    }
-
-    @PostMapping(ApiPath.AUTH + ApiPath.LOGIN)
-    public ResponseEntity<ApiResponse<LoginResponse>> login(@RequestBody LoginRequest request) {
-        LoginCommand command = LoginCommand.builder()
-                .username(request.getUsername())
-                .password(request.getPassword())
-                .build();
-
-        LoginResponse response = loginUseCase.login(command);
-
-        return ResponseEntity.ok(ApiResponse.<LoginResponse>builder()
-                .status(HttpStatus.OK.value())
-                .code(1000)
-                .message("Login successfully")
-                .data(response)
                 .build());
-    }
-    @PostMapping("/{userId}/ban")
-    public ResponseEntity<String> banUser(@PathVariable("userId") UUID userId) {
-        banUserUseCase.banUser(UserId.from(userId));
-        return ResponseEntity.ok("User has been banned");
+
     }
 
-    // API nội bộ dành riêng cho Post-Service gọi sang bằng FeignClient
-    @GetMapping("/{userId}/status")
-    public ResponseEntity<String> getUserStatus(@PathVariable("userId") UUID userId) {
-        String status = getUserStatusUseCase.getStatus(UserId.from(userId));
-        return ResponseEntity.ok(status);
-    }
+
 
 }

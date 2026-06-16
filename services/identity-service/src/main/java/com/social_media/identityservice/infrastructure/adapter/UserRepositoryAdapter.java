@@ -7,6 +7,8 @@ import com.social_media.identityservice.infrastructure.mapper.UserPersistenceMap
 import com.social_media.identityservice.infrastructure.persistence.entity.UserEntity;
 import com.social_media.identityservice.infrastructure.persistence.repository.UserJpaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -45,5 +47,10 @@ public class UserRepositoryAdapter implements UserRepository {
     @Override
     public boolean existsByEmail(String email) {
         return userJpaRepository.existsByEmail(email);
+    }
+
+    @Override
+    public Page<User> searchUsers(String keyword,Pageable pageable) {
+        return userJpaRepository.searchUsers(keyword, pageable).map(userPersistenceMapper::toDomain);
     }
 }

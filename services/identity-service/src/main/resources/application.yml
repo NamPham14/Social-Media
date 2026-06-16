@@ -1,10 +1,17 @@
 spring:
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connect-timeout: 2000
+            read-timeout: 3000
   application:
     name: identity-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/demo
+    url: jdbc:postgresql://localhost:5432/social_media
     username: postgres
-    password: 1234
+    password: 123456
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
