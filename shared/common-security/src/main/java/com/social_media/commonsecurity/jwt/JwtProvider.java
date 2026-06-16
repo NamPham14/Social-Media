@@ -25,10 +25,11 @@ public class JwtProvider {
     @Value("${application.security.jwt.secretKey}")
     private String signerKey;
 
-    public String generateToken(String username){
+    public String generateToken(String userId, String username){
         JWSHeader jwsHeader = new JWSHeader(JWSAlgorithm.HS256);
         JWTClaimsSet jwtClaimsSet = new JWTClaimsSet.Builder()
-                .subject(username)
+                .subject(userId)
+                .claim("username", username)
                 .issuer("social-media.com")
                 .issueTime(new Date())
                 .expirationTime(new Date(Instant.now().plus(1, ChronoUnit.HOURS).toEpochMilli()))
@@ -59,6 +60,16 @@ public class JwtProvider {
         } catch (Exception e) {
             log.error("Token verification failed: {}", e.getMessage());
             return false;
+        }
+    }
+
+    public String extractSubject(String token) {
+        try {
+            SignedJWT signedJWT = SignedJWT.parse(token);
+            return signedJWT.getJWTClaimsSet().getSubject();
+        } catch (Exception e) {
+            log.error("Cannot extract subject from token", e);
+            return null;
         }
     }
 }

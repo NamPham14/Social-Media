@@ -1,8 +1,8 @@
 package com.social_media.profileservice.application.usecase;
 
 import com.social_media.profileservice.application.command.CreateProfileCommand;
-import com.social_media.profileservice.domain.UserProfile;
+import com.social_media.profileservice.domain.model.aggregate.Profile;
 
 public interface CreateProfileUseCase {
-    UserProfile execute(CreateProfileCommand command);
+    Profile execute(CreateProfileCommand command);
 }

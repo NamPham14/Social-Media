@@ -1,14 +1,14 @@
 package com.social_media.identityservice.application.usecase;
 
-import com.social_media.common.exception.AppException;
-import com.social_media.common.exception.ErrorCode;
-import com.social_media.identityservice.api.dto.ProfileCreationRequest;
 import com.social_media.identityservice.application.command.RegisterCommand;
-import com.social_media.identityservice.domain.Role;
-import com.social_media.identityservice.domain.RoleRepository;
-import com.social_media.identityservice.domain.User;
-import com.social_media.identityservice.domain.UserRepository;
+import com.social_media.identityservice.domain.shared.valueobject.RoleId;
+import com.social_media.identityservice.domain.model.role.aggregate.Role;
+import com.social_media.identityservice.domain.repository.RoleRepository;
+import com.social_media.identityservice.domain.model.user.aggregate.User;
+import com.social_media.identityservice.domain.repository.UserRepository;
+import com.social_media.identityservice.application.exception.user.UserExistedException;
 import com.social_media.identityservice.infrastructure.client.ProfileClient;
+import com.social_media.identityservice.api.dto.request.ProfileCreationRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,30 +26,31 @@ public class RegisterUseCase {
 
     @Transactional
     public User register(RegisterCommand command) {
-        if (userRepository.existsByEmail(command.getEmail())) {
-            throw new AppException(ErrorCode.USER_EXISTED);
+        if (userRepository.existsByEmail(command.email())) {
+            throw new UserExistedException();
         }
-        if (userRepository.existsByUsername(command.getUsername())) {
-            throw new AppException(ErrorCode.USER_EXISTED);
+        if (userRepository.existsByUsername(command.username())) {
+            throw new UserExistedException();
         }
 
-        Role userRole = roleRepository.findByName("USER")
-                .orElseGet(() -> roleRepository.save(Role.builder().name("USER").build()));
+        RoleId userRoleId = RoleId.from("USER");
+        Role userRole = roleRepository.findById(userRoleId)
+                .orElseGet(() -> roleRepository.save(Role.create("USER", "Default user role")));
 
-        User user = User.builder()
-                .username(command.getUsername())
-                .password(passwordEncoder.encode(command.getPassword()))
-                .email(command.getEmail())
-                .roles(Set.of(userRole))
-                .build();
+        User user = User.register(
+                command.username(),
+                command.email(),
+                passwordEncoder.encode(command.password()),
+                Set.of(userRoleId)
+        );
 
         User savedUser = userRepository.save(user);
 
-        // Gọi sang Profile Service để tạo profile tương ứng
+        // Gọi sang Profile Service để tạo profile tương ứng (Sẽ chuyển sang Event sau)
         profileClient.createProfile(ProfileCreationRequest.builder()
-                .id(savedUser.getId())
+                .id(savedUser.getId().value())
                 .username(savedUser.getUsername())
-                .fullName(savedUser.getUsername()) // Tạm thời lấy username làm fullName
+                .fullName(savedUser.getUsername())
                 .build());
 
         return savedUser;

@@ -4,41 +4,57 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="646b37f5-f427-4908-95f7-28e8e994646f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/BookmarkResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/BookmarkResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/ReportResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/ReportResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/dto/MediaResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/dto/MediaResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/dto/PostResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/dto/PostResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/BookmarkPostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/BookmarkPostUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/ChangePostVisibilityUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/ChangePostVisibilityUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/CreatePostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/CreatePostUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/DeletePostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/DeletePostUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/DismissReportUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/DismissReportUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/FindAllPostsUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/FindAllPostsUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/FindPostsByAuthorIdUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/FindPostsByAuthorIdUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/GetPostByPostIdUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/GetPostByPostIdUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/GetReportedPostsUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/GetReportedPostsUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/GetUserBookmarksUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/GetUserBookmarksUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/RemoveReportedPostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/RemoveReportedPostUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/ReportPostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/ReportPostUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/SearchPostsUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/SearchPostsUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/UnbookmarkPostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/UnbookmarkPostUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/UpdatePostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/UpdatePostUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/aggreate/Bookmark.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/aggreate/Post.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/aggreate/PostMedia.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/aggreate/Report.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/BookmarkRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/BookmarkRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/PostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/ReportRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/ReportRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mapper/BookmarkMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mapper/BookmarkMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mapper/PostMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mapper/PostMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mapper/PostMediaMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mapper/PostMediaMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mapper/ReportMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mapper/ReportMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/BookmarkRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/BookmarkRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/ReportRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/ReportRepositoryAdapter.java" afterDir="false" />
+    <list default="true" id="b3a46c58-4d4b-4bf7-aea5-4f9f37652173" name="Changes" comment="ok">
+      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/exception/ProfileErrorCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/exception/ProfileNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/mapper/ProfileApiMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/port/DomainUserProfilePublisher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/domain/model/aggregate/Profile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/domain/shared/valueobject/UserProfileId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/mapper/ProfilePersistenceMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/persistence/entity/UserProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/filter/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/filter/AuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/ApiPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/controller/ApiPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/dto/LoginRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/dto/LoginResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/dto/ProfileCreationRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/dto/RegisterRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/dto/UserResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/command/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/command/LoginCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/command/RegisterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/command/RegisterCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/LoginUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/LoginUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/RegisterUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/RegisterUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/RoleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/JpaRoleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/JpaUserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/RoleRepositoryAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/UserRepositoryAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/client/ProfileClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/ApiPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/controller/ApiPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/command/CreateProfileCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/command/CreateProfileCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/command/UpdateProfileCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/command/UpdateProfileCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/CreateProfileUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/CreateProfileUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/CreateProfileUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/CreateProfileUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/GetProfileUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/GetProfileUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/GetProfileUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/GetProfileUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/UpdateProfileUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/UpdateProfileUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/UpdateProfileUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/UpdateProfileUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/domain/ProfileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/domain/repository/ProfileRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/domain/UserProfile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/domain/exception/DuplicateProfileException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/UserProfileJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/persistence/repository/UserProfileJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/UserProfileRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/adapter/UserProfileRepositoryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/common-security/src/main/java/com/social_media/commonsecurity/jwt/JwtProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/common-security/src/main/java/com/social_media/commonsecurity/jwt/JwtProvider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +64,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Exception" />
+        <option value="Record" />
+        <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -60,66 +80,76 @@
   &quot;isMigrated&quot;: true
 }</component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 2
+  &quot;associatedIndex&quot;: 7
 }</component>
-  <component name="ProjectId" id="3ErDe23eBXT7NdFKCUbjTM7n8Yr" />
+  <component name="ProjectId" id="3ECFbEIq0mzLzUNm0Gn5MN8FTyJ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.PostServiceApplication.executor": "Run",
-    "git-widget-placeholder": "SMP-3-post-service",
-    "last_opened_file_path": "E:/SU26/MSS/ProjectClass/Social-Media/services/post-service/src/main/java/com/social_media/postservice/infrastructure",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.api-gateway [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.common-web [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.eureka-server [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.identity-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.profile-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.users-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.CommonSecurityApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.CommonWebApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.EurekaServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.IdentityServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ProfileServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;D:/FULearning/SU26/MSS301/Class/Social_Media_Platform/src/main/java/com/social_media/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\SU26\MSS\ProjectClass\Social-Media\services\post-service\src\main\java\com\social_media\postservice\infrastructure" />
-      <recent name="E:\SU26\MSS\ProjectClass\Social-Media\services\post-service\src\main\java\com\social_media\postservice\domain" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.social_media.postservice.infrastructure.entity" />
-    </key>
-  </component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
+        <option value="KtorApplicationConfigurationType" />
         <option value="MicronautRunConfigurationType" />
         <option value="QuarkusRunConfigurationType" />
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
-    <option name="configurationStatuses">
-      <map>
-        <entry key="SpringBootApplicationConfigurationType">
-          <value>
-            <map>
-              <entry key="PostServiceApplication" value="FAILED" />
-            </map>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.PostServiceApplication">
+  <component name="RunManager" selected="Spring Boot.ProfileServiceApplication">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="Social_Media_Platform" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="Social_Media_Platform" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="api-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.apigateway.ApiGatewayApplication" />
@@ -162,6 +192,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FollowerServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="follower-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.followerservice.FollowerServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="IdentityServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="identity-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.identityservice.IdentityServiceApplication" />
@@ -197,30 +234,81 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UsersServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="users-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.userservice.UsersServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.28238.7" />
-        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-IU-252.28238.7" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
       </set>
     </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="646b37f5-f427-4908-95f7-28e8e994646f" name="Changes" comment="" />
-      <created>1780927886497</created>
+      <changelist id="b3a46c58-4d4b-4bf7-aea5-4f9f37652173" name="Changes" comment="" />
+      <created>1779674713936</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1780927886497</updated>
-      <workItem from="1780927887950" duration="9193000" />
-      <workItem from="1780974698996" duration="774000" />
-      <workItem from="1780975506774" duration="880000" />
-      <workItem from="1780976403713" duration="712000" />
+      <updated>1779674713936</updated>
+      <workItem from="1779674715055" duration="16100000" />
+      <workItem from="1779693565705" duration="1085000" />
+      <workItem from="1779694688299" duration="123000" />
+      <workItem from="1779782984656" duration="28000" />
+      <workItem from="1779787866587" duration="21674000" />
+      <workItem from="1779845155734" duration="80000" />
+      <workItem from="1779845318226" duration="1876000" />
+      <workItem from="1779851266162" duration="26000" />
+      <workItem from="1779953076705" duration="1336000" />
+      <workItem from="1780060584472" duration="18503000" />
+      <workItem from="1780122564611" duration="7891000" />
+      <workItem from="1780146054550" duration="9000" />
+      <workItem from="1780452307202" duration="36000" />
+      <workItem from="1780452388766" duration="1659000" />
+      <workItem from="1780457174242" duration="129000" />
+      <workItem from="1780458235146" duration="1020000" />
+      <workItem from="1780459465621" duration="2166000" />
+      <workItem from="1780493467234" duration="3095000" />
+      <workItem from="1780581566423" duration="14000" />
+      <workItem from="1780619904273" duration="3649000" />
+      <workItem from="1780624303897" duration="672000" />
+      <workItem from="1780624990055" duration="1098000" />
+      <workItem from="1780626096834" duration="2301000" />
+      <workItem from="1780639586377" duration="13000" />
+      <workItem from="1780999446048" duration="18715000" />
+      <workItem from="1781052235425" duration="218000" />
+      <workItem from="1781056275823" duration="1417000" />
+      <workItem from="1781058361332" duration="843000" />
+      <workItem from="1781060789080" duration="899000" />
+      <workItem from="1781140248532" duration="204000" />
+      <workItem from="1781150712133" duration="331000" />
+      <workItem from="1781151215995" duration="3000" />
+      <workItem from="1781528323225" duration="10491000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ok" />
+    <option name="LAST_COMMIT_MESSAGE" value="ok" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/social_media/Main.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
