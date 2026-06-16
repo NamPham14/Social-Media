@@ -11,8 +11,8 @@ public class RateLimitUtils {
 
     // tạo một cái Registry tra cứu bằng Map.
     private static final Map<String, RateLimitConfig> LIMIT_REGISTRY = Map.of(
-            "POST:" + ApiConstants.POST_BASE_URL, new RateLimitConfig(5, 60),
-            "POST:" + ApiConstants.POSTS_SEARCH, new RateLimitConfig(5, 30)
+            "POST:/post/api/v1/posts", new RateLimitConfig(5, 60),
+            "POST:/post/api/v1/posts/search", new RateLimitConfig(5, 30)
     );
 
 

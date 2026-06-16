@@ -19,9 +19,6 @@ public class UpdatePostRequest {
     @NotNull(message = "Post ID is required")
     private UUID postId;
 
-    @NotNull(message = "User ID is required")
-    private UUID userId;
-
     @Size(max = 2200, message = "Caption cannot exceed 2200 characters")
     private String caption;
 

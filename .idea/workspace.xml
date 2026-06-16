@@ -5,31 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b3a46c58-4d4b-4bf7-aea5-4f9f37652173" name="Changes" comment="ok">
-      <change afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/BanUserUseCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/GetUserStatusUseCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/shared/valueobject/UserStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/exception/DuplicateProfileException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/service/IdentityServiceHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/config/security/PostServiceFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/config/security/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/cilent/IdentityClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/cilent/config/FeignClientConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/cilent/config/ResilienceConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/cilent/decoder/CustomErrorDecoder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/filter/SecurityHeaderFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/filter/SecurityHeaderFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/dto/response/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/dto/response/UserResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/model/user/aggregate/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/model/user/aggregate/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/mapper/UserPersistenceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/mapper/UserPersistenceMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/persistence/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/persistence/entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/security/RateLimitFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/security/RateLimitFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/utils/RateLimitUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/utils/RateLimitUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/api-gateway.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/api-gateway.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/config/DataInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/config/DataInitializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/controller/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/mapper/ProfileApiMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/mapper/ProfileApiMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/CreateProfileUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/CreateProfileUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/GetProfileUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/GetProfileUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/UpdateProfileUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/UpdateProfileUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/CreateProfileUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/CreateProfileUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/GetProfileUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/GetProfileUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/UpdateProfileUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/UpdateProfileUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/domain/model/aggregate/Profile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/adapter/UserProfileRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/adapter/UserProfileRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/mapper/ProfilePersistenceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/mapper/ProfilePersistenceMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/persistence/entity/UserProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/persistence/entity/UserProfile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/PostServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/PostServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/controller/BookmarkController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/controller/BookmarkController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/controller/ReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/controller/ReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/BookmarkRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/BookmarkRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/CreatePostRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/CreatePostRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/DeletePostRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/DeletePostRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/ReportPostRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/ReportPostRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/ReviewReportRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/ReviewReportRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/UpdatePostRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/dto/UpdatePostRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/path/ApiPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/path/ApiPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/CreatePostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/CreatePostUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/config/CustomAuthenticationEntryPoint.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/config/PostServiceFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/exception/ErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/model/report/aggreate/Report.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/utils/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/common-security/src/main/java/com/social_media/commonsecurity/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/common-security/src/main/java/com/social_media/commonsecurity/configuration/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/exception/ErrorCode.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,8 +52,8 @@
       <list>
         <option value="Exception" />
         <option value="Record" />
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -86,8 +97,9 @@
     "Spring Boot.CommonWebApplication.executor": "Run",
     "Spring Boot.EurekaServerApplication.executor": "Run",
     "Spring Boot.IdentityServiceApplication.executor": "Run",
+    "Spring Boot.PostServiceApplication.executor": "Run",
     "Spring Boot.ProfileServiceApplication.executor": "Run",
-    "git-widget-placeholder": "SMP-2-user-service",
+    "git-widget-placeholder": "SMP-3-post-service",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -112,8 +124,23 @@
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
+    <option name="configurationStatuses">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <map>
+              <entry key="ApiGatewayApplication" value="STOPPED" />
+              <entry key="EurekaServerApplication" value="STOPPED" />
+              <entry key="IdentityServiceApplication" value="STOPPED" />
+              <entry key="PostServiceApplication" value="STOPPED" />
+              <entry key="ProfileServiceApplication" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ProfileServiceApplication">
+  <component name="RunManager" selected="Spring Boot.ApiGatewayApplication">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="Social_Media_Platform" />
       <method v="2">
