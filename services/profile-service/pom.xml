@@ -105,7 +105,7 @@
                                      <path>
                                          <groupId>org.projectlombok</groupId>
                                          <artifactId>lombok</artifactId>
-                                         <version>${lombook.version}</version>
+                                         <version>${lombok.version}</version>
                                      </path>
                                      <!-- 2. Lombok-MapStruct Binding (Giúp MapStruct đọc được code của Lombok) -->
                                      <path>

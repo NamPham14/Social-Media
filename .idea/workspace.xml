@@ -5,56 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b3a46c58-4d4b-4bf7-aea5-4f9f37652173" name="Changes" comment="ok">
-      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/exception/ProfileErrorCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/exception/ProfileNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/mapper/ProfileApiMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/port/DomainUserProfilePublisher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/domain/model/aggregate/Profile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/domain/shared/valueobject/UserProfileId.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/mapper/ProfilePersistenceMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/persistence/entity/UserProfile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/BanUserUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/GetUserStatusUseCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/shared/valueobject/UserStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/exception/DuplicateProfileException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/filter/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/filter/AuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/ApiPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/controller/ApiPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/dto/LoginRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/dto/LoginResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/dto/ProfileCreationRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/dto/RegisterRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/dto/UserResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/command/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/command/LoginCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/command/RegisterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/command/RegisterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/LoginUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/LoginUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/RegisterUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/RegisterUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/Role.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/RoleRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/JpaRoleRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/JpaUserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/RoleRepositoryAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/UserRepositoryAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/client/ProfileClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/filter/SecurityHeaderFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/filter/SecurityHeaderFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/dto/response/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/dto/response/UserResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/model/user/aggregate/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/model/user/aggregate/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/mapper/UserPersistenceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/mapper/UserPersistenceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/persistence/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/persistence/entity/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/profile-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/ApiPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/controller/ApiPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/controller/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/command/CreateProfileCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/command/CreateProfileCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/command/UpdateProfileCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/command/UpdateProfileCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/mapper/ProfileApiMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/mapper/ProfileApiMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/CreateProfileUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/CreateProfileUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/CreateProfileUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/CreateProfileUseCaseImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/GetProfileUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/GetProfileUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/GetProfileUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/GetProfileUseCaseImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/UpdateProfileUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/UpdateProfileUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/UpdateProfileUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/UpdateProfileUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/domain/ProfileRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/domain/repository/ProfileRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/domain/UserProfile.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/domain/exception/DuplicateProfileException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/UserProfileJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/persistence/repository/UserProfileJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/UserProfileRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/adapter/UserProfileRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/common-security/src/main/java/com/social_media/commonsecurity/jwt/JwtProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/common-security/src/main/java/com/social_media/commonsecurity/jwt/JwtProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/CreateProfileUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/CreateProfileUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/GetProfileUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/GetProfileUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/UpdateProfileUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/UpdateProfileUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/domain/model/aggregate/Profile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/adapter/UserProfileRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/adapter/UserProfileRepositoryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/mapper/ProfilePersistenceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/mapper/ProfilePersistenceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/persistence/entity/UserProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/infrastructure/persistence/entity/UserProfile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,9 +41,9 @@
       <list>
         <option value="Exception" />
         <option value="Record" />
+        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
-        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -90,44 +65,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.api-gateway [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.common-web [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.eureka-server [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.identity-service [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.profile-service [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.users-service [clean].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.CommonSecurityApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.CommonWebApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.EurekaServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.IdentityServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ProfileServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;onboarding.tips.debug.path&quot;: &quot;D:/FULearning/SU26/MSS301/Class/Social_Media_Platform/src/main/java/com/social_media/Main.java&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.api-gateway [clean].executor": "Run",
+    "Maven.common-web [clean].executor": "Run",
+    "Maven.eureka-server [clean].executor": "Run",
+    "Maven.identity-service [clean].executor": "Run",
+    "Maven.profile-service [clean].executor": "Run",
+    "Maven.users-service [clean].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.ApiGatewayApplication.executor": "Run",
+    "Spring Boot.CommonSecurityApplication.executor": "Run",
+    "Spring Boot.CommonWebApplication.executor": "Run",
+    "Spring Boot.EurekaServerApplication.executor": "Run",
+    "Spring Boot.IdentityServiceApplication.executor": "Run",
+    "Spring Boot.ProfileServiceApplication.executor": "Run",
+    "git-widget-placeholder": "SMP-2-user-service",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "onboarding.tips.debug.path": "D:/FULearning/SU26/MSS301/Class/Social_Media_Platform/src/main/java/com/social_media/Main.java",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -241,6 +216,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.ApiGatewayApplication" />
+      <item itemvalue="Spring Boot.CommentServiceApplication" />
+      <item itemvalue="Spring Boot.CommonEventsApplication" />
+      <item itemvalue="Spring Boot.CommonSecurityApplication" />
+      <item itemvalue="Spring Boot.CommonWebApplication" />
+      <item itemvalue="Spring Boot.EurekaServerApplication" />
+      <item itemvalue="Spring Boot.FollowerServiceApplication" />
+      <item itemvalue="Spring Boot.IdentityServiceApplication" />
+      <item itemvalue="Spring Boot.InteractionServiceApplication" />
+      <item itemvalue="Spring Boot.NotificationServiceApplication" />
+      <item itemvalue="Spring Boot.PostServiceApplication" />
+      <item itemvalue="Spring Boot.ProfileServiceApplication" />
+      <item itemvalue="Spring Boot.UsersServiceApplication" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>

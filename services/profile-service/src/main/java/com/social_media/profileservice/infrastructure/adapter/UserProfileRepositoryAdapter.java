@@ -1,6 +1,6 @@
 package com.social_media.profileservice.infrastructure.adapter;
 
-import com.social_media.profileservice.domain.model.aggregate.Profile;
+import com.social_media.profileservice.domain.model.profile.aggregate.Profile;
 import com.social_media.profileservice.domain.repository.ProfileRepository;
 import com.social_media.profileservice.infrastructure.mapper.ProfilePersistenceMapper;
 import com.social_media.profileservice.infrastructure.persistence.entity.UserProfile;
