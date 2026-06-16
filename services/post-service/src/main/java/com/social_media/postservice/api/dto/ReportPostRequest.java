@@ -1,6 +1,6 @@
 package com.social_media.postservice.api.dto;
 
-import com.social_media.postservice.domain.valueobject.ReportReason;
+import com.social_media.postservice.domain.model.report.valueobject.ReportReason;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,3 +23,4 @@ public class ReportPostRequest {
 
     private String description;
 }
+

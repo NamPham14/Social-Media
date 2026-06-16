@@ -1,6 +1,6 @@
 package com.social_media.postservice.api.dto;
 
-import com.social_media.postservice.domain.aggregate.Bookmark;
+import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,3 +25,4 @@ public class BookmarkResponse {
         return res;
     }
 }
+

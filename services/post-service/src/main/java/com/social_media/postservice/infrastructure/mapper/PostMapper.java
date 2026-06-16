@@ -1,8 +1,7 @@
 package com.social_media.postservice.infrastructure.mapper;
 
-import com.social_media.postservice.domain.aggregate.Post;
+import com.social_media.postservice.domain.model.post.aggregate.Post;
 import com.social_media.postservice.infrastructure.entity.PostEntity;
-import com.social_media.postservice.infrastructure.entity.PostMediaEntity;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

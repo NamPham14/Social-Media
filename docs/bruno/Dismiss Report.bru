@@ -1,0 +1,17 @@
+meta {
+  name: Dismiss Report
+  type: http
+  seq: 17
+}
+
+put {
+  url: http://localhost:8082/api/v1/reports/{{reportId}}/dismiss
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "adminId": "{{adminId}}"
+  }
+}

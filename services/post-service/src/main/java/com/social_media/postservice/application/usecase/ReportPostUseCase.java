@@ -3,8 +3,9 @@ package com.social_media.postservice.application.usecase;
 import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.command.ReportPostCommand;
 import com.social_media.postservice.domain.exception.ErrorCode;
-import com.social_media.postservice.domain.aggregate.Post;
-import com.social_media.postservice.domain.aggregate.Report;
+import com.social_media.postservice.domain.model.post.aggregate.Post;
+//import com.social_media.postservice.domain.model.report.aggregate.Report;
+import com.social_media.postservice.domain.model.report.aggregate.Report;
 import com.social_media.postservice.domain.repository.PostRepository;
 import com.social_media.postservice.domain.repository.ReportRepository;
 import lombok.RequiredArgsConstructor;
@@ -37,3 +38,4 @@ public class ReportPostUseCase {
         reportRepository.save(report);
     }
 }
+

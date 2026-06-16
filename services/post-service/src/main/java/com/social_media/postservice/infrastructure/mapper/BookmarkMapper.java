@@ -1,6 +1,7 @@
 package com.social_media.postservice.infrastructure.mapper;
 
-import com.social_media.postservice.domain.aggregate.Bookmark;
+//import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
+import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
 import com.social_media.postservice.infrastructure.entity.BookmarkEntity;
 import org.mapstruct.Mapper;
 
@@ -11,3 +12,4 @@ public interface BookmarkMapper {
 
     Bookmark toDomain(BookmarkEntity entity);
 }
+

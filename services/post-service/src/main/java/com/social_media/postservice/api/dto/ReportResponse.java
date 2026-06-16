@@ -1,6 +1,6 @@
 package com.social_media.postservice.api.dto;
 
-import com.social_media.postservice.domain.aggregate.Report;
+import com.social_media.postservice.domain.model.report.aggregate.Report;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,3 +31,4 @@ public class ReportResponse {
         return res;
     }
 }
+

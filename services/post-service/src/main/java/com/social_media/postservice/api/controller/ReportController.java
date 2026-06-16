@@ -34,12 +34,12 @@ public class ReportController {
     public ApiResponse<Void> reportPost(
             @PathVariable("postId") UUID postId,
             @Valid @RequestBody ReportPostRequest request) {
-        ReportPostCommand command = new ReportPostCommand(
-                postId,
-                request.getReporterId(),
-                request.getReason(),
-                request.getDescription()
-        );
+        ReportPostCommand command = ReportPostCommand.builder()
+                .postId(postId)
+                .reporterId(request.getReporterId())
+                .reason(request.getReason())
+                .description(request.getDescription())
+                .build();
         reportPostUseCase.execute(command);
         return ApiResponse.<Void>builder()
                 .code(HttpStatus.CREATED.value())
@@ -62,10 +62,10 @@ public class ReportController {
     public ApiResponse<Void> dismissReport(
             @PathVariable("reportId") UUID reportId,
             @Valid @RequestBody ReviewReportRequest request) {
-        ReviewReportCommand command = new ReviewReportCommand(
-                reportId,
-                request.getAdminId()
-        );
+        ReviewReportCommand command = ReviewReportCommand.builder()
+                .reportId(reportId)
+                .adminId(request.getAdminId())
+                .build();
         dismissReportUseCase.execute(command);
         return ApiResponse.<Void>builder()
                 .code(HttpStatus.OK.value())
@@ -77,10 +77,10 @@ public class ReportController {
     public ApiResponse<Void> removeReportedPost(
             @PathVariable("reportId") UUID reportId,
             @Valid @RequestBody ReviewReportRequest request) {
-        ReviewReportCommand command = new ReviewReportCommand(
-                reportId,
-                request.getAdminId()
-        );
+        ReviewReportCommand command = ReviewReportCommand.builder()
+                .reportId(reportId)
+                .adminId(request.getAdminId())
+                .build();
         removeReportedPostUseCase.execute(command);
         return ApiResponse.<Void>builder()
                 .code(HttpStatus.OK.value())

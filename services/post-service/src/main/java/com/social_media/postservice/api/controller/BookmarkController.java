@@ -29,10 +29,10 @@ public class BookmarkController {
 
     @PostMapping(ApiPath.BOOKMARKS)
     public ApiResponse<Void> bookmarkPost(@Valid @RequestBody BookmarkRequest request) {
-        BookmarkPostCommand command = new BookmarkPostCommand(
-                request.getUserId(),
-                request.getPostId()
-        );
+        BookmarkPostCommand command = BookmarkPostCommand.builder()
+                .userId(request.getUserId())
+                .postId(request.getPostId())
+                .build();
         bookmarkPostUseCase.execute(command);
         return ApiResponse.<Void>builder()
                 .code(HttpStatus.CREATED.value())
@@ -44,7 +44,10 @@ public class BookmarkController {
     public ApiResponse<Void> unbookmarkPost(
             @PathVariable("userId") UUID userId,
             @PathVariable("postId") UUID postId) {
-        UnbookmarkPostCommand command = new UnbookmarkPostCommand(userId, postId);
+        UnbookmarkPostCommand command = UnbookmarkPostCommand.builder()
+                .userId(userId)
+                .postId(postId)
+                .build();
         unbookmarkPostUseCase.execute(command);
         return ApiResponse.<Void>builder()
                 .code(HttpStatus.OK.value())

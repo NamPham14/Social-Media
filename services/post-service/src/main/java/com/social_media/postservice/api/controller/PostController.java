@@ -80,11 +80,12 @@ public class PostController {
 
     @PostMapping(value = ApiPath.POSTS, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ApiResponse<PostResponse> createPost(@Valid @ModelAttribute CreatePostRequest request) {
-        CreatePostCommand command = new CreatePostCommand();
-        command.setUserId(request.getUserId());
-        command.setCaption(request.getCaption());
-        command.setLocationName(request.getLocationName());
-        command.setImages(request.getImages());
+        CreatePostCommand command = CreatePostCommand.builder()
+                .userId(request.getUserId())
+                .caption(request.getCaption())
+                .locationName(request.getLocationName())
+                .images(request.getImages())
+                .build();
         return ApiResponse.<PostResponse>builder()
                 .code(HttpStatus.CREATED.value())
                 .message("Create Post Success")
@@ -107,13 +108,14 @@ public class PostController {
 
     @PutMapping(value = ApiPath.POST_UPDATE, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ApiResponse<PostResponse> updatePost(@Valid @ModelAttribute UpdatePostRequest request) {
-        UpdatePostCommand command = new UpdatePostCommand();
-        command.setId(request.getPostId());
-        command.setUserId(request.getUserId());
-        command.setCaption(request.getCaption());
-        command.setLocationName(request.getLocationName());
-        command.setRemainImageUrls(request.getRemainImageUrls());
-        command.setNewImages(request.getNewImages());
+        UpdatePostCommand command = UpdatePostCommand.builder()
+                .id(request.getPostId())
+                .userId(request.getUserId())
+                .caption(request.getCaption())
+                .locationName(request.getLocationName())
+                .remainImageUrls(request.getRemainImageUrls())
+                .newImages(request.getNewImages())
+                .build();
         return ApiResponse.<PostResponse>builder()
                 .code(HttpStatus.OK.value())
                 .message("Update Post Success")

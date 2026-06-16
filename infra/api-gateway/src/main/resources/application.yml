@@ -30,8 +30,8 @@ spring:
               uri: lb://identity-service
               predicates:
                 - Path=/identity/**
-              filters:
-                - StripPrefix=1
+#              filters:
+#                - StripPrefix=1
             - id: profile-service
               uri: lb://profile-service
               predicates:

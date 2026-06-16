@@ -1,6 +1,6 @@
 package com.social_media.postservice.infrastructure.repository;
 
-import com.social_media.postservice.domain.valueobject.ReportStatus;
+import com.social_media.postservice.domain.model.report.valueobject.ReportStatus;
 import com.social_media.postservice.infrastructure.entity.ReportEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,3 +14,4 @@ public interface ReportJpaRepository extends JpaRepository<ReportEntity, UUID> {
 
     Page<ReportEntity> findByStatus(ReportStatus status, Pageable pageable);
 }
+

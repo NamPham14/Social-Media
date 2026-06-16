@@ -5,10 +5,13 @@ import com.social_media.postservice.application.dto.PostResponse;
 import com.social_media.postservice.application.dto.UploadResponse;
 import com.social_media.postservice.application.service.MediaService;
 import com.social_media.postservice.domain.exception.ErrorCode;
-import com.social_media.postservice.domain.aggregate.Post;
-import com.social_media.postservice.domain.aggregate.PostMedia;
+import com.social_media.postservice.domain.model.post.aggregate.Post;
+//import com.social_media.postservice.domain.model.post.entity.PostMedia;
+//import com.social_media.postservice.domain.model.post.entity.PostMedia;
+import com.social_media.postservice.domain.model.post.entity.PostMedia;
+import com.social_media.postservice.domain.model.post.valueobject.MediaType;
 import com.social_media.postservice.domain.repository.PostRepository;
-import com.social_media.postservice.domain.valueobject.MediaType;
+//import com.social_media.postservice.domain.model.post.valueobject.MediaType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -87,3 +90,4 @@ public class UpdatePostUseCase {
         }
     }
 }
+
