@@ -43,6 +43,11 @@ public enum ErrorCode implements BaseErrorCode {
             4009,
             "Resource already exists",
             HttpStatus.CONFLICT
+    ),
+    USER_BANNED(
+            4010,
+            "User banned",
+            HttpStatus.UNAUTHORIZED
     );
 
     private final int code;

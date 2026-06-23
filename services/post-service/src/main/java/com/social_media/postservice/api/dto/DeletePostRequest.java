@@ -15,7 +15,4 @@ import java.util.UUID;
 public class DeletePostRequest {
     @NotNull(message = "Post ID is required")
     private UUID postId;
-
-    @NotNull(message = "User ID is required")
-    private UUID userId;
 }

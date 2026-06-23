@@ -17,6 +17,7 @@ import com.social_media.postservice.application.usecase.FindPostsByAuthorIdUseCa
 import com.social_media.postservice.application.usecase.GetPostByPostIdUseCase;
 import com.social_media.postservice.application.usecase.SearchPostsUseCase;
 import com.social_media.postservice.application.usecase.UpdatePostUseCase;
+import com.social_media.postservice.config.security.SecurityUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -81,7 +82,7 @@ public class PostController {
     @PostMapping(value = ApiPath.POSTS, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ApiResponse<PostResponse> createPost(@Valid @ModelAttribute CreatePostRequest request) {
         CreatePostCommand command = CreatePostCommand.builder()
-                .userId(request.getUserId())
+                .userId(SecurityUtils.getCurrentUserId())
                 .caption(request.getCaption())
                 .locationName(request.getLocationName())
                 .images(request.getImages())
@@ -97,7 +98,7 @@ public class PostController {
     public ApiResponse<Void> deletePost(@Valid @RequestBody DeletePostRequest request) {
         DeletePostCommand command = new DeletePostCommand(
                 request.getPostId(),
-                request.getUserId()
+                SecurityUtils.getCurrentUserId()
         );
         deletePostUseCase.execute(command);
         return ApiResponse.<Void>builder()
@@ -110,7 +111,7 @@ public class PostController {
     public ApiResponse<PostResponse> updatePost(@Valid @ModelAttribute UpdatePostRequest request) {
         UpdatePostCommand command = UpdatePostCommand.builder()
                 .id(request.getPostId())
-                .userId(request.getUserId())
+                .userId(SecurityUtils.getCurrentUserId())
                 .caption(request.getCaption())
                 .locationName(request.getLocationName())
                 .remainImageUrls(request.getRemainImageUrls())
