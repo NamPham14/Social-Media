@@ -1,5 +1,6 @@
 package com.social_media.postservice.infrastructure.cilent.config;
 
+import feign.FeignException;
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;
@@ -38,7 +39,13 @@ public class ResilienceConfig {
                 .retryExceptions(
                         feign.RetryableException.class,   // Lỗi kết nối ngoại vi từ Feign
                         TimeoutException.class,          // Lỗi quá thời gian chờ (Read/Connect Timeout)
-                        feign.FeignException.GatewayTimeout.class // Lỗi 504 nếu đi qua Gateway bị chậm
+                        feign.FeignException.GatewayTimeout.class,
+                        feign.FeignException.ServiceUnavailable.class// Lỗi 504 nếu đi qua Gateway bị chậm
+                )
+                .ignoreExceptions(
+                        feign.FeignException.BadRequest.class, // Bỏ qua lỗi 400
+                        feign.FeignException.Unauthorized.class, // Bỏ qua lỗi 401
+                        feign.FeignException.Forbidden.class // Bỏ qua lỗi 403
                 )
                 .build();
         return retryRegistry.retry("identityRetry", config);

@@ -3,7 +3,7 @@ import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.command.CreatePostCommand;
 import com.social_media.postservice.application.dto.PostResponse;
 import com.social_media.postservice.application.dto.UploadResponse;
-import com.social_media.postservice.application.service.IdentityServiceHelper; // Tiêm Helper mới
+import com.social_media.postservice.infrastructure.cilent.identity.service.IdentityServiceHelper; // Tiêm Helper mới
 import com.social_media.postservice.application.service.MediaService;
 import com.social_media.postservice.domain.exception.ErrorCode;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -30,10 +29,10 @@ public class CreatePostUseCase {
     @Transactional
     public PostResponse execute(CreatePostCommand command) {
 
-//        String statusUser = identityServiceHelper.getSafeUserStatus(command.getUserId());
+        String statusUser = identityServiceHelper.getSafeUserStatus(command.getUserId());
 
         String idMaHopLe = "99999999-9999-9999-9999-999999999999";
-        String statusUser = identityServiceHelper.getSafeUserStatus(UUID.fromString(idMaHopLe));
+        //String statusUser = identityServiceHelper.getSafeUserStatus(UUID.fromString(idMaHopLe));
         if ("BANNED".equals(statusUser)) {
             throw new AppException(ErrorCode.USER_BANNED);
         }

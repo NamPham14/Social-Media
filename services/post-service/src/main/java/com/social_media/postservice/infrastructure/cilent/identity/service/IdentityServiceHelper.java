@@ -1,9 +1,8 @@
-package com.social_media.postservice.application.service;
+package com.social_media.postservice.infrastructure.cilent.identity.service;
 
 import com.social_media.common.exception.AppException;
 import com.social_media.common.exception.ErrorCode;
-import com.social_media.postservice.infrastructure.cilent.IdentityClient;
-import feign.FeignException;
+import com.social_media.postservice.infrastructure.cilent.identity.IdentityClient;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +30,7 @@ public class IdentityServiceHelper {
         log.error("-> Nguyên nhân gốc gây lỗi (Throwable): {}", throwable.getClass().getName());
 
         if (throwable instanceof AppException) {
-            log.info("-> [Xử lý]: Phát hiện lỗi nghiệp vụ từ Decoder. Cho nổ thẳng ra Controller!");
+            log.info("-> [Xử lý]: Phát hiện lỗi nghiệp vụ từ Decoder.!");
             throw (AppException) throwable;
         }
 
