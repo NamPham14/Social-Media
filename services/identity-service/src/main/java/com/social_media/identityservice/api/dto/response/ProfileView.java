@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.UUID;
 
 @Data
-public class ProfileResponse {
+public class ProfileView {
     private UUID id;
     private String fullName;
     private String bio;

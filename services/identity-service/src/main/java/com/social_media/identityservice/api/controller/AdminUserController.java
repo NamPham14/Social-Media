@@ -1,7 +1,7 @@
 package com.social_media.identityservice.api.controller;
 
 import com.social_media.common.api.ApiResponse;
-import com.social_media.identityservice.api.dto.response.ProfileResponse;
+import com.social_media.identityservice.api.dto.response.ProfileView;
 import com.social_media.identityservice.api.dto.response.UserResponse;
 import com.social_media.identityservice.application.mapper.IdentityApiMapper;
 import com.social_media.identityservice.application.usecase.BanUserUseCase;
@@ -53,7 +53,7 @@ public class AdminUserController {
 
         String status = getUserStatusUseCase.getStatus(UserId.from(userId));
 
-        ApiResponse<ProfileResponse> profileData = profileClient.getProfile(userId);
+        ApiResponse<ProfileView> profileData = profileClient.getProfile(userId);
 
         return ResponseEntity.ok(ApiResponse.builder()
                         .status(HttpStatus.OK.value())
@@ -61,7 +61,7 @@ public class AdminUserController {
                         .message("Lấy thông tin tổng hợp thành công")
                         .data(new Object(){
                             public final String accountStatus = status;
-                            public final ProfileResponse profileResponse = profileData.getData();
+                            public final ProfileView profileView = profileData.getData();
                         })
                 .build());
     }

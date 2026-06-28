@@ -29,7 +29,7 @@ public class IdentityExceptionHandler {
 
     /**
      *  Dành cho tầng Infrastructure (Lỗi Feign)
-     * @param e
+     * @param
      * @return
      */
     @ExceptionHandler(ProfileServiceDownException.class)

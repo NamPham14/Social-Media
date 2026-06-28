@@ -1,17 +1,11 @@
 package com.social_media.identityservice.api.dto.response;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-@Getter
-@Setter
-public class LoginResponse {
+public class TokenRefreshResponse {
     private String accessToken;
     private String refreshToken;
-    private boolean authenticated;
-
 }
