@@ -33,12 +33,7 @@ public class UserController {
         changePasswordUseCase.execute(UserId.from(userId),command);
         ChangePasswordResponse response = new ChangePasswordResponse(true, "Password changed!");
 
-        return ResponseEntity.ok(ApiResponse.<ChangePasswordResponse>builder()
-                        .status(HttpStatus.OK.value())
-                        .code(1000)
-                        .message("Change Password successfully")
-                        .data(response)
-                .build());
+        return ResponseEntity.ok(ApiResponse.success(response, "Change Password successfully"));
 
     }
 

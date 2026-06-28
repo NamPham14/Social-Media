@@ -65,12 +65,7 @@ public class AuthController {
 
         LoginResponse response = loginUseCase.login(command);
 
-        return ResponseEntity.ok(ApiResponse.<LoginResponse>builder()
-                .status(HttpStatus.OK.value())
-                .code(1000)
-                .message("Login successfully")
-                .data(response)
-                .build());
+        return ResponseEntity.ok(ApiResponse.success(response, "Login successfully"));
     }
 
     @PostMapping(ApiPath.AUTH + ApiPath.REFRESH_TOKEN)
@@ -80,12 +75,7 @@ public class AuthController {
                 .build();
         TokenRefreshResponse response = refreshTokenUseCase.refreshToken(command);
 
-        return ResponseEntity.ok(ApiResponse.<TokenRefreshResponse>builder()
-                .status(HttpStatus.OK.value())
-                .code(1000)
-                .message("Token refreshed successfully")
-                .data(response)
-                .build());
+        return ResponseEntity.ok(ApiResponse.success(response, "Token refreshed successfully"));
     }
 
     @PostMapping(ApiPath.AUTH + "/logout")
@@ -97,11 +87,7 @@ public class AuthController {
 
         logoutUseCase.logout(command);
 
-        return ResponseEntity.ok(ApiResponse.<Void>builder()
-                .status(HttpStatus.OK.value())
-                .code(1000)
-                .message("Logout successfully")
-                .build());
+        return ResponseEntity.ok(ApiResponse.success("Logout successfully"));
     }
 
 }

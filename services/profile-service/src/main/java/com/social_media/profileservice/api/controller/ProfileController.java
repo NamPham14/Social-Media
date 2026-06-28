@@ -65,12 +65,7 @@ public class ProfileController {
 
 
 
-        return ResponseEntity.ok(ApiResponse.<ProfileResponse>builder()
-                .status(HttpStatus.OK.value())
-                .code(1000)
-                .message("Get profile successfully")
-                .data(profileMapper.toResponse(profile))
-                .build());
+        return ResponseEntity.ok(ApiResponse.success(profileMapper.toResponse(profile), "Get profile successfully"));
     }
 
     /**
@@ -95,12 +90,7 @@ public class ProfileController {
 
 
 
-        return ResponseEntity.ok(ApiResponse.<ProfileResponse>builder()
-                .status(HttpStatus.OK.value())
-                .code(1000)
-                .message("Profile updated successfully")
-                .data(profileMapper.toResponse(profile))
-                .build());
+        return ResponseEntity.ok(ApiResponse.success(profileMapper.toResponse(profile), "Profile updated successfully"));
     }
 
     /**
@@ -117,12 +107,7 @@ public class ProfileController {
 
         Profile profile = uploadAvatarUseCase.execute(id, file);
 
-        return ResponseEntity.ok(ApiResponse.<ProfileResponse>builder()
-                .status(200)
-                .code(1000)
-                .message("Upload avatar thành công")
-                .data(profileMapper.toResponse(profile))
-                .build());
+        return ResponseEntity.ok(ApiResponse.success(profileMapper.toResponse(profile), "Upload avatar thành công"));
     }
 
     @GetMapping("/users")
@@ -134,12 +119,7 @@ public class ProfileController {
         Page<Profile> profiles = searchProfilesUseCase.execute(keyword, page, size);
         Page<ProfileResponse> responsePage = profiles.map(profileMapper::toResponse);
 
-        return ResponseEntity.ok(ApiResponse.<Page<ProfileResponse>>builder()
-                .status(200)
-                .code(1000)
-                .message("Tìm kiếm thành công")
-                .data(responsePage)
-                .build());
+        return ResponseEntity.ok(ApiResponse.success(responsePage, "Tìm kiếm thành công"));
     }
 
 }

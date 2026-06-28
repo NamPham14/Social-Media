@@ -30,3 +30,7 @@ logging:
   level:
     org.springframework.web: DEBUG
     com.social_media: DEBUG
+
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}

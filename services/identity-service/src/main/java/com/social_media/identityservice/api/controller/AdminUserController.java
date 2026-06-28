@@ -55,15 +55,13 @@ public class AdminUserController {
 
         ApiResponse<ProfileView> profileData = profileClient.getProfile(userId);
 
-        return ResponseEntity.ok(ApiResponse.builder()
-                        .status(HttpStatus.OK.value())
-                        .code(1000)
-                        .message("Lấy thông tin tổng hợp thành công")
-                        .data(new Object(){
-                            public final String accountStatus = status;
-                            public final ProfileView profileView = profileData.getData();
-                        })
-                .build());
+        return ResponseEntity.ok(ApiResponse.success(
+                new Object(){
+                    public final String accountStatus = status;
+                    public final ProfileView profileView = profileData.getData();
+                },
+                "Lấy thông tin tổng hợp thành công"
+        ));
     }
 
 
@@ -79,11 +77,6 @@ public class AdminUserController {
         // Dùng hàm map() của Page để ép cục Domain User thành DTO UserResponse
         Page<UserResponse> responsePage = userPage.map(identityApiMapper::toResponse);
 
-        return ResponseEntity.ok(ApiResponse.<Page<UserResponse>>builder()
-                .status(200)
-                .code(1000)
-                .message("Lấy danh sách người dùng thành công")
-                .data(responsePage)
-                .build());
+        return ResponseEntity.ok(ApiResponse.success(responsePage, "Lấy danh sách người dùng thành công"));
     }
 }
