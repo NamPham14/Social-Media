@@ -1,10 +1,10 @@
 package com.social_media.identityservice.application.exception.user;
 
-import com.social_media.common.exception.AppException;
-import com.social_media.identityservice.api.exception.IdentityErrorCode;
+import com.social_media.common.exception.EntityNotFoundException;
+import com.social_media.identityservice.application.exception.IdentityError;
 
-public class UserNotFoundException extends AppException {
+public class UserNotFoundException extends EntityNotFoundException {
     public UserNotFoundException() {
-        super(IdentityErrorCode.USER_NOT_FOUND);
+        super(IdentityError.USER_NOT_FOUND.getMessage());
     }
 }

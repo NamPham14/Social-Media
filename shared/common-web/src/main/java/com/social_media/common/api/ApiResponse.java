@@ -16,6 +16,7 @@ public class ApiResponse<T> {
     private int code;
     private String message;
     private int status;
+    private String traceId;
     private T data;
 
 // Hàm gọi khi Thành Công (Tự động set mã 1000 và Status 200)

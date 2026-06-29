@@ -1,7 +1,9 @@
 package com.social_media.identityservice.infrastructure.exception;
 
-public class ProfileServiceDownException extends RuntimeException {
+import com.social_media.common.exception.ServiceUnavailableException;
+
+public class ProfileServiceDownException extends ServiceUnavailableException {
     public ProfileServiceDownException(String message) {
-        super(message);
+        super("Profile Service");
     }
 }

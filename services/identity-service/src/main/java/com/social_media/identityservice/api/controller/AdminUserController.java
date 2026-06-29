@@ -1,6 +1,7 @@
 package com.social_media.identityservice.api.controller;
 
 import com.social_media.common.api.ApiResponse;
+import com.social_media.common.api.PageResponse;
 import com.social_media.identityservice.api.dto.response.ProfileView;
 import com.social_media.identityservice.api.dto.response.UserResponse;
 import com.social_media.identityservice.application.mapper.IdentityApiMapper;
@@ -66,7 +67,7 @@ public class AdminUserController {
 
 
     @GetMapping("/")
-    public ResponseEntity<ApiResponse<Page<UserResponse>>> getAllUsers(
+    public ResponseEntity<ApiResponse<PageResponse<UserResponse>>> getAllUsers(
                                                                         @RequestParam(defaultValue = "1") int page,
                                                                         @RequestParam(defaultValue = "10") int size,
                                                                         @RequestParam(required = false) String keyword) {
@@ -74,9 +75,13 @@ public class AdminUserController {
         // Gọi UseCase lấy Page<User>
         Page<User> userPage = findAllUsersUseCase.execute(page, size,keyword);
 
-        // Dùng hàm map() của Page để ép cục Domain User thành DTO UserResponse
+        // Dùng hàm map() của Page để map các Domain User thành DTO UserResponse
         Page<UserResponse> responsePage = userPage.map(identityApiMapper::toResponse);
 
-        return ResponseEntity.ok(ApiResponse.success(responsePage, "Lấy danh sách người dùng thành công"));
+        // Đóng gói vào PageResponse chuẩn
+        return ResponseEntity.ok(ApiResponse.success(
+                PageResponse.of(responsePage),
+                "Lấy danh sách người dùng thành công"
+        ));
     }
 }

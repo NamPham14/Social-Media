@@ -5,22 +5,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b3a46c58-4d4b-4bf7-aea5-4f9f37652173" name="Changes" comment="ok">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/filter/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/filter/AuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/controller/AdminUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/controller/AdminUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/dto/response/ProfileResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/dto/response/ProfileView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/exception/IdentityExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/exception/IdentityExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/LoginUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/LoginUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/client/ProfileClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/client/ProfileClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/common-security/src/main/java/com/social_media/commonsecurity/configuration/CustomJwtDecoder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/common-security/src/main/java/com/social_media/commonsecurity/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/common-security/src/main/java/com/social_media/commonsecurity/configuration/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/common-security/src/main/java/com/social_media/commonsecurity/exception/JwtAuthenticationEntryPoint.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/common-security/src/main/java/com/social_media/commonsecurity/jwt/JwtProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/config/JwtProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/exception/IdentityErrorCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/api/exception/IdentityExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/exception/user/UnauthenticatedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/exception/user/UnauthenticatedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/exception/user/UserExistedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/exception/user/UserExistedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/exception/user/UserNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/exception/user/UserNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/ChangePasswordUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/ChangePasswordUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/RefreshTokenUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/RefreshTokenUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/model/user/aggregate/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/model/user/aggregate/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/model/user/exception/InvalidUserIdentityException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/domain/model/user/exception/InvalidUserIdentityException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/client/FeignConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/client/FeignConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/exception/ProfileServiceDownException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/infrastructure/exception/ProfileServiceDownException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/BookmarkPostCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/BookmarkPostCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/ChangePostVisibilityCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/ChangePostVisibilityCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/CreatePostCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/CreatePostCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/DeletePostCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/DeletePostCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/ReportPostCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/ReportPostCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/ReviewReportCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/ReviewReportCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/UnbookmarkPostCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/UnbookmarkPostCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/UpdatePostCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/command/UpdatePostCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/BookmarkPostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/BookmarkPostUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/ChangePostVisibilityUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/ChangePostVisibilityUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/CreatePostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/CreatePostUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/DeletePostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/DeletePostUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/DismissReportUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/DismissReportUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/FindAllPostsUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/FindAllPostsUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/FindPostsByAuthorIdUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/FindPostsByAuthorIdUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/GetPostByPostIdUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/GetPostByPostIdUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/RemoveReportedPostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/RemoveReportedPostUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/ReportPostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/ReportPostUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/SearchPostsUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/SearchPostsUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/UnbookmarkPostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/UnbookmarkPostUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/UpdatePostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/UpdatePostUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/exception/ErrorCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/model/bookmark/aggreate/Bookmark.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/model/post/aggregate/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/model/post/aggregate/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/model/post/entity/PostMedia.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/model/post/entity/PostMedia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/model/report/aggreate/Report.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/exception/ProfileErrorCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/exception/DuplicateProfileException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/exception/DuplicateProfileException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/exception/ProfileNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/exception/ProfileNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/api/ApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/api/ApiResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/base/BaseErrorCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/exception/AppException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/exception/ErrorCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/exception/GlobalExceptionHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -280,12 +310,24 @@
       <workItem from="1782272165941" duration="883000" />
       <workItem from="1782392914640" duration="3457000" />
       <workItem from="1782543771175" duration="927000" />
-      <workItem from="1782655380537" duration="4626000" />
+      <workItem from="1782655380537" duration="13874000" />
+      <workItem from="1782713969242" duration="15118000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="ok" />

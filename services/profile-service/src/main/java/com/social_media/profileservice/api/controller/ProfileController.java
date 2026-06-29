@@ -1,6 +1,7 @@
 package com.social_media.profileservice.api.controller;
 
 import com.social_media.common.api.ApiResponse;
+import com.social_media.common.api.PageResponse;
 import com.social_media.profileservice.api.dto.ProfileResponse;
 import com.social_media.profileservice.api.dto.UpdateProfileRequest;
 import com.social_media.profileservice.application.command.CreateProfileCommand;
@@ -111,7 +112,7 @@ public class ProfileController {
     }
 
     @GetMapping("/users")
-    public ResponseEntity<ApiResponse<Page<ProfileResponse>>> searchProfiles(
+    public ResponseEntity<ApiResponse<PageResponse<ProfileResponse>>> searchProfiles(
             @RequestParam(required = false) String keyword,
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size) {
@@ -119,7 +120,10 @@ public class ProfileController {
         Page<Profile> profiles = searchProfilesUseCase.execute(keyword, page, size);
         Page<ProfileResponse> responsePage = profiles.map(profileMapper::toResponse);
 
-        return ResponseEntity.ok(ApiResponse.success(responsePage, "Tìm kiếm thành công"));
+        return ResponseEntity.ok(ApiResponse.success(
+                PageResponse.of(responsePage),
+                "Tìm kiếm thành công"
+        ));
     }
 
 }

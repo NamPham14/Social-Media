@@ -1,5 +1,7 @@
 package com.social_media.identityservice.application.usecase;
 
+import com.social_media.common.exception.BusinessRuleViolationException;
+
 
 import com.social_media.identityservice.api.dto.response.TokenRefreshResponse;
 import com.social_media.identityservice.application.command.TokenRefreshCommand;
@@ -28,7 +30,7 @@ public class RefreshTokenUseCase {
         String userIdStr = redisTemplate.opsForValue().get("refresh_token:" + command.refreshToken());
 
         if(userIdStr == null){
-            throw new RuntimeException("Refresh Token không hợp lệ hoặc đã hết hạn");
+            throw new BusinessRuleViolationException(1005, "Refresh Token không hợp lệ hoặc đã hết hạn");
         }
 
         User user = userRepository.findById(new UserId(UUID.fromString(userIdStr)))

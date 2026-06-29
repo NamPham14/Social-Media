@@ -1,6 +1,7 @@
 package com.social_media.identityservice.domain.model.user.aggregate;
 
 
+import com.social_media.identityservice.domain.model.user.service.DomainPasswordEncoder;
 import com.social_media.identityservice.domain.shared.valueobject.UserId;
 import com.social_media.identityservice.domain.shared.valueobject.RoleId;
 import com.social_media.identityservice.domain.model.user.exception.InvalidUserIdentityException;
@@ -61,12 +62,16 @@ public class User {
         this.status = UserStatus.ACTIVE;
     }
 
-    public void changePassword(String newEncodePassword){
+    public void changePassword(String oldRawPassword, String newRawPassword, DomainPasswordEncoder encoder) {
+        if (!encoder.matches(oldRawPassword, this.password)) {
+            throw new InvalidUserIdentityException("Mật khẩu cũ không chính xác!");
+        }
 
-        if(newEncodePassword == null || newEncodePassword.length() < 4){
+        if (newRawPassword == null || newRawPassword.length() < 4) {
             throw new InvalidUserIdentityException("Password must be at least 4 characters");
         }
-        this.password = newEncodePassword;
+        
+        this.password = encoder.encode(newRawPassword);
     }
 
 }

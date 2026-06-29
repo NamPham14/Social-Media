@@ -1,8 +1,7 @@
 package com.social_media.identityservice.infrastructure.client;
 
 
-import com.social_media.common.exception.AppException;
-import com.social_media.common.exception.ErrorCode;
+import com.social_media.common.exception.ServiceUnavailableException;
 import com.social_media.identityservice.application.exception.user.UserNotFoundException;
 import com.social_media.identityservice.infrastructure.exception.ProfileServiceDownException;
 import feign.Response;
@@ -30,7 +29,7 @@ public class FeignConfig {
                 return new ProfileServiceDownException("Profile Service is currently down!");
             }
 
-            return new  AppException(ErrorCode.FEIGN_COMMUNICATION_ERROR);
+            return new ServiceUnavailableException("Error occurred while communicating with other services");
         }
     }
 

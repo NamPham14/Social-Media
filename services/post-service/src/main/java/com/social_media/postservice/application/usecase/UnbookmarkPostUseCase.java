@@ -1,8 +1,6 @@
 package com.social_media.postservice.application.usecase;
 
-import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.command.UnbookmarkPostCommand;
-import com.social_media.postservice.domain.exception.ErrorCode;
 //import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
 import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
 import com.social_media.postservice.domain.repository.BookmarkRepository;
@@ -19,7 +17,7 @@ public class UnbookmarkPostUseCase {
     @Transactional
     public void execute(UnbookmarkPostCommand command) {
         Bookmark bookmark = bookmarkRepository.findByUserIdAndPostId(command.getUserId(), command.getPostId())
-                .orElseThrow(() -> new AppException(ErrorCode.EMPTY_RESOURCE));
+                .orElseThrow(() -> new com.social_media.postservice.application.exception.ResourceNotFoundException());
 
         bookmarkRepository.delete(bookmark);
     }
