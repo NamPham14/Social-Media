@@ -1,32 +1,189 @@
+name: social-media-platform
+
 services:
+
+  # ===== DATABASES (Database-per-service pattern) =====
+  identity-db:
+    image: postgres:16-alpine
+    container_name: social_media_identity_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: social_media
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - identity-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d social_media"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  profile-db:
+    image: postgres:16-alpine
+    container_name: social_media_profile_db
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: demo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - profile-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d demo"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  post-db:
+    image: postgres:16-alpine
+    container_name: social_media_post_db
+    ports:
+      - "5434:5432"
+    environment:
+      POSTGRES_DB: post_service
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - post-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d post_service"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  comment-db:
+    image: postgres:16-alpine
+    container_name: social_media_comment_db
+    ports:
+      - "5435:5432"
+    environment:
+      POSTGRES_DB: comment_service
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - comment-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d comment_service"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # ===== REDIS =====
   redis:
     image: redis:7-alpine
-    container_name: redis
-    restart: always
+    container_name: social_media_redis
     ports:
       - "6379:6379"
+    command: redis-server --requirepass 123456
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "123456", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
 
-  kafka:
-   image: confluentinc/cp-kafka:7.6.0 # Dùng bản cao hẳn để KRaft chạy mượt nhất
-   container_name: kafka
-   ports:
-     - "9092:9092"
-   environment:
-     # Bật chế độ KRaft (Đóng vai trò vừa là Broker vừa là Controller điều phối)
-     KAFKA_NODE_ID: 1
-     KAFKA_PROCESS_ROLES: 'broker,controller'
+  # ===== INFRASTRUCTURE =====
+  eureka-server:
+    build:
+      context: .
+      dockerfile: infra/eureka-server/Dockerfile
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8761/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
 
-     # Cấu hình cổng kết nối
-     KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: 'CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT'
-     KAFKA_LISTENERS: 'PLAINTEXT://0.0.0.0:29092,CONTROLLER://0.0.0.0:29093,PLAINTEXT_HOST://0.0.0.0:9092'
+  api-gateway:
+    build:
+      context: .
+      dockerfile: infra/api-gateway/Dockerfile
+    container_name: api-gateway
+    ports:
+      - "8888:8888"
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      SPRING_DATA_REDIS_HOST: redis
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
 
-     # Sửa lỗi 'GiangHieu.mshome.net' bằng cách chỉ định rõ localhost ở cổng 9092
-     KAFKA_ADVERTISED_LISTENERS: 'PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092'
+  # ===== BUSINESS SERVICES =====
+  identity-service:
+    build:
+      context: .
+      dockerfile: services/identity-service/Dockerfile
+    container_name: identity-service
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      SPRING_DATASOURCE_URL: jdbc:postgresql://identity-db:5432/social_media
+      SPRING_DATASOURCE_PASSWORD: 123456
+      SPRING_DATA_REDIS_HOST: redis
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+      identity-db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
 
-     # Cơ chế bỏ Zookeeper cần một cái ID cụ thể cho Cluster (để chuỗi ngẫu nhiên chuẩn KRaft)
-     KAFKA_CONTROLLER_QUORUM_VOTERS: '1@kafka:29093'
-     KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
-     CLUSTER_ID: 'MkU3OEVBNTcwNTJENDM2Qk' # ID định danh cho cụm Kafka tự quản lý
+  profile-service:
+    build:
+      context: .
+      dockerfile: services/profile-service/Dockerfile
+    container_name: profile-service
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      SPRING_DATASOURCE_URL: jdbc:postgresql://profile-db:5432/demo
+      SPRING_DATASOURCE_PASSWORD: 123456
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+      profile-db:
+        condition: service_healthy
 
-     KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-     KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+  post-service:
+    build:
+      context: .
+      dockerfile: services/post-service/Dockerfile
+    container_name: post-service
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      SPRING_DATASOURCE_URL: jdbc:postgresql://post-db:5432/post_service
+      SPRING_DATASOURCE_PASSWORD: 123456
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+      post-db:
+        condition: service_healthy
+
+  comment-service:
+    build:
+      context: .
+      dockerfile: services/comment-service/Dockerfile
+    container_name: comment-service
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      SPRING_DATASOURCE_URL: jdbc:postgresql://comment-db:5432/comment_service
+      SPRING_DATASOURCE_PASSWORD: 123456
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+      comment-db:
+        condition: service_healthy
+
+volumes:
+  identity-db-data:
+  profile-db-data:
+  post-db-data:
+  comment-db-data:
+  redis-data:
