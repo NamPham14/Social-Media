@@ -1,7 +1,5 @@
 package com.social_media.postservice.application.command;
 
-import com.social_media.common.exception.AppException;
-import com.social_media.postservice.domain.exception.ErrorCode;
 import lombok.Builder;
 import lombok.Value;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,12 +25,12 @@ public class CreatePostCommand {
 
     private void validate() {
         if (userId == null) {
-            throw new AppException(ErrorCode.RESOURCE_NOT_FOUND); // Or a specific INVALID_INPUT error if available
+            throw new com.social_media.postservice.application.exception.ResourceNotFoundException(); // Or a specific INVALID_INPUT error if available
         }
         boolean hasCaption = caption != null && !caption.isBlank();
         boolean hasImages = images != null && !images.isEmpty();
         if (!hasCaption && !hasImages) {
-            throw new AppException(ErrorCode.EMPTY_RESOURCE);
+            throw new com.social_media.postservice.application.exception.ResourceNotFoundException();
         }
     }
 }

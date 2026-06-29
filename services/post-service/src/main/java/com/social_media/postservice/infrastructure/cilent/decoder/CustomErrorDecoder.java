@@ -1,7 +1,8 @@
 package com.social_media.postservice.infrastructure.cilent.decoder;
 
-import com.social_media.common.exception.AppException;
-import com.social_media.common.exception.ErrorCode;
+import com.social_media.postservice.application.exception.ResourceNotFoundException;
+import com.social_media.postservice.application.exception.UnauthorizedActionException;
+import com.social_media.common.exception.BusinessRuleViolationException;
 import feign.Response;
 import feign.codec.ErrorDecoder;
 
@@ -14,15 +15,13 @@ public class CustomErrorDecoder implements ErrorDecoder {
 
         switch (response.status()) {
             case 404:
-                return new AppException(ErrorCode.USER_NOT_FOUND);
+                return new ResourceNotFoundException();
             case 401:
-                return new AppException(ErrorCode.USER_BANNED);
+                return new UnauthorizedActionException();
             case 400:
-                return new AppException(ErrorCode.INVALID_KEY);
+                return new BusinessRuleViolationException(4000, "Dữ liệu yêu cầu không hợp lệ");
             default:
                 return defaultErrorDecoder.decode(methodKey, response);
         }
     }
-
-
 }

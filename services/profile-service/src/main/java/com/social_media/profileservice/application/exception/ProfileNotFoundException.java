@@ -1,11 +1,9 @@
 package com.social_media.profileservice.application.exception;
 
+import com.social_media.common.exception.EntityNotFoundException;
 
-import com.social_media.common.exception.AppException;
-import com.social_media.profileservice.api.exception.ProfileErrorCode;
-
-public class ProfileNotFoundException extends AppException {
+public class ProfileNotFoundException extends EntityNotFoundException {
     public ProfileNotFoundException() {
-        super(ProfileErrorCode.PROFILE_NOT_FOUND);
+        super(ProfileError.PROFILE_NOT_FOUND.getMessage());
     }
 }

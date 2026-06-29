@@ -27,3 +27,7 @@ management:
     web:
       exposure:
         include: health,info
+
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}

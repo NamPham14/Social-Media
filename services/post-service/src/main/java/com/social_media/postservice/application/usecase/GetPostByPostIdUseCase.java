@@ -1,9 +1,7 @@
 package com.social_media.postservice.application.usecase;
 
 
-import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.dto.PostResponse;
-import com.social_media.postservice.domain.exception.ErrorCode;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
 import com.social_media.postservice.domain.repository.PostRepository;
 import lombok.AccessLevel;
@@ -23,7 +21,7 @@ public class GetPostByPostIdUseCase {
     public PostResponse execute(UUID postId) {
 
         Post post = postRepository.findById(postId)
-                .orElseThrow(() -> new AppException(ErrorCode.EMPTY_RESOURCE));
+                .orElseThrow(() -> new com.social_media.postservice.application.exception.ResourceNotFoundException());
 
         return PostResponse.from(post);
     }

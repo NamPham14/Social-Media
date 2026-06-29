@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import com.social_media.postservice.domain.exception.InvalidPostException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
@@ -65,10 +66,10 @@ public class Post {
 
     public void update(String caption, String locationName) {
         if (this.deleted) {
-            throw new IllegalStateException("Deleted post cannot be updated");
+            throw new InvalidPostException("Deleted post cannot be updated");
         }
         if (caption != null && caption.length() > 2200) {
-            throw new IllegalArgumentException("Caption exceeds maximum length");
+            throw new InvalidPostException("Caption exceeds maximum length");
         }
         this.caption = caption;
         this.locationName = locationName;
@@ -77,10 +78,10 @@ public class Post {
 
     public void changeVisibility(PostStatus newStatus) {
         if (newStatus == null) {
-            throw new IllegalArgumentException("Visibility status cannot be null");
+            throw new InvalidPostException("Visibility status cannot be null");
         }
         if (this.deleted) {
-            throw new IllegalStateException("Cannot change visibility of a deleted post");
+            throw new InvalidPostException("Cannot change visibility of a deleted post");
         }
         this.status = newStatus;
         this.updatedAt = LocalDateTime.now();
@@ -88,27 +89,27 @@ public class Post {
 
     public void addMedia(PostMedia media) {
         if (this.deleted) {
-            throw new IllegalStateException("Cannot add media to deleted post");
+            throw new InvalidPostException("Cannot add media to deleted post");
         }
         if (media == null) {
-            throw new IllegalArgumentException("Media cannot be null");
+            throw new InvalidPostException("Media cannot be null");
         }
         medias.add(media);
     }
 
     public void removeMedia(PostMedia media) {
         if (this.deleted) {
-            throw new IllegalStateException("Cannot remove media from deleted post");
+            throw new InvalidPostException("Cannot remove media from deleted post");
         }
         if (media == null) {
-            throw new IllegalArgumentException("Media cannot be null");
+            throw new InvalidPostException("Media cannot be null");
         }
         medias.remove(media);
     }
 
     public void softDelete() {
         if (this.deleted) {
-            throw new IllegalStateException("Post already deleted");
+            throw new InvalidPostException("Post already deleted");
         }
         this.deleted = true;
         this.moderationStatus = ModerationStatus.REMOVED;
@@ -117,7 +118,7 @@ public class Post {
 
     public void removeByAdmin(UUID adminId) {
         if (this.deleted) {
-            throw new IllegalStateException("Post already deleted");
+            throw new InvalidPostException("Post already deleted");
         }
         this.deleted = true;
         this.moderationStatus = ModerationStatus.REMOVED;

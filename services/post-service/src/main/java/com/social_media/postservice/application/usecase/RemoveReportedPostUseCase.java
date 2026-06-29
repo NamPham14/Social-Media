@@ -1,9 +1,7 @@
 package com.social_media.postservice.application.usecase;
 
-import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.command.ReviewReportCommand;
 import com.social_media.postservice.application.service.MediaService;
-import com.social_media.postservice.domain.exception.ErrorCode;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
 import com.social_media.postservice.domain.model.post.entity.PostMedia;
 import com.social_media.postservice.domain.model.report.aggregate.Report;
@@ -30,14 +28,14 @@ public class RemoveReportedPostUseCase {
     @Transactional
     public void execute(ReviewReportCommand command) {
         Report report = reportRepository.findById(command.getReportId())
-                .orElseThrow(() -> new AppException(ErrorCode.EMPTY_RESOURCE));
+                .orElseThrow(() -> new com.social_media.postservice.application.exception.ResourceNotFoundException());
 
         if (report.getStatus() != ReportStatus.PENDING) {
-            throw new AppException(ErrorCode.REPORT_ALREADY_PROCESSED);
+            throw new com.social_media.postservice.application.exception.ReportAlreadyProcessedException();
         }
 
         Post post = postRepository.findById(report.getPostId())
-                .orElseThrow(() -> new AppException(ErrorCode.EMPTY_RESOURCE));
+                .orElseThrow(() -> new com.social_media.postservice.application.exception.ResourceNotFoundException());
 
         post.removeByAdmin(command.getAdminId());
         report.actOn();

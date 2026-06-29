@@ -1,11 +1,9 @@
 package com.social_media.profileservice.application.exception;
 
-import com.social_media.common.base.BaseErrorCode;
-import com.social_media.common.exception.AppException;
-import com.social_media.profileservice.api.exception.ProfileErrorCode;
+import com.social_media.common.exception.BusinessRuleViolationException;
 
-public class DuplicateProfileException extends AppException {
+public class DuplicateProfileException extends BusinessRuleViolationException {
     public DuplicateProfileException() {
-        super(ProfileErrorCode.PROFILE_ALREADY_EXISTS);
+        super(ProfileError.PROFILE_ALREADY_EXISTS.getCode(), ProfileError.PROFILE_ALREADY_EXISTS.getMessage());
     }
 }

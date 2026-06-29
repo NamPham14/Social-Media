@@ -6,6 +6,8 @@ import com.social_media.profileservice.infrastructure.mapper.ProfilePersistenceM
 import com.social_media.profileservice.infrastructure.persistence.entity.UserProfile;
 import com.social_media.profileservice.infrastructure.persistence.repository.UserProfileJpaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -27,5 +29,11 @@ public class UserProfileRepositoryAdapter implements ProfileRepository {
     @Override
     public Optional<Profile> findById(UUID id) {
         return jpaRepository.findById(id).map(mapper::toDomain);
+    }
+
+    @Override
+    public Page<Profile> searchProfiles(String keyword, Pageable pageable) {
+        return jpaRepository.searchProfiles(keyword, pageable)
+                .map(mapper::toDomain);
     }
 }
