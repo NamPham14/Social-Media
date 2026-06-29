@@ -1,10 +1,9 @@
-package com.social_media.postservice.infrastructure.cilent.config;
+package com.social_media.postservice.infrastructure.client.config;
 
-import com.social_media.postservice.infrastructure.cilent.decoder.CustomErrorDecoder;
+import com.social_media.postservice.infrastructure.client.decoder.CustomErrorDecoder;
 import feign.codec.ErrorDecoder;
 import okhttp3.OkHttpClient;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 
 import java.util.concurrent.TimeUnit;
 

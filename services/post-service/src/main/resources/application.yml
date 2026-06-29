@@ -15,6 +15,21 @@ spring:
     openfeign:
       okhttp:
         enabled: true
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer # từ string hoặc int => chuyển ra byte
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer # từ object chuyển ra JSON
+      acks: all # Đảm bảo dữ liệu đã ghi xuống tất cả các node bản sao
+      properties:
+          enable.idempotence: true # Chống trùng lặp tin nhắn khi mạng lỗi
+          retries: 5 # Thử lại tối đa 5 lần
+          retry.backoff.ms: 1000 # Đợi 1 giây trước khi thử lại
+          # Tối ưu hóa hiệu năng, gom tin nhắn lại gửi 1 thể (Batching)
+          linger.ms: 20
+          batch.size: 32768 # 32KB
+          compression.type: lz4 # Nén dữ liệu bằng thuật toán lz4 trước khi gửi để tiết kiệm băng thông
+          spring.json.add.type.headers: false
 management:
   endpoints:
     web:
@@ -28,6 +43,8 @@ cloudinary:
 
 
 eureka:
+  instance:
+    prefer-ip-address: true
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/

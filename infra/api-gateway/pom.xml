@@ -24,7 +24,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -36,13 +36,13 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-        
+
         <!-- Eureka Client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-        
+
         <!-- Security Module (VỚI EXCLUSIONS ĐỂ TRÁNH XUNG ĐỘT) -->
         <dependency>
             <groupId>com.social_media</groupId>
@@ -62,8 +62,8 @@
             </exclusions>
         </dependency>
         <dependency>
-             <groupId>io.micrometer</groupId>
-             <artifactId>context-propagation</artifactId>
+            <groupId>io.micrometer</groupId>
+            <artifactId>context-propagation</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
