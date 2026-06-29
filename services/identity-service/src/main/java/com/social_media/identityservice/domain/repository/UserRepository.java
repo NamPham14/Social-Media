@@ -2,6 +2,8 @@ package com.social_media.identityservice.domain.repository;
 
 import com.social_media.identityservice.domain.model.user.aggregate.User;
 import com.social_media.identityservice.domain.shared.valueobject.UserId;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 
@@ -11,4 +13,5 @@ public interface UserRepository {
     Optional<User> findByUsername(String username);
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
+    Page<User> searchUsers(String keyword,Pageable pageable);
 }

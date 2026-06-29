@@ -1,8 +1,6 @@
 package com.social_media.postservice.application.usecase;
 
-import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.dto.PostResponse;
-import com.social_media.postservice.domain.exception.ErrorCode;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
 import com.social_media.postservice.domain.repository.PostRepository;
 import lombok.AccessLevel;
@@ -23,7 +21,7 @@ public class FindAllPostsUseCase {
         Page<Post> page = postRepository.findAll(pageable);
 
         if (page.isEmpty()) {
-            throw new AppException(ErrorCode.EMPTY_RESOURCE);
+            throw new com.social_media.postservice.application.exception.ResourceNotFoundException();
         }
 
         return page.map(PostResponse::from);

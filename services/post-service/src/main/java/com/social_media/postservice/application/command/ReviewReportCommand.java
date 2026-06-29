@@ -1,7 +1,5 @@
 package com.social_media.postservice.application.command;
 
-import com.social_media.common.exception.AppException;
-import com.social_media.postservice.domain.exception.ErrorCode;
 import lombok.Builder;
 import lombok.Value;
 
@@ -21,7 +19,7 @@ public class ReviewReportCommand {
 
     private void validate() {
         if (reportId == null || adminId == null) {
-            throw new AppException(ErrorCode.RESOURCE_NOT_FOUND);
+            throw new com.social_media.postservice.application.exception.ResourceNotFoundException();
         }
     }
 }

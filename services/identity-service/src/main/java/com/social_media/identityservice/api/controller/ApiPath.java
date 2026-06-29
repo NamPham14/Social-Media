@@ -7,4 +7,5 @@ public class ApiPath {
     public static final String LOGIN = "/login";
     public static final String REGISTER = "/register";
     public  static  final  String SEARCHING = BASE + "/users/{keyword}";
+    public  static  final  String REFRESH_TOKEN = "/refresh_token";
 }

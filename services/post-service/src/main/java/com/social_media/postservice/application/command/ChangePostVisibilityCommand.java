@@ -1,7 +1,5 @@
 package com.social_media.postservice.application.command;
 
-import com.social_media.common.exception.AppException;
-import com.social_media.postservice.domain.exception.ErrorCode;
 import com.social_media.postservice.domain.model.post.valueobject.PostStatus;
 import lombok.Builder;
 import lombok.Value;
@@ -24,7 +22,7 @@ public class ChangePostVisibilityCommand {
 
     private void validate() {
         if (postId == null || userId == null || newStatus == null) {
-            throw new AppException(ErrorCode.RESOURCE_NOT_FOUND);
+            throw new com.social_media.postservice.application.exception.ResourceNotFoundException();
         }
     }
 }

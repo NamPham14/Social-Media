@@ -1,7 +1,8 @@
 package com.social_media.postservice.infrastructure.client.identity.service;
 
-import com.social_media.common.exception.AppException;
-import com.social_media.common.exception.ErrorCode;
+import com.social_media.common.exception.BusinessRuleViolationException;
+import com.social_media.common.exception.EntityNotFoundException;
+import com.social_media.common.exception.ServiceUnavailableException;
 import com.social_media.postservice.infrastructure.client.identity.IdentityClient;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
@@ -29,13 +30,13 @@ public class IdentityServiceHelper {
         log.error("Fallback Active: Kích hoạt bảo vệ cho User: {}", userId);
         log.error("-> Nguyên nhân gốc gây lỗi (Throwable): {}", throwable.getClass().getName());
 
-        if (throwable instanceof AppException) {
+        if (throwable instanceof BusinessRuleViolationException || throwable instanceof EntityNotFoundException) {
             log.info("-> [Xử lý]: Phát hiện lỗi nghiệp vụ từ Decoder.!");
-            throw (AppException) throwable;
+            throw (RuntimeException) throwable;
         }
 
         log.warn("-> [Xử lý]: Phát hiện Identity-Service bị sập nguồn hoặc nghẽn mạng.");
 
-        throw new AppException(ErrorCode.UNCATEGORIZED_EXCEPTION);
+        throw new ServiceUnavailableException("Không thể kết nối đến Identity Service. Vui lòng thử lại sau.");
     }
 }

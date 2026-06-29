@@ -28,4 +28,7 @@ public class Profile {
         this.bio = bio;
         this.avatarUrl = avatarUrl;
     }
+    public void updateAvatarUrl(String newAvatarUrl) {
+        this.avatarUrl = newAvatarUrl;
+    }
 }

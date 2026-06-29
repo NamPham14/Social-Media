@@ -43,23 +43,11 @@
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
-        <!-- Security Module (VỚI EXCLUSIONS ĐỂ TRÁNH XUNG ĐỘT) -->
+        <!-- JWT for Gateway verification -->
         <dependency>
-            <groupId>com.social_media</groupId>
-            <artifactId>common-security</artifactId>
-            <version>${project.version}</version>
-            <exclusions>
-                <!-- Gateway KHÔNG tương thích với Spring Web (MVC) -->
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-web</artifactId>
-                </exclusion>
-                <!-- Gateway KHÔNG cần cấu hình Database -->
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-data-jpa</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>9.37.3</version>
         </dependency>
         <dependency>
             <groupId>io.micrometer</groupId>

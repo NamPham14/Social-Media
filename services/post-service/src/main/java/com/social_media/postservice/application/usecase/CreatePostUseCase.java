@@ -1,5 +1,5 @@
 package com.social_media.postservice.application.usecase;
-import com.social_media.common.exception.AppException;
+import com.social_media.postservice.application.exception.UnauthorizedActionException;
 import com.social_media.postservice.application.command.CreatePostCommand;
 import com.social_media.postservice.application.dto.PostResponse;
 import com.social_media.postservice.application.dto.UploadResponse;
@@ -8,7 +8,6 @@ import com.social_media.postservice.application.ports.output.PostEventPublisher;
 import com.social_media.postservice.config.security.SecurityUtils;
 import com.social_media.postservice.infrastructure.client.identity.service.IdentityServiceHelper; // Tiêm Helper mới
 import com.social_media.postservice.application.service.MediaService;
-import com.social_media.postservice.domain.exception.ErrorCode;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
 import com.social_media.postservice.domain.model.post.entity.PostMedia;
 import com.social_media.postservice.domain.model.post.valueobject.MediaType;
@@ -39,7 +38,7 @@ public class CreatePostUseCase {
         String idMaHopLe = "99999999-9999-9999-9999-999999999999";
         //String statusUser = identityServiceHelper.getSafeUserStatus(UUID.fromString(idMaHopLe));
         if ("BANNED".equals(statusUser)) {
-            throw new AppException(ErrorCode.USER_BANNED);
+            throw new UnauthorizedActionException();
         }
 
         List<UploadResponse> uploads = mediaService.upload(command.getImages());
@@ -80,7 +79,7 @@ public class CreatePostUseCase {
                     log.error("Failed to rollback image on Cloudinary: " + file.getPublicId(), ex);
                 }
             }
-            throw new AppException(ErrorCode.CLOUDINARY_ERROR);
+            throw new com.social_media.postservice.application.exception.CloudinaryUploadException();
         }
     }
 }

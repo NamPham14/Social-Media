@@ -5,6 +5,7 @@ import com.social_media.postservice.domain.model.post.valueobject.MediaType;
 import lombok.*;
 
 import java.util.UUID;
+import com.social_media.postservice.domain.exception.InvalidPostException;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
@@ -25,10 +26,10 @@ public class PostMedia {
 
     public static PostMedia create(String publicId, String mediaUrl, MediaType mediaType, Integer orderIndex) {
         if (publicId == null || publicId.isBlank()) {
-            throw new IllegalArgumentException("Public ID cannot be blank");
+            throw new InvalidPostException("Public ID cannot be blank");
         }
         if (mediaUrl == null || mediaUrl.isBlank()) {
-            throw new IllegalArgumentException("Media URL cannot be blank");
+            throw new InvalidPostException("Media URL cannot be blank");
         }
         PostMedia media = new PostMedia();
         media.publicId = publicId;
@@ -48,14 +49,14 @@ public class PostMedia {
 
     public void changeMediaUrl(String mediaUrl) {
         if (mediaUrl == null || mediaUrl.isBlank()) {
-            throw new IllegalArgumentException("Media url cannot be blank");
+            throw new InvalidPostException("Media url cannot be blank");
         }
         this.mediaUrl = mediaUrl;
     }
 
     public void changeMedia(String publicId, String mediaUrl) {
         if (publicId == null || publicId.isBlank() || mediaUrl == null || mediaUrl.isBlank()) {
-            throw new IllegalArgumentException("Public ID and Media URL cannot be blank");
+            throw new InvalidPostException("Public ID and Media URL cannot be blank");
         }
         this.publicId = publicId;
         this.mediaUrl = mediaUrl;
@@ -63,7 +64,7 @@ public class PostMedia {
 
     public void changeOrder(Integer orderIndex) {
         if (orderIndex == null || orderIndex < 0) {
-            throw new IllegalArgumentException("Order index must be >= 0");
+            throw new InvalidPostException("Order index must be >= 0");
         }
         this.orderIndex = orderIndex;
     }
