@@ -3,7 +3,6 @@ package com.social_media.postservice.api.controller;
 import com.social_media.common.api.ApiResponse;
 import com.social_media.postservice.api.dto.ReportPostRequest;
 import com.social_media.postservice.api.dto.ReportResponse;
-import com.social_media.postservice.api.dto.ReviewReportRequest;
 import com.social_media.postservice.api.path.ApiPath;
 import com.social_media.postservice.application.command.ReportPostCommand;
 import com.social_media.postservice.application.command.ReviewReportCommand;
@@ -11,6 +10,7 @@ import com.social_media.postservice.application.usecase.DismissReportUseCase;
 import com.social_media.postservice.application.usecase.GetReportedPostsUseCase;
 import com.social_media.postservice.application.usecase.RemoveReportedPostUseCase;
 import com.social_media.postservice.application.usecase.ReportPostUseCase;
+import com.social_media.postservice.config.security.SecurityUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -36,7 +36,7 @@ public class ReportController {
             @Valid @RequestBody ReportPostRequest request) {
         ReportPostCommand command = ReportPostCommand.builder()
                 .postId(postId)
-                .reporterId(request.getReporterId())
+                .reporterId(SecurityUtils.getCurrentUserId())
                 .reason(request.getReason())
                 .description(request.getDescription())
                 .build();
@@ -59,12 +59,10 @@ public class ReportController {
     }
 
     @PutMapping(ApiPath.REPORT_DISMISS)
-    public ApiResponse<Void> dismissReport(
-            @PathVariable("reportId") UUID reportId,
-            @Valid @RequestBody ReviewReportRequest request) {
+    public ApiResponse<Void> dismissReport(@PathVariable("reportId") UUID reportId) {
         ReviewReportCommand command = ReviewReportCommand.builder()
                 .reportId(reportId)
-                .adminId(request.getAdminId())
+                .adminId(SecurityUtils.getCurrentUserId())
                 .build();
         dismissReportUseCase.execute(command);
         return ApiResponse.<Void>builder()
@@ -74,12 +72,10 @@ public class ReportController {
     }
 
     @PutMapping(ApiPath.REPORT_REMOVE)
-    public ApiResponse<Void> removeReportedPost(
-            @PathVariable("reportId") UUID reportId,
-            @Valid @RequestBody ReviewReportRequest request) {
+    public ApiResponse<Void> removeReportedPost(@PathVariable("reportId") UUID reportId) {
         ReviewReportCommand command = ReviewReportCommand.builder()
                 .reportId(reportId)
-                .adminId(request.getAdminId())
+                .adminId(SecurityUtils.getCurrentUserId())
                 .build();
         removeReportedPostUseCase.execute(command);
         return ApiResponse.<Void>builder()

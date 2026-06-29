@@ -23,6 +23,7 @@ public enum ErrorCode implements BaseErrorCode {
     EMAIL_LIMIT_EXCEEDED(1011,"Email limit exceed",HttpStatus.BAD_REQUEST),
 
     UNAUTHENTICATED(1012, "Unauthenticated", HttpStatus.UNAUTHORIZED),
+    USER_BANNED(1013, "User banned", HttpStatus.BAD_REQUEST),
 
    ;
 

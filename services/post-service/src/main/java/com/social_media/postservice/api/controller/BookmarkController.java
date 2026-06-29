@@ -9,6 +9,7 @@ import com.social_media.postservice.application.command.UnbookmarkPostCommand;
 import com.social_media.postservice.application.usecase.BookmarkPostUseCase;
 import com.social_media.postservice.application.usecase.GetUserBookmarksUseCase;
 import com.social_media.postservice.application.usecase.UnbookmarkPostUseCase;
+import com.social_media.postservice.config.security.SecurityUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -30,7 +31,7 @@ public class BookmarkController {
     @PostMapping(ApiPath.BOOKMARKS)
     public ApiResponse<Void> bookmarkPost(@Valid @RequestBody BookmarkRequest request) {
         BookmarkPostCommand command = BookmarkPostCommand.builder()
-                .userId(request.getUserId())
+                .userId(SecurityUtils.getCurrentUserId())
                 .postId(request.getPostId())
                 .build();
         bookmarkPostUseCase.execute(command);
@@ -41,11 +42,9 @@ public class BookmarkController {
     }
 
     @DeleteMapping(ApiPath.BOOKMARK)
-    public ApiResponse<Void> unbookmarkPost(
-            @PathVariable("userId") UUID userId,
-            @PathVariable("postId") UUID postId) {
+    public ApiResponse<Void> unbookmarkPost(@PathVariable("postId") UUID postId) {
         UnbookmarkPostCommand command = UnbookmarkPostCommand.builder()
-                .userId(userId)
+                .userId(SecurityUtils.getCurrentUserId())
                 .postId(postId)
                 .build();
         unbookmarkPostUseCase.execute(command);
@@ -56,9 +55,8 @@ public class BookmarkController {
     }
 
     @GetMapping(ApiPath.BOOKMARKS)
-    public ApiResponse<Page<BookmarkResponse>> getUserBookmarks(
-            @RequestParam("userId") UUID userId, Pageable pageable) {
-        Page<BookmarkResponse> result = getUserBookmarksUseCase.execute(userId, pageable)
+    public ApiResponse<Page<BookmarkResponse>> getUserBookmarks(Pageable pageable) {
+        Page<BookmarkResponse> result = getUserBookmarksUseCase.execute(SecurityUtils.getCurrentUserId(), pageable)
                 .map(BookmarkResponse::from);
         return ApiResponse.<Page<BookmarkResponse>>builder()
                 .code(HttpStatus.OK.value())

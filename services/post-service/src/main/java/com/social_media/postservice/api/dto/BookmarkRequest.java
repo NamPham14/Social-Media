@@ -15,8 +15,5 @@ import java.util.UUID;
 public class BookmarkRequest {
 
     @NotNull
-    private UUID userId;
-
-    @NotNull
     private UUID postId;
 }

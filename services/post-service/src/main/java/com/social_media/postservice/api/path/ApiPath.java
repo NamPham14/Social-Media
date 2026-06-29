@@ -21,5 +21,5 @@ public final class ApiPath {
     public static final String REPORT_REMOVE = "/reports/{reportId}/remove";
 
     public static final String BOOKMARKS = "/bookmarks";
-    public static final String BOOKMARK = "/bookmarks/{userId}/{postId}";
+    public static final String BOOKMARK = "/bookmarks/{postId}";
 }
