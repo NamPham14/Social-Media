@@ -7,16 +7,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.UUID;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 public class ReportPostRequest {
-
-    @NotNull
-    private UUID reporterId;
 
     @NotNull
     private ReportReason reason;

@@ -4,9 +4,9 @@ public class Constants {
     public  static final String X_FORWARDED_FOR = "X-Forwarded-For";
 
     public static final String CORRELATION_ID_HEADER = "X-Correlation-ID";
-    public  static final String HEADER_USER_ID = "X-User-ID";
-    public  static final String HEADER_USER_NAME = "X-User-Email";
-    public  static final String HEADER_USER_ROLES = "X-User-Roles";
+    public  static final String HEADER_USER_ID = "X-Auth-User-Id";
+    public  static final String HEADER_USER_NAME = "X-Auth-Username";
+    public  static final String HEADER_USER_ROLES = "X-Auth-Roles";
     public  static final String HEADER_AUTHOR = "Authorization";
 
 

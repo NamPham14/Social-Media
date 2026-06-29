@@ -21,6 +21,10 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true    # Bắt buộc Eureka phải dùng IP thay vì tên máy (Tránh lỗi kết nối)
+    instance-id: ${spring.application.name}:${server.port}  # Đặt tên định danh cho đẹp trên giao diện Eureka
+
 
 management:
   endpoints:

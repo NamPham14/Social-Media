@@ -120,6 +120,9 @@ public class RateLimitFilter implements GlobalFilter, Ordered {
                     return chain.filter(exchange);
                 })
                 .onErrorResume(throwable -> {
+                    if (throwable instanceof ResponseStatusException) {
+                        return Mono.error(throwable);
+                    }
                     log.error("!!!!!!!!! [REDIS ERROR] Redis bị sập hoặc lỗi kết nối! Thả xích cho request đi tiếp để tránh sập hệ thống.", throwable);
                     return chain.filter(exchange);
                 });
