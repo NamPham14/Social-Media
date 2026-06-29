@@ -13,7 +13,11 @@ public class KafkaEventProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendUserFollowedKafkaEvent(UserFollowedEvent event) {
-        kafkaTemplate.send("user-followed-topic", event);
+    public void publishUserFollowed(UserFollowedEvent event) {
+        kafkaTemplate.send("user.followed", event);
+    }
+
+    public void publishUserUnfollowed(com.social_media.followerservice.domain.event.UserUnfollowedEvent event) {
+        kafkaTemplate.send("user.unfollowed", event);
     }
 }

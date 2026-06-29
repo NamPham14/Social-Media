@@ -1,4 +1,7 @@
 package com.social_media.followerservice.domain.event;
 
-public record UserFollowedEvent(Long followerId, Long followingId) {
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+public record UserFollowedEvent(UUID followerId, UUID followingId, LocalDateTime createdAt) {
 }

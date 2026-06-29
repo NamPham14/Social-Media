@@ -1,57 +1,63 @@
 package com.social_media.followerservice.application.usecase;
 
 import com.social_media.followerservice.application.command.FollowUserCommand;
+import com.social_media.followerservice.domain.model.follower.aggregate.Follower;
+import com.social_media.followerservice.domain.repository.FollowerRepository;
 import com.social_media.followerservice.domain.event.UserFollowedEvent;
-import com.social_media.followerservice.domain.exception.NotFoundException;
-import com.social_media.followerservice.domain.Follower;
-import com.social_media.followerservice.domain.FollowerRepository;
+import com.social_media.followerservice.domain.exception.BusinessException;
 import com.social_media.followerservice.infrastructure.client.UserClient;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.time.LocalDateTime;
 
 @Service
+@RequiredArgsConstructor
 public class FollowUserUseCaseImpl implements FollowUserUseCase {
 
     private final FollowerRepository followerRepository;
     private final UserClient userClient;
     private final ApplicationEventPublisher eventPublisher;
 
-    public FollowUserUseCaseImpl(FollowerRepository followerRepository, 
-                                 UserClient userClient, 
-                                 ApplicationEventPublisher eventPublisher) {
-        this.followerRepository = followerRepository;
-        this.userClient = userClient;
-        this.eventPublisher = eventPublisher;
-    }
-
     @Override
     @Transactional
     public void followUser(FollowUserCommand command) {
-        // a. Check if the target user exists
-        try {
-            Object userProfile = userClient.getUserProfilesByIds(List.of(command.followingId().value()));
-            if (userProfile == null) {
-                throw new NotFoundException("Target user not found");
-            }
-        } catch (Exception e) {
-            throw new NotFoundException("Target user not found or error occurred: " + e.getMessage());
+        // 1. Validate không follow chính mình (Double check dù Command đã check)
+        if (command.followerId().equals(command.followingId())) {
+            throw new BusinessException("A user cannot follow themselves");
         }
 
-        // b. Check if the follow relation already exists
+        // Validate target user exists via UserClient
+        // (Tạm thời COMMENT lại để bạn test độc lập Follower Service mà không cần bật User Service)
+        // try {
+        //     Object userProfile = userClient.getUserProfilesByIds(List.of(command.followingId()));
+        //     if (userProfile == null) {
+        //         throw new NotFoundException("Target user not found");
+        //     }
+        // } catch (Exception e) {
+        //     throw new NotFoundException("Target user not found or error occurred: " + e.getMessage());
+        // }
+
+        // 2. Validate không follow trùng
         if (followerRepository.exists(command.followerId(), command.followingId())) {
-            return;
+            throw new BusinessException("You are already following this user");
         }
 
-        // c. Create domain entity
-        Follower follower = Follower.create(command.followerId(), command.followingId());
+        // 3. Create and Save entity
+        Follower follower = Follower.builder()
+                .followerId(command.followerId())
+                .followedUserId(command.followingId())
+                .status("ACTIVE")
+                .followedAt(LocalDateTime.now())
+                .build();
 
-        // d. Save via followerRepository
+
         followerRepository.save(follower);
 
-        // e. Publish an internal Spring event
-        eventPublisher.publishEvent(new UserFollowedEvent(command.followerId().value(), command.followingId().value()));
+        // 4. Publish USER_FOLLOWED event
+        eventPublisher.publishEvent(new UserFollowedEvent(command.followerId(), command.followingId(), LocalDateTime.now()));
     }
 }
+

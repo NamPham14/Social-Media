@@ -1,47 +1,53 @@
 package com.social_media.followerservice.api;
 
-import com.social_media.followerservice.api.dto.FeedResponse;
+import com.social_media.followerservice.application.command.FollowUserCommand;
+import com.social_media.followerservice.application.command.UnfollowUserCommand;
+import com.social_media.followerservice.application.usecase.FollowUserUseCase;
 import com.social_media.followerservice.application.usecase.GetFollowersUseCase;
 import com.social_media.followerservice.application.usecase.GetFollowingUseCase;
-import com.social_media.followerservice.application.usecase.GetNewsFeedUseCase;
+import com.social_media.followerservice.application.usecase.UnfollowUserUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
-@RequestMapping(ApiPath.BASE_API)
+@RequestMapping("/api/v1/follows")
 @RequiredArgsConstructor
 public class FollowerController {
 
+    private final FollowUserUseCase followUserUseCase;
+    private final UnfollowUserUseCase unfollowUserUseCase;
     private final GetFollowersUseCase getFollowersUseCase;
     private final GetFollowingUseCase getFollowingUseCase;
-    private final GetNewsFeedUseCase getNewsFeedUseCase;
 
-
-    @GetMapping(ApiPath.FOLLOWER_API)
-    public ResponseEntity<List<Long>> getFollowers(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(getFollowersUseCase.getFollowers(id));
+    @PostMapping("/{targetUserId}")
+    public ResponseEntity<Void> followUser(
+            @RequestHeader("X-User-Id") UUID currentUserId,
+            @PathVariable("targetUserId") UUID targetUserId) {
+        
+        followUserUseCase.followUser(new FollowUserCommand(currentUserId, targetUserId));
+        return ResponseEntity.ok().build();
     }
 
-    @GetMapping(ApiPath.FOLLOWING_API)
-    public ResponseEntity<List<Long>> getFollowing(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(getFollowingUseCase.getFollowing(id));
+    @DeleteMapping("/{targetUserId}")
+    public ResponseEntity<Void> unfollowUser(@RequestHeader("X-User-Id") UUID currentUserId,
+            @PathVariable("targetUserId") UUID targetUserId) {
+        
+        unfollowUserUseCase.unfollowUser(new UnfollowUserCommand(currentUserId, targetUserId));
+        return ResponseEntity.ok().build();
     }
 
-    @GetMapping(ApiPath.FEED_API)
-    public ResponseEntity<List<FeedResponse>> getFeeds(
-            @RequestParam(value = "page", defaultValue = "0") int page,
-            @RequestParam(value = "size", defaultValue = "10") int size
-            /* e.g., @RequestHeader("X-User-Id") Long currentUserId */) {
-        // Hardcoded or extracted user ID would go here, using a dummy 1L for the stub
-        Long currentUserId = 1L; 
-        return ResponseEntity.ok(getNewsFeedUseCase.getNewsFeed(currentUserId, page, size));
+    @GetMapping("/followers/{userId}")
+    public ResponseEntity<List<UUID>> getFollowers(@PathVariable("userId") UUID userId) {
+        return ResponseEntity.ok(getFollowersUseCase.getFollowers(userId));
+    }
+
+    @GetMapping("/following/{userId}")
+    public ResponseEntity<List<UUID>> getFollowing(@PathVariable("userId") UUID userId) {
+        return ResponseEntity.ok(getFollowingUseCase.getFollowing(userId));
     }
 }
 
