@@ -1,9 +1,9 @@
-package com.social_media.postservice.infrastructure.cilent.identity.service;
+package com.social_media.postservice.infrastructure.client.identity.service;
 
 import com.social_media.common.exception.BusinessRuleViolationException;
 import com.social_media.common.exception.EntityNotFoundException;
 import com.social_media.common.exception.ServiceUnavailableException;
-import com.social_media.postservice.infrastructure.cilent.identity.IdentityClient;
+import com.social_media.postservice.infrastructure.client.identity.IdentityClient;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
