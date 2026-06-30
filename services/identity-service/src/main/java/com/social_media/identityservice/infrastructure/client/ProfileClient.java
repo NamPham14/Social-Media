@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @FeignClient(name = "profile-service", url = "${app.services.profile-service.url:http://localhost:8082}",
         configuration = FeignConfig.class)
-public interface git mProfileClient {
+public interface ProfileClient {
 
     @PostMapping("/api/v1/profile/internal/users")
     ApiResponse<Object> createProfile(@RequestBody ProfileCreationRequest request);

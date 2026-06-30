@@ -1,5 +1,6 @@
 package com.social_media.commonsecurity.filter;
 
+import com.social_media.common.utils.SecurityConstants;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -20,7 +21,7 @@ public class InternalAuthFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         
         // Extract UserID from Header set by Gateway
-        String userId = request.getHeader("X-User-Id");
+        String userId = request.getHeader(SecurityConstants.HEADER_USER_ID);
 
         if (userId != null && !userId.isEmpty()) {
             // Set up Spring Security Context
