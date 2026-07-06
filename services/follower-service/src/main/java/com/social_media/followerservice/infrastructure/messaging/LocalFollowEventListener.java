@@ -18,6 +18,6 @@ public class LocalFollowEventListener {
     @Async
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void handleFollowEvent(UserFollowedEvent event) {
-        kafkaEventProducer.sendUserFollowedKafkaEvent(event);
+        kafkaEventProducer.publish(event);
     }
 }

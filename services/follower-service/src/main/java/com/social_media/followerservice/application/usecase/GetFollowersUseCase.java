@@ -1,7 +1,8 @@
 package com.social_media.followerservice.application.usecase;
 
-import java.util.List;
+import com.social_media.followerservice.api.dto.FollowResponse;
+import org.springframework.data.domain.Page;
 
 public interface GetFollowersUseCase {
-    List<Long> getFollowers(Long userId);
+    Page<FollowResponse> execute(Long userId, int page, int size);
 }
