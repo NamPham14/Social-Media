@@ -979,3 +979,695 @@ com.netflix.discovery.shared.transport.TransportException: Cannot execute reques
 	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116)
 	at java.base/java.lang.Thread.run(Thread.java:1583)
 2026-06-29 22:50:50.042  INFO [api-gateway, NO-ID] --- [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2026-06-29 23:39:44.485  INFO [api-gateway, NO-ID] --- [           main] c.s.apigateway.ApiGatewayApplication     : Starting ApiGatewayApplication using Java 21.0.6 with PID 5880 (E:\SU26\MSS\ProjectClass\project-assignment\Social-Media\infra\api-gateway\target\classes started by gtrun in E:\SU26\MSS\ProjectClass\project-assignment\Social-Media)
+2026-06-29 23:39:44.487 DEBUG [api-gateway, NO-ID] --- [           main] c.s.apigateway.ApiGatewayApplication     : Running with Spring Boot v3.5.14, Spring v6.2.18
+2026-06-29 23:39:44.488  INFO [api-gateway, NO-ID] --- [           main] c.s.apigateway.ApiGatewayApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-06-29 23:39:46.736  INFO [api-gateway, NO-ID] --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-06-29 23:39:46.741  INFO [api-gateway, NO-ID] --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-06-29 23:39:46.799  INFO [api-gateway, NO-ID] --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 25 ms. Found 0 Redis repository interfaces.
+2026-06-29 23:39:47.309  INFO [api-gateway, NO-ID] --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=fa10ada0-6e0e-39d1-800f-50a40c198ba5
+2026-06-29 23:39:48.187  INFO [api-gateway, NO-ID] --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8888 (http)
+2026-06-29 23:39:48.205  INFO [api-gateway, NO-ID] --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-29 23:39:48.206  INFO [api-gateway, NO-ID] --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-29 23:39:49.774  WARN [api-gateway, NO-ID] --- [           main] GatewayClassPathWarningAutoConfiguration : 
+
+**********************************************************
+
+The artifact spring-cloud-gateway-server is deprecated. It will be removed in the next major release. Please add spring-cloud-gateway-server-webflux dependency.
+
+**********************************************************
+
+
+2026-06-29 23:39:50.457 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.gateway.config.GatewayProperties   : Routes supplied from Gateway Properties: [RouteDefinition{id='identity-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/identity/**}}], filters=[FilterDefinition{name='StripPrefix', args={_genkey_0=1}}], uri=lb://identity-service, order=0, metadata={}, enabled=true}, RouteDefinition{id='profile-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/profile/**}}], filters=[FilterDefinition{name='StripPrefix', args={_genkey_0=1}}], uri=lb://profile-service, order=0, metadata={}, enabled=true}, RouteDefinition{id='post-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/post/**}}], filters=[FilterDefinition{name='StripPrefix', args={_genkey_0=1}}], uri=lb://post-service, order=0, metadata={}, enabled=true}, RouteDefinition{id='comment-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/comment/**}}], filters=[FilterDefinition{name='StripPrefix', args={_genkey_0=1}}], uri=lb://comment-service, order=0, metadata={}, enabled=true}, RouteDefinition{id='interaction-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/interaction/**}}], filters=[FilterDefinition{name='StripPrefix', args={_genkey_0=1}}], uri=lb://interaction-service, order=0, metadata={}, enabled=true}, RouteDefinition{id='notification-service', predicates=[PredicateDefinition{name='Path', args={_genkey_0=/notification/**}}], filters=[FilterDefinition{name='StripPrefix', args={_genkey_0=1}}], uri=lb://notification-service, order=0, metadata={}, enabled=true}]
+2026-06-29 23:39:50.853  INFO [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [After]
+2026-06-29 23:39:50.853  INFO [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Before]
+2026-06-29 23:39:50.853  INFO [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Between]
+2026-06-29 23:39:50.853  INFO [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Cookie]
+2026-06-29 23:39:50.853  INFO [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Header]
+2026-06-29 23:39:50.854  INFO [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Host]
+2026-06-29 23:39:50.854  INFO [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Method]
+2026-06-29 23:39:50.854  INFO [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Path]
+2026-06-29 23:39:50.854  INFO [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Query]
+2026-06-29 23:39:50.854  INFO [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [ReadBody]
+2026-06-29 23:39:50.854  INFO [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [RemoteAddr]
+2026-06-29 23:39:50.854  INFO [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [XForwardedRemoteAddr]
+2026-06-29 23:39:50.854  INFO [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [Weight]
+2026-06-29 23:39:50.854  INFO [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : Loaded RoutePredicateFactory [CloudFoundryRouteService]
+2026-06-29 23:39:51.993  INFO [api-gateway, NO-ID] --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+2026-06-29 23:39:52.982  INFO [api-gateway, NO-ID] --- [           main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2026-06-29 23:39:53.136  WARN [api-gateway, NO-ID] --- [           main] s.w.s.StarterDeprecatedAutoConfiguration : 
+
+**********************************************************
+
+spring-cloud-starter-gateway is deprecated. It will be removed in the next major release. Please use spring-cloud-starter-gateway-server-webflux instead.
+
+**********************************************************
+
+
+2026-06-29 23:39:53.154  WARN [api-gateway, NO-ID] --- [           main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-06-29 23:39:53.265  INFO [api-gateway, NO-ID] --- [           main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-06-29 23:39:53.303  INFO [api-gateway, NO-ID] --- [           main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-06-29 23:39:53.309  INFO [api-gateway, NO-ID] --- [           main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-06-29 23:39:53.321  INFO [api-gateway, NO-ID] --- [           main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-06-29 23:39:53.321  INFO [api-gateway, NO-ID] --- [           main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-06-29 23:39:53.321  INFO [api-gateway, NO-ID] --- [           main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-06-29 23:39:53.321  INFO [api-gateway, NO-ID] --- [           main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-06-29 23:39:53.321  INFO [api-gateway, NO-ID] --- [           main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-06-29 23:39:53.321  INFO [api-gateway, NO-ID] --- [           main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2026-06-29 23:39:53.321  INFO [api-gateway, NO-ID] --- [           main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-06-29 23:39:53.802  INFO [api-gateway, NO-ID] --- [           main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-06-29 23:39:53.803  INFO [api-gateway, NO-ID] --- [           main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2026-06-29 23:39:53.805  INFO [api-gateway, NO-ID] --- [           main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-06-29 23:39:53.808  INFO [api-gateway, NO-ID] --- [           main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1782751193807 with initial instances count: 0
+2026-06-29 23:39:53.824  INFO [api-gateway, NO-ID] --- [           main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application API-GATEWAY with eureka with status UP
+2026-06-29 23:39:53.826  INFO [api-gateway, NO-ID] --- [           main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1782751193826, current=UP, previous=STARTING]
+2026-06-29 23:39:53.828  INFO [api-gateway, NO-ID] --- [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/api-gateway:8888: registering service...
+2026-06-29 23:39:53.860 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:39:53.878  INFO [api-gateway, NO-ID] --- [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/api-gateway:8888 - registration status: 204
+2026-06-29 23:39:53.881 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:39:53.888 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:39:53.889 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:39:53.892 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:39:53.894 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:39:53.895 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:39:53.898 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:39:53.900 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:39:53.900 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:39:53.902 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:39:53.903 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:39:53.904 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:39:53.908 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:39:53.911 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:39:53.912 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:39:53.914 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:39:53.915 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:39:53.923 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:39:53.952  INFO [api-gateway, NO-ID] --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http)
+2026-06-29 23:39:53.954  INFO [api-gateway, NO-ID] --- [           main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8888
+2026-06-29 23:39:54.050 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:39:54.063 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:39:54.071 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:39:54.072 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:39:54.078 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:39:54.084 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:39:54.085 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:39:54.089 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:39:54.096 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:39:54.097 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:39:54.104 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:39:54.106 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:39:54.106 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:39:54.108 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:39:54.109 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:39:54.109 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:39:54.110 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:39:54.112 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:39:54.116 DEBUG [api-gateway, NO-ID] --- [           main] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:39:54.119  INFO [api-gateway, NO-ID] --- [           main] c.s.apigateway.ApiGatewayApplication     : Started ApiGatewayApplication in 10.73 seconds (process running for 12.177)
+2026-06-29 23:40:23.817  INFO [api-gateway, NO-ID] --- [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-06-29 23:40:23.817  INFO [api-gateway, NO-ID] --- [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-06-29 23:40:23.817  INFO [api-gateway, NO-ID] --- [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-06-29 23:40:23.817  INFO [api-gateway, NO-ID] --- [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-06-29 23:40:23.817  INFO [api-gateway, NO-ID] --- [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-06-29 23:40:23.817  INFO [api-gateway, NO-ID] --- [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Application version is -1: false
+2026-06-29 23:40:23.818  INFO [api-gateway, NO-ID] --- [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-06-29 23:40:23.850  INFO [api-gateway, NO-ID] --- [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-06-29 23:40:23.852 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:40:23.853 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:40:23.854 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:40:23.854 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:40:23.855 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:40:23.856 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:40:23.856 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:40:23.857 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:40:23.857 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:40:23.857 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:40:23.858 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:40:23.859 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:40:23.859 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:40:23.859 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:40:23.860 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:40:23.860 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:40:23.861 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:40:23.862 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:40:23.862 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:40:53.883 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:40:53.884 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:40:53.885 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:40:53.885 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:40:53.886 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:40:53.887 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:40:53.888 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:40:53.889 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:40:53.889 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:40:53.890 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:40:53.891 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:40:53.892 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:40:53.892 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:40:53.893 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:40:53.894 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:40:53.894 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:40:53.895 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:40:53.896 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:40:53.897 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:41:23.924 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:41:23.925 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:41:23.926 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:41:23.926 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:41:23.927 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:41:23.927 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:41:23.928 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:41:23.928 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:41:23.929 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:41:23.929 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:41:23.930 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:41:23.930 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:41:23.930 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:41:23.931 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:41:23.932 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:41:23.932 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:41:23.932 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:41:23.933 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:41:23.934 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:41:53.964 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:41:53.965 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:41:53.966 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:41:53.966 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:41:53.967 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:41:53.968 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:41:53.968 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:41:53.968 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:41:53.969 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:41:53.969 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:41:53.970 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:41:53.970 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:41:53.970 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:41:53.971 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:41:53.971 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:41:53.971 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:41:53.972 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:41:53.973 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:41:53.973 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:42:24.001 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:42:24.002 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:42:24.002 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:42:24.002 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:42:24.003 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:42:24.004 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:42:24.004 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:42:24.004 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:42:24.005 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:42:24.005 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:42:24.005 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:42:24.006 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:42:24.006 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:42:24.007 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:42:24.007 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:42:24.007 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:42:24.008 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:42:24.009 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:42:24.009 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:42:54.031 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:42:54.032 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:42:54.033 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:42:54.033 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:42:54.034 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:42:54.034 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:42:54.034 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:42:54.035 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:42:54.036 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:42:54.036 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:42:54.036 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:42:54.037 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:42:54.037 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:42:54.037 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:42:54.038 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:42:54.038 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:42:54.039 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:42:54.039 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:42:54.039 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:43:24.078 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:43:24.080 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:43:24.080 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:43:24.081 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:43:24.081 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:43:24.082 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:43:24.082 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:43:24.082 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:43:24.083 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:43:24.083 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:43:24.084 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:43:24.084 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:43:24.084 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:43:24.085 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:43:24.085 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:43:24.086 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:43:24.086 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:43:24.087 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:43:24.087 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:43:54.123 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:43:54.124 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:43:54.125 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:43:54.125 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:43:54.126 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:43:54.126 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:43:54.126 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:43:54.127 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:43:54.128 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:43:54.128 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:43:54.128 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:43:54.129 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:43:54.129 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:43:54.129 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:43:54.130 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:43:54.130 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:43:54.131 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:43:54.131 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:43:54.132 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:44:24.164 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:44:24.166 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:44:24.167 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:44:24.167 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:44:24.169 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:44:24.170 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:44:24.170 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:44:24.171 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:44:24.171 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:44:24.172 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:44:24.173 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:44:24.174 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:44:24.174 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:44:24.175 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:44:24.175 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:44:24.175 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:44:24.176 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:44:24.177 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:44:24.177 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:44:53.332  INFO [api-gateway, NO-ID] --- [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-06-29 23:44:54.191 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:44:54.192 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:44:54.193 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:44:54.193 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:44:54.194 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:44:54.195 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:44:54.195 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:44:54.195 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:44:54.196 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:44:54.196 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:44:54.196 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:44:54.197 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:44:54.197 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:44:54.197 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:44:54.198 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:44:54.198 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:44:54.199 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:44:54.199 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:44:54.199 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:45:24.235 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:45:24.236 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:45:24.237 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:45:24.237 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:45:24.237 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:45:24.238 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:45:24.238 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:45:24.238 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:45:24.239 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:45:24.239 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:45:24.239 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:45:24.240 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:45:24.240 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:45:24.241 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:45:24.241 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:45:24.241 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:45:24.242 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:45:24.242 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:45:24.243 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:45:54.266 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:45:54.268 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:45:54.269 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:45:54.269 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:45:54.269 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:45:54.269 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:45:54.269 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:45:54.270 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:45:54.270 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:45:54.270 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:45:54.271 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:45:54.272 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:45:54.272 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:45:54.272 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:45:54.273 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:45:54.273 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:45:54.273 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:45:54.274 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:45:54.274 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:46:24.312 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:46:24.313 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:46:24.314 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:46:24.314 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:46:24.315 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:46:24.316 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:46:24.316 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:46:24.316 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:46:24.317 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:46:24.317 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:46:24.318 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:46:24.318 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:46:24.318 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:46:24.319 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:46:24.320 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:46:24.320 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:46:24.320 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:46:24.321 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:46:24.321 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:46:48.242 DEBUG [api-gateway, NO-ID] --- [nio-8888-exec-1] o.s.c.g.h.RoutePredicateHandlerMapping   : Route matched: identity-service
+2026-06-29 23:46:48.245 DEBUG [api-gateway, NO-ID] --- [nio-8888-exec-1] o.s.c.g.h.RoutePredicateHandlerMapping   : Mapping [Exchange: POST http://localhost:8888/identity/api/v1/identity/auth/login] to Route{id='identity-service', uri=lb://identity-service, order=0, predicate=(RouteDefinitionRouteLocator$$Lambda/0x00000247ab984dc0 && Paths: [/identity/**], match trailing slash: true), gatewayFilters=[[[StripPrefix parts = 1], order = 1]], metadata={}}
+2026-06-29 23:46:48.245 DEBUG [api-gateway, NO-ID] --- [nio-8888-exec-1] o.s.c.g.h.RoutePredicateHandlerMapping   : [70189c8d] Mapped to org.springframework.cloud.gateway.handler.FilteringWebHandler@481f698f
+2026-06-29 23:46:48.247 DEBUG [api-gateway, NO-ID] --- [nio-8888-exec-1] o.s.c.g.handler.FilteringWebHandler      : Sorted gatewayFilterFactories: [[GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.RemoveCachedBodyFilter@1b84d03d}, order = -2147483648], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.AdaptCachedBodyGlobalFilter@721fc228}, order = -2147482648], [GatewayFilterAdapter{delegate=com.social_media.apigateway.security.CorrelationFilter@289da1bc}, order = -200], [GatewayFilterAdapter{delegate=com.social_media.apigateway.security.LoggingFilter@4e1b5532}, order = -100], [GatewayFilterAdapter{delegate=com.social_media.apigateway.filter.SecurityHeaderFilter@47374fa5}, order = -90], [GatewayFilterAdapter{delegate=com.social_media.apigateway.security.RateLimitFilter@6d41200c}, order = -50], [GatewayFilterAdapter{delegate=com.social_media.apigateway.filter.AuthenticationFilter@2bda7a5b}, order = -20], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.NettyWriteResponseFilter@62376bdd}, order = -1], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.ForwardPathFilter@4f9e9c21}, order = 0], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.GatewayMetricsFilter@51eeae0a}, order = 0], [[StripPrefix parts = 1], order = 1], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.RouteToRequestUrlFilter@2027d56f}, order = 10000], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.ReactiveLoadBalancerClientFilter@30b97fcf}, order = 10150], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.LoadBalancerServiceInstanceCookieFilter@4ef277ef}, order = 10151], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.WebsocketRoutingFilter@1ece052b}, order = 2147483646], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.NettyRoutingFilter@3b3b2290}, order = 2147483647], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.ForwardRoutingFilter@34a482d0}, order = 2147483647]]
+2026-06-29 23:46:48.255  INFO [api-gateway, AA65B74660] --- [nio-8888-exec-1] c.s.apigateway.security.LoggingFilter    : ===> [REQUEST]  : [POST] /identity/api/v1/identity/auth/login
+2026-06-29 23:46:48.390 DEBUG [api-gateway, AA65B74660] --- [ioEventLoop-4-1] g.f.h.o.ObservedRequestHttpHeadersFilter : Will instrument the HTTP request headers [accept:"application/json, text/plain, */*", content-type:"application/json", user-agent:"bruno-runtime/3.4.2", request-start-time:"1782751608048", content-length:"52", accept-encoding:"gzip, compress, deflate, br", host:"localhost:8888", X-Correlation-ID:"AA65B74660"]
+2026-06-29 23:46:48.398 DEBUG [api-gateway, AA65B74660] --- [ioEventLoop-4-1] g.f.h.o.ObservedRequestHttpHeadersFilter : Client observation  {name=http.client.requests(null), error=null, context=name='http.client.requests', contextualName='null', error='null', lowCardinalityKeyValues=[http.method='POST', http.status_code='UNKNOWN', spring.cloud.gateway.route.id='identity-service', spring.cloud.gateway.route.uri='lb://identity-service'], highCardinalityKeyValues=[http.uri='http://localhost:8888/api/v1/identity/auth/login'], map=[class io.micrometer.core.instrument.LongTaskTimer$Sample='SampleImpl{duration(seconds)=0.0014956, duration(nanos)=1495600.0, startTimeNanos=210792945043300}', class io.micrometer.core.instrument.Timer$Sample='io.micrometer.core.instrument.Timer$Sample@3a55f003'], parentObservation={name=http.server.requests(null), error=null, context=name='http.server.requests', contextualName='null', error='null', lowCardinalityKeyValues=[exception='none', method='POST', outcome='SUCCESS', status='200', uri='UNKNOWN'], highCardinalityKeyValues=[http.url='/identity/api/v1/identity/auth/login'], map=[class io.micrometer.core.instrument.LongTaskTimer$Sample='SampleImpl{duration(seconds)=0.1745705, duration(nanos)=1.745705E8, startTimeNanos=210792772176800}', class io.micrometer.core.instrument.Timer$Sample='io.micrometer.core.instrument.Timer$Sample@5a66d961'], parentObservation=null}} created for the request. New headers are [accept:"application/json, text/plain, */*", content-type:"application/json", user-agent:"bruno-runtime/3.4.2", request-start-time:"1782751608048", content-length:"52", accept-encoding:"gzip, compress, deflate, br", host:"localhost:8888", X-Correlation-ID:"AA65B74660"]
+2026-06-29 23:46:49.483 DEBUG [api-gateway, AA65B74660] --- [ctor-http-nio-2] .f.h.o.ObservedResponseHttpHeadersFilter : Will instrument the response
+2026-06-29 23:46:49.484 DEBUG [api-gateway, AA65B74660] --- [ctor-http-nio-2] .f.h.o.ObservedResponseHttpHeadersFilter : The response was handled for observation {name=http.client.requests(null), error=null, context=name='http.client.requests', contextualName='null', error='null', lowCardinalityKeyValues=[http.method='POST', http.status_code='UNKNOWN', spring.cloud.gateway.route.id='identity-service', spring.cloud.gateway.route.uri='lb://identity-service'], highCardinalityKeyValues=[http.uri='http://localhost:8888/api/v1/identity/auth/login'], map=[class io.micrometer.core.instrument.LongTaskTimer$Sample='SampleImpl{duration(seconds)=1.0867865, duration(nanos)=1.0867865E9, startTimeNanos=210792945043300}', class io.micrometer.core.instrument.Timer$Sample='io.micrometer.core.instrument.Timer$Sample@3a55f003'], parentObservation={name=http.server.requests(null), error=null, context=name='http.server.requests', contextualName='null', error='null', lowCardinalityKeyValues=[exception='none', method='POST', outcome='SUCCESS', status='200', uri='UNKNOWN'], highCardinalityKeyValues=[http.url='/identity/api/v1/identity/auth/login'], map=[class io.micrometer.core.instrument.LongTaskTimer$Sample='SampleImpl{duration(seconds)=1.2598686, duration(nanos)=1.2598686E9, startTimeNanos=210792772176800}', class io.micrometer.core.instrument.Timer$Sample='io.micrometer.core.instrument.Timer$Sample@5a66d961'], parentObservation=null}}
+2026-06-29 23:46:49.551  INFO [api-gateway, AA65B74660] --- [ctor-http-nio-2] c.s.apigateway.security.LoggingFilter    : <=== [RESPONSE] : [POST] /identity/api/v1/identity/auth/login | Status: 200 OK | Time: 1295ms
+2026-06-29 23:46:54.349 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:46:54.351 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:46:54.351 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:46:54.352 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:46:54.352 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:46:54.353 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:46:54.353 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:46:54.355 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:46:54.356 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:46:54.356 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:46:54.357 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:46:54.358 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:46:54.358 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:46:54.359 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:46:54.360 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:46:54.360 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:46:54.362 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:46:54.362 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:46:54.364 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:47:04.412 DEBUG [api-gateway, NO-ID] --- [nio-8888-exec-3] o.s.c.g.h.RoutePredicateHandlerMapping   : Route matched: post-service
+2026-06-29 23:47:04.412 DEBUG [api-gateway, NO-ID] --- [nio-8888-exec-3] o.s.c.g.h.RoutePredicateHandlerMapping   : Mapping [Exchange: POST http://localhost:8888/post/api/v1/posts] to Route{id='post-service', uri=lb://post-service, order=0, predicate=(RouteDefinitionRouteLocator$$Lambda/0x00000247ab984dc0 && Paths: [/post/**], match trailing slash: true), gatewayFilters=[[[StripPrefix parts = 1], order = 1]], metadata={}}
+2026-06-29 23:47:04.412 DEBUG [api-gateway, NO-ID] --- [nio-8888-exec-3] o.s.c.g.h.RoutePredicateHandlerMapping   : [529e2c41] Mapped to org.springframework.cloud.gateway.handler.FilteringWebHandler@481f698f
+2026-06-29 23:47:04.412 DEBUG [api-gateway, NO-ID] --- [nio-8888-exec-3] o.s.c.g.handler.FilteringWebHandler      : Sorted gatewayFilterFactories: [[GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.RemoveCachedBodyFilter@1b84d03d}, order = -2147483648], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.AdaptCachedBodyGlobalFilter@721fc228}, order = -2147482648], [GatewayFilterAdapter{delegate=com.social_media.apigateway.security.CorrelationFilter@289da1bc}, order = -200], [GatewayFilterAdapter{delegate=com.social_media.apigateway.security.LoggingFilter@4e1b5532}, order = -100], [GatewayFilterAdapter{delegate=com.social_media.apigateway.filter.SecurityHeaderFilter@47374fa5}, order = -90], [GatewayFilterAdapter{delegate=com.social_media.apigateway.security.RateLimitFilter@6d41200c}, order = -50], [GatewayFilterAdapter{delegate=com.social_media.apigateway.filter.AuthenticationFilter@2bda7a5b}, order = -20], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.NettyWriteResponseFilter@62376bdd}, order = -1], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.ForwardPathFilter@4f9e9c21}, order = 0], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.GatewayMetricsFilter@51eeae0a}, order = 0], [[StripPrefix parts = 1], order = 1], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.RouteToRequestUrlFilter@2027d56f}, order = 10000], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.ReactiveLoadBalancerClientFilter@30b97fcf}, order = 10150], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.LoadBalancerServiceInstanceCookieFilter@4ef277ef}, order = 10151], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.WebsocketRoutingFilter@1ece052b}, order = 2147483646], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.NettyRoutingFilter@3b3b2290}, order = 2147483647], [GatewayFilterAdapter{delegate=org.springframework.cloud.gateway.filter.ForwardRoutingFilter@34a482d0}, order = 2147483647]]
+2026-06-29 23:47:04.412  INFO [api-gateway, E7755BFE59] --- [nio-8888-exec-3] c.s.apigateway.security.LoggingFilter    : ===> [REQUEST]  : [POST] /post/api/v1/posts
+2026-06-29 23:47:04.573 DEBUG [api-gateway, E7755BFE59] --- [ioEventLoop-4-1] g.f.h.o.ObservedRequestHttpHeadersFilter : Will instrument the HTTP request headers [accept:"application/json, text/plain, */*", content-type:"multipart/form-data; boundary=--------------------------a3c88d17e64aad1ede1c1fe5", user-agent:"bruno-runtime/3.4.2", authorization:"Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzb2NpYWwtbWVkaWEuY29tIiwic3ViIjoiNWFkNzkwMmQtNmZmYi00MjExLWE2NDMtNDNiMDk3MmRhMGM1IiwiZXhwIjoxNzgyNzU1MjA5LCJpYXQiOjE3ODI3NTE2MDksInVzZXJuYW1lIjoiSGlldUJhbmQifQ.w4e6dxglQrDT_WoQl-Gw8Q2Zn9qWWwo7HkchHq0Uf5A", request-start-time:"1782751624401", content-length:"303", accept-encoding:"gzip, compress, deflate, br", host:"localhost:8888", X-Correlation-ID:"E7755BFE59", X-Auth-User-Id:"5ad7902d-6ffb-4211-a643-43b0972da0c5"]
+2026-06-29 23:47:04.574 DEBUG [api-gateway, E7755BFE59] --- [ioEventLoop-4-1] g.f.h.o.ObservedRequestHttpHeadersFilter : Client observation  {name=http.client.requests(null), error=null, context=name='http.client.requests', contextualName='null', error='null', lowCardinalityKeyValues=[http.method='POST', http.status_code='UNKNOWN', spring.cloud.gateway.route.id='post-service', spring.cloud.gateway.route.uri='lb://post-service'], highCardinalityKeyValues=[http.uri='http://localhost:8888/api/v1/posts'], map=[class io.micrometer.core.instrument.LongTaskTimer$Sample='SampleImpl{duration(seconds)=1.672E-4, duration(nanos)=167200.0, startTimeNanos=210809122536000}', class io.micrometer.core.instrument.Timer$Sample='io.micrometer.core.instrument.Timer$Sample@12e3aaf3'], parentObservation={name=http.server.requests(null), error=null, context=name='http.server.requests', contextualName='null', error='null', lowCardinalityKeyValues=[exception='none', method='POST', outcome='SUCCESS', status='200', uri='UNKNOWN'], highCardinalityKeyValues=[http.url='/post/api/v1/posts'], map=[class io.micrometer.core.instrument.LongTaskTimer$Sample='SampleImpl{duration(seconds)=0.1636968, duration(nanos)=1.636968E8, startTimeNanos=210808959186600}', class io.micrometer.core.instrument.Timer$Sample='io.micrometer.core.instrument.Timer$Sample@1c75c12f'], parentObservation=null}} created for the request. New headers are [accept:"application/json, text/plain, */*", content-type:"multipart/form-data; boundary=--------------------------a3c88d17e64aad1ede1c1fe5", user-agent:"bruno-runtime/3.4.2", authorization:"Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzb2NpYWwtbWVkaWEuY29tIiwic3ViIjoiNWFkNzkwMmQtNmZmYi00MjExLWE2NDMtNDNiMDk3MmRhMGM1IiwiZXhwIjoxNzgyNzU1MjA5LCJpYXQiOjE3ODI3NTE2MDksInVzZXJuYW1lIjoiSGlldUJhbmQifQ.w4e6dxglQrDT_WoQl-Gw8Q2Zn9qWWwo7HkchHq0Uf5A", request-start-time:"1782751624401", content-length:"303", accept-encoding:"gzip, compress, deflate, br", host:"localhost:8888", X-Correlation-ID:"E7755BFE59", X-Auth-User-Id:"5ad7902d-6ffb-4211-a643-43b0972da0c5"]
+2026-06-29 23:47:05.325 DEBUG [api-gateway, E7755BFE59] --- [ctor-http-nio-3] .f.h.o.ObservedResponseHttpHeadersFilter : Will instrument the response
+2026-06-29 23:47:05.326 DEBUG [api-gateway, E7755BFE59] --- [ctor-http-nio-3] .f.h.o.ObservedResponseHttpHeadersFilter : The response was handled for observation {name=http.client.requests(null), error=null, context=name='http.client.requests', contextualName='null', error='null', lowCardinalityKeyValues=[http.method='POST', http.status_code='UNKNOWN', spring.cloud.gateway.route.id='post-service', spring.cloud.gateway.route.uri='lb://post-service'], highCardinalityKeyValues=[http.uri='http://localhost:8888/api/v1/posts'], map=[class io.micrometer.core.instrument.LongTaskTimer$Sample='SampleImpl{duration(seconds)=0.751706, duration(nanos)=7.51706E8, startTimeNanos=210809122536000}', class io.micrometer.core.instrument.Timer$Sample='io.micrometer.core.instrument.Timer$Sample@12e3aaf3'], parentObservation={name=http.server.requests(null), error=null, context=name='http.server.requests', contextualName='null', error='null', lowCardinalityKeyValues=[exception='none', method='POST', outcome='SUCCESS', status='200', uri='UNKNOWN'], highCardinalityKeyValues=[http.url='/post/api/v1/posts'], map=[class io.micrometer.core.instrument.LongTaskTimer$Sample='SampleImpl{duration(seconds)=0.9152426, duration(nanos)=9.152426E8, startTimeNanos=210808959186600}', class io.micrometer.core.instrument.Timer$Sample='io.micrometer.core.instrument.Timer$Sample@1c75c12f'], parentObservation=null}}
+2026-06-29 23:47:05.331  INFO [api-gateway, E7755BFE59] --- [ctor-http-nio-3] c.s.apigateway.security.LoggingFilter    : <=== [RESPONSE] : [POST] /post/api/v1/posts | Status: 409 CONFLICT | Time: 919ms
+2026-06-29 23:47:24.389 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying {_genkey_0=/identity/**} to Path
+2026-06-29 23:47:24.391 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition identity-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:47:24.392 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: identity-service
+2026-06-29 23:47:24.392 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying {_genkey_0=/profile/**} to Path
+2026-06-29 23:47:24.393 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition profile-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:47:24.393 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: profile-service
+2026-06-29 23:47:24.394 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying {_genkey_0=/post/**} to Path
+2026-06-29 23:47:24.394 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition post-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:47:24.395 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: post-service
+2026-06-29 23:47:24.395 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying {_genkey_0=/comment/**} to Path
+2026-06-29 23:47:24.396 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition comment-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:47:24.396 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: comment-service
+2026-06-29 23:47:24.396 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying {_genkey_0=/interaction/**} to Path
+2026-06-29 23:47:24.397 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition interaction-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:47:24.397 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: interaction-service
+2026-06-29 23:47:24.397 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying {_genkey_0=/notification/**} to Path
+2026-06-29 23:47:24.398 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition notification-service applying filter {_genkey_0=1} to StripPrefix
+2026-06-29 23:47:24.398 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.r.RouteDefinitionRouteLocator    : RouteDefinition matched: notification-service
+2026-06-29 23:47:24.398 DEBUG [api-gateway, NO-ID] --- [reshExecutor-%d] o.s.c.g.filter.GatewayMetricsFilter      : New routes count: 6
+2026-06-29 23:47:31.445  INFO [api-gateway, NO-ID] --- [ionShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application API-GATEWAY with eureka with status DOWN
+2026-06-29 23:47:31.446  INFO [api-gateway, NO-ID] --- [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1782751651446, current=DOWN, previous=UP]
+2026-06-29 23:47:31.446  INFO [api-gateway, NO-ID] --- [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/api-gateway:8888: registering service...
+2026-06-29 23:47:31.454  INFO [api-gateway, NO-ID] --- [ionShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-29 23:47:31.474  INFO [api-gateway, NO-ID] --- [foReplicator-%d] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} exception=I/O error on POST request for "http://localhost:8761/eureka/apps/API-GATEWAY": localhost:8761 failed to respond stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8761/eureka/apps/API-GATEWAY": localhost:8761 failed to respond
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:926)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:906)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:841)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:702)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.register(RestTemplateEurekaHttpClient.java:87)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:91)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:828)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:125)
+	at com.netflix.discovery.InstanceInfoReplicator$2.run(InstanceInfoReplicator.java:105)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.apache.hc.core5.http.NoHttpResponseException: localhost:8761 failed to respond
+	at org.apache.hc.core5.http.impl.io.DefaultBHttpClientConnection.receiveResponseHeader(DefaultBHttpClientConnection.java:333)
+	at org.apache.hc.core5.http.impl.io.HttpRequestExecutor.execute(HttpRequestExecutor.java:196)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.lambda$execute$0(InternalExecRuntime.java:236)
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager$InternalConnectionEndpoint.execute(PoolingHttpClientConnectionManager.java:798)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.execute(InternalExecRuntime.java:233)
+	at org.apache.hc.client5.http.impl.classic.MainClientExec.execute(MainClientExec.java:120)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:200)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:195)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:168)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:112)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:99)
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:88)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:117)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$2(RestTemplateTransportClientFactory.java:145)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
+	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:900)
+	... 21 more
+
+2026-06-29 23:47:31.475  WARN [api-gateway, NO-ID] --- [foReplicator-%d] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: I/O error on POST request for "http://localhost:8761/eureka/apps/API-GATEWAY": localhost:8761 failed to respond
+2026-06-29 23:47:31.493  INFO [api-gateway, NO-ID] --- [foReplicator-%d] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on POST request for "http://localhost:8761/eureka/apps/API-GATEWAY": Connect to http://localhost:8761 failed: Connection refused: getsockopt stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on POST request for "http://localhost:8761/eureka/apps/API-GATEWAY": Connect to http://localhost:8761 failed: Connection refused: getsockopt
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:926)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:906)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:841)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:702)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.register(RestTemplateEurekaHttpClient.java:87)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:828)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:125)
+	at com.netflix.discovery.InstanceInfoReplicator$2.run(InstanceInfoReplicator.java:105)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 failed: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:751)
+	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:226)
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:497)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:164)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:174)
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:144)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:195)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:168)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:112)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:99)
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:88)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:117)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$2(RestTemplateTransportClientFactory.java:145)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
+	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:900)
+	... 22 more
+
+2026-06-29 23:47:31.494  WARN [api-gateway, NO-ID] --- [foReplicator-%d] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: I/O error on POST request for "http://localhost:8761/eureka/apps/API-GATEWAY": Connect to http://localhost:8761 failed: Connection refused: getsockopt
+2026-06-29 23:47:31.495  INFO [api-gateway, NO-ID] --- [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-06-29 23:47:31.494  WARN [api-gateway, NO-ID] --- [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/api-gateway:8888 - registration failed Cannot execute request on any known server
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:828)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:125)
+	at com.netflix.discovery.InstanceInfoReplicator$2.run(InstanceInfoReplicator.java:105)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-06-29 23:47:31.497  WARN [api-gateway, NO-ID] --- [foReplicator-%d] c.n.discovery.InstanceInfoReplicator     : There was a problem with the instance info replicator
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$1.execute(EurekaHttpClientDecorator.java:59)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.register(EurekaHttpClientDecorator.java:56)
+	at com.netflix.discovery.DiscoveryClient.register(DiscoveryClient.java:828)
+	at com.netflix.discovery.InstanceInfoReplicator.run(InstanceInfoReplicator.java:125)
+	at com.netflix.discovery.InstanceInfoReplicator$2.run(InstanceInfoReplicator.java:105)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:317)
+	at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:304)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-06-29 23:47:33.600  INFO [api-gateway, NO-ID] --- [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2026-06-29 23:47:36.616  INFO [api-gateway, NO-ID] --- [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2026-06-29 23:47:36.662  INFO [api-gateway, NO-ID] --- [ionShutdownHook] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on DELETE request for "http://localhost:8761/eureka/apps/API-GATEWAY/api-gateway:8888": Connect to http://localhost:8761 failed: Connection refused: getsockopt stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on DELETE request for "http://localhost:8761/eureka/apps/API-GATEWAY/api-gateway:8888": Connect to http://localhost:8761 failed: Connection refused: getsockopt
+	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:926)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:906)
+	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:841)
+	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:702)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.cancel(RestTemplateEurekaHttpClient.java:100)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
+	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:919)
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:900)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:415)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:239)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:203)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:196)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:387)
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:134)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:212)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:798)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:748)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1499)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:707)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1492)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1243)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1204)
+	at org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext.doClose(ReactiveWebServerApplicationContext.java:155)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1150)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 failed: Connection refused: getsockopt
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
+	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
+	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
+	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
+	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
+	at java.base/java.net.Socket.connect(Socket.java:751)
+	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:226)
+	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:497)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:164)
+	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:174)
+	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:144)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:195)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:168)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:112)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:110)
+	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
+	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:185)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
+	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
+	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
+	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:99)
+	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:88)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:117)
+	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$2(RestTemplateTransportClientFactory.java:145)
+	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
+	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
+	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
+	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:81)
+	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:900)
+	... 38 more
+
+2026-06-29 23:47:36.662  WARN [api-gateway, NO-ID] --- [ionShutdownHook] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: I/O error on DELETE request for "http://localhost:8761/eureka/apps/API-GATEWAY/api-gateway:8888": Connect to http://localhost:8761 failed: Connection refused: getsockopt
+2026-06-29 23:47:36.662 ERROR [api-gateway, NO-ID] --- [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_API-GATEWAY/api-gateway:8888 - de-registration failedCannot execute request on any known server
+com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
+	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
+	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
+	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
+	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:919)
+	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:900)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:415)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:239)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:203)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:196)
+	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:387)
+	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:134)
+	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:212)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:798)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:748)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1499)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:707)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1492)
+	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1243)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1204)
+	at org.springframework.boot.web.reactive.context.ReactiveWebServerApplicationContext.doClose(ReactiveWebServerApplicationContext.java:155)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1150)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:147)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:116)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2026-06-29 23:47:36.663  INFO [api-gateway, NO-ID] --- [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient

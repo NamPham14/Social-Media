@@ -3,6 +3,7 @@ package com.social_media.postservice.infrastructure.media;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.social_media.postservice.application.dto.UploadResponse;
+import com.social_media.postservice.application.exception.CloudinaryUploadException;
 import com.social_media.postservice.application.service.MediaService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -43,7 +44,7 @@ public class CloudinaryMediaService implements MediaService {
                 );
 
             } catch (Exception e) {
-                throw new RuntimeException("Upload file failed", e);
+                throw new CloudinaryUploadException(e);
             }
         }
 
@@ -56,7 +57,7 @@ public class CloudinaryMediaService implements MediaService {
             cloudinary.uploader()
                     .destroy(publicId, ObjectUtils.emptyMap());
         } catch (Exception e) {
-            throw new RuntimeException("Delete file failed", e);
+            throw new CloudinaryUploadException(e);
         }
     }
 }
