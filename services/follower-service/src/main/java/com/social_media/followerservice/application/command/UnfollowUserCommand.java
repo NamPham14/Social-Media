@@ -1,11 +1,4 @@
 package com.social_media.followerservice.application.command;
+import com.social_media.followerservice.domain.shared.valueobject.UserId;
 
-import java.util.UUID;
-
-public record UnfollowUserCommand(UUID followerId, UUID followingId) {
-    public UnfollowUserCommand {
-        if (followerId == null || followingId == null) {
-            throw new IllegalArgumentException("followerId and followingId cannot be null");
-        }
-    }
-}
+public record UnfollowUserCommand(UserId followerId, UserId followingId) {}

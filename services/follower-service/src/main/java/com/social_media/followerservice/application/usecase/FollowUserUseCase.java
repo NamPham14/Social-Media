@@ -1,7 +1,7 @@
 package com.social_media.followerservice.application.usecase;
-
 import com.social_media.followerservice.application.command.FollowUserCommand;
+import com.social_media.followerservice.domain.model.follow.aggregate.FollowRelation;
 
 public interface FollowUserUseCase {
-    void followUser(FollowUserCommand command);
+    FollowRelation execute(FollowUserCommand command);
 }

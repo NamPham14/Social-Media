@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/ApiPath.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/FollowerController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FeedResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FeedResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FollowRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FollowRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FollowResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FollowResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FollowingResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/command/FollowUserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/command/FollowUserCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/command/UnfollowUserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/command/UnfollowUserCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/FollowUserUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/FollowUserUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/FollowUserUseCaseImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetFollowersUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetFollowersUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetFollowersUseCaseImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetFollowingUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetFollowingUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetFollowingUseCaseImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetNewsFeedUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetNewsFeedUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetNewsFeedUseCaseImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/UnfollowUserUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/UnfollowUserUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/UnfollowUserUseCaseImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/Follower.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/FollowerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/UserId.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/event/UserFollowedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/event/UserFollowedEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/exception/BusinessException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/exception/NotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/messaging/KafkaEventProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/messaging/KafkaEventProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/messaging/LocalFollowEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/messaging/LocalFollowEventListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/FollowerRepositoryImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/SpringDataFollowerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/common-security/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/shared/common-security/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/common-security/src/main/java/com/social_media/commonsecurity/exception/JwtAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/common-security/src/main/java/com/social_media/commonsecurity/exception/JwtAuthenticationEntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/api/ApiResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/api/ApiResponse.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="402" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.9378664301893016" />
+      <entry key="MS500" value="3.8024614963007286" />
+      <entry key="S2" value="6.89517938140977" />
+      <entry key="S5" value="10.809261034435522" />
+      <entry key="S10" value="13.863041656063004" />
+      <entry key="S30" value="19.990570993254085" />
+      <entry key="S60" value="30.712214136979036" />
+      <entry key="M2" value="45.14764946836002" />
+      <entry key="M5" value="60.84348233627023" />
+      <entry key="M10" value="68.17999446988061" />
+      <entry key="M15" value="71.14684801630963" />
+      <entry key="M30" value="75.18978143149333" />
+      <entry key="H1" value="78.46951838657601" />
+      <entry key="H2" value="80.83111128430548" />
+      <entry key="H4" value="82.29334057440613" />
+      <entry key="D1" value="83.69639625385564" />
+      <entry key="W1" value="83.95612731551557" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="1.8526624077844853" />
+      <entry key="MS500" value="3.7717867986097704" />
+      <entry key="S2" value="6.8814786587880015" />
+      <entry key="S5" value="10.800510617843845" />
+      <entry key="S10" value="13.857254503929742" />
+      <entry key="S30" value="19.98408545291449" />
+      <entry key="S60" value="30.704037458026722" />
+      <entry key="M2" value="45.140586200995884" />
+      <entry key="M5" value="60.839411119951095" />
+      <entry key="M10" value="68.17765330980781" />
+      <entry key="M15" value="71.14520367876702" />
+      <entry key="M30" value="75.18890696450603" />
+      <entry key="H1" value="78.46906300200061" />
+      <entry key="H2" value="80.83087769602763" />
+      <entry key="H4" value="82.29322204739114" />
+      <entry key="D1" value="83.6963762306602" />
+      <entry key="W1" value="83.95612444806405" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3FojRNCirlYMWXSRQ13eGEec9ad" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.follower-service [clean].executor": "Run",
+    "Maven.follower-service [compile].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.ApiGatewayApplication.executor": "Run",
+    "Spring Boot.EurekaServerApplication.executor": "Run",
+    "Spring Boot.FollowerServiceApplication.executor": "Run",
+    "Spring Boot.ProfileServiceApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "SMP-6-follower-service",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/SUMMER26/MSS/New/Social-Media",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="configurationStatuses">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <map>
+              <entry key="ApiGatewayApplication" value="STOPPED" />
+              <entry key="EurekaServerApplication" value="STOPPED" />
+              <entry key="FollowerServiceApplication" value="STOPPED" />
+              <entry key="ProfileServiceApplication" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.EurekaServerApplication">
+    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="api-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.apigateway.ApiGatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommentServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="comment-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.commentservice.CommentServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommonEventsApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="common-events" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.commonevents.CommonEventsApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommonSecurityApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="common-security" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.commonsecurity.CommonSecurityApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommonWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="common-web" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.common.CommonWebApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="eureka-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.eurekaserver.EurekaServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FollowerServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="follower-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.followerservice.FollowerServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IdentityServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="identity-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.identityservice.IdentityServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InteractionServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="interaction-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.interactionservice.InteractionServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificationServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="notification-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.notificationservice.NotificationServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PostServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="post-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.postservice.PostServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProfileServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="profile-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.profileservice.ProfileServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.24374.151" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.24374.151" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="" />
+      <created>1782748306677</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1782748306677</updated>
+      <workItem from="1782748307805" duration="934000" />
+      <workItem from="1782870703638" duration="180000" />
+      <workItem from="1783324741486" duration="7210000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
