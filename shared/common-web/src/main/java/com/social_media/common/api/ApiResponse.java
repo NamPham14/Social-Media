@@ -16,31 +16,24 @@ public class ApiResponse<T> {
     private int code;
     private String message;
     private int status;
+    private String traceId;
     private T data;
 
-    public static <T> ApiResponse<T> success(T data) {
-        return ApiResponse.<T>builder()
-                .code(0)
-                .message("Success")
-                .status(HttpStatus.OK.value())
-                .data(data)
-                .build();
-    }
-
+// Hàm gọi khi Thành Công (Tự động set mã 1000 và Status 200)
     public static <T> ApiResponse<T> success(T data, String message) {
         return ApiResponse.<T>builder()
-                .code(0)
-                .message(message)
                 .status(HttpStatus.OK.value())
+                .code(1000)
+                .message(message)
                 .data(data)
                 .build();
     }
-
-    public static <T> ApiResponse<T> error(int code, String message, HttpStatus status) {
+    //  Hàm gọi khi Thành Công nhưng không có Data trả về (VD: Logout)
+    public static <T> ApiResponse<T> success(String message) {
         return ApiResponse.<T>builder()
-                .code(code)
+                .status(HttpStatus.OK.value())
+                .code(1000)
                 .message(message)
-                .status(status.value())
                 .build();
     }
 }

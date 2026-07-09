@@ -15,17 +15,30 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 public class FollowUserUseCaseImpl implements FollowUserUseCase {
+
     private final FollowRelationRepository followRelationRepository;
     private final FollowEventPublisher followEventPublisher;
 
     @Override
     @Transactional
     public FollowRelation execute(FollowUserCommand command) {
-        if (command.followerId().equals(command.followingId())) throw new CannotFollowSelfException();
-        if (followRelationRepository.existsByFollowerIdAndFollowingId(command.followerId(), command.followingId()))
+        if (command.followerId().equals(command.followingId())) {
+            throw new CannotFollowSelfException();
+        }
+
+        if (followRelationRepository.existsByFollowerIdAndFollowingId(
+                command.followerId(), command.followingId())) {
             throw new DuplicateFollowException();
-        FollowRelation saved = followRelationRepository.save(FollowRelation.create(command.followerId(), command.followingId()));
-        followEventPublisher.publish(new UserFollowedEvent(command.followerId().value(), command.followingId().value()));
+        }
+
+        FollowRelation followRelation = FollowRelation.create(
+                command.followerId(), command.followingId());
+
+        FollowRelation saved = followRelationRepository.save(followRelation);
+
+        followEventPublisher.publish(new UserFollowedEvent(
+                command.followerId().value(), command.followingId().value()));
+
         return saved;
     }
 }

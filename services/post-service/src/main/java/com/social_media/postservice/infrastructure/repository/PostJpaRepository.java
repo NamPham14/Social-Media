@@ -1,7 +1,7 @@
 package com.social_media.postservice.infrastructure.repository;
 
 
-import com.social_media.postservice.domain.model.Post;
+import com.social_media.postservice.infrastructure.entity.PostEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,12 +12,12 @@ import org.springframework.stereotype.Repository;
 import java.util.UUID;
 
 @Repository
-public interface PostJpaRepository extends JpaRepository<Post, UUID> {
+public interface PostJpaRepository extends JpaRepository<PostEntity, UUID> {
 
-    @Query("SELECT p FROM Post p WHERE LOWER(p.caption) LIKE LOWER(:keyword)")
-    public Page<Post> findByCaptionLikeIgnoreCase(@Param("keyword") String keyword,  Pageable pageable);
+    @Query("SELECT p FROM PostEntity p WHERE LOWER(p.caption) LIKE LOWER(:keyword)")
+    Page<PostEntity> findByCaptionLikeIgnoreCase(@Param("keyword") String keyword,  Pageable pageable);
 
 
-    Page<Post> findPostByUserId(UUID userId, Pageable pageable);
+    Page<PostEntity> findPostEntityByUserId(UUID userId, Pageable pageable);
 
 }

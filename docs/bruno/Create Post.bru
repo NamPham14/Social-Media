@@ -1,0 +1,19 @@
+meta {
+  name: Create Post
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://localhost:8082/api/v1/posts
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  userId: e29c84fa-b163-4a8d-b9cf-2c8f4d5e11a1
+  caption: Hôm nay có ảnh
+  locationName: Ha Noi
+  images: @file(C:\Users\gtrun\Downloads\do more 3 xam-Picsart-AiImageEnhancer.jpg)
+  images: @file(C:\Users\gtrun\Downloads\phap-vs-1-2-Brazil.jpg)
+}

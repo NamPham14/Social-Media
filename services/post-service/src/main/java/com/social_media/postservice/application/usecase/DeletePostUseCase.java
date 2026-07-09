@@ -1,11 +1,10 @@
 package com.social_media.postservice.application.usecase;
 
-import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.command.DeletePostCommand;
 import com.social_media.postservice.application.service.MediaService;
-import com.social_media.postservice.domain.exception.ErrorCode;
-import com.social_media.postservice.domain.model.Post;
-import com.social_media.postservice.domain.model.PostMedia;
+import com.social_media.postservice.domain.model.post.aggregate.Post;
+//import com.social_media.postservice.domain.model.post.entity.PostMedia;
+import com.social_media.postservice.domain.model.post.entity.PostMedia;
 import com.social_media.postservice.domain.repository.PostRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -29,10 +28,10 @@ public class DeletePostUseCase {
 
     public void execute(DeletePostCommand command) {
         Post post = postRepository.findById(command.getPostId())
-                .orElseThrow(() -> new AppException(ErrorCode.EMPTY_RESOURCE));
+                .orElseThrow(() -> new com.social_media.postservice.application.exception.ResourceNotFoundException());
 
         if (!post.getUserId().equals(command.getUserId())) {
-            throw new AppException(ErrorCode.UNAUTHORIZED_ACTION);
+            throw new com.social_media.postservice.application.exception.UnauthorizedActionException();
         }
 
         post.softDelete();
@@ -49,3 +48,4 @@ public class DeletePostUseCase {
         }
     }
 }
+

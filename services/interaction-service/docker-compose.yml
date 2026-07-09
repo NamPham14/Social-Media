@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:7-alpine # Dùng bản Alpine cho nhẹ, bản 8.0 hiện tại chưa chính thức/phổ biến bằng 7
+    container_name: social-redis
+    ports:
+      - "6379:6379"
+    restart: always
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes # Lưu dữ liệu xuống ổ cứng phòng khi Docker bị sập
+
+volumes:
+  redis-data:

@@ -1,0 +1,18 @@
+meta {
+  name: Bookmark Post
+  type: http
+  seq: 12
+}
+
+post {
+  url: http://localhost:8082/api/v1/bookmarks
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "userId": "{{userId}}",
+    "postId": "{{postId}}"
+  }
+}

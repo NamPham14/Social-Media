@@ -36,7 +36,7 @@ build/
 
 ### Mac OS ###
 .DS_Store
-
+.idea/
 # Documentation & Plans
 docs.md
 Lo_trinh_hoc.md

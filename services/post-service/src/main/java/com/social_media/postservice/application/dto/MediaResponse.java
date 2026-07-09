@@ -1,5 +1,6 @@
 package com.social_media.postservice.application.dto;
-import com.social_media.postservice.domain.model.PostMedia;
+//import com.social_media.postservice.domain.model.post.entity.PostMedia;
+import com.social_media.postservice.domain.model.post.entity.PostMedia;
 import lombok.Getter;
 
 import java.util.UUID;
@@ -20,3 +21,4 @@ public class MediaResponse {
         return res;
     }
 }
+

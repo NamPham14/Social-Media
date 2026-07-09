@@ -2,9 +2,14 @@ package com.social_media.followerservice.domain.model.follow.aggregate;
 
 import com.social_media.followerservice.domain.shared.valueobject.UserId;
 import lombok.*;
+
 import java.time.LocalDateTime;
 
-@Getter @Setter @Builder @NoArgsConstructor @AllArgsConstructor
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class FollowRelation {
     private Long id;
     private UserId followerId;

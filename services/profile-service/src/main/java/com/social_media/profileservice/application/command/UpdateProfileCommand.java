@@ -7,13 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class UpdateProfileCommand {
-    private UUID id;
-    private String fullName;
-    private String bio;
-    private String avatarUrl;
+
+public record UpdateProfileCommand (UUID id,String fullName,String bio,String avatarUrl){
 }

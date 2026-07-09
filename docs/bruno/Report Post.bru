@@ -1,0 +1,19 @@
+meta {
+  name: Report Post
+  type: http
+  seq: 15
+}
+
+post {
+  url: http://localhost:8082/api/v1/posts/{{postId}}/report
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "reporterId": "{{userId}}",
+    "reason": "SPAM",
+    "description": "This is spam"
+  }
+}

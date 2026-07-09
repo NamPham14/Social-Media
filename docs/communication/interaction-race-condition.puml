@@ -1,0 +1,71 @@
+@startuml
+title Interaction Service - Like/Clap Idempotency and Race Condition Flow
+
+skinparam sequenceMessageAlign center
+skinparam ParticipantPadding 24
+skinparam BoxPadding 12
+
+actor User
+participant "Client" as Client
+participant "API Gateway\n:8888" as Gateway
+participant "Interaction Service\n:8086" as InteractionService
+participant "Interaction Application\nReactUseCase" as UseCase
+participant "Interaction Aggregate\n(Domain)" as InteractionAggregate
+database "interaction_db\ninteractions" as InteractionDb
+database "interaction_db\ninteraction_counters" as CounterDb
+queue "Message Broker\nKafka/RabbitMQ" as Broker
+participant "Notification Service\n:8087" as NotificationService
+
+User -> Client: click Like/Clap
+Client -> Gateway: POST /interactions\nAuthorization: Bearer JWT
+Gateway -> Gateway: validate JWT
+Gateway -> InteractionService: forward authenticated request
+
+InteractionService -> UseCase: ReactCommand(userId, targetType,\ntargetId, reactionType)
+UseCase -> InteractionAggregate: Interaction.create(...)
+InteractionAggregate -> InteractionAggregate: validate target and reaction type
+
+UseCase -> InteractionDb: INSERT interactions(user_id, target_type,\ntarget_id, reaction_type, is_deleted=false)
+
+alt first request wins
+  InteractionDb --> UseCase: insert success
+  UseCase -> CounterDb: INSERT counter row if missing,\nthen atomic increment selected counter
+  CounterDb --> UseCase: counter updated
+  UseCase -> Broker: publish InteractionCreatedEvent
+  UseCase --> InteractionService: success
+  InteractionService --> Gateway: 200 OK
+  Gateway --> Client: reacted=true
+  Broker -> NotificationService: InteractionCreatedEvent(...)
+else duplicated/double-click request
+  InteractionDb --> UseCase: duplicate key on\n(user_id, target_type, target_id, reaction_type)
+  UseCase --> InteractionService: idempotent success\nwithout counter increment
+  InteractionService --> Gateway: 200 OK
+  Gateway --> Client: reacted=true, duplicateIgnored=true
+end
+
+note right of InteractionDb
+Race-condition guard:
+CREATE UNIQUE INDEX idx_user_reaction
+ON interactions(user_id, target_type, target_id, reaction_type);
+end note
+
+note right of CounterDb
+Counter update must be atomic:
+UPDATE interaction_counters
+SET like_count = like_count + 1
+WHERE target_type = :targetType
+  AND target_id = :targetId;
+
+If the row may not exist, use INSERT ... ON CONFLICT
+DO UPDATE SET like_count = interaction_counters.like_count + 1.
+end note
+
+note right of InteractionAggregate
+DDD mapping:
+- Aggregate Root: Interaction
+- Aggregate Root: InteractionCounter
+- Value Objects: InteractionId, UserId,
+  Target, ReactionType, CounterValue
+- Rule: counter must never be negative
+end note
+@enduml

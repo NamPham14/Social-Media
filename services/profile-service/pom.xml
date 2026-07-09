@@ -14,99 +14,120 @@
     <description>profile-service</description>
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+        <!-- Spring Boot Starters -->
+                 <dependency>
+                     <groupId>org.springframework.boot</groupId>
+                     <artifactId>spring-boot-starter-actuator</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.springframework.boot</groupId>
+                     <artifactId>spring-boot-starter-web</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.springframework.boot</groupId>
+                     <artifactId>spring-boot-starter-validation</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.springframework.boot</groupId>
+                     <artifactId>spring-boot-starter-data-jpa</artifactId>
+                 </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.social_media</groupId>
-            <artifactId>common-web</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-validation</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
+                 <!-- Infrastructure -->
+                 <dependency>
+                     <groupId>org.springframework.cloud</groupId>
+                     <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.postgresql</groupId>
+                     <artifactId>postgresql</artifactId>
+                     <scope>runtime</scope>
+                 </dependency>
+
+                 <!-- Shared Modules -->
+                 <dependency>
+                     <groupId>com.social_media</groupId>
+                     <artifactId>common-web</artifactId>
+                     <version>${project.version}</version>
+                 </dependency>
+
+                 <!-- Utils & Mapping -->
+                 <dependency>
+                     <groupId>org.projectlombok</groupId>
+                     <artifactId>lombok</artifactId>
+                     <optional>true</optional>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.mapstruct</groupId>
+                     <artifactId>mapstruct</artifactId>
+                     <version>${mapstruct.version}</version>
+                 </dependency>
+                 <dependency>
+                     <groupId>org.mapstruct</groupId>
+                     <artifactId>mapstruct-processor</artifactId>
+                     <version>${mapstruct.version}</version>
+                    <scope>provided</scope>
+                 </dependency>
+
+                 <!-- Testing -->
+                 <dependency>
+                     <groupId>org.springframework.boot</groupId>
+                     <artifactId>spring-boot-starter-test</artifactId>
+                     <scope>test</scope>
+                 </dependency>
+
+                <dependency>
+                    <groupId>com.cloudinary</groupId>
+                    <artifactId>cloudinary-http44</artifactId>
+                    <version>1.36.0</version>
+                </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>default-compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                        <configuration>
-                            <annotationProcessorPaths>
-                                <path>
-                                    <groupId>org.projectlombok</groupId>
-                                    <artifactId>lombok</artifactId>
-                                </path>
-                            </annotationProcessorPaths>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>default-testCompile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                        <configuration>
-                            <annotationProcessorPaths>
-                                <path>
-                                    <groupId>org.projectlombok</groupId>
-                                    <artifactId>lombok</artifactId>
-                                </path>
-                            </annotationProcessorPaths>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!-- Spring Boot Plugin -->
+                         <plugin>
+                             <groupId>org.springframework.boot</groupId>
+                             <artifactId>spring-boot-maven-plugin</artifactId>
+                             <configuration>
+                                 <excludes>
+                                     <exclude>
+                                         <groupId>org.projectlombok</groupId>
+                                         <artifactId>lombok</artifactId>
+                                     </exclude>
+                                 </excludes>
+                             </configuration>
+                         </plugin>
+
+                         <!-- Compiler Plugin (Cấu hình quan trọng cho MapStruct + Lombok) -->
+                         <plugin>
+                             <groupId>org.apache.maven.plugins</groupId>
+                             <artifactId>maven-compiler-plugin</artifactId>
+                             <version>3.13.0</version>
+                             <configuration>
+                                 <source>${maven.compiler.source}</source>
+                                 <target>${maven.compiler.target}</target>
+                                 <annotationProcessorPaths>
+                                     <!-- 1. Lombok Processor -->
+                                     <path>
+                                         <groupId>org.projectlombok</groupId>
+                                         <artifactId>lombok</artifactId>
+                                         <version>${lombok.version}</version>
+                                     </path>
+                                     <!-- 2. Lombok-MapStruct Binding (Giúp MapStruct đọc được code của Lombok) -->
+                                     <path>
+                                         <groupId>org.projectlombok</groupId>
+                                         <artifactId>lombok-mapstruct-binding</artifactId>
+                                         <version>0.2.0</version>
+                                     </path>
+                                     <!-- 3. MapStruct Processor -->
+                                     <path>
+                                         <groupId>org.mapstruct</groupId>
+                                         <artifactId>mapstruct-processor</artifactId>
+                                         <version>${mapstruct.version}</version>
+                                     </path>
+                                 </annotationProcessorPaths>
+                             </configuration>
+                         </plugin>
         </plugins>
     </build>
 

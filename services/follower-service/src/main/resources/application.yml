@@ -2,7 +2,7 @@ spring:
   application:
     name: follower-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/social_media
+    url: jdbc:postgresql://localhost:5432/demo
     username: postgres
     password: 123456
     driver-class-name: org.postgresql.Driver
@@ -14,17 +14,16 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
-application:
-  security:
-    jwt:
-      secretKey: "12345678901234567890123456789012"
-
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
     service-url:
       defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
 server:
   port: 8084
 

@@ -1,9 +1,9 @@
 package com.social_media.profileservice.application.usecase;
 
-import com.social_media.profileservice.domain.UserProfile;
+import com.social_media.profileservice.domain.model.profile.aggregate.Profile;
 
 import java.util.UUID;
 
 public interface GetProfileUseCase {
-    UserProfile execute(UUID id);
+    Profile execute(UUID id);
 }

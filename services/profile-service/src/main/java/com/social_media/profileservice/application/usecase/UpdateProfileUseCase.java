@@ -1,8 +1,8 @@
 package com.social_media.profileservice.application.usecase;
 
 import com.social_media.profileservice.application.command.UpdateProfileCommand;
-import com.social_media.profileservice.domain.UserProfile;
+import com.social_media.profileservice.domain.model.profile.aggregate.Profile;
 
 public interface UpdateProfileUseCase {
-    UserProfile execute(UpdateProfileCommand command);
+    Profile execute(UpdateProfileCommand command);
 }

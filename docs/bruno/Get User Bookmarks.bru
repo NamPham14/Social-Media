@@ -1,0 +1,17 @@
+meta {
+  name: Get User Bookmarks
+  type: http
+  seq: 14
+}
+
+get {
+  url: http://localhost:8082/api/v1/bookmarks?userId={{userId}}
+  body: none
+  auth: none
+}
+
+params:query {
+  userId: {{userId}}
+  ~page: 0
+  ~size: 10
+}

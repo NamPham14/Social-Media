@@ -1,0 +1,17 @@
+meta {
+  name: Remove Reported Post
+  type: http
+  seq: 18
+}
+
+put {
+  url: http://localhost:8082/api/v1/reports/{{reportId}}/remove
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "adminId": "{{adminId}}"
+  }
+}

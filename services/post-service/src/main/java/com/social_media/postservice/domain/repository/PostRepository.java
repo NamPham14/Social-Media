@@ -1,6 +1,6 @@
 package com.social_media.postservice.domain.repository;
 
-import com.social_media.postservice.domain.model.Post;
+import com.social_media.postservice.domain.model.post.aggregate.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

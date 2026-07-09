@@ -1,13 +1,15 @@
 package com.social_media.postservice.application.usecase;
-import com.social_media.common.exception.AppException;
 import com.social_media.postservice.application.command.UpdatePostCommand;
 import com.social_media.postservice.application.dto.PostResponse;
 import com.social_media.postservice.application.dto.UploadResponse;
 import com.social_media.postservice.application.service.MediaService;
-import com.social_media.postservice.domain.exception.ErrorCode;
-import com.social_media.postservice.domain.model.Post;
-import com.social_media.postservice.domain.model.PostMedia;
+import com.social_media.postservice.domain.model.post.aggregate.Post;
+//import com.social_media.postservice.domain.model.post.entity.PostMedia;
+//import com.social_media.postservice.domain.model.post.entity.PostMedia;
+import com.social_media.postservice.domain.model.post.entity.PostMedia;
+import com.social_media.postservice.domain.model.post.valueobject.MediaType;
 import com.social_media.postservice.domain.repository.PostRepository;
+//import com.social_media.postservice.domain.model.post.valueobject.MediaType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -29,14 +31,13 @@ public class UpdatePostUseCase {
     public PostResponse execute(UpdatePostCommand command) {
 
         Post post = postRepository.findById(command.getId())
-                .orElseThrow(() -> new AppException(ErrorCode.RESOURCE_NOT_FOUND));
+                .orElseThrow(() -> new com.social_media.postservice.application.exception.ResourceNotFoundException());
 
         post.update(command.getCaption(), command.getLocationName());
 
         List<String> remainImageUrls = command.getRemainImageUrls() != null ? command.getRemainImageUrls() : new ArrayList<>();
 
         List<PostMedia> mediasToDelete = new ArrayList<>();
-
 
         for (PostMedia media : post.getMedias()) {
             if (!remainImageUrls.contains(media.getMediaUrl())) {
@@ -55,7 +56,7 @@ public class UpdatePostUseCase {
             PostMedia media = PostMedia.create(
                     file.getPublicId(),
                     file.getUrl(),
-                    PostMedia.MediaType.IMAGE,
+                    MediaType.IMAGE,
                     nextIndex++
             );
             post.addMedia(media);
@@ -83,9 +84,8 @@ public class UpdatePostUseCase {
                     log.error("Failed to rollback new image on Cloudinary: " + file.getPublicId(), ex);
                 }
             }
-            throw new AppException(ErrorCode.CLOUDINARY_ERROR);
+            throw new com.social_media.postservice.application.exception.CloudinaryUploadException();
         }
     }
-
-
 }
+

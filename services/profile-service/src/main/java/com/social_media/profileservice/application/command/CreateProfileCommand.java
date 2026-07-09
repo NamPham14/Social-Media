@@ -7,12 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class CreateProfileCommand {
-    private UUID id;
-    private String username;
-    private String fullName;
+
+public record CreateProfileCommand (UUID id, String username,String fullName){
+
 }

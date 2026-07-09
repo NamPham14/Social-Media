@@ -1,7 +1,7 @@
 package com.social_media.postservice.application.dto;
 
 
-import com.social_media.postservice.domain.model.Post;
+import com.social_media.postservice.domain.model.post.aggregate.Post;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,7 +22,6 @@ public class PostResponse {
     private String locationName;
 
     private String status;
-    private String moderationStatus;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -38,7 +37,6 @@ public class PostResponse {
         res.locationName = post.getLocationName();
 
         res.status = post.getStatus().name();
-        res.moderationStatus = post.getModerationStatus().name();
 
         res.createdAt = post.getCreatedAt();
         res.updatedAt = post.getUpdatedAt();
@@ -50,6 +48,4 @@ public class PostResponse {
 
         return res;
     }
-
-    // getter nếu cần (hoặc dùng Lombok @Getter)
 }
