@@ -1,6 +1,7 @@
 package com.social_media.common.exception;
 
 import com.social_media.common.api.ApiResponse;
+import com.social_media.common.base.BaseErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ServiceUnavailableException.class)
     public ResponseEntity<ApiResponse<Object>> handleServiceUnavailable(ServiceUnavailableException ex) {
         return buildResponse(HttpStatus.SERVICE_UNAVAILABLE, 2001, ex.getMessage());
+    }
+
+    @ExceptionHandler(AppException.class)
+    public ResponseEntity<ApiResponse<Object>> handleAppException(AppException ex) {
+        BaseErrorCode errorCode = ex.getErrorCode();
+        return buildResponse(errorCode.getHttpStatus(), errorCode.getCode(), errorCode.getMessage());
     }
 
 
