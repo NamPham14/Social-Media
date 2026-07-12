@@ -9,7 +9,7 @@ spring:
   application:
     name: identity-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/social_media
+    url: jdbc:postgresql://localhost:5432/identity_db
     username: postgres
     password: 123456
     driver-class-name: org.postgresql.Driver
@@ -24,6 +24,8 @@ spring:
     redis:
       host: localhost
       port: 6379
+      password: 123456
+      database: 0
 
 application:
   security:

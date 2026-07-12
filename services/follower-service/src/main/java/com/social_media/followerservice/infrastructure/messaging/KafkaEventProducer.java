@@ -9,8 +9,10 @@ import org.springframework.stereotype.Component;
 public class KafkaEventProducer implements FollowEventPublisher {
     private final KafkaTemplate<String, Object> kafkaTemplate;
 
-    public KafkaEventProducer(KafkaTemplate<String, Object> kafkaTemplate) { this.kafkaTemplate = kafkaTemplate; }
+    public KafkaEventProducer(KafkaTemplate<String, Object> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate; }
 
     @Override
-    public void publish(UserFollowedEvent event) { kafkaTemplate.send("user-followed-topic", event); }
+    public void publish(UserFollowedEvent event) {
+        kafkaTemplate.send("user-followed-topic", event); }
 }

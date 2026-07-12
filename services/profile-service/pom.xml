@@ -80,6 +80,14 @@
                     <artifactId>cloudinary-http44</artifactId>
                     <version>1.36.0</version>
                 </dependency>
+
+
+        <dependency>
+            <groupId>com.social_media</groupId>
+            <artifactId>common-security</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

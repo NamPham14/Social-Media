@@ -1,4 +1,4 @@
-package com.social_media.postservice.infrastructure.cilent.decoder;
+package com.social_media.postservice.infrastructure.client.decoder;
 
 import com.social_media.postservice.application.exception.ResourceNotFoundException;
 import com.social_media.postservice.application.exception.UnauthorizedActionException;

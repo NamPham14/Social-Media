@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/api-gateway.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/api-gateway.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/FollowUserUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/FollowUserUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/adapter/FollowRelationRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/adapter/FollowRelationRepositoryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/ArticleClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/ArticleClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/UserClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/messaging/KafkaEventProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/messaging/KafkaEventProducer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="261" />
+    <option name="cachedIndexableFilesCount" value="425" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,61 +36,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.2253378279542637" />
-      <entry key="MS500" value="2.724693192311328" />
-      <entry key="S2" value="7.345739713469315" />
-      <entry key="S5" value="13.685915617166742" />
-      <entry key="S10" value="18.905725938920583" />
-      <entry key="S30" value="28.399803692098985" />
-      <entry key="S60" value="37.99503344751923" />
-      <entry key="M2" value="47.69617354558442" />
-      <entry key="M5" value="64.29369725652401" />
-      <entry key="M10" value="89.05064155499473" />
-      <entry key="M15" value="108.45689016313781" />
-      <entry key="M30" value="147.04460641476442" />
-      <entry key="H1" value="184.7085147369822" />
-      <entry key="H2" value="213.34530104523975" />
-      <entry key="H4" value="231.4842773105748" />
-      <entry key="D1" value="249.14602439762336" />
-      <entry key="W1" value="252.44237097022992" />
+      <entry key="MS100" value="1.1568700353445887" />
+      <entry key="MS500" value="2.0025998700590577" />
+      <entry key="S2" value="3.129279165944577" />
+      <entry key="S5" value="3.655228898749444" />
+      <entry key="S10" value="4.16695597835254" />
+      <entry key="S30" value="5.412827700223692" />
+      <entry key="S60" value="6.857258421820525" />
+      <entry key="M2" value="15.123998264650385" />
+      <entry key="M5" value="48.48890950243227" />
+      <entry key="M10" value="89.31548433585468" />
+      <entry key="M15" value="117.71991757020174" />
+      <entry key="M30" value="169.97763015837356" />
+      <entry key="H1" value="218.5498009655011" />
+      <entry key="H2" value="254.90341007136283" />
+      <entry key="H4" value="277.8332639874089" />
+      <entry key="D1" value="300.1344801746425" />
+      <entry key="W1" value="304.2960067404674" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="8.978415456184826E-141" />
-      <entry key="S5" value="1.0788069663761556E-56" />
-      <entry key="S10" value="1.3286202010163853E-28" />
-      <entry key="S30" value="7.88104606473011E-10" />
-      <entry key="S60" value="3.95584515431986E-5" />
-      <entry key="M2" value="0.008886694214551419" />
-      <entry key="M5" value="0.2290969351309195" />
-      <entry key="M10" value="0.6768755535970976" />
-      <entry key="M15" value="0.9712828151140326" />
-      <entry key="M30" value="1.3937538936098224" />
-      <entry key="H1" value="1.669581429525296" />
-      <entry key="H2" value="1.827337180375068" />
-      <entry key="H4" value="1.9117201413392266" />
-      <entry key="D1" value="1.9850085353933413" />
-      <entry key="W1" value="1.9978514497546553" />
+      <entry key="MS500" value="1.0237325934229216E-197" />
+      <entry key="S2" value="5.890533369137588E-50" />
+      <entry key="S5" value="2.5593509559660028E-20" />
+      <entry key="S10" value="2.1621278899598967E-10" />
+      <entry key="S30" value="9.423269976123869E-4" />
+      <entry key="S60" value="0.04335193858530011" />
+      <entry key="M2" value="0.2950696663549962" />
+      <entry key="M5" value="1.0130302462667893" />
+      <entry key="M10" value="1.7725946990490054" />
+      <entry key="M15" value="2.2436269442748804" />
+      <entry key="M30" value="2.938766673706706" />
+      <entry key="H1" value="3.411575672710556" />
+      <entry key="H2" value="3.6894648891517807" />
+      <entry key="H4" value="3.8403902417020497" />
+      <entry key="D1" value="3.9727716787657927" />
+      <entry key="W1" value="3.996094574259672" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.0223883156361853" />
-      <entry key="MS500" value="2.6540273012000157" />
-      <entry key="S2" value="7.309389510519013" />
-      <entry key="S5" value="13.663397531103984" />
-      <entry key="S10" value="18.89152492931405" />
-      <entry key="S30" value="28.391884468746383" />
-      <entry key="S60" value="37.98872363798667" />
-      <entry key="M2" value="47.700566713192906" />
-      <entry key="M5" value="64.51996759157593" />
-      <entry key="M10" value="89.72535757658906" />
-      <entry key="M15" value="109.42635561534645" />
-      <entry key="M30" value="148.43706865550394" />
-      <entry key="H1" value="186.37725713548548" />
-      <entry key="H2" value="215.172144094354" />
-      <entry key="H4" value="233.39572663943213" />
-      <entry key="D1" value="251.1309839390556" />
-      <entry key="W1" value="254.44021531796017" />
+      <entry key="MS100" value="0.1768647913507314" />
+      <entry key="MS500" value="1.3642338996651893" />
+      <entry key="S2" value="2.8944841188717514" />
+      <entry key="S5" value="3.551793505470654" />
+      <entry key="S10" value="4.112040011915295" />
+      <entry key="S30" value="5.393156937054401" />
+      <entry key="S60" value="6.8870054016513365" />
+      <entry key="M2" value="15.404174401055798" />
+      <entry key="M5" value="49.487575841762826" />
+      <entry key="M10" value="91.07756985614697" />
+      <entry key="M15" value="119.95538750759971" />
+      <entry key="M30" value="172.91146633934073" />
+      <entry key="H1" value="221.9585734652849" />
+      <entry key="H2" value="258.5913558204565" />
+      <entry key="H4" value="281.6728588386756" />
+      <entry key="D1" value="304.10711360087294" />
+      <entry key="W1" value="308.2920814143654" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -98,41 +101,44 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.follower-service [clean].executor": "Run",
-    "Maven.follower-service [compile].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Spring Boot.ApiGatewayApplication.executor": "Run",
-    "Spring Boot.EurekaServerApplication.executor": "Run",
-    "Spring Boot.FollowerServiceApplication.executor": "Run",
-    "Spring Boot.ProfileServiceApplication.executor": "Run",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "SMP-6-follower-service",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/SUMMER26/MSS/New/Social-Media",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.follower-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.follower-service [compile].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.EurekaServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.FollowerServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ProfileServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;SMP-6-follower-service&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/SUMMER26/MSS/New/Social-Media&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -150,7 +156,7 @@
               <entry key="ApiGatewayApplication" value="STOPPED" />
               <entry key="EurekaServerApplication" value="STOPPED" />
               <entry key="FollowerServiceApplication" value="STOPPED" />
-              <entry key="ProfileServiceApplication" value="FAILED" />
+              <entry key="ProfileServiceApplication" value="STOPPED" />
             </map>
           </value>
         </entry>
@@ -262,6 +268,9 @@
       <workItem from="1782870703638" duration="180000" />
       <workItem from="1783324741486" duration="7808000" />
       <workItem from="1783575241120" duration="3958000" />
+      <workItem from="1783594109082" duration="5998000" />
+      <workItem from="1783662487676" duration="7851000" />
+      <workItem from="1783691793144" duration="37000" />
     </task>
     <servers />
   </component>

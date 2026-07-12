@@ -24,13 +24,16 @@ public class FollowRelationRepositoryAdapter implements FollowRelationRepository
     }
     @Override public Optional<FollowRelation> findById(Long id) {
         return jpaRepository.findById(id).map(mapper::toDomain);
+
     }
     @Override public boolean existsByFollowerIdAndFollowingId(UserId followerId, UserId followingId) {
         return jpaRepository.existsByFollowerIdAndFollowingId(followerId.value(), followingId.value());
     }
+
     @Override public Page<FollowRelation> findByFollowerId(UserId followerId, Pageable p) {
         return jpaRepository.findByFollowerId(followerId.value(), p).map(mapper::toDomain);
     }
+
     @Override public Page<FollowRelation> findByFollowingId(UserId followingId, Pageable p) {
         return jpaRepository.findByFollowingId(followingId.value(), p).map(mapper::toDomain);
     }

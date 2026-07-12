@@ -7,8 +7,8 @@ import com.social_media.identityservice.domain.repository.RoleRepository;
 import com.social_media.identityservice.domain.model.user.aggregate.User;
 import com.social_media.identityservice.domain.repository.UserRepository;
 import com.social_media.identityservice.application.exception.user.UserExistedException;
-import com.social_media.identityservice.infrastructure.client.ProfileClient;
 import com.social_media.identityservice.api.dto.request.ProfileCreationRequest;
+import com.social_media.identityservice.infrastructure.client.ProfileServiceHelper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class RegisterUseCase {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
-    private final ProfileClient profileClient;
+    private final ProfileServiceHelper profileServiceHelper;
 
     @Transactional
     public User register(RegisterCommand command) {
@@ -34,7 +34,7 @@ public class RegisterUseCase {
         }
 
         RoleId userRoleId = RoleId.from("USER");
-        Role userRole = roleRepository.findById(userRoleId)
+        roleRepository.findById(userRoleId)
                 .orElseGet(() -> roleRepository.save(Role.create("USER", "Default user role")));
 
         User user = User.register(
@@ -47,7 +47,7 @@ public class RegisterUseCase {
         User savedUser = userRepository.save(user);
 
         // Gọi sang Profile Service để tạo profile tương ứng (Sẽ chuyển sang Event sau)
-        profileClient.createProfile(ProfileCreationRequest.builder()
+        profileServiceHelper.createSafeProfile(ProfileCreationRequest.builder()
                 .id(savedUser.getId().value())
                 .username(savedUser.getUsername())
                 .fullName(savedUser.getUsername())

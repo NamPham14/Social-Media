@@ -61,7 +61,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
                         if (subject != null) {
                             ServerWebExchange mutatedExchange = exchange.mutate()
                                     .request(exchange.getRequest().mutate()
-                                            .header(GatewayConstants.HEADER_USER_ID, subject)
+                                            .header(com.social_media.common.utils.SecurityConstants.HEADER_USER_ID, subject)
                                             .build())
                                     .build();
                             return chain.filter(mutatedExchange);

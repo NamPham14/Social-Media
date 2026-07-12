@@ -24,7 +24,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -36,13 +36,13 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-        
+
         <!-- Eureka Client -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-        
+
         <!-- JWT for Gateway verification -->
         <dependency>
             <groupId>com.nimbusds</groupId>
@@ -50,8 +50,8 @@
             <version>9.37.3</version>
         </dependency>
         <dependency>
-             <groupId>io.micrometer</groupId>
-             <artifactId>context-propagation</artifactId>
+            <groupId>io.micrometer</groupId>
+            <artifactId>context-propagation</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

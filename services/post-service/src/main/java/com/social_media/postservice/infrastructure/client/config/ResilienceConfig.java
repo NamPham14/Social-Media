@@ -1,6 +1,5 @@
-package com.social_media.postservice.infrastructure.cilent.config;
+package com.social_media.postservice.infrastructure.client.config;
 
-import feign.FeignException;
 import io.github.resilience4j.circuitbreaker.CircuitBreaker;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
 import io.github.resilience4j.circuitbreaker.CircuitBreakerRegistry;

@@ -26,18 +26,15 @@ public class FollowUserUseCaseImpl implements FollowUserUseCase {
             throw new CannotFollowSelfException();
         }
 
-        if (followRelationRepository.existsByFollowerIdAndFollowingId(
-                command.followerId(), command.followingId())) {
+        if (followRelationRepository.existsByFollowerIdAndFollowingId(command.followerId(), command.followingId())) {
             throw new DuplicateFollowException();
         }
 
-        FollowRelation followRelation = FollowRelation.create(
-                command.followerId(), command.followingId());
+        FollowRelation followRelation = FollowRelation.create(command.followerId(), command.followingId());
 
         FollowRelation saved = followRelationRepository.save(followRelation);
 
-        followEventPublisher.publish(new UserFollowedEvent(
-                command.followerId().value(), command.followingId().value()));
+        followEventPublisher.publish(new UserFollowedEvent(command.followerId().value(), command.followingId().value()));
 
         return saved;
     }
