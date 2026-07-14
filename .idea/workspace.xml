@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/FollowUserUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/FollowUserUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/adapter/FollowRelationRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/adapter/FollowRelationRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/ArticleClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/ArticleClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/UserClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/UserClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/messaging/KafkaEventProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/messaging/KafkaEventProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,11 +14,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="425" />
+    <option name="cachedIndexableFilesCount" value="459" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -36,61 +36,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.1568700353445887" />
-      <entry key="MS500" value="2.0025998700590577" />
-      <entry key="S2" value="3.129279165944577" />
-      <entry key="S5" value="3.655228898749444" />
-      <entry key="S10" value="4.16695597835254" />
-      <entry key="S30" value="5.412827700223692" />
-      <entry key="S60" value="6.857258421820525" />
-      <entry key="M2" value="15.123998264650385" />
-      <entry key="M5" value="48.48890950243227" />
-      <entry key="M10" value="89.31548433585468" />
-      <entry key="M15" value="117.71991757020174" />
-      <entry key="M30" value="169.97763015837356" />
-      <entry key="H1" value="218.5498009655011" />
-      <entry key="H2" value="254.90341007136283" />
-      <entry key="H4" value="277.8332639874089" />
-      <entry key="D1" value="300.1344801746425" />
-      <entry key="W1" value="304.2960067404674" />
+      <entry key="MS100" value="1.2626022543936268" />
+      <entry key="MS500" value="2.6159683712434347" />
+      <entry key="S2" value="5.163625817720124" />
+      <entry key="S5" value="8.82062930063984" />
+      <entry key="S10" value="15.35497107891406" />
+      <entry key="S30" value="28.940452933547352" />
+      <entry key="S60" value="40.683022165164424" />
+      <entry key="M2" value="58.30077899523829" />
+      <entry key="M5" value="99.1577236678058" />
+      <entry key="M10" value="146.28611035109057" />
+      <entry key="M15" value="178.71228042563698" />
+      <entry key="M30" value="237.5262529485688" />
+      <entry key="H1" value="291.50095012113354" />
+      <entry key="H2" value="331.69832894749146" />
+      <entry key="H4" value="357.0162024780399" />
+      <entry key="D1" value="381.63020187911883" />
+      <entry key="W1" value="386.2230401435833" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="1.0237325934229216E-197" />
-      <entry key="S2" value="5.890533369137588E-50" />
-      <entry key="S5" value="2.5593509559660028E-20" />
-      <entry key="S10" value="2.1621278899598967E-10" />
-      <entry key="S30" value="9.423269976123869E-4" />
-      <entry key="S60" value="0.04335193858530011" />
-      <entry key="M2" value="0.2950696663549962" />
-      <entry key="M5" value="1.0130302462667893" />
-      <entry key="M10" value="1.7725946990490054" />
-      <entry key="M15" value="2.2436269442748804" />
-      <entry key="M30" value="2.938766673706706" />
-      <entry key="H1" value="3.411575672710556" />
-      <entry key="H2" value="3.6894648891517807" />
-      <entry key="H4" value="3.8403902417020497" />
-      <entry key="D1" value="3.9727716787657927" />
-      <entry key="W1" value="3.996094574259672" />
+      <entry key="MS500" value="1.0825182904398277E-78" />
+      <entry key="S2" value="3.225632089404522E-20" />
+      <entry key="S5" value="1.61571409644251E-8" />
+      <entry key="S10" value="1.3988497232041716E-4" />
+      <entry key="S30" value="0.07400463923125208" />
+      <entry key="S60" value="0.38343082553120517" />
+      <entry key="M2" value="0.9674856711632479" />
+      <entry key="M5" value="2.0902703435655448" />
+      <entry key="M10" value="3.12215196760383" />
+      <entry key="M15" value="3.733675754534799" />
+      <entry key="M30" value="4.62769283409789" />
+      <entry key="H1" value="5.236925092902826" />
+      <entry key="H2" value="5.596507754372462" />
+      <entry key="H4" value="5.792379608360617" />
+      <entry key="D1" value="5.964545660426681" />
+      <entry key="W1" value="5.994913780950277" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.1768647913507314" />
-      <entry key="MS500" value="1.3642338996651893" />
-      <entry key="S2" value="2.8944841188717514" />
-      <entry key="S5" value="3.551793505470654" />
-      <entry key="S10" value="4.112040011915295" />
-      <entry key="S30" value="5.393156937054401" />
-      <entry key="S60" value="6.8870054016513365" />
-      <entry key="M2" value="15.404174401055798" />
-      <entry key="M5" value="49.487575841762826" />
-      <entry key="M10" value="91.07756985614697" />
-      <entry key="M15" value="119.95538750759971" />
-      <entry key="M30" value="172.91146633934073" />
-      <entry key="H1" value="221.9585734652849" />
-      <entry key="H2" value="258.5913558204565" />
-      <entry key="H4" value="281.6728588386756" />
-      <entry key="D1" value="304.10711360087294" />
-      <entry key="W1" value="308.2920814143654" />
+      <entry key="MS100" value="1.0072745469728397" />
+      <entry key="MS500" value="2.5043888883827923" />
+      <entry key="S2" value="5.103382767297661" />
+      <entry key="S5" value="8.783144789718959" />
+      <entry key="S10" value="15.324747529198746" />
+      <entry key="S30" value="28.99193535493559" />
+      <entry key="S60" value="41.042803153760765" />
+      <entry key="M2" value="59.24418294130622" />
+      <entry key="M5" value="101.22745150981764" />
+      <entry key="M10" value="149.39336162198944" />
+      <entry key="M15" value="182.43440138462347" />
+      <entry key="M30" value="242.14700532078663" />
+      <entry key="H1" value="296.73396734653176" />
+      <entry key="H2" value="337.29273576327927" />
+      <entry key="H4" value="362.807487615559" />
+      <entry key="D1" value="387.5945582150389" />
+      <entry key="W1" value="392.21792669683697" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -163,7 +163,7 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.EurekaServerApplication">
+  <component name="RunManager" selected="Spring Boot.FollowerServiceApplication">
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="api-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.apigateway.ApiGatewayApplication" />
@@ -271,6 +271,10 @@
       <workItem from="1783594109082" duration="5998000" />
       <workItem from="1783662487676" duration="7851000" />
       <workItem from="1783691793144" duration="37000" />
+      <workItem from="1783828807386" duration="349000" />
+      <workItem from="1783844169578" duration="3933000" />
+      <workItem from="1783863343346" duration="35000" />
+      <workItem from="1784015455563" duration="2942000" />
     </task>
     <servers />
   </component>
