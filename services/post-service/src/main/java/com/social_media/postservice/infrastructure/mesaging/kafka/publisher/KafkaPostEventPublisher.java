@@ -24,7 +24,7 @@ public class KafkaPostEventPublisher implements PostEventPublisher {
     public void publishPostCreated(PostCreatedIntegrationEvent event) {
         log.info("Post Created Event Send: {}", event.getId());
 
-        kafkaTemplate.send(TOPIC, event.getId())
+        kafkaTemplate.send(TOPIC, event)
                 .whenComplete((res, ex) -> {
 
                     if (ex == null) {
