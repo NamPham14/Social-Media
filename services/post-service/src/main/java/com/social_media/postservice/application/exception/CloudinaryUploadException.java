@@ -6,4 +6,8 @@ public class CloudinaryUploadException extends ServiceUnavailableException {
     public CloudinaryUploadException() {
         super(PostError.CLOUDINARY_ERROR.getMessage());
     }
+    public CloudinaryUploadException(Throwable cause) {
+        super(PostError.CLOUDINARY_ERROR.getMessage());
+        initCause(cause);
+    }
 }

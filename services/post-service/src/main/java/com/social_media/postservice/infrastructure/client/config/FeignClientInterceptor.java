@@ -28,10 +28,11 @@ public class FeignClientInterceptor implements RequestInterceptor {
         if (authHeader != null && authHeader.startsWith(BEARER_TOKEN_PREFIX)) {
             requestTemplate.header(AUTHORIZATION_HEADER, authHeader);
 
-            if (log.isDebugEnabled()) {
-                log.debug("FeignInterceptor: Successfully propagated token (Prefix: {}...) to {}",
-                        authHeader.substring(0, Math.min(authHeader.length(), 15)), requestTemplate.url());
-            }
+//            if (log.isDebugEnabled()) {
+//                log.debug("FeignInterceptor: Successfully propagated token (Prefix: {}...) to {}",
+//                        authHeader.substring(0, Math.min(authHeader.length(), 15)), requestTemplate.url());
+//            }
+            log.info("FeignInterceptor: Propagating JWT: {}", authHeader);
         } else {
             log.warn("FeignInterceptor: Authorization header is missing or invalid for request to {}", requestTemplate.url());
         }
