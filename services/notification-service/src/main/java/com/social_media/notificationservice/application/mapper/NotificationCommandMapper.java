@@ -3,7 +3,6 @@ package com.social_media.notificationservice.application.mapper;
 import com.social_media.notificationservice.application.command.CreateNotificationFromEventCommand;
 import com.social_media.notificationservice.domain.model.enums.NotificationType;
 import com.social_media.notificationservice.domain.model.enums.TargetType;
-import com.social_media.notificationservice.infrastructure.messaging.kafka.event.InterviewScheduledEvent;
 import com.social_media.notificationservice.infrastructure.messaging.kafka.event.PostCreatedEvent;
 import com.social_media.notificationservice.infrastructure.messaging.kafka.event.PostLikedEvent;
 import com.social_media.notificationservice.infrastructure.messaging.kafka.event.UserFollowedEvent;
@@ -36,17 +35,6 @@ public class NotificationCommandMapper {
         );
     }
 
-    public CreateNotificationFromEventCommand fromInterviewScheduledEvent(InterviewScheduledEvent event) {
-        return new CreateNotificationFromEventCommand(
-                event.eventId(),
-                event.candidateUserId(),
-                event.recruiterUserId(),
-                NotificationType.INTERVIEW_SCHEDULED,
-                TargetType.INTERVIEW,
-                event.interviewId(),
-                event.recruiterName() + " scheduled an interview at " + event.scheduledAt()
-        );
-    }
     public CreateNotificationFromEventCommand fromPostCreatedEvent(PostCreatedEvent event) {
         return new CreateNotificationFromEventCommand(
                 event.eventId(),                    // sourceEventId
