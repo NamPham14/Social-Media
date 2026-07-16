@@ -1,5 +1,6 @@
 package com.social_media.interactionservice.infrastructure.client;
 
+import com.social_media.interactionservice.domain.exception.DependencyRejectedException;
 import com.social_media.interactionservice.domain.exception.DependencyUnavailableException;
 import com.social_media.interactionservice.domain.exception.TargetNotFoundException;
 import feign.FeignException;
@@ -27,6 +28,8 @@ public class CommentAvailabilityChecker {
                 throw new TargetNotFoundException("Comment '" + id + "' is unavailable");
         } catch (FeignException.NotFound ex) {
             throw new TargetNotFoundException("Comment '" + id + "' does not exist");
+        } catch (FeignException.FeignClientException ex) {
+            throw new DependencyRejectedException("comment-service", ex.status());
         } catch (FeignException ex) {
             throw new DependencyUnavailableException("comment-service");
         }
@@ -35,6 +38,7 @@ public class CommentAvailabilityChecker {
     @SuppressWarnings("unused")
     private void unavailable(UUID id, Throwable failure) {
         if (failure instanceof TargetNotFoundException notFound) throw notFound;
+        if (failure instanceof DependencyRejectedException rejected) throw rejected;
         throw new DependencyUnavailableException("comment-service");
     }
 }

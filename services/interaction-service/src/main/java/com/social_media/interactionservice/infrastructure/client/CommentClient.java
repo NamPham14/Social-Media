@@ -9,7 +9,7 @@ import java.util.UUID;
 @FeignClient(name = "comment-service", contextId = "interactionCommentClient", configuration = TargetFeignConfig.class)
 public interface CommentClient {
     @GetMapping("/internal/v1/comments/{commentId}/availability")
-    Availability getAvailability(@PathVariable UUID commentId,
+    Availability getAvailability(@PathVariable("commentId") UUID commentId,
                                  @RequestHeader("X-Internal-Service-Token") String serviceToken);
 
     record Availability(UUID targetId, boolean available, String reason) { }

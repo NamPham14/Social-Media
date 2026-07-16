@@ -6,8 +6,8 @@
 - Phase 1: trusted actor header, UUID parsing at HTTP boundary, correlation response and stable local error mapping.
 - Phase 2: create/reply/edit/idempotent delete/get/paginated Comment use cases, one-level reply invariants and PostgreSQL repository integration coverage for Flyway, deleted-parent visibility and pagination.
 - Phase 3: add/remove/current reaction, exact counters, batch counter endpoint and PostgreSQL integration coverage for concurrent idempotency, rollback, safe removal and legacy BOOKMARK cleanup.
-- Phase 4: application availability ports, Eureka Feign adapters, correlation/internal credential propagation and Comment internal availability endpoint.
-- Phase 5: explicit connect/read timeouts, bounded retry, per-dependency circuit breakers and fail-closed 503 semantics.
+- Phase 4: application availability ports, Eureka Feign adapters, explicit path-variable contracts, correlation/internal credential propagation, Comment internal availability endpoint and WireMock consumer-contract coverage.
+- Phase 5: explicit connect/read timeouts, bounded retry, non-retriable 4xx classification, per-dependency circuit breakers, fail-closed 503 semantics and tested closed/open/half-open recovery.
 - Phase 7 (batch-first slice): batch Interaction counter API.
 - Phase 8 (baseline): correlation logs, Actuator metrics/circuit endpoints and an operations runbook.
 

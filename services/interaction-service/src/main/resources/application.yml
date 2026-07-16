@@ -26,10 +26,12 @@ spring:
     openfeign:
       client:
         config:
-          post-service:
+          interactionPostClient:
+            # Two bounded attempts stay under about 4.1s: 1s connect + 2s read + 100ms backoff.
             connectTimeout: 1000
             readTimeout: 2000
-          comment-service:
+          interactionCommentClient:
+            # Keep the same availability-check budget for Comment targets.
             connectTimeout: 1000
             readTimeout: 2000
 
@@ -57,11 +59,13 @@ resilience4j:
         ignore-exceptions:
           - com.social_media.interactionservice.domain.exception.TargetNotFoundException
           - com.social_media.interactionservice.domain.exception.ReactionConflictException
+          - com.social_media.interactionservice.domain.exception.DependencyRejectedException
       commentAvailability:
         max-attempts: 2
         wait-duration: 100ms
         ignore-exceptions:
           - com.social_media.interactionservice.domain.exception.TargetNotFoundException
+          - com.social_media.interactionservice.domain.exception.DependencyRejectedException
   circuitbreaker:
     instances:
       postAvailability:
@@ -69,8 +73,15 @@ resilience4j:
         minimum-number-of-calls: 5
         failure-rate-threshold: 50
         wait-duration-in-open-state: 10s
+        ignore-exceptions:
+          - com.social_media.interactionservice.domain.exception.TargetNotFoundException
+          - com.social_media.interactionservice.domain.exception.ReactionConflictException
+          - com.social_media.interactionservice.domain.exception.DependencyRejectedException
       commentAvailability:
         sliding-window-size: 10
         minimum-number-of-calls: 5
         failure-rate-threshold: 50
         wait-duration-in-open-state: 10s
+        ignore-exceptions:
+          - com.social_media.interactionservice.domain.exception.TargetNotFoundException
+          - com.social_media.interactionservice.domain.exception.DependencyRejectedException
