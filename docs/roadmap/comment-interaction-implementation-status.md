@@ -8,7 +8,7 @@
 - Phase 3: add/remove/current reaction, exact counters, batch counter endpoint and PostgreSQL integration coverage for concurrent idempotency, rollback, safe removal and legacy BOOKMARK cleanup.
 - Phase 4: application availability ports, Eureka Feign adapters, explicit path-variable contracts, correlation/internal credential propagation, Comment internal availability endpoint and WireMock consumer-contract coverage.
 - Phase 5: explicit connect/read timeouts, bounded retry, non-retriable 4xx classification, per-dependency circuit breakers, fail-closed 503 semantics and tested closed/open/half-open recovery.
-- Phase 7 (batch-first slice): batch Interaction counter API.
+- Phase 7: batch Interaction counter API plus single/batch active Comment counts, avoiding per-post Comment queries for Feed/BFF composition.
 - Phase 8 (local-command slice): correlation-aware structured command logs, bounded-cardinality business metrics, Actuator metrics/circuit endpoints and an operations runbook.
 
 ## Intentionally gated

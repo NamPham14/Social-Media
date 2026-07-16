@@ -5,6 +5,9 @@ import com.social_media.commentservice.domain.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import com.social_media.commentservice.domain.model.PageResult;
@@ -33,6 +36,22 @@ public class CommentRepositoryAdapter implements CommentRepository {
     @Override
     public boolean hasActiveReplies(UUID commentId) {
         return commentJpaRepository.existsByParentIdAndDeletedFalse(commentId);
+    }
+
+    @Override
+    public long countActiveByPostId(UUID postId) {
+        return commentJpaRepository.countByPostIdAndDeletedFalse(postId);
+    }
+
+    @Override
+    public Map<UUID, Long> countActiveByPostIds(Collection<UUID> postIds) {
+        if (postIds.isEmpty()) {
+            return Map.of();
+        }
+        Map<UUID, Long> counts = new HashMap<>();
+        commentJpaRepository.countActiveByPostIds(postIds)
+                .forEach(result -> counts.put(result.getPostId(), result.getCommentCount()));
+        return counts;
     }
 
     @Override

@@ -17,6 +17,7 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -62,9 +63,14 @@ class CommentPostgresIntegrationTest {
         Integer commentTable = jdbcTemplate.queryForObject(
                 "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'comments'",
                 Integer.class);
+        Integer activeCountIndex = jdbcTemplate.queryForObject("""
+                SELECT COUNT(*) FROM pg_indexes
+                WHERE schemaname = 'public' AND indexname = 'idx_comments_active_post_id'
+                """, Integer.class);
 
-        assertThat(successfulMigrations).isEqualTo(1);
+        assertThat(successfulMigrations).isEqualTo(2);
         assertThat(commentTable).isEqualTo(1);
+        assertThat(activeCountIndex).isEqualTo(1);
     }
 
     @Test
@@ -102,5 +108,26 @@ class CommentPostgresIntegrationTest {
         assertThat(page.totalPages()).isEqualTo(2);
         assertThat(page.content()).hasSize(2);
         assertThat(page.content().getFirst().getId()).isEqualTo(first.getId());
+    }
+
+    @Test
+    void batchCountsOnlyActiveCommentsAndReplies() {
+        UUID firstPost = UUID.randomUUID();
+        UUID secondPost = UUID.randomUUID();
+        UUID missingPost = UUID.randomUUID();
+        Comment deletedParent = jpaRepository.saveAndFlush(
+                Comment.create(firstPost, UUID.randomUUID(), null, "parent"));
+        jpaRepository.saveAndFlush(
+                Comment.create(firstPost, UUID.randomUUID(), deletedParent.getId(), "active reply"));
+        deletedParent.softDelete(deletedParent.getUserId());
+        jpaRepository.saveAndFlush(deletedParent);
+        jpaRepository.saveAndFlush(Comment.create(secondPost, UUID.randomUUID(), null, "active comment"));
+
+        var counts = commentRepository.countActiveByPostIds(List.of(firstPost, secondPost, missingPost));
+
+        assertThat(counts).containsEntry(firstPost, 1L).containsEntry(secondPost, 1L);
+        assertThat(counts).doesNotContainKey(missingPost);
+        assertThat(commentRepository.countActiveByPostId(firstPost)).isEqualTo(1L);
+        assertThat(commentRepository.countActiveByPostId(missingPost)).isZero();
     }
 }

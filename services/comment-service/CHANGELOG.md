@@ -8,6 +8,7 @@
 - Internal comment availability contract and target validation port.
 - PostgreSQL Testcontainers coverage for Flyway ownership, deleted-parent visibility and exact pagination.
 - Correlation-aware create/delete command logs and Micrometer latency/error metrics with bounded tags.
+- Single and batch active-comment count APIs for Feed/BFF composition, backed by one grouped query and a partial PostgreSQL index.
 
 ### Changed
 
@@ -18,4 +19,5 @@
 ### Fixed
 
 - Declared the Post Feign path variable explicitly so the client can start without Java parameter-name metadata.
+- Declared Comment controller path variables explicitly so endpoints do not depend on Java parameter-name metadata.
 - Added WireMock proof for outbound headers, status mapping, timeout, retry budget and circuit recovery.

@@ -22,7 +22,7 @@ public class InternalCommentController {
 
     @GetMapping(ApiPath.INTERNAL_COMMENT_AVAILABILITY)
     public AvailabilityResponse availability(
-            @PathVariable UUID commentId,
+            @PathVariable("commentId") UUID commentId,
             @RequestHeader("X-Internal-Service-Token") String suppliedToken) {
         if (serviceToken.isBlank() || !constantTimeEquals(serviceToken, suppliedToken)) {
             throw new InternalAccessDeniedException();
