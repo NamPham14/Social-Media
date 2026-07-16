@@ -22,6 +22,10 @@ Stop writes for the affected target, count rows in `interactions` grouped by `re
 
 Do not set Hibernate back to `ddl-auto=update`. Inspect `flyway_schema_history`, correct the migration or data precondition, and rerun. The V2 Interaction migration removes legacy BOOKMARK rows and its counter column.
 
+## Persistence verification
+
+Start Docker, then run `mvn -pl services/comment-service,services/interaction-service -am clean test` from the repository root. This suite starts disposable PostgreSQL 16 containers and verifies Comment queries, Interaction concurrency, transaction rollback and Flyway migration behavior against the production database engine.
+
 ## Kafka
 
 Comment/Interaction event publishing is not enabled until CR-NOTIFICATION-001 is accepted. There is therefore no command path that can lose an event silently in the current release.
