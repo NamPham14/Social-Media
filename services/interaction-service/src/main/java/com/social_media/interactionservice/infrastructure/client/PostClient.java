@@ -10,7 +10,7 @@ import java.util.UUID;
 @FeignClient(name = "post-service", contextId = "interactionPostClient", configuration = TargetFeignConfig.class)
 public interface PostClient {
     @GetMapping("/api/v1/posts/{postId}")
-    ApiResponse<PostSnapshot> getPost(@PathVariable UUID postId,
+    ApiResponse<PostSnapshot> getPost(@PathVariable("postId") UUID postId,
                                       @RequestHeader("X-Auth-User-Id") UUID actorId);
 
     record PostSnapshot(UUID id, String status) { }

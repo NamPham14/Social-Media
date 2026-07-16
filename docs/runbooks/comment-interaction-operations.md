@@ -14,6 +14,13 @@ Create comment/reaction fails closed with 503 after the configured timeout/retry
 
 Comment-target reactions fail with 503; post reactions and all local queries continue. Verify internal token parity before treating 403 responses as an outage.
 
+## Outbound availability classification
+
+- Target 404 and business 403 responses are not retried and do not count toward circuit failure rate.
+- Other 4xx responses mean the provider rejected the consumer request. They return fail-closed 503 with the upstream status in the error message, but are not retried and do not open the circuit.
+- Network errors, timeouts and 5xx responses are retried once. Repeated failures count toward the dependency-specific circuit breaker.
+- A successful half-open probe closes the circuit; local read endpoints remain independent of provider circuit state.
+
 ## Counter mismatch
 
 Stop writes for the affected target, count rows in `interactions` grouped by `reaction_type`, compare with `interaction_counters`, then repair in one transaction. A repair command/API is intentionally not exposed publicly.

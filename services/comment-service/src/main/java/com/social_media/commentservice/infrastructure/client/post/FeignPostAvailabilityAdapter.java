@@ -1,6 +1,7 @@
 package com.social_media.commentservice.infrastructure.client.post;
 
 import com.social_media.commentservice.application.port.out.PostAvailabilityPort;
+import com.social_media.commentservice.domain.exception.DependencyRejectedException;
 import com.social_media.commentservice.domain.exception.DependencyUnavailableException;
 import com.social_media.commentservice.domain.exception.InvalidCommentException;
 import com.social_media.commentservice.domain.exception.TargetNotFoundException;
@@ -28,6 +29,10 @@ public class FeignPostAvailabilityAdapter implements PostAvailabilityPort {
             if (!"PUBLIC".equals(post.status())) throw new InvalidCommentException("Post is not commentable");
         } catch (FeignException.NotFound ex) {
             throw new TargetNotFoundException("Post '" + postId + "' does not exist");
+        } catch (FeignException.Forbidden ex) {
+            throw new InvalidCommentException("Post is not commentable");
+        } catch (FeignException.FeignClientException ex) {
+            throw new DependencyRejectedException("post-service", ex.status());
         } catch (FeignException ex) {
             throw new DependencyUnavailableException("post-service");
         }
@@ -37,6 +42,7 @@ public class FeignPostAvailabilityAdapter implements PostAvailabilityPort {
     private void unavailable(UUID postId, UUID actorId, Throwable failure) {
         if (failure instanceof TargetNotFoundException targetNotFound) throw targetNotFound;
         if (failure instanceof InvalidCommentException invalid) throw invalid;
+        if (failure instanceof DependencyRejectedException rejected) throw rejected;
         throw new DependencyUnavailableException("post-service");
     }
 }

@@ -15,3 +15,13 @@
 ### Security
 
 - Actor ID is read only from the trusted gateway header.
+
+### Changed
+
+- Target-provider 4xx responses are non-retriable and excluded from circuit failure metrics; 403 Post responses remain reaction conflicts.
+
+### Fixed
+
+- Declared Feign path variables explicitly so Post and Comment clients can start without Java parameter-name metadata.
+- Applied Feign timeout settings by client context ID while preserving Eureka service names.
+- Added WireMock proof for actor, internal credential and correlation headers, plus retry and circuit behavior.

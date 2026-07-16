@@ -1,6 +1,7 @@
 package com.social_media.interactionservice.infrastructure.client;
 
 import com.social_media.common.api.ApiResponse;
+import com.social_media.interactionservice.domain.exception.DependencyRejectedException;
 import com.social_media.interactionservice.domain.exception.DependencyUnavailableException;
 import com.social_media.interactionservice.domain.exception.ReactionConflictException;
 import com.social_media.interactionservice.domain.exception.TargetNotFoundException;
@@ -26,6 +27,10 @@ public class PostAvailabilityChecker {
             if (!"PUBLIC".equals(post.status())) throw new ReactionConflictException("Post is not reactable");
         } catch (FeignException.NotFound ex) {
             throw new TargetNotFoundException("Post '" + id + "' does not exist");
+        } catch (FeignException.Forbidden ex) {
+            throw new ReactionConflictException("Post is not reactable");
+        } catch (FeignException.FeignClientException ex) {
+            throw new DependencyRejectedException("post-service", ex.status());
         } catch (FeignException ex) {
             throw new DependencyUnavailableException("post-service");
         }
@@ -35,6 +40,7 @@ public class PostAvailabilityChecker {
     private void unavailable(UUID id, UUID actorId, Throwable failure) {
         if (failure instanceof TargetNotFoundException notFound) throw notFound;
         if (failure instanceof ReactionConflictException conflict) throw conflict;
+        if (failure instanceof DependencyRejectedException rejected) throw rejected;
         throw new DependencyUnavailableException("post-service");
     }
 }
