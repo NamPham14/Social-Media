@@ -33,6 +33,14 @@ Do not set Hibernate back to `ddl-auto=update`. Inspect `flyway_schema_history`,
 
 Start Docker, then run `mvn -pl services/comment-service,services/interaction-service -am clean test` from the repository root. This suite starts disposable PostgreSQL 16 containers and verifies Comment queries, Interaction concurrency, transaction rollback and Flyway migration behavior against the production database engine.
 
+## Metrics and command tracing
+
+- Query `/actuator/metrics/social.comment.command.duration` for create/delete latency and `/actuator/metrics/social.comment.command.errors` for failures.
+- Query `/actuator/metrics/social.interaction.command.duration`, `/actuator/metrics/social.interaction.duplicates` and `/actuator/metrics/social.interaction.counter.update.failures` for reaction behavior.
+- Filter metrics by the common `service` tag plus bounded `operation`, `outcome`, `target_type` or `reaction_type` tags. UUIDs, actor IDs, content and credentials are intentionally excluded from metric tags.
+- Search logs by `correlationId`, then `aggregateId` and `operation`. Command logs never include actor ID, comment content or internal credentials.
+- Continue using `/actuator/circuitbreakers` and Resilience4j metrics for outbound dependency state; an open dependency circuit does not imply local read endpoints are unhealthy.
+
 ## Kafka
 
 Comment/Interaction event publishing is not enabled until CR-NOTIFICATION-001 is accepted. There is therefore no command path that can lose an event silently in the current release.
