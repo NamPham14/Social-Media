@@ -6,6 +6,7 @@
 
 - Idempotent add/remove reaction flows and single/batch counter queries.
 - Target availability outbound port.
+- PostgreSQL Testcontainers coverage for concurrent writes, transaction rollback, safe removal and legacy BOOKMARK migration.
 
 ### Removed
 
