@@ -5,9 +5,11 @@ import com.social_media.commentservice.domain.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import com.social_media.commentservice.domain.model.PageResult;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 
 @Service
 @RequiredArgsConstructor
@@ -21,8 +23,16 @@ public class CommentRepositoryAdapter implements CommentRepository {
     }
 
     @Override
-    public List<Comment> findActiveByPostId(UUID postId) {
-        return commentJpaRepository.findByPostIdAndDeletedFalseOrderByCreatedAtAsc(postId);
+    public PageResult<Comment> findVisibleByPostId(UUID postId, int page, int size) {
+        var result = commentJpaRepository.findVisibleByPostId(postId,
+                PageRequest.of(page, size, Sort.by("createdAt").ascending()));
+        return new PageResult<>(result.getContent(), result.getNumber(), result.getSize(),
+                result.getTotalElements(), result.getTotalPages());
+    }
+
+    @Override
+    public boolean hasActiveReplies(UUID commentId) {
+        return commentJpaRepository.existsByParentIdAndDeletedFalse(commentId);
     }
 
     @Override

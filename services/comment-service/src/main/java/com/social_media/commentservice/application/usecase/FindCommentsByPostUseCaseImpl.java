@@ -1,13 +1,13 @@
 package com.social_media.commentservice.application.usecase;
 
 import com.social_media.commentservice.api.dto.CommentResponse;
+import com.social_media.commentservice.api.dto.PageResponse;
 import com.social_media.commentservice.application.mapper.CommentMapper;
 import com.social_media.commentservice.domain.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -18,9 +18,10 @@ public class FindCommentsByPostUseCaseImpl implements FindCommentsByPostUseCase 
 
     @Override
     @Transactional(readOnly = true)
-    public List<CommentResponse> execute(UUID postId) {
-        return commentRepository.findActiveByPostId(postId).stream()
-                .map(CommentMapper::toResponse)
-                .toList();
+    public PageResponse<CommentResponse> execute(UUID postId, int page, int size) {
+        var result = commentRepository.findVisibleByPostId(postId, page, size);
+        return new PageResponse<>(result.content().stream()
+                .map(comment -> CommentMapper.toResponse(comment, comment.isDeleted())).toList(),
+                result.page(), result.size(), result.totalElements(), result.totalPages());
     }
 }

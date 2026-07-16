@@ -26,9 +26,6 @@ public class InteractionCounter {
     @Column(name = "clap_count", nullable = false)
     private int clapCount;
 
-    @Column(name = "bookmark_count", nullable = false)
-    private int bookmarkCount;
-
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
