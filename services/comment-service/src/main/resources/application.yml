@@ -41,6 +41,9 @@ eureka:
 
 
 management:
+  metrics:
+    tags:
+      service: ${spring.application.name}
   endpoints:
     web:
       exposure:
