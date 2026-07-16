@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public record CreateCommentCommand(
         UUID postId,
-        UUID userId,
+        UUID actorId,
         UUID parentId,
         String content
 ) {

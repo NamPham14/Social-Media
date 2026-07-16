@@ -1,27 +1,24 @@
 package com.social_media.commentservice.application.usecase;
 
-import com.social_media.commentservice.domain.model.Comment;
+import com.social_media.commentservice.api.dto.CommentResponse;
+import com.social_media.commentservice.application.mapper.CommentMapper;
 import com.social_media.commentservice.domain.exception.CommentNotFoundException;
 import com.social_media.commentservice.domain.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class DeleteCommentUseCaseImpl implements DeleteCommentUseCase {
-
+public class GetCommentUseCaseImpl implements GetCommentUseCase {
     private final CommentRepository commentRepository;
 
     @Override
-    @Transactional
-    public void execute(UUID commentId, UUID actorId) {
-        Comment comment = commentRepository.findById(commentId)
+    @Transactional(readOnly = true)
+    public CommentResponse execute(UUID commentId) {
+        return commentRepository.findById(commentId)
+                .map(comment -> CommentMapper.toResponse(comment, comment.isDeleted()))
                 .orElseThrow(() -> new CommentNotFoundException(commentId));
-        if (comment.softDelete(actorId)) {
-            commentRepository.save(comment);
-        }
     }
 }

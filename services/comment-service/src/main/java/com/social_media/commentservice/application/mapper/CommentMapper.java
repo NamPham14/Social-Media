@@ -9,12 +9,16 @@ public final class CommentMapper {
     }
 
     public static CommentResponse toResponse(Comment comment) {
+        return toResponse(comment, false);
+    }
+
+    public static CommentResponse toResponse(Comment comment, boolean hideDeletedContent) {
         return CommentResponse.builder()
                 .id(comment.getId())
                 .postId(comment.getPostId())
                 .userId(comment.getUserId())
                 .parentId(comment.getParentId())
-                .content(comment.getContent())
+                .content(hideDeletedContent ? "[deleted]" : comment.getContent())
                 .deleted(comment.isDeleted())
                 .createdAt(comment.getCreatedAt())
                 .updatedAt(comment.getUpdatedAt())
