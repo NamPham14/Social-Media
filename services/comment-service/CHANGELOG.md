@@ -9,12 +9,14 @@
 - PostgreSQL Testcontainers coverage for Flyway ownership, deleted-parent visibility and exact pagination.
 - Correlation-aware create/delete command logs and Micrometer latency/error metrics with bounded tags.
 - Single and batch active-comment count APIs for Feed/BFF composition, backed by one grouped query and a partial PostgreSQL index.
+- Cross-service synchronous E2E coverage for the owned Comment availability contract.
 
 ### Changed
 
 - Comment commands no longer accept actor IDs from body/query.
 - Deleted parents are returned as `[deleted]` placeholders only while replies exist.
 - Post availability 403/404 and other 4xx responses are classified as non-retriable outcomes and excluded from circuit failure metrics.
+- Namespaced Flyway resources under the Comment bounded context so composed test/runtime classpaths cannot discover another service's migrations.
 
 ### Fixed
 

@@ -8,6 +8,7 @@
 - Target availability outbound port.
 - PostgreSQL Testcontainers coverage for concurrent writes, transaction rollback, safe removal and legacy BOOKMARK migration.
 - Correlation-aware reaction logs and Micrometer command, duplicate and counter-failure metrics with bounded tags.
+- Real-service E2E coverage for Comment-target reaction, duplicate/remove idempotency and dependency failure.
 
 ### Removed
 
@@ -20,6 +21,7 @@
 ### Changed
 
 - Target-provider 4xx responses are non-retriable and excluded from circuit failure metrics; 403 Post responses remain reaction conflicts.
+- Namespaced Flyway resources under the Interaction bounded context so composed test/runtime classpaths cannot discover another service's migrations.
 
 ### Fixed
 
