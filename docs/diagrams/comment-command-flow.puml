@@ -1,0 +1,67 @@
+@startuml
+title Comment Service — command and read flow
+skinparam shadowing false
+autonumber
+
+actor User
+participant "API Gateway" as Gateway
+participant "Comment Controller" as API
+participant "Comment Use Case" as UseCase
+participant "PostAvailabilityPort\nFeign adapter" as PostPort
+participant "Post Service" as Post
+database "Comment DB" as DB
+
+User -> Gateway : POST /comment/api/v1/comments\nJWT + postId + parentId? + content
+Gateway -> API : X-Auth-User-Id from JWT\nX-Correlation-Id
+API -> UseCase : CreateCommentCommand(actor, post, parent?, content)
+UseCase -> PostPort : ensureCommentable(postId, actorId)
+PostPort -> Post : GET post availability
+
+alt Post missing or unavailable for business action
+  Post --> PostPort : 404 / classified unavailable
+  PostPort --> UseCase : domain not-found/conflict
+  UseCase --> API : no local write
+  API --> Gateway : 404 or 409 + traceId
+  Gateway --> User : error response
+else timeout, network error or provider 5xx
+  PostPort -> Post : one bounded retry when safe
+  PostPort --> UseCase : DependencyUnavailable
+  UseCase --> API : fail closed
+  API --> Gateway : 503 + traceId
+  Gateway --> User : error response
+else Post is commentable
+  Post --> PostPort : available
+  opt Reply
+    UseCase -> DB : load parent
+    DB --> UseCase : parent
+    note right of UseCase
+      Same post
+      Top-level parent only
+      Parent must not be deleted
+    end note
+  end
+  UseCase -> DB : INSERT comment/reply
+  DB --> UseCase : saved comment
+  UseCase --> API : CommentResponse
+  API --> Gateway : 201 + X-Correlation-Id
+  Gateway --> User : created response
+end
+
+== Local commands do not require Post ==
+User -> Gateway : PATCH or DELETE /comment/api/v1/comments/{id}
+Gateway -> API : trusted actor
+API -> UseCase : edit/delete(commentId, actor)
+UseCase -> DB : load + enforce owner + local transaction
+DB --> UseCase : updated / idempotently deleted
+UseCase --> API : command result
+API --> Gateway : 200
+Gateway --> User : response
+
+== Local reads remain available during Post outage ==
+User -> Gateway : GET discussion / count
+Gateway -> API : request
+API -> DB : paged visible comments or grouped counts
+DB --> API : active rows; deleted parent placeholder if replies exist
+API --> Gateway : 200
+Gateway --> User : response
+@enduml

@@ -19,3 +19,9 @@
 - Kafka/DLT/outbox and Post/Notification-dependent E2E remain gated by the provider contracts described above; the owned Comment-to-Interaction synchronous flow is covered locally.
 - Kafka publish/consume/DLT and outbox pending/age metrics remain gated with Phase 6; local Comment/Interaction metrics do not depend on that contract.
 - PostgreSQL integration tests require a running Docker engine and are part of the standard Comment/Interaction Maven test suite.
+
+## Final audit and team handoff
+
+- The final scope verdict and deliberate limitations are recorded in `comment-interaction-final-audit.md`.
+- Cross-team provider tasks and rollout order are recorded in `../handoffs/comment-interaction-team-handoff.md`.
+- PlantText-ready system, Comment, Interaction and proposed event flows are stored under `../diagrams/` as `.puml` files.

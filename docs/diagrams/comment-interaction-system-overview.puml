@@ -1,0 +1,56 @@
+@startuml
+title Comment + Interaction — System overview
+left to right direction
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam linetype ortho
+
+actor "Web / Mobile user" as User
+component "API Gateway\nJWT + correlation + routing" as Gateway
+component "Feed / BFF" as BFF
+component "Post Service\nPost + Bookmark owner" as Post
+component "Profile Service" as Profile
+component "Eureka" as Eureka
+
+package "Owned synchronous scope" #E8F5E9 {
+  component "Comment Service\ncontent, replies, deletion, counts" as Comment
+  database "Comment PostgreSQL\nFlyway namespace: comment" as CommentDB
+  component "Interaction Service\nLIKE/CLAP ledger + counters" as Interaction
+  database "Interaction PostgreSQL\nFlyway namespace: interaction" as InteractionDB
+}
+
+queue "Kafka" as Kafka #FFF3E0
+component "Notification Service\nUUID + idempotency pending" as Notification #FFF3E0
+
+User --> Gateway : JWT, API request
+Gateway --> Comment : /comment/api/v1/...
+Gateway --> Interaction : /interaction/api/v1/...
+Gateway --> Post : /post/api/v1/...
+
+Comment --> Post : Feign: validate POST\n(current public API; internal CR pending)
+Interaction --> Post : Feign: validate POST
+Interaction --> Comment : Feign + internal token\nvalidate COMMENT
+Comment --> CommentDB : local transaction
+Interaction --> InteractionDB : ledger + counter\nsame local transaction
+
+Comment ..> Eureka : discover post-service
+Interaction ..> Eureka : discover post/comment-service
+
+BFF --> Comment : batch comment counts
+BFF --> Interaction : batch reaction counters
+BFF --> Profile : batch author display data
+
+Comment ..> Kafka : future: versioned events + outbox
+Interaction ..> Kafka : future: versioned events + outbox
+Post ..> Kafka : future: PostDeletedV1 + outbox
+Kafka ..> Notification : future: idempotent UUID consumer
+Kafka ..> Interaction : future: CommentDeletedV1/PostDeletedV1
+Kafka ..> Comment : future: PostDeletedV1
+
+legend right
+  Solid arrows = implemented synchronous flow
+  Dotted arrows = proposed cross-team/event flow
+  Each owned service has its own database
+  Bookmark stays in Post; Notification owns notifications
+endlegend
+@enduml

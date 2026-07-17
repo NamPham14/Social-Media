@@ -1,0 +1,55 @@
+@startuml
+title Proposed Phase 6 — reliable deletion and notification flow
+skinparam shadowing false
+autonumber
+
+participant "Post Service" as Post
+database "Post DB + Outbox" as PostDB
+participant "Comment Service" as Comment
+database "Comment DB + Outbox" as CommentDB
+participant "Interaction Service" as Interaction
+database "Interaction DB + Outbox" as InteractionDB
+queue Kafka
+participant "Notification Service" as Notification
+database "Notification DB\nprocessed_event IDs" as NotificationDB
+
+note over Post,Notification
+  PROPOSED — implement only after CR contracts are ACCEPTED.
+  Every event has UUID eventId, version, occurredAt UTC and correlationId.
+end note
+
+== Business command plus outbox ==
+Comment -> CommentDB : transaction: save comment + outbox event
+CommentDB --> Comment : commit succeeds without depending on Kafka
+Comment -> Kafka : relay CommentCreatedV1 / CommentRepliedV1
+
+Interaction -> InteractionDB : transaction: ledger/counter + outbox event
+InteractionDB --> Interaction : commit
+Interaction -> Kafka : relay ReactionCreatedV1 / ReactionRemovedV1
+
+== Idempotent notification ==
+Kafka -> Notification : event (may be delivered more than once)
+Notification -> NotificationDB : INSERT eventId if absent
+alt First delivery and actor != recipient
+  Notification -> NotificationDB : create notification in same transaction
+else Duplicate or self-action
+  Notification -> NotificationDB : no duplicate notification
+end
+
+== Cross-service deletion policy ==
+Post -> PostDB : transaction: delete/visibility change + PostDeletedV1 outbox
+Post -> Kafka : relay PostDeletedV1
+Kafka -> Comment : idempotently archive/hide per accepted policy
+Comment -> CommentDB : local policy update + optional CommentDeletedV1 outbox
+Kafka -> Interaction : idempotently remove/tombstone POST reactions
+Interaction -> InteractionDB : reconcile ledger and counters
+
+Comment -> CommentDB : soft-delete comment + CommentDeletedV1 outbox
+Comment -> Kafka : relay CommentDeletedV1
+Kafka -> Interaction : idempotently remove/tombstone COMMENT reactions
+Interaction -> InteractionDB : reconcile ledger and counters
+
+... transient consumer failure ...
+Kafka -> Notification : bounded retry topic
+Kafka -> Notification : DLT / parking lot after retry exhaustion
+@enduml
