@@ -4,6 +4,8 @@ import com.social_media.common.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -13,12 +15,12 @@ import lombok.*;
 public class FollowRelationEntity extends BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
 
     @Column(name = "follower_id", nullable = false)
-    private Long followerId;
+    private UUID followerId;
 
     @Column(name = "following_id", nullable = false)
-    private Long followingId;
+    private UUID followingId;
 }

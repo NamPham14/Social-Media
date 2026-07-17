@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 @RequiredArgsConstructor
@@ -22,7 +23,7 @@ public class FollowRelationRepositoryAdapter implements FollowRelationRepository
         FollowRelationEntity saved = jpaRepository.save(mapper.toEntity(domain));
         return mapper.toDomain(saved);
     }
-    @Override public Optional<FollowRelation> findById(Long id) {
+    @Override public Optional<FollowRelation> findById(UUID id) {
         return jpaRepository.findById(id).map(mapper::toDomain);
 
     }

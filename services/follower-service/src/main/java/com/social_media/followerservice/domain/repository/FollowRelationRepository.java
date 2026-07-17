@@ -6,11 +6,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
+import java.util.UUID;
 
 public interface FollowRelationRepository {
     FollowRelation save(FollowRelation followRelation);
 
-    Optional<FollowRelation> findById(Long id);
+    Optional<FollowRelation> findById(UUID id);
 
     boolean existsByFollowerIdAndFollowingId(UserId followerId, UserId followingId);
 

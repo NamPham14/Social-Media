@@ -11,6 +11,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class GetFollowingUseCaseImpl implements GetFollowingUseCase {
@@ -19,7 +21,7 @@ public class GetFollowingUseCaseImpl implements GetFollowingUseCase {
     private final FollowerApiMapper followerApiMapper;
 
     @Override
-    public Page<FollowResponse> execute(Long userId, int page, int size) {
+    public Page<FollowResponse> execute(UUID userId, int page, int size) {
         Pageable pageable = PageRequest.of(page - 1, size);
         return followRelationRepository.findByFollowerId(UserId.from(userId), pageable)
                 .map(followerApiMapper::toResponse);

@@ -6,15 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
+import java.util.UUID;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class FeedResponse {
-    private Long postId;
+    private UUID postId;
     private String content;
-    private Long authorId;
+    private UUID authorId;
     private String authorName;
     private String authorAvatarUrl;
     private Instant createdAt;

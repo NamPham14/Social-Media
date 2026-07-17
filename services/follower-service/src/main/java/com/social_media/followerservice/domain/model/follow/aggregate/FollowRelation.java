@@ -4,6 +4,7 @@ import com.social_media.followerservice.domain.shared.valueobject.UserId;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FollowRelation {
-    private Long id;
+    private UUID id;
     private UserId followerId;
     private UserId followingId;
     private LocalDateTime createdAt;

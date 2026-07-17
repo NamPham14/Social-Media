@@ -6,14 +6,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
-public interface FollowRelationJpaRepository extends JpaRepository<FollowRelationEntity, Long> {
+public interface FollowRelationJpaRepository extends JpaRepository<FollowRelationEntity, UUID> {
 
-    boolean existsByFollowerIdAndFollowingId(Long followerId, Long followingId);
+    boolean existsByFollowerIdAndFollowingId(UUID followerId, UUID followingId);
 
-    Page<FollowRelationEntity> findByFollowerId(Long followerId, Pageable pageable);
+    Page<FollowRelationEntity> findByFollowerId(UUID followerId, Pageable pageable);
 
-    Page<FollowRelationEntity> findByFollowingId(Long followingId, Pageable pageable);
+    Page<FollowRelationEntity> findByFollowingId(UUID followingId, Pageable pageable);
 
-    void deleteByFollowerIdAndFollowingId(Long followerId, Long followingId);
+    void deleteByFollowerIdAndFollowingId(UUID followerId, UUID followingId);
 }

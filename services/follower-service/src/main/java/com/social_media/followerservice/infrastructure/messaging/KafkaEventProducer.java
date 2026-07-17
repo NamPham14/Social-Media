@@ -14,5 +14,10 @@ public class KafkaEventProducer implements FollowEventPublisher {
 
     @Override
     public void publish(UserFollowedEvent event) {
-        kafkaTemplate.send("user-followed-topic", event); }
+        try {
+            kafkaTemplate.send("user-followed-topic", event);
+        } catch (Exception e) {
+            System.err.println("Kafka is not running, skipping event publish: " + e.getMessage());
+        }
+    }
 }

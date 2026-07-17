@@ -8,6 +8,7 @@ import org.mapstruct.Mapping;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.UUID;
 
 @Mapper(componentModel = "spring")
 public interface FollowPersistenceMapper {
@@ -22,6 +23,8 @@ public interface FollowPersistenceMapper {
     @Mapping(target = "createdAt", source = "createdAt")
     FollowRelation toDomain(FollowRelationEntity entity);
 
-    default UserId map(Long value) { return value != null ? UserId.from(value) : null; }
+    default UserId map(UUID value) {
+        return value != null ? UserId.from(value) : null;
+    }
     default LocalDateTime map(Instant value) { return value != null ? value.atZone(ZoneId.systemDefault()).toLocalDateTime() : null; }
 }
