@@ -59,8 +59,9 @@ public class InteractionController {
     @DeleteMapping(ApiPath.INTERACTION)
     public ApiResponse<Boolean> removeInteraction(
             @RequestHeader("X-Auth-User-Id") UUID actorId,
-            @PathVariable TargetType targetType, @PathVariable UUID targetId,
-            @PathVariable ReactionType reactionType) {
+            @PathVariable("targetType") TargetType targetType,
+            @PathVariable("targetId") UUID targetId,
+            @PathVariable("reactionType") ReactionType reactionType) {
         boolean removed = removeInteractionUseCase.execute(actorId, targetType, targetId, reactionType);
         return ApiResponse.<Boolean>builder().code(200).status(200)
                 .message(removed ? "Remove Interaction Success" : "Interaction Already Absent")
@@ -70,14 +71,17 @@ public class InteractionController {
     @GetMapping(ApiPath.MY_INTERACTIONS)
     public ApiResponse<List<InteractionResponse>> myInteractions(
             @RequestHeader("X-Auth-User-Id") UUID actorId,
-            @PathVariable TargetType targetType, @PathVariable UUID targetId) {
+            @PathVariable("targetType") TargetType targetType,
+            @PathVariable("targetId") UUID targetId) {
         return ApiResponse.<List<InteractionResponse>>builder().code(200).status(200)
                 .message("Get Actor Interactions Success")
                 .data(findActorReactionsUseCase.execute(actorId, targetType, targetId)).build();
     }
 
     @GetMapping(ApiPath.COUNTER)
-    public ApiResponse<CounterResponse> counter(@PathVariable TargetType targetType, @PathVariable UUID targetId) {
+    public ApiResponse<CounterResponse> counter(
+            @PathVariable("targetType") TargetType targetType,
+            @PathVariable("targetId") UUID targetId) {
         return ApiResponse.<CounterResponse>builder().code(200).status(200).message("Get Counter Success")
                 .data(getCountersUseCase.get(targetType, targetId)).build();
     }

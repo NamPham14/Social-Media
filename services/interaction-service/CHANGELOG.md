@@ -24,5 +24,6 @@
 ### Fixed
 
 - Declared Feign path variables explicitly so Post and Comment clients can start without Java parameter-name metadata.
+- Declared Interaction controller path variables explicitly and required the shared internal token in Compose.
 - Applied Feign timeout settings by client context ID while preserving Eureka service names.
 - Added WireMock proof for actor, internal credential and correlation headers, plus retry and circuit behavior.

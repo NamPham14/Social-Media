@@ -20,4 +20,5 @@
 
 - Declared the Post Feign path variable explicitly so the client can start without Java parameter-name metadata.
 - Declared Comment controller path variables explicitly so endpoints do not depend on Java parameter-name metadata.
+- Aligned the Docker image port with `server.port` and required the shared internal token in Compose.
 - Added WireMock proof for outbound headers, status mapping, timeout, retry budget and circuit recovery.
