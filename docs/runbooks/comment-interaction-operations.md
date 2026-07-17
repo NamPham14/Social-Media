@@ -31,7 +31,11 @@ Do not set Hibernate back to `ddl-auto=update`. Inspect `flyway_schema_history`,
 
 ## Persistence verification
 
-Start Docker, then run `mvn -pl services/comment-service,services/interaction-service -am clean test` from the repository root. This suite starts disposable PostgreSQL 16 containers and verifies Comment queries, Interaction concurrency, transaction rollback and Flyway migration behavior against the production database engine.
+Start Docker, then run `mvn -pl services/comment-service,services/interaction-service,qa/comment-interaction-e2e -am clean test` from the repository root. This suite starts disposable PostgreSQL 16 containers and verifies Comment queries, Interaction concurrency, transaction rollback, Flyway migrations and the synchronous Comment-target reaction flow against the production database engine.
+
+## Synchronous E2E verification
+
+The `comment-interaction-e2e` module starts both real applications on random local ports with separate databases and Eureka disabled. It verifies correlation response, Comment internal-token validation through Feign, duplicate reaction idempotency, repeated removal, deleted-target rejection, fail-closed 503 behavior and continued local counter reads while Comment Service is unavailable. It does not require Post, Kafka or Notification.
 
 ## Metrics and command tracing
 

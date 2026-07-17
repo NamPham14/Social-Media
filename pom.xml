@@ -30,6 +30,7 @@
         <module>services/post-service</module>
         <module>services/comment-service</module>
         <module>services/interaction-service</module>
+        <module>qa/comment-interaction-e2e</module>
         <module>services/notification-service</module>
         <module>services/follower-service</module>
     </modules>

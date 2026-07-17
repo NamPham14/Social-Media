@@ -174,7 +174,7 @@ class InteractionPostgresIntegrationTest {
                 .dataSource(POSTGRES.getJdbcUrl(), POSTGRES.getUsername(), POSTGRES.getPassword())
                 .defaultSchema("legacy_migration")
                 .schemas("legacy_migration")
-                .locations("classpath:db/migration")
+                .locations("classpath:db/migration/interaction")
                 .baselineOnMigrate(true)
                 .baselineVersion("0")
                 .load()

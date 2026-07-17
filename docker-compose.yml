@@ -234,6 +234,7 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
       SPRING_DATASOURCE_URL: jdbc:postgresql://comment-db:5432/comment_service
       SPRING_DATASOURCE_PASSWORD: 123456
+      INTERNAL_SERVICE_TOKEN: "${INTERNAL_SERVICE_TOKEN:?INTERNAL_SERVICE_TOKEN must be set}"
     depends_on:
       eureka-server:
         condition: service_healthy
@@ -266,6 +267,7 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
       SPRING_DATASOURCE_URL: jdbc:postgresql://interaction-db:5432/interaction_service
       SPRING_DATASOURCE_PASSWORD: 123456
+      INTERNAL_SERVICE_TOKEN: "${INTERNAL_SERVICE_TOKEN:?INTERNAL_SERVICE_TOKEN must be set}"
     depends_on:
       eureka-server:
         condition: service_healthy
