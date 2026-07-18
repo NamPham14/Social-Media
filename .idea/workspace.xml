@@ -6,34 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/api-gateway.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/api-gateway.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/archived/api-gateway-2026-06-29.0.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/controller/FollowerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/controller/FollowerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FeedResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FeedResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FollowRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FollowRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FollowResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FollowResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/exception/FollowerError.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/exception/FollowerError.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetFollowersUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetFollowersUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetFollowingUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetFollowingUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetNewsFeedUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetNewsFeedUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/GetFollowersUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/GetFollowersUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/GetFollowingUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/GetFollowingUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/GetNewsFeedUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/GetNewsFeedUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/event/UserFollowedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/event/UserFollowedEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/model/follow/aggregate/FollowRelation.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/model/follow/aggregate/FollowRelation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/repository/FollowRelationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/repository/FollowRelationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/shared/valueobject/UserId.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/shared/valueobject/UserId.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/adapter/FollowRelationRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/adapter/FollowRelationRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/ArticleClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/ArticleClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/decoder/CustomErrorDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/decoder/CustomErrorDecoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/mapper/FollowPersistenceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/mapper/FollowPersistenceMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/messaging/KafkaEventProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/messaging/KafkaEventProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/entity/FollowRelationEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/entity/FollowRelationEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/repository/FollowRelationJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/repository/FollowRelationJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/base/BaseErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/exception/ErrorCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/exception/AppException.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/exception/AppException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/exception/GlobalExceptionHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,61 +35,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.5125060957866607" />
-      <entry key="MS500" value="4.218954206126375" />
-      <entry key="S2" value="7.71414082139224" />
-      <entry key="S5" value="9.392850550241098" />
-      <entry key="S10" value="10.166261565838552" />
-      <entry key="S30" value="11.018469674307399" />
-      <entry key="S60" value="11.431706970186514" />
-      <entry key="M2" value="12.695805623764125" />
-      <entry key="M5" value="31.218341877795424" />
-      <entry key="M10" value="76.54782710525849" />
-      <entry key="M15" value="115.67337833688032" />
-      <entry key="M30" value="193.14933069682806" />
-      <entry key="H1" value="266.89639500835074" />
-      <entry key="H2" value="322.57394636027533" />
-      <entry key="H4" value="357.9066361634827" />
-      <entry key="D1" value="392.44201723569927" />
-      <entry key="W1" value="398.90590894226824" />
+      <entry key="MS100" value="1.004061066782519" />
+      <entry key="MS500" value="1.9786754879531885" />
+      <entry key="S2" value="5.713258091268781" />
+      <entry key="S5" value="10.82811598235901" />
+      <entry key="S10" value="16.327724609573856" />
+      <entry key="S30" value="23.491415251549736" />
+      <entry key="S60" value="26.03876721071476" />
+      <entry key="M2" value="27.463477429719962" />
+      <entry key="M5" value="28.71770592190146" />
+      <entry key="M10" value="36.74703854683228" />
+      <entry key="M15" value="54.58937415432466" />
+      <entry key="M30" value="120.11501060126652" />
+      <entry key="H1" value="212.36566653186435" />
+      <entry key="H2" value="296.38477827019733" />
+      <entry key="H4" value="354.85719489212784" />
+      <entry key="D1" value="415.3541264331811" />
+      <entry key="W1" value="427.01596065668963" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="3.8783009512482075E-8" />
-      <entry key="MS500" value="0.032940356977835566" />
-      <entry key="S2" value="0.4260220475374331" />
-      <entry key="S5" value="0.7108415908316033" />
-      <entry key="S10" value="0.8431150840781814" />
-      <entry key="S30" value="0.9598057121328505" />
-      <entry key="S60" value="1.1458415315287585" />
-      <entry key="M2" value="1.5909375008591098" />
-      <entry key="M5" value="2.621457317842689" />
-      <entry key="M10" value="3.929759652224123" />
-      <entry key="M15" value="4.84941666502345" />
-      <entry key="M30" value="6.35588225048768" />
-      <entry key="H1" value="7.482704597216999" />
-      <entry key="H2" value="8.18345668056995" />
-      <entry key="H4" value="8.575913646194724" />
-      <entry key="D1" value="8.926997504741767" />
-      <entry key="W1" value="8.989512509942093" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="2.5790860287424964E-294" />
+      <entry key="S5" value="3.6693262815186525E-118" />
+      <entry key="S10" value="1.9155505182215834E-59" />
+      <entry key="S30" value="2.7184347538760676E-20" />
+      <entry key="S60" value="1.9283788126011885E-10" />
+      <entry key="M2" value="2.063892224280314E-5" />
+      <entry key="M5" value="0.02909084587036752" />
+      <entry key="M10" value="0.4139737166845624" />
+      <entry key="M15" value="1.081668095336481" />
+      <entry key="M30" value="3.0017747668290937" />
+      <entry key="H1" value="5.142327478258252" />
+      <entry key="H2" value="6.784023641805222" />
+      <entry key="H4" value="7.8082854533290025" />
+      <entry key="D1" value="8.78856482500427" />
+      <entry key="W1" value="8.969464286578184" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.4662988774988386" />
-      <entry key="MS500" value="4.1863640903897235" />
-      <entry key="S2" value="7.923617819708989" />
-      <entry key="S5" value="9.939962554236235" />
-      <entry key="S10" value="10.907196236483399" />
-      <entry key="S30" value="11.937437199119211" />
-      <entry key="S60" value="12.554663296251958" />
-      <entry key="M2" value="14.272855987059968" />
-      <entry key="M5" value="33.829237671526286" />
-      <entry key="M10" value="80.46741133421679" />
-      <entry key="M15" value="120.5136069530373" />
-      <entry key="M30" value="199.4986293406898" />
-      <entry key="H1" value="274.37502382264324" />
-      <entry key="H2" value="330.7551030157056" />
-      <entry key="H4" value="366.4813220318142" />
-      <entry key="D1" value="401.3687979806616" />
-      <entry key="W1" value="407.89539016960737" />
+      <entry key="MS100" value="0.8741728021811972" />
+      <entry key="MS500" value="1.9252474144299196" />
+      <entry key="S2" value="5.673958679596015" />
+      <entry key="S5" value="10.799568458751475" />
+      <entry key="S10" value="16.30620019507185" />
+      <entry key="S30" value="23.48093554363297" />
+      <entry key="S60" value="26.032924907111845" />
+      <entry key="M2" value="27.46040693051278" />
+      <entry key="M5" value="28.745399703737363" />
+      <entry key="M10" value="37.15929293552409" />
+      <entry key="M15" value="55.66855955252645" />
+      <entry key="M30" value="123.11345855161046" />
+      <entry key="H1" value="217.50508405824652" />
+      <entry key="H2" value="303.1668406764639" />
+      <entry key="H4" value="362.6643351863695" />
+      <entry key="D1" value="424.14247331133305" />
+      <entry key="W1" value="435.98539308061277" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -303,7 +275,8 @@
       <workItem from="1783844169578" duration="3933000" />
       <workItem from="1783863343346" duration="35000" />
       <workItem from="1784015455563" duration="2942000" />
-      <workItem from="1784306512563" duration="1922000" />
+      <workItem from="1784306512563" duration="2105000" />
+      <workItem from="1784337643290" duration="1723000" />
     </task>
     <servers />
   </component>
