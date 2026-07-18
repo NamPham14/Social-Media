@@ -5,6 +5,20 @@
 - Set the same non-empty `INTERNAL_SERVICE_TOKEN` for Comment and Interaction.
 - Register `post-service`, `comment-service` and `interaction-service` in Eureka.
 - Apply Flyway migrations using a database role allowed to create/alter the owned schema.
+- Supply `SPRING_DATASOURCE_URL` and `SPRING_DATASOURCE_PASSWORD` outside the local profile.
+- Provision Kafka topics with each DLT having at least as many partitions as its source topic:
+  - `post-deleted-topic`
+  - `post-comments-deleted-topic`
+  - `post-deleted-topic-comment-dlt`
+  - `post-deleted-topic-interaction-dlt`
+  - `post-comments-deleted-topic-interaction-dlt`
+
+## Local development profile
+
+Start the root Docker Compose databases, then run each application with
+`SPRING_PROFILES_ACTIVE=local` and the same `INTERNAL_SERVICE_TOKEN`. The local profile connects
+Comment to `localhost:5435/comment_service` and Interaction to
+`localhost:5436/interaction_service`; SQL logging is enabled only in this profile.
 
 ## Post Service unavailable
 
@@ -47,4 +61,26 @@ The `comment-interaction-e2e` module starts both real applications on random loc
 
 ## Kafka
 
-Comment/Interaction event publishing is not enabled until CR-NOTIFICATION-001 is accepted. There is therefore no command path that can lose an event silently in the current release.
+- Comment and Interaction consume `post-deleted-topic` independently. Comment soft-deletes local
+  comments and writes `PostCommentsDeletedV1` to `comment_outbox` in the same database transaction.
+- The Comment outbox relay publishes `post-comments-deleted-topic` with at-least-once delivery.
+  A Kafka acknowledgement followed by a database commit failure can publish a duplicate; the
+  Interaction cleanup remains idempotent by deleting by target ID.
+- Transient listener failures receive five total delivery attempts with one-second backoff.
+  Invalid JSON, missing fields and invalid UUIDs are non-retryable and go directly to the
+  service-specific DLT.
+- DLT publishing waits for broker acknowledgement. If publishing fails, the original record is
+  not treated as recovered and remains eligible for redelivery.
+
+### DLT triage and replay
+
+1. Identify the owning consumer from the DLT topic suffix and inspect the original topic,
+   partition, offset and exception headers.
+2. Correct the payload producer or transient database/configuration failure before replay.
+3. Republish the original key and value to the original topic. Do not replay both service DLTs for
+   the same failure unless both consumers actually failed.
+4. Confirm an idempotent no-op or the expected deleted-row counts in service logs, then retain the
+   DLT record according to the platform retention policy.
+
+Notification events remain gated by CR-NOTIFICATION-001 and are unrelated to this deletion cleanup
+pipeline.

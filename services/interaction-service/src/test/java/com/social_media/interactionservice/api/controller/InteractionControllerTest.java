@@ -4,8 +4,10 @@ import com.social_media.interactionservice.api.InteractionExceptionHandler;
 import com.social_media.interactionservice.api.dto.CounterResponse;
 import com.social_media.interactionservice.application.command.CreateInteractionCommand;
 import com.social_media.interactionservice.application.usecase.*;
+import com.social_media.interactionservice.domain.exception.TargetNotFoundException;
 import com.social_media.interactionservice.domain.model.ReactionType;
 import com.social_media.interactionservice.domain.model.TargetType;
+import com.social_media.interactionservice.infrastructure.web.CorrelationIdFilter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -18,6 +20,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -34,7 +37,10 @@ class InteractionControllerTest {
         counters = mock(GetCountersUseCase.class);
         InteractionController controller = new InteractionController(
                 create, remove, mock(FindActorReactionsUseCase.class), counters);
-        mvc = MockMvcBuilders.standaloneSetup(controller).setControllerAdvice(new InteractionExceptionHandler()).build();
+        mvc = MockMvcBuilders.standaloneSetup(controller)
+                .setControllerAdvice(new InteractionExceptionHandler())
+                .addFilters(new CorrelationIdFilter())
+                .build();
     }
 
     @Test
@@ -43,7 +49,9 @@ class InteractionControllerTest {
         String body = "{\"userId\":\"" + UUID.randomUUID() + "\",\"targetType\":\"POST\",\"targetId\":\""
                 + UUID.randomUUID() + "\",\"reactionType\":\"LIKE\"}";
         mvc.perform(post("/api/v1/interactions").header("X-Auth-User-Id", actor)
-                        .contentType(MediaType.APPLICATION_JSON).content(body)).andExpect(status().isOk());
+                        .contentType(MediaType.APPLICATION_JSON).content(body))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.code").value(1000));
         ArgumentCaptor<CreateInteractionCommand> captor = ArgumentCaptor.forClass(CreateInteractionCommand.class);
         verify(create).execute(captor.capture());
         assertThat(captor.getValue().actorId()).isEqualTo(actor);
@@ -87,5 +95,54 @@ class InteractionControllerTest {
                 .andExpect(jsonPath("$.data.clapCount").value(1));
 
         verify(counters).get(TargetType.POST, targetId);
+    }
+
+    @Test
+    void targetNotFoundUsesStableErrorCodeAndCorrelationId() throws Exception {
+        UUID actorId = UUID.randomUUID();
+        String traceId = UUID.randomUUID().toString();
+        String body = "{\"targetType\":\"POST\",\"targetId\":\"" + UUID.randomUUID()
+                + "\",\"reactionType\":\"LIKE\"}";
+        when(create.execute(any())).thenThrow(new TargetNotFoundException("Post does not exist"));
+
+        mvc.perform(post("/api/v1/interactions")
+                        .header("X-Auth-User-Id", actorId)
+                        .header("X-Correlation-Id", traceId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.status").value(404))
+                .andExpect(jsonPath("$.code").value(46002))
+                .andExpect(jsonPath("$.traceId").value(traceId));
+    }
+
+    @Test
+    void frameworkAndUnexpectedFailuresUseCorrectHttpStatuses() throws Exception {
+        UUID actorId = UUID.randomUUID();
+        String body = "{\"targetType\":\"POST\",\"targetId\":\"" + UUID.randomUUID()
+                + "\",\"reactionType\":\"LIKE\"}";
+
+        mvc.perform(post("/api/v1/interactions")
+                        .header("X-Auth-User-Id", actorId)
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .content(body))
+                .andExpect(status().isUnsupportedMediaType())
+                .andExpect(jsonPath("$.code").value(46007));
+
+        mvc.perform(put("/api/v1/interactions")
+                        .header("X-Auth-User-Id", actorId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andExpect(status().isMethodNotAllowed())
+                .andExpect(jsonPath("$.code").value(46006));
+
+        when(create.execute(any())).thenThrow(new IllegalStateException("database detail must not leak"));
+        mvc.perform(post("/api/v1/interactions")
+                        .header("X-Auth-User-Id", actorId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(body))
+                .andExpect(status().isInternalServerError())
+                .andExpect(jsonPath("$.code").value(46999))
+                .andExpect(jsonPath("$.message").value("Unexpected server error"));
     }
 }

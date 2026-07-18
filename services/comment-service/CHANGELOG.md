@@ -4,6 +4,10 @@
 
 ### Added
 
+- Stable service-specific API error codes with correlation-aware 400/403/404/405/409/415/500/503 handling.
+- Bounded Kafka retry and a Comment-specific DLT for `PostDeleted` consumer failures.
+- A `local` Spring profile aligned with the root Compose Comment database port.
+- Transactional Comment outbox relay for idempotent `PostCommentsDeletedV1` propagation.
 - Authenticated actor boundary, stable domain errors, reply validation, edit/delete/get and paginated discussion APIs.
 - Internal comment availability contract and target validation port.
 - PostgreSQL Testcontainers coverage for Flyway ownership, deleted-parent visibility and exact pagination.
@@ -13,6 +17,9 @@
 
 ### Changed
 
+- Successful public API envelopes now consistently use common code `1000`.
+- Default runtime database credentials are externalized; SQL logging is local-profile only.
+- Poison Kafka records bypass retry and DLT publishing must receive broker acknowledgement.
 - Comment commands no longer accept actor IDs from body/query.
 - Deleted parents are returned as `[deleted]` placeholders only while replies exist.
 - Post availability 403/404 and other 4xx responses are classified as non-retriable outcomes and excluded from circuit failure metrics.
