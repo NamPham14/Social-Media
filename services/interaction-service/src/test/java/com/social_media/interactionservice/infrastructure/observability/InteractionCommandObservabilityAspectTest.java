@@ -163,5 +163,10 @@ class InteractionCommandObservabilityAspectTest {
         public List<InteractionCounter> findAll(Collection<InteractionCounterId> ids) {
             return List.of();
         }
+
+        @Override
+        public int removeAllByTargets(TargetType targetType, Collection<UUID> targetIds) {
+            return 0;
+        }
     }
 }
