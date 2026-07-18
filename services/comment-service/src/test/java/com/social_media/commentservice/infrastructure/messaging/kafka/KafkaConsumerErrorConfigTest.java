@@ -1,4 +1,4 @@
-package com.social_media.interactionservice.infrastructure.messaging.kafka;
+package com.social_media.commentservice.infrastructure.messaging.kafka;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -13,8 +13,8 @@ class KafkaConsumerErrorConfigTest {
     void createsDefaultErrorHandlerForRetryAndDltRecovery() {
         KafkaTemplate<Object, Object> kafkaTemplate = mock(KafkaTemplate.class);
 
-        var handler = new KafkaConsumerErrorConfig().interactionKafkaErrorHandler(
-                kafkaTemplate, 5, 1000, "-interaction-dlt", 10);
+        var handler = new KafkaConsumerErrorConfig().commentKafkaErrorHandler(
+                kafkaTemplate, 5, 1000, "-comment-dlt", 10);
 
         assertThat(handler).isInstanceOf(DefaultErrorHandler.class);
     }

@@ -1,4 +1,4 @@
-package com.social_media.interactionservice.infrastructure.messaging.kafka;
+package com.social_media.commentservice.infrastructure.messaging.kafka;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
@@ -19,11 +19,11 @@ import java.time.Duration;
 public class KafkaConsumerErrorConfig {
 
     @Bean
-    public CommonErrorHandler interactionKafkaErrorHandler(
+    public CommonErrorHandler commentKafkaErrorHandler(
             KafkaTemplate<Object, Object> kafkaTemplate,
             @Value("${messaging.retry.max-attempts:5}") long maxAttempts,
             @Value("${messaging.retry.backoff-ms:1000}") long backoffMs,
-            @Value("${messaging.retry.dlt-suffix:-interaction-dlt}") String dltSuffix,
+            @Value("${messaging.retry.dlt-suffix:-comment-dlt}") String dltSuffix,
             @Value("${messaging.retry.dlt-publish-timeout-seconds:10}") long dltPublishTimeoutSeconds) {
         DeadLetterPublishingRecoverer recoverer = new DeadLetterPublishingRecoverer(
                 kafkaTemplate,
@@ -31,6 +31,7 @@ public class KafkaConsumerErrorConfig {
         );
         recoverer.setFailIfSendResultIsError(true);
         recoverer.setWaitForSendResultTimeout(Duration.ofSeconds(dltPublishTimeoutSeconds));
+
         DefaultErrorHandler errorHandler = new DefaultErrorHandler(
                 recoverer,
                 new FixedBackOff(backoffMs, Math.max(maxAttempts - 1, 0))

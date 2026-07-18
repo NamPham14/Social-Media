@@ -8,14 +8,14 @@ spring:
   application:
     name: interaction-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/interaction_service
-    username: postgres
-    password: 1234
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: validate
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -112,4 +112,5 @@ messaging:
   retry:
     max-attempts: 5
     backoff-ms: 1000
-    dlt-suffix: -dlt
+    dlt-suffix: -interaction-dlt
+    dlt-publish-timeout-seconds: 10

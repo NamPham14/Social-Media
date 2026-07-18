@@ -37,6 +37,8 @@ import org.springframework.http.ResponseEntity;
 @RequiredArgsConstructor
 public class CommentController {
 
+    private static final int SUCCESS_CODE = 1000;
+
     private final CreateCommentUseCase createCommentUseCase;
     private final FindCommentsByPostUseCase findCommentsByPostUseCase;
     private final DeleteCommentUseCase deleteCommentUseCase;
@@ -56,7 +58,7 @@ public class CommentController {
         );
 
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.<CommentResponse>builder()
-                .code(HttpStatus.CREATED.value())
+                .code(SUCCESS_CODE)
                 .status(HttpStatus.CREATED.value())
                 .message("Create Comment Success")
                 .data(createCommentUseCase.execute(command))
@@ -70,7 +72,7 @@ public class CommentController {
             @org.springframework.web.bind.annotation.RequestParam(defaultValue = "20") int size) {
         int safeSize = Math.min(Math.max(size, 1), 100);
         return ApiResponse.<PageResponse<CommentResponse>>builder()
-                .code(HttpStatus.OK.value())
+                .code(SUCCESS_CODE)
                 .status(HttpStatus.OK.value())
                 .message("Get Comments By Post Success")
                 .data(findCommentsByPostUseCase.execute(postId, Math.max(page, 0), safeSize))
@@ -80,7 +82,7 @@ public class CommentController {
     @GetMapping(ApiPath.COMMENT_COUNT_BY_POST)
     public ApiResponse<CommentCountResponse> getCommentCount(@PathVariable("postId") UUID postId) {
         return ApiResponse.<CommentCountResponse>builder()
-                .code(HttpStatus.OK.value())
+                .code(SUCCESS_CODE)
                 .status(HttpStatus.OK.value())
                 .message("Get Comment Count Success")
                 .data(getCommentCountsUseCase.get(postId))
@@ -91,7 +93,7 @@ public class CommentController {
     public ApiResponse<List<CommentCountResponse>> getCommentCounts(
             @Valid @RequestBody BatchCommentCountRequest request) {
         return ApiResponse.<List<CommentCountResponse>>builder()
-                .code(HttpStatus.OK.value())
+                .code(SUCCESS_CODE)
                 .status(HttpStatus.OK.value())
                 .message("Get Comment Counts Success")
                 .data(getCommentCountsUseCase.getBatch(request.postIds()))
@@ -104,7 +106,7 @@ public class CommentController {
             @RequestHeader("X-Auth-User-Id") UUID actorId) {
         deleteCommentUseCase.execute(commentId, actorId);
         return ApiResponse.<Void>builder()
-                .code(HttpStatus.OK.value())
+                .code(SUCCESS_CODE)
                 .status(HttpStatus.OK.value())
                 .message("Delete Comment Success")
                 .build();
@@ -116,7 +118,7 @@ public class CommentController {
             @RequestHeader("X-Auth-User-Id") UUID actorId,
             @Valid @RequestBody UpdateCommentRequest request) {
         return ApiResponse.<CommentResponse>builder()
-                .code(HttpStatus.OK.value()).status(HttpStatus.OK.value())
+                .code(SUCCESS_CODE).status(HttpStatus.OK.value())
                 .message("Update Comment Success")
                 .data(updateCommentUseCase.execute(commentId, actorId, request.getContent()))
                 .build();
@@ -125,7 +127,7 @@ public class CommentController {
     @GetMapping(ApiPath.COMMENT_BY_ID)
     public ApiResponse<CommentResponse> getComment(@PathVariable("commentId") UUID commentId) {
         return ApiResponse.<CommentResponse>builder()
-                .code(HttpStatus.OK.value()).status(HttpStatus.OK.value())
+                .code(SUCCESS_CODE).status(HttpStatus.OK.value())
                 .message("Get Comment Success").data(getCommentUseCase.execute(commentId)).build();
     }
 }
