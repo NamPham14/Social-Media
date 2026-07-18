@@ -168,6 +168,8 @@ services:
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
       SPRING_DATA_REDIS_HOST: redis
+      MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "*"
+      MANAGEMENT_ZIPKIN_TRACING_ENDPOINT: "http://zipkin:9411/api/v2/spans"
     depends_on:
       eureka-server:
         condition: service_healthy
@@ -288,6 +290,31 @@ services:
         condition: service_healthy
       notification-db:
         condition: service_healthy
+      # ===== OBSERVABILITY STACK =====
+
+  zipkin:
+    image: openzipkin/zipkin:latest
+    container_name: social_media_zipkin
+    ports:
+        - "9411:9411"
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: social_media_prometheus
+    ports:
+        - "9090:9090"
+    volumes:
+          - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: social_media_grafana
+    ports:
+       - "3000:3000"
+    environment:
+       - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+       - prometheus
 
 volumes:
   identity-db-data:
