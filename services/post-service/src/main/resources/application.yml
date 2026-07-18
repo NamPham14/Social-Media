@@ -9,7 +9,7 @@ spring:
     password: 1234
   jpa:
     hibernate:
-      ddl-auto: update    # dev only, prod ??i qua Flyway
+      ddl-auto: update
     properties.hibernate.format_sql: true
   cloud:
     openfeign:
@@ -30,6 +30,20 @@ spring:
           batch.size: 32768 # 32KB
           compression.type: lz4 # Nén dữ liệu bằng thuật toán lz4 trước khi gửi để tiết kiệm băng thông
           spring.json.add.type.headers: false
+
+  rabbitmq:
+    host: localhost             # Địa chỉ máy chủ RabbitMQ
+    port: 5672                  # Port mặc định của RabbitMQ
+    username: guest             # Tên đăng nhập
+    password: guest             # Mật khẩu đăng nhập
+    virtual-host: /             # Virtual host (nếu có chia vhost)
+    connection-timeout: 10000   # Thời gian chờ kết nối (ms)
+    listener:
+      simple:
+        acknowledge-mode: auto  # Chế độ xác nhận tin nhắn (auto/manual)
+        concurrency: 5          # Số lượng consumer tối thiểu
+        max-concurrency: 10     # Số lượng consumer tối đa khi cần thiết
+
 management:
   endpoints:
     web:

@@ -15,9 +15,6 @@ public class CreateCommentRequest {
     @NotNull
     private UUID postId;
 
-    @NotNull
-    private UUID userId;
-
     private UUID parentId;
 
     @NotBlank

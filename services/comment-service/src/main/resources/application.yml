@@ -1,6 +1,9 @@
 server:
   port: 8085
 
+internal:
+  service-token: ${INTERNAL_SERVICE_TOKEN:}
+
 spring:
   application:
     name: comment-service
@@ -11,11 +14,23 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     show-sql: true
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    baseline-on-migrate: true
+    baseline-version: 0
+    locations: classpath:db/migration/comment
+  cloud:
+    openfeign:
+      client:
+        config:
+          post-service:
+            # Two bounded attempts stay under about 4.1s: 1s connect + 2s read + 100ms backoff.
+            connectTimeout: 1000
+            readTimeout: 2000
 
 eureka:
   client:
@@ -27,11 +42,37 @@ eureka:
 
 
 management:
+  metrics:
+    tags:
+      service: ${spring.application.name}
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: health,info,metrics,circuitbreakers
 
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}
+
+resilience4j:
+  retry:
+    instances:
+      postAvailability:
+        max-attempts: 2
+        wait-duration: 100ms
+        ignore-exceptions:
+          - com.social_media.commentservice.domain.exception.TargetNotFoundException
+          - com.social_media.commentservice.domain.exception.InvalidCommentException
+          - com.social_media.commentservice.domain.exception.DependencyRejectedException
+  circuitbreaker:
+    instances:
+      postAvailability:
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        permitted-number-of-calls-in-half-open-state: 2
+        ignore-exceptions:
+          - com.social_media.commentservice.domain.exception.TargetNotFoundException
+          - com.social_media.commentservice.domain.exception.InvalidCommentException
+          - com.social_media.commentservice.domain.exception.DependencyRejectedException

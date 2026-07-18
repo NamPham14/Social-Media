@@ -1,4 +1,5 @@
 package com.social_media.postservice.application.usecase;
+import com.social_media.postservice.application.exception.CloudinaryUploadException;
 import com.social_media.postservice.application.exception.UnauthorizedActionException;
 import com.social_media.postservice.application.command.CreatePostCommand;
 import com.social_media.postservice.application.dto.PostResponse;
@@ -79,7 +80,7 @@ public class CreatePostUseCase {
                     log.error("Failed to rollback image on Cloudinary: " + file.getPublicId(), ex);
                 }
             }
-            throw new com.social_media.postservice.application.exception.CloudinaryUploadException();
+            throw new CloudinaryUploadException(e);
         }
     }
 }

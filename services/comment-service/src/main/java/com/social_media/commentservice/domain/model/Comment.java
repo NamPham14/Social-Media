@@ -1,5 +1,9 @@
 package com.social_media.commentservice.domain.model;
 
+import com.social_media.commentservice.domain.exception.CommentAccessDeniedException;
+import com.social_media.commentservice.domain.exception.CommentAlreadyDeletedException;
+import com.social_media.commentservice.domain.exception.InvalidCommentException;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -54,16 +58,16 @@ public class Comment {
 
     public static Comment create(UUID postId, UUID userId, UUID parentId, String content) {
         if (postId == null) {
-            throw new IllegalArgumentException("Post id is required");
+            throw new InvalidCommentException("Post id is required");
         }
         if (userId == null) {
-            throw new IllegalArgumentException("User id is required");
+            throw new InvalidCommentException("Actor id is required");
         }
         if (content == null || content.isBlank()) {
-            throw new IllegalArgumentException("Comment content is required");
+            throw new InvalidCommentException("Comment content is required");
         }
         if (content.length() > 1000) {
-            throw new IllegalArgumentException("Comment content exceeds maximum length");
+            throw new InvalidCommentException("Comment content exceeds maximum length");
         }
 
         Comment comment = new Comment();
@@ -78,23 +82,24 @@ public class Comment {
     public void updateContent(UUID actorId, String newContent) {
         ensureOwner(actorId);
         if (deleted) {
-            throw new IllegalStateException("Deleted comment cannot be updated");
+            throw new CommentAlreadyDeletedException();
         }
         if (newContent == null || newContent.isBlank()) {
-            throw new IllegalArgumentException("Comment content is required");
+            throw new InvalidCommentException("Comment content is required");
         }
         if (newContent.length() > 1000) {
-            throw new IllegalArgumentException("Comment content exceeds maximum length");
+            throw new InvalidCommentException("Comment content exceeds maximum length");
         }
         this.content = newContent.trim();
     }
 
-    public void softDelete(UUID actorId) {
+    public boolean softDelete(UUID actorId) {
         ensureOwner(actorId);
         if (deleted) {
-            throw new IllegalStateException("Comment already deleted");
+            return false;
         }
         this.deleted = true;
+        return true;
     }
 
     @PrePersist
@@ -111,7 +116,7 @@ public class Comment {
 
     private void ensureOwner(UUID actorId) {
         if (!userId.equals(actorId)) {
-            throw new IllegalStateException("Only the comment owner can perform this action");
+            throw new CommentAccessDeniedException();
         }
     }
 }

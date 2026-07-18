@@ -1,5 +1,7 @@
 package com.social_media.postservice.domain.model.report.aggregate;
 
+import com.social_media.postservice.application.exception.ReportAlreadyProcessedException;
+import com.social_media.postservice.domain.exception.InvalidPostException;
 import com.social_media.postservice.domain.model.report.valueobject.ReportReason;
 import com.social_media.postservice.domain.model.report.valueobject.ReportStatus;
 import lombok.*;
@@ -41,14 +43,15 @@ public class Report {
 
     public void dismiss() {
         if (this.status != ReportStatus.PENDING) {
-            throw new IllegalStateException("Only PENDING reports can be dismissed");
+            //            throw new InvalidPostException("Only PENDING reports can be dismissed");
+            throw new ReportAlreadyProcessedException();
         }
         this.status = ReportStatus.DISMISSED;
     }
 
     public void actOn() {
         if (this.status != ReportStatus.PENDING) {
-            throw new IllegalStateException("Only PENDING reports can be acted on");
+            throw new ReportAlreadyProcessedException();
         }
         this.status = ReportStatus.ACTED_ON;
     }

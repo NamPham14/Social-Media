@@ -1,0 +1,74 @@
+@startuml
+title Interaction Service — reaction consistency and resilience
+skinparam shadowing false
+autonumber
+
+actor User
+participant "API Gateway" as Gateway
+participant "Interaction Controller" as API
+participant "Create Interaction Use Case" as Create
+participant "TargetAvailabilityPort" as TargetPort
+participant "Post or Comment Service" as Target
+database "Interaction DB" as DB
+
+User -> Gateway : POST /interaction/api/v1/interactions\nLIKE or CLAP
+Gateway -> API : trusted actor + correlation ID
+API -> Create : command(actor, targetType, targetId, reactionType)
+Create -> TargetPort : ensureAvailable(...)
+TargetPort -> Target : Feign availability check
+
+alt Target missing/deleted
+  Target --> TargetPort : 404 or available=false
+  TargetPort --> Create : TargetNotFound
+  Create --> API : no ledger/counter write
+  API --> Gateway : 404
+  Gateway --> User : target-not-found response
+else Dependency timeout/5xx
+  TargetPort -> Target : one bounded retry
+  TargetPort --> Create : DependencyUnavailable
+  Create --> API : fail closed
+  API --> Gateway : 503
+  Gateway --> User : dependency-unavailable response
+else Target available
+  Target --> TargetPort : available
+  group One local database transaction
+    Create -> DB : INSERT ledger ON CONFLICT DO NOTHING
+    alt Row inserted
+      Create -> DB : upsert counter row + atomic increment
+      DB --> Create : created=true
+    else Same reaction already exists
+      DB --> Create : created=false, duplicateIgnored=true
+    end
+    Create -> DB : read authoritative ledger row
+  end
+  Create --> API : current reaction state
+  API --> Gateway : 200
+  Gateway --> User : reaction response
+end
+
+note over Create,DB
+  ADR-002: LIKE and CLAP are independent.
+  Unique key includes reactionType.
+end note
+
+== Remove is local and idempotent ==
+User -> Gateway : DELETE /interaction/api/v1/interactions/{type}/{id}/{reaction}
+Gateway -> API : trusted actor
+API -> DB : atomic delete ledger row
+alt Row removed
+  API -> DB : guarded counter decrement in same transaction
+  API --> Gateway : 200, data=true
+  Gateway --> User : removed
+else Already absent
+  API --> Gateway : 200, data=false; counter unchanged
+  Gateway --> User : already absent
+end
+
+== Reads do not depend on target providers ==
+User -> Gateway : GET actor reactions / counters
+Gateway -> API : request
+API -> DB : local query (single or batch)
+DB --> API : ledger/counters; missing counter = zero
+API --> Gateway : 200 even if Post/Comment is down
+Gateway --> User : local read response
+@enduml
