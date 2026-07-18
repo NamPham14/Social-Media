@@ -1,7 +1,11 @@
 package com.social_media.postservice.application.usecase;
 
 import com.social_media.postservice.application.command.DeletePostCommand;
+import com.social_media.postservice.application.dto.events.PostCreatedIntegrationEvent;
+import com.social_media.postservice.application.dto.events.PostDeleteIntegrationEvent;
+import com.social_media.postservice.application.ports.output.PostEventPublisher;
 import com.social_media.postservice.application.service.MediaService;
+import com.social_media.postservice.config.security.SecurityUtils;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
 //import com.social_media.postservice.domain.model.post.entity.PostMedia;
 import com.social_media.postservice.domain.model.post.entity.PostMedia;
@@ -15,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -23,8 +28,9 @@ import java.util.List;
 @Transactional
 public class DeletePostUseCase {
 
-    PostRepository postRepository;
-    MediaService mediaService;
+    private final PostRepository postRepository;
+    private final MediaService mediaService;
+    private final PostEventPublisher postEventPublisher;
 
     public void execute(DeletePostCommand command) {
         Post post = postRepository.findById(command.getPostId())
@@ -46,6 +52,16 @@ public class DeletePostUseCase {
                         + postMedia.getPublicId(), e);
             }
         }
+
+        PostDeleteIntegrationEvent postCreatedIntegrationEvent = new PostDeleteIntegrationEvent(
+                UUID.randomUUID().toString(),
+                post.getId().toString(),
+                SecurityUtils.getCurrentUserId().toString()
+        );
+        postEventPublisher.publishPostDelete(postCreatedIntegrationEvent);
+
+
+
     }
 }
 
