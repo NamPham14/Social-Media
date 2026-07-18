@@ -5,6 +5,7 @@ import com.social_media.common.api.PageResponse;
 import com.social_media.followerservice.api.dto.FeedResponse;
 import com.social_media.followerservice.api.dto.FollowRequest;
 import com.social_media.followerservice.api.dto.FollowResponse;
+import com.social_media.followerservice.api.path.ApiPath;
 import com.social_media.followerservice.application.command.FollowUserCommand;
 import com.social_media.followerservice.application.command.UnfollowUserCommand;
 import com.social_media.followerservice.application.usecase.*;

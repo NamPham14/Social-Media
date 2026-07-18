@@ -34,7 +34,7 @@ public class NotificationRepositoryAdapter implements NotificationRepository {
     }
 
     @Override
-    public Optional<Notification> findByIdAndRecipientId(Long id, Long recipientId) {
+    public Optional<Notification> findByIdAndRecipientId(Long id, String recipientId) {
         return jpaRepository.findByIdAndRecipientId(id, recipientId).map(mapper::toDomain);
     }
 
@@ -49,7 +49,7 @@ public class NotificationRepositoryAdapter implements NotificationRepository {
     }
 
     @Override
-    public List<Notification> findByRecipientId(Long recipientId, int limit) {
+    public List<Notification> findByRecipientId(String recipientId, int limit) {
         return jpaRepository.findByRecipientIdOrderByCreatedAtDesc(recipientId, pageRequest(limit))
                 .stream()
                 .map(mapper::toDomain)
@@ -57,7 +57,7 @@ public class NotificationRepositoryAdapter implements NotificationRepository {
     }
 
     @Override
-    public List<Notification> findUnreadByRecipientId(Long recipientId, int limit) {
+    public List<Notification> findUnreadByRecipientId(String recipientId, int limit) {
         return jpaRepository.findByRecipientIdAndIsReadFalseOrderByCreatedAtDesc(recipientId, pageRequest(limit))
                 .stream()
                 .map(mapper::toDomain)
@@ -65,7 +65,7 @@ public class NotificationRepositoryAdapter implements NotificationRepository {
     }
 
     @Override
-    public long countUnreadByRecipientId(Long recipientId) {
+    public long countUnreadByRecipientId(String recipientId) {
         return jpaRepository.countByRecipientIdAndIsReadFalse(recipientId);
     }
 

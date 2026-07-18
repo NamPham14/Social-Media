@@ -2,9 +2,9 @@ package com.social_media.notificationservice.infrastructure.messaging.kafka.even
 
 public record InterviewScheduledEvent(
         String eventId,
-        Long interviewId,
-        Long candidateUserId,
-        Long recruiterUserId,
+        String interviewId,
+        String candidateUserId,
+        String recruiterUserId,
         String recruiterName,
         String scheduledAt
 ) {

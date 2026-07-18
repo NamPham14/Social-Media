@@ -1,4 +1,4 @@
-package com.social_media.notificationservice.infrastructure.messaging.kafka.event;
+package com.social_media.followerservice.application.dto.events;
 
 public record UserFollowedEvent(
         String eventId,
