@@ -127,4 +127,8 @@ public class Post {
         this.removedAt = LocalDateTime.now();
         this.deletedAt = LocalDateTime.now();
     }
+
+    public void rule(String caption){
+
+    }
 }
