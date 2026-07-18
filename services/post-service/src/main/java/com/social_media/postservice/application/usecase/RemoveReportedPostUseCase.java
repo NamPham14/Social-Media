@@ -1,6 +1,8 @@
 package com.social_media.postservice.application.usecase;
 
 import com.social_media.postservice.application.command.ReviewReportCommand;
+import com.social_media.postservice.application.dto.events.PostDeleteIntegrationEvent;
+import com.social_media.postservice.application.ports.output.PostEventPublisher;
 import com.social_media.postservice.application.service.MediaService;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
 import com.social_media.postservice.domain.model.post.entity.PostMedia;
@@ -15,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -24,6 +27,7 @@ public class RemoveReportedPostUseCase {
     private final PostRepository postRepository;
     private final ReportRepository reportRepository;
     private final MediaService mediaService;
+    private final PostEventPublisher postEventPublisher;
 
     @Transactional
     public void execute(ReviewReportCommand command) {
@@ -52,5 +56,11 @@ public class RemoveReportedPostUseCase {
                         + postMedia.getPublicId(), e);
             }
         }
+
+        postEventPublisher.publishPostDelete(new PostDeleteIntegrationEvent(
+                UUID.randomUUID().toString(),
+                post.getId().toString(),
+                post.getUserId().toString()
+        ));
     }
 }

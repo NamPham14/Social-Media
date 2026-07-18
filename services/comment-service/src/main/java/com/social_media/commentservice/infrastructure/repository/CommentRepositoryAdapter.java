@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
 import com.social_media.commentservice.domain.model.PageResult;
 import org.springframework.data.domain.PageRequest;
@@ -52,6 +53,16 @@ public class CommentRepositoryAdapter implements CommentRepository {
         commentJpaRepository.countActiveByPostIds(postIds)
                 .forEach(result -> counts.put(result.getPostId(), result.getCommentCount()));
         return counts;
+    }
+
+    @Override
+    public List<UUID> findActiveIdsByPostId(UUID postId) {
+        return commentJpaRepository.findActiveIdsByPostId(postId);
+    }
+
+    @Override
+    public int softDeleteAllByPostId(UUID postId) {
+        return commentJpaRepository.softDeleteAllByPostId(postId);
     }
 
     @Override

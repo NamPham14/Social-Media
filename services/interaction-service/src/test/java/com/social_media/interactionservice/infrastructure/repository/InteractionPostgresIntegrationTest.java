@@ -192,6 +192,30 @@ class InteractionPostgresIntegrationTest {
         assertThat(bookmarkColumn).isZero();
     }
 
+    @Test
+    void targetCleanupDeletesLedgerRowsAndCountersIdempotently() {
+        UUID firstCommentId = UUID.randomUUID();
+        UUID secondCommentId = UUID.randomUUID();
+        addReaction(UUID.randomUUID(), firstCommentId, ReactionType.LIKE);
+        addReaction(UUID.randomUUID(), secondCommentId, ReactionType.CLAP);
+
+        inTransaction(() -> {
+            assertThat(interactionRepository.removeAllByTargets(
+                    TargetType.COMMENT, List.of(firstCommentId, secondCommentId))).isEqualTo(2);
+            assertThat(counterRepository.removeAllByTargets(
+                    TargetType.COMMENT, List.of(firstCommentId, secondCommentId))).isEqualTo(2);
+        });
+
+        assertThat(counterRepository.find(TargetType.COMMENT, firstCommentId)).isEmpty();
+        assertThat(counterRepository.find(TargetType.COMMENT, secondCommentId)).isEmpty();
+        inTransaction(() -> {
+            assertThat(interactionRepository.removeAllByTargets(
+                    TargetType.COMMENT, List.of(firstCommentId, secondCommentId))).isZero();
+            assertThat(counterRepository.removeAllByTargets(
+                    TargetType.COMMENT, List.of(firstCommentId, secondCommentId))).isZero();
+        });
+    }
+
     private void addReaction(UUID actorId, UUID targetId, ReactionType reactionType) {
         inTransaction(() -> {
             if (interactionRepository.insertIfAbsent(actorId, TargetType.COMMENT, targetId, reactionType)) {

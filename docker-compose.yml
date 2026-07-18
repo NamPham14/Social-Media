@@ -217,6 +217,7 @@ services:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
       SPRING_DATASOURCE_URL: jdbc:postgresql://post-db:5432/post_service
       SPRING_DATASOURCE_PASSWORD: 123456
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
     depends_on:
       eureka-server:
         condition: service_healthy
@@ -235,10 +236,13 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://comment-db:5432/comment_service
       SPRING_DATASOURCE_PASSWORD: 123456
       INTERNAL_SERVICE_TOKEN: "${INTERNAL_SERVICE_TOKEN:?INTERNAL_SERVICE_TOKEN must be set}"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
     depends_on:
       eureka-server:
         condition: service_healthy
       comment-db:
+        condition: service_healthy
+      kafka:
         condition: service_healthy
 
   follower-service:
@@ -268,10 +272,13 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://interaction-db:5432/interaction_service
       SPRING_DATASOURCE_PASSWORD: 123456
       INTERNAL_SERVICE_TOKEN: "${INTERNAL_SERVICE_TOKEN:?INTERNAL_SERVICE_TOKEN must be set}"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
     depends_on:
       eureka-server:
         condition: service_healthy
       interaction-db:
+        condition: service_healthy
+      kafka:
         condition: service_healthy
 
   notification-service:

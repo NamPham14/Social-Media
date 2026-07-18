@@ -16,7 +16,7 @@ spring:
       okhttp:
         enabled: true
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer # từ string hoặc int => chuyển ra byte
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer # từ object chuyển ra JSON

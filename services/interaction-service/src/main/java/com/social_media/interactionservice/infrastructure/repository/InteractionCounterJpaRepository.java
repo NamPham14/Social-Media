@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.UUID;
+import java.util.Collection;
+import com.social_media.interactionservice.domain.model.TargetType;
 
 public interface InteractionCounterJpaRepository extends JpaRepository<InteractionCounter, InteractionCounterId> {
 
@@ -44,4 +46,9 @@ public interface InteractionCounterJpaRepository extends JpaRepository<Interacti
             """, nativeQuery = true)
     void decrement(@Param("targetType") String targetType, @Param("targetId") UUID targetId,
                    @Param("reactionType") String reactionType);
+
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Query("delete from InteractionCounter c where c.id.targetType = :targetType and c.id.targetId in :targetIds")
+    int removeAllByTargets(@Param("targetType") TargetType targetType,
+                           @Param("targetIds") Collection<UUID> targetIds);
 }

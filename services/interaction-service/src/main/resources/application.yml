@@ -23,6 +23,19 @@ spring:
     baseline-on-migrate: true
     baseline-version: 0
     locations: classpath:db/migration/interaction
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: interaction-service-target-deletion
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      properties:
+        enable.idempotence: true
   cloud:
     openfeign:
       client:
@@ -64,12 +77,14 @@ resilience4j:
           - com.social_media.interactionservice.domain.exception.TargetNotFoundException
           - com.social_media.interactionservice.domain.exception.ReactionConflictException
           - com.social_media.interactionservice.domain.exception.DependencyRejectedException
+
       commentAvailability:
         max-attempts: 2
         wait-duration: 100ms
         ignore-exceptions:
           - com.social_media.interactionservice.domain.exception.TargetNotFoundException
           - com.social_media.interactionservice.domain.exception.DependencyRejectedException
+
   circuitbreaker:
     instances:
       postAvailability:
@@ -89,3 +104,12 @@ resilience4j:
         ignore-exceptions:
           - com.social_media.interactionservice.domain.exception.TargetNotFoundException
           - com.social_media.interactionservice.domain.exception.DependencyRejectedException
+
+messaging:
+  topics:
+    post-deleted: post-deleted-topic
+    post-comments-deleted: post-comments-deleted-topic
+  retry:
+    max-attempts: 5
+    backoff-ms: 1000
+    dlt-suffix: -dlt

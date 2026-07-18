@@ -68,8 +68,13 @@ class CommentPostgresIntegrationTest {
                 WHERE schemaname = 'public' AND indexname = 'idx_comments_active_post_id'
                 """, Integer.class);
 
-        assertThat(successfulMigrations).isEqualTo(2);
+        Integer outboxTable = jdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'comment_outbox'",
+                Integer.class);
+
+        assertThat(successfulMigrations).isEqualTo(3);
         assertThat(commentTable).isEqualTo(1);
+        assertThat(outboxTable).isEqualTo(1);
         assertThat(activeCountIndex).isEqualTo(1);
     }
 
@@ -129,5 +134,25 @@ class CommentPostgresIntegrationTest {
         assertThat(counts).doesNotContainKey(missingPost);
         assertThat(commentRepository.countActiveByPostId(firstPost)).isEqualTo(1L);
         assertThat(commentRepository.countActiveByPostId(missingPost)).isZero();
+    }
+
+    @Test
+    @Transactional
+    void postDeletionSoftDeletesOnlyCommentsBelongingToThatPost() {
+        UUID deletedPostId = UUID.randomUUID();
+        UUID retainedPostId = UUID.randomUUID();
+        Comment first = jpaRepository.saveAndFlush(
+                Comment.create(deletedPostId, UUID.randomUUID(), null, "first"));
+        Comment second = jpaRepository.saveAndFlush(
+                Comment.create(deletedPostId, UUID.randomUUID(), first.getId(), "second"));
+        jpaRepository.saveAndFlush(Comment.create(retainedPostId, UUID.randomUUID(), null, "retained"));
+
+        assertThat(commentRepository.findActiveIdsByPostId(deletedPostId))
+                .containsExactlyInAnyOrder(first.getId(), second.getId());
+        assertThat(commentRepository.softDeleteAllByPostId(deletedPostId)).isEqualTo(2);
+
+        assertThat(commentRepository.countActiveByPostId(deletedPostId)).isZero();
+        assertThat(commentRepository.countActiveByPostId(retainedPostId)).isEqualTo(1);
+        assertThat(commentRepository.softDeleteAllByPostId(deletedPostId)).isZero();
     }
 }

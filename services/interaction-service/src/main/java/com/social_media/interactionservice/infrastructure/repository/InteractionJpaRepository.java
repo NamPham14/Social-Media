@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 import com.social_media.interactionservice.domain.model.ReactionType;
 import com.social_media.interactionservice.domain.model.TargetType;
@@ -33,4 +34,9 @@ public interface InteractionJpaRepository extends JpaRepository<Interaction, UUI
 
     List<Interaction> findByUserIdAndTargetTypeAndTargetIdOrderByReactionTypeAsc(
             UUID actorId, TargetType targetType, UUID targetId);
+
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Query("delete from Interaction i where i.targetType = :targetType and i.targetId in :targetIds")
+    int removeAllByTargets(@Param("targetType") TargetType targetType,
+                           @Param("targetIds") Collection<UUID> targetIds);
 }

@@ -1,11 +1,9 @@
 package com.social_media.postservice.application.usecase;
 
 import com.social_media.postservice.application.command.DeletePostCommand;
-import com.social_media.postservice.application.dto.events.PostCreatedIntegrationEvent;
 import com.social_media.postservice.application.dto.events.PostDeleteIntegrationEvent;
 import com.social_media.postservice.application.ports.output.PostEventPublisher;
 import com.social_media.postservice.application.service.MediaService;
-import com.social_media.postservice.config.security.SecurityUtils;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
 //import com.social_media.postservice.domain.model.post.entity.PostMedia;
 import com.social_media.postservice.domain.model.post.entity.PostMedia;
@@ -53,12 +51,12 @@ public class DeletePostUseCase {
             }
         }
 
-        PostDeleteIntegrationEvent postCreatedIntegrationEvent = new PostDeleteIntegrationEvent(
+        PostDeleteIntegrationEvent postDeletedEvent = new PostDeleteIntegrationEvent(
                 UUID.randomUUID().toString(),
                 post.getId().toString(),
-                SecurityUtils.getCurrentUserId().toString()
+                post.getUserId().toString()
         );
-        postEventPublisher.publishPostDelete(postCreatedIntegrationEvent);
+        postEventPublisher.publishPostDelete(postDeletedEvent);
 
 
 
