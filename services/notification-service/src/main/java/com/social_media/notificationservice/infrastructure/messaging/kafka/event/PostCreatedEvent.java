@@ -2,8 +2,8 @@ package com.social_media.notificationservice.infrastructure.messaging.kafka.even
 
 public record PostCreatedEvent(
         String eventId,
-        Long postId,
-        Long authorId,
+        String postId,
+        String authorId,
         String authorName,
         String caption
 ) {

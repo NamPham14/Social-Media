@@ -4,10 +4,10 @@ import com.social_media.notificationservice.domain.model.enums.NotificationType;
 import com.social_media.notificationservice.domain.model.enums.TargetType;
 
 public record CreateNotificationFromEventCommand(String sourceEventId,
-                                                 Long recipientId,
-                                                 Long actorId,
+                                                 String recipientId,
+                                                 String actorId,
                                                  NotificationType notificationType,
                                                  TargetType targetType,
-                                                 Long targetId,
+                                                 String targetId,
                                                  String message) {
 }

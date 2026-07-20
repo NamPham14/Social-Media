@@ -42,10 +42,10 @@ public class NotificationEntity {
     private Long id;
 
     @Column(name = "recipient_id", nullable = false)
-    private Long recipientId;
+    private String recipientId;
 
     @Column(name = "actor_id", nullable = false)
-    private Long actorId;
+    private String actorId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "notification_type", nullable = false, length = 50)
@@ -56,7 +56,7 @@ public class NotificationEntity {
     private TargetType targetType;
 
     @Column(name = "target_id", nullable = false)
-    private Long targetId;
+    private String targetId;
 
     @Column(name = "source_event_id", nullable = false, unique = true, length = 100)
     private String sourceEventId;

@@ -10,17 +10,17 @@ public interface NotificationRepository {
 
     Optional<Notification> findById(Long id);
 
-    Optional<Notification> findByIdAndRecipientId(Long id, Long recipientId);
+    Optional<Notification> findByIdAndRecipientId(Long id, String recipientId);
 
     Optional<Notification> findBySourceEventId(String sourceEventId);
 
     boolean existsBySourceEventId(String sourceEventId);
 
-    List<Notification> findByRecipientId(Long recipientId, int limit);
+    List<Notification> findByRecipientId(String recipientId, int limit);
 
-    List<Notification> findUnreadByRecipientId(Long recipientId, int limit);
+    List<Notification> findUnreadByRecipientId(String recipientId, int limit);
 
-    long countUnreadByRecipientId(Long recipientId);
+    long countUnreadByRecipientId(String recipientId);
 
     void delete(Notification notification);
 }

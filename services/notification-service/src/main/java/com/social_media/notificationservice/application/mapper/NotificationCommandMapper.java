@@ -26,23 +26,23 @@ public class NotificationCommandMapper {
     public CreateNotificationFromEventCommand fromUserFollowedEvent(UserFollowedEvent event) {
         return new CreateNotificationFromEventCommand(
                 event.eventId(),
-                event.followingUserId(),
-                event.followerUserId(),
+                event.followingId(),
+                event.followerId(),
                 NotificationType.USER_FOLLOWED,
                 TargetType.USER,
-                event.followerUserId(),
+                event.followerId(),
                 event.followerName() + " followed you"
         );
     }
 
     public CreateNotificationFromEventCommand fromPostCreatedEvent(PostCreatedEvent event) {
         return new CreateNotificationFromEventCommand(
-                event.eventId(),                    // sourceEventId
-                event.authorId(),                   // recipientId
-                event.authorId(),                   // actorId
-                NotificationType.POST_CREATED,      // notificationType
-                TargetType.POST,                    // targetType
-                event.postId(),                     // targetId
+                event.eventId(),
+                event.authorId(),
+                event.authorId(),
+                NotificationType.POST_CREATED,
+                TargetType.POST,
+                event.postId(),
                 event.authorName() + " created a new post: " + event.caption()
         );
     }

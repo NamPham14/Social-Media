@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableFeignClients
 @EnableScheduling
 public class CommentServiceApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(CommentServiceApplication.class, args);
     }
