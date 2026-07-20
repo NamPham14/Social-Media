@@ -21,12 +21,15 @@ public class FeignPostAvailabilityAdapter implements PostAvailabilityPort {
     @Override
     @Retry(name = "postAvailability")
     @CircuitBreaker(name = "postAvailability", fallbackMethod = "unavailable")
-    public void ensureCommentable(UUID postId, UUID actorId) {
+    public AvailablePost getCommentable(UUID postId, UUID actorId) {
         try {
             ApiResponse<PostSnapshot> response = postClient.getPost(postId, actorId);
             PostSnapshot post = response == null ? null : response.getData();
-            if (post == null || post.id() == null) throw new TargetNotFoundException("Post '" + postId + "' does not exist");
+            if (post == null || post.id() == null || post.userId() == null) {
+                throw new TargetNotFoundException("Post '" + postId + "' does not exist");
+            }
             if (!"PUBLIC".equals(post.status())) throw new InvalidCommentException("Post is not commentable");
+            return new AvailablePost(post.id(), post.userId());
         } catch (FeignException.NotFound ex) {
             throw new TargetNotFoundException("Post '" + postId + "' does not exist");
         } catch (FeignException.Forbidden ex) {
@@ -39,7 +42,7 @@ public class FeignPostAvailabilityAdapter implements PostAvailabilityPort {
     }
 
     @SuppressWarnings("unused")
-    private void unavailable(UUID postId, UUID actorId, Throwable failure) {
+    private AvailablePost unavailable(UUID postId, UUID actorId, Throwable failure) {
         if (failure instanceof TargetNotFoundException targetNotFound) throw targetNotFound;
         if (failure instanceof InvalidCommentException invalid) throw invalid;
         if (failure instanceof DependencyRejectedException rejected) throw rejected;

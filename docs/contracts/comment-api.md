@@ -11,7 +11,7 @@ All command endpoints require `X-Auth-User-Id: <uuid>`. Responses include `X-Cor
 | GET | `/api/v1/posts/{postId}/comments?page=0&size=20` | Page a post discussion, oldest first |
 | GET | `/api/v1/posts/{postId}/comments/count` | Count active comments and replies for one post; missing local rows return zero |
 | POST | `/api/v1/comments/counts/batch` | Count active comments for up to 100 post UUIDs in one query |
-| GET | `/internal/v1/comments/{commentId}/availability` | Interaction target validation; requires `X-Internal-Service-Token` |
+| GET | `/internal/v1/comments/{commentId}/availability` | Interaction target validation and immutable `ownerId`; requires `X-Internal-Service-Token` |
 
 Successful public responses use common API code `1000`. Errors use stable Comment codes in the
 `45000..45999` range, the matching HTTP status, a safe message and correlation `traceId`.
@@ -32,3 +32,6 @@ Successful public responses use common API code `1000`. Errors use stable Commen
 | `45999` | 500 | Unexpected internal failure; details are logged by `traceId` only |
 
 Comment counts exclude soft-deleted comments, including deleted parents that remain visible as discussion placeholders. Batch results de-duplicate post IDs in first-seen order and return zero for posts with no local active comments; count queries do not call Post Service.
+
+Committed root comments and replies publish the UUID V1 events defined in
+`comment-interaction-notification-events.md` through the Comment transactional outbox.

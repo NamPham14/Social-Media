@@ -1,7 +1,10 @@
 package com.social_media.commentservice.infrastructure.repository;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.social_media.commentservice.application.event.CommentNotificationEvent;
 import com.social_media.commentservice.domain.model.Comment;
 import com.social_media.commentservice.domain.repository.CommentRepository;
+import com.social_media.commentservice.infrastructure.messaging.outbox.CommentOutboxRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -16,7 +20,10 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.support.TransactionTemplate;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 
@@ -51,8 +58,12 @@ class CommentPostgresIntegrationTest {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    private PlatformTransactionManager transactionManager;
+
     @AfterEach
     void cleanDatabase() {
+        jdbcTemplate.execute("TRUNCATE TABLE comment_outbox");
         jpaRepository.deleteAllInBatch();
     }
 
@@ -72,9 +83,13 @@ class CommentPostgresIntegrationTest {
                 "SELECT COUNT(*) FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'comment_outbox'",
                 Integer.class);
 
-        assertThat(successfulMigrations).isEqualTo(3);
+        assertThat(successfulMigrations).isEqualTo(4);
         assertThat(commentTable).isEqualTo(1);
         assertThat(outboxTable).isEqualTo(1);
+        assertThat(jdbcTemplate.queryForObject("""
+                SELECT COUNT(*) FROM information_schema.columns
+                WHERE table_schema = 'public' AND table_name = 'comment_outbox' AND column_name = 'topic'
+                """, Integer.class)).isEqualTo(1);
         assertThat(activeCountIndex).isEqualTo(1);
     }
 
@@ -154,5 +169,48 @@ class CommentPostgresIntegrationTest {
         assertThat(commentRepository.countActiveByPostId(deletedPostId)).isZero();
         assertThat(commentRepository.countActiveByPostId(retainedPostId)).isEqualTo(1);
         assertThat(commentRepository.softDeleteAllByPostId(deletedPostId)).isZero();
+    }
+
+    @Test
+    void commentAndOutboxRowsShareTheSameDatabaseTransaction() {
+        UUID postId = UUID.randomUUID();
+        UUID actorId = UUID.randomUUID();
+        UUID recipientId = UUID.randomUUID();
+        UUID commentId = UUID.randomUUID();
+        CommentNotificationEvent event = new CommentNotificationEvent(
+                UUID.randomUUID(), CommentNotificationEvent.COMMENT_CREATED, 1, Instant.now(),
+                commentId, postId, null, actorId, recipientId);
+        CommentOutboxRepository outbox = new CommentOutboxRepository(
+                jdbcTemplate, new ObjectMapper().findAndRegisterModules());
+        ReflectionTestUtils.setField(outbox, "commentCreatedTopic", "comment-created-topic");
+
+        new TransactionTemplate(transactionManager).executeWithoutResult(status -> {
+            jdbcTemplate.update("""
+                    INSERT INTO comments (id, post_id, user_id, content, is_deleted, created_at, updated_at)
+                    VALUES (?, ?, ?, 'rollback', false, NOW(), NOW())
+                    """, commentId, postId, actorId);
+            outbox.append(event);
+            status.setRollbackOnly();
+        });
+
+        assertThat(jdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM comments WHERE id = ?", Integer.class, commentId)).isZero();
+        assertThat(jdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM comment_outbox WHERE event_id = ?", Integer.class, event.eventId())).isZero();
+
+        new TransactionTemplate(transactionManager).executeWithoutResult(status -> {
+            jdbcTemplate.update("""
+                    INSERT INTO comments (id, post_id, user_id, content, is_deleted, created_at, updated_at)
+                    VALUES (?, ?, ?, 'commit', false, NOW(), NOW())
+                    """, commentId, postId, actorId);
+            outbox.append(event);
+        });
+
+        assertThat(jdbcTemplate.queryForObject(
+                "SELECT topic FROM comment_outbox WHERE event_id = ?", String.class, event.eventId()))
+                .isEqualTo("comment-created-topic");
+        assertThat(jdbcTemplate.queryForObject(
+                "SELECT payload ->> 'recipientId' FROM comment_outbox WHERE event_id = ?",
+                String.class, event.eventId())).isEqualTo(recipientId.toString());
     }
 }

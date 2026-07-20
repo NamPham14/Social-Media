@@ -200,15 +200,17 @@ class TargetAvailabilityFeignIntegrationTest {
     }
 
     private String publicPostResponse(UUID postId) {
+        UUID ownerId = UUID.randomUUID();
         return """
                 {"code":1000,"message":"ok","status":200,
-                 "data":{"id":"%s","status":"PUBLIC"}}
-                """.formatted(postId);
+                 "data":{"id":"%s","userId":"%s","status":"PUBLIC"}}
+                """.formatted(postId, ownerId);
     }
 
     private String commentAvailability(UUID commentId, boolean available) {
+        UUID ownerId = UUID.randomUUID();
         return """
-                {"targetId":"%s","available":%s,"reason":"%s"}
-                """.formatted(commentId, available, available ? "ACTIVE" : "DELETED");
+                {"targetId":"%s","ownerId":"%s","available":%s,"reason":"%s"}
+                """.formatted(commentId, ownerId, available, available ? "ACTIVE" : "DELETED");
     }
 }

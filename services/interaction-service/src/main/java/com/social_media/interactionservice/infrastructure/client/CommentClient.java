@@ -12,5 +12,5 @@ public interface CommentClient {
     Availability getAvailability(@PathVariable("commentId") UUID commentId,
                                  @RequestHeader("X-Internal-Service-Token") String serviceToken);
 
-    record Availability(UUID targetId, boolean available, String reason) { }
+    record Availability(UUID targetId, UUID ownerId, boolean available, String reason) { }
 }
