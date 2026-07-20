@@ -5,6 +5,7 @@ import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -21,5 +22,9 @@ public interface BookmarkRepository {
     Bookmark save(Bookmark bookmark);
 
     void delete(Bookmark bookmark);
+
+    List<Bookmark> findAllByPostId(UUID postId);
+
+    void deleteAllByPostId(UUID postId);
 }
 

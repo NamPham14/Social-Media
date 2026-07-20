@@ -41,5 +41,10 @@ public class ReportRepositoryAdapter implements ReportRepository {
         ReportEntity saved = reportJpaRepository.save(entity);
         return reportMapper.toDomain(saved);
     }
+
+    @Override
+    public void deleteReportByPostId(UUID postId) {
+        reportJpaRepository.deleteByPostId(postId);
+    }
 }
 

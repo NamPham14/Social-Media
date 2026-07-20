@@ -1,12 +1,15 @@
 package com.social_media.postservice.application.usecase;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.social_media.postservice.application.exception.CloudinaryUploadException;
 import com.social_media.postservice.application.exception.UnauthorizedActionException;
 import com.social_media.postservice.application.command.CreatePostCommand;
 import com.social_media.postservice.application.dto.PostResponse;
 import com.social_media.postservice.application.dto.UploadResponse;
 import com.social_media.postservice.application.dto.events.PostCreatedIntegrationEvent;
-import com.social_media.postservice.application.ports.output.PostEventPublisher;
 import com.social_media.postservice.config.security.SecurityUtils;
+import com.social_media.postservice.domain.model.outbox.OutBox;
+import com.social_media.postservice.domain.model.outbox.OutboxStatus;
+import com.social_media.postservice.domain.repository.OutBoxRepository;
 import com.social_media.postservice.infrastructure.client.identity.service.IdentityServiceHelper; // Tiêm Helper mới
 import com.social_media.postservice.application.service.MediaService;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
@@ -18,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,15 +33,14 @@ public class CreatePostUseCase {
     private final MediaService mediaService;
     private final PostRepository postRepository;
     private final IdentityServiceHelper identityServiceHelper;
-    private final PostEventPublisher postEventPublisher;
+    private final OutBoxRepository outBoxRepository;
+    private final ObjectMapper objectMapper;
 
     @Transactional
     public PostResponse execute(CreatePostCommand command) {
 
         String statusUser = identityServiceHelper.getSafeUserStatus(command.getUserId());
 
-        String idMaHopLe = "99999999-9999-9999-9999-999999999999";
-        //String statusUser = identityServiceHelper.getSafeUserStatus(UUID.fromString(idMaHopLe));
         if ("BANNED".equals(statusUser)) {
             throw new UnauthorizedActionException();
         }
@@ -66,7 +69,17 @@ public class CreatePostUseCase {
                     savedPost.getCaption(),
                     savedPost.getCreatedAt()
             );
-            postEventPublisher.publishPostCreated(postCreatedIntegrationEvent);
+
+            OutBox outBox = OutBox.builder()
+                    .id(UUID.randomUUID())
+                    .topic("post-created")
+                    .eventType("CREATED POST")
+                    .payload(objectMapper.writeValueAsString(postCreatedIntegrationEvent))
+                    .status(OutboxStatus.NEW)
+                    .createdAt(LocalDateTime.now())
+                    .build();
+
+            outBoxRepository.save(outBox);
 
 
 

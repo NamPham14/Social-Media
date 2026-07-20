@@ -17,5 +17,7 @@ public interface ReportRepository {
     Page<Report> findByStatus(ReportStatus status, Pageable pageable);
 
     Report save(Report report);
+
+    void deleteReportByPostId(UUID postId);
 }
 
