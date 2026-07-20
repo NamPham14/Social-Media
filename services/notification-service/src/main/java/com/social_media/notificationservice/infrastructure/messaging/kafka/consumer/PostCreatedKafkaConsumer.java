@@ -10,11 +10,13 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class PostCreatedKafkaConsumer {
+
     private final NotificationCommandMapper mapper;
     private final CreateNotificationFromEventUseCase useCase;
 
-    @KafkaListener(topics = "post-created-topic", groupId = "notification-service")
+    @KafkaListener(topics = "post-created", groupId = "notification-service")
     public void consume(PostCreatedEvent event) {
         useCase.handle(mapper.fromPostCreatedEvent(event));
     }
 }
+

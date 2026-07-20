@@ -1,10 +1,12 @@
 package com.social_media.notificationservice.infrastructure.messaging.kafka.event;
 
+import java.time.LocalDateTime;
+
 public record PostCreatedEvent(
-        String eventId,
-        Long postId,
-        Long authorId,
-        String authorName,
-        String caption
+        String id,
+        String postId,
+        String authorId,
+        String caption,
+        LocalDateTime createdAt
 ) {
 }

@@ -13,16 +13,28 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-
-application:
-  security:
-    jwt:
-      secretKey: "12345678901234567890123456789012"
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      properties:
+        enable.idempotence: true
+        retries: 5
+        retry.backoff.ms: 1000
+        spring.json.add.type.headers: false
 
 eureka:
   client:
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
 server:
   port: 8084
 
@@ -30,7 +42,3 @@ logging:
   level:
     org.springframework.web: DEBUG
     com.social_media: DEBUG
-
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${server.port}

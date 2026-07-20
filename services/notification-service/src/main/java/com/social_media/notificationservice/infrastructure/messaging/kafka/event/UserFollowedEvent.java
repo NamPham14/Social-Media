@@ -2,8 +2,8 @@ package com.social_media.notificationservice.infrastructure.messaging.kafka.even
 
 public record UserFollowedEvent(
         String eventId,
-        Long followerUserId,
-        Long followingUserId,
+        String followerId,
+        String followingId,
         String followerName
 ) {
 }

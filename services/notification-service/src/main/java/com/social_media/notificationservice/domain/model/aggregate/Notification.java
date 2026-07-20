@@ -9,11 +9,11 @@ import java.time.LocalDateTime;
 @Getter
 public class Notification {
     private final Long id;
-    private final Long recipientId;
-    private final Long actorId;
+    private final String recipientId;
+    private final String actorId;
     private final NotificationType notificationType;
     private final TargetType targetType;
-    private final Long targetId;
+    private final String targetId;
     private final String sourceEventId;
     private final String message;
     private Boolean isRead;
@@ -22,11 +22,11 @@ public class Notification {
 
     private Notification(
             Long id,
-            Long recipientId,
-            Long actorId,
+            String recipientId,
+            String actorId,
             NotificationType notificationType,
             TargetType targetType,
-            Long targetId,
+            String targetId,
             String sourceEventId,
             String message,
             Boolean isRead,
@@ -48,11 +48,11 @@ public class Notification {
 
     public static Notification createFromEvent(
             String sourceEventId,
-            Long recipientId,
-            Long actorId,
+            String recipientId,
+            String actorId,
             NotificationType notificationType,
             TargetType targetType,
-            Long targetId,
+            String targetId,
             String message
     ) {
         validateCreate(sourceEventId, recipientId, actorId, notificationType, targetType, targetId, message);
@@ -75,11 +75,11 @@ public class Notification {
 
     public static Notification restore(
             Long id,
-            Long recipientId,
-            Long actorId,
+            String recipientId,
+            String actorId,
             NotificationType notificationType,
             TargetType targetType,
-            Long targetId,
+            String targetId,
             String sourceEventId,
             String message,
             Boolean isRead,
@@ -108,7 +108,7 @@ public class Notification {
         );
     }
 
-    public void markAsRead(Long currentUserId) {
+    public void markAsRead(String currentUserId) {
         validateOwner(currentUserId);
 
         if (isRead()) {
@@ -119,7 +119,7 @@ public class Notification {
         this.readAt = LocalDateTime.now();
     }
 
-    public void markAsUnread(Long currentUserId) {
+    public void markAsUnread(String currentUserId) {
         validateOwner(currentUserId);
 
         if (isUnread()) {
@@ -138,11 +138,11 @@ public class Notification {
         return Boolean.TRUE.equals(this.isRead);
     }
 
-    public boolean belongsTo(Long currentUserId) {
+    public boolean belongsTo(String currentUserId) {
         return currentUserId != null && this.recipientId.equals(currentUserId);
     }
 
-    private void validateOwner(Long currentUserId) {
+    private void validateOwner(String currentUserId) {
         if (currentUserId == null) {
             throw new IllegalArgumentException("currentUserId is required");
         }
@@ -154,11 +154,11 @@ public class Notification {
 
     private static void validateCreate(
             String sourceEventId,
-            Long recipientId,
-            Long actorId,
+            String recipientId,
+            String actorId,
             NotificationType notificationType,
             TargetType targetType,
-            Long targetId,
+            String targetId,
             String message
     ) {
         requireText(sourceEventId, "sourceEventId");
@@ -170,7 +170,7 @@ public class Notification {
         requireText(message, "message");
     }
 
-    private static void validateNotSelfAction(Long recipientId, Long actorId) {
+    private static void validateNotSelfAction(String recipientId, String actorId) {
         if (recipientId.equals(actorId)) {
             throw new IllegalArgumentException("Cannot create notification for self action");
         }

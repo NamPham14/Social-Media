@@ -2,9 +2,9 @@ package com.social_media.notificationservice.infrastructure.messaging.kafka.even
 
 public record PostLikedEvent(
         String eventId,
-        Long postId,
-        Long postOwnerId,
-        Long actorId,
+        String postId,
+        String postOwnerId,
+        String actorId,
         String actorName
 ) {
 }
