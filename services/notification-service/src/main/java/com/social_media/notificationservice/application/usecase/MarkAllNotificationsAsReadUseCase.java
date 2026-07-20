@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class MarkAllNotificationsAsReadUseCase {
     private final NotificationRepository notificationRepository;
 
-    public void execute(Long currentUserId) {
+    public void execute(String currentUserId) {
         notificationRepository.findUnreadByRecipientId(currentUserId, 100)
                 .forEach(notification -> {
                     notification.markAsRead(currentUserId);
@@ -17,3 +17,4 @@ public class MarkAllNotificationsAsReadUseCase {
                 });
     }
 }
+

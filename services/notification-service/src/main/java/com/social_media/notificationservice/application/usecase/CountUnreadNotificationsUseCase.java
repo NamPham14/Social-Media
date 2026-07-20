@@ -9,7 +9,8 @@ import org.springframework.stereotype.Service;
 public class CountUnreadNotificationsUseCase {
     private final NotificationRepository notificationRepository;
 
-    public Long execute(Long currentUserId) {
+    public Long execute(String currentUserId) {
         return notificationRepository.countUnreadByRecipientId(currentUserId);
     }
 }
+

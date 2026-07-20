@@ -38,3 +38,9 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}
+
+messaging:
+  topics:
+    reaction-created: reaction-created-topic
+    comment-created: comment-created-topic
+    comment-replied: comment-replied-topic

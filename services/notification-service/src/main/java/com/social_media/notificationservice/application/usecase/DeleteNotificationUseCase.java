@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class DeleteNotificationUseCase {
     private final NotificationRepository notificationRepository;
 
-    public void execute(Long notificationId, Long currentUserId) {
+    public void execute(Long notificationId, String currentUserId) {
         Notification notification = notificationRepository
                 .findByIdAndRecipientId(notificationId, currentUserId)
                 .orElseThrow(() -> new IllegalArgumentException("Notification not found"));
@@ -18,3 +18,4 @@ public class DeleteNotificationUseCase {
         notificationRepository.delete(notification);
     }
 }
+

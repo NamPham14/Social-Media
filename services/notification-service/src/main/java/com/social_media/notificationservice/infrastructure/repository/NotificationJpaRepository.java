@@ -1,6 +1,8 @@
 package com.social_media.notificationservice.infrastructure.repository;
 
 import com.social_media.notificationservice.infrastructure.entity.NotificationEntity;
+import com.social_media.notificationservice.domain.model.enums.TargetType;
+import com.social_media.notificationservice.domain.model.enums.NotificationType;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -21,4 +23,16 @@ public interface NotificationJpaRepository extends JpaRepository<NotificationEnt
     List<NotificationEntity> findByRecipientIdAndIsReadFalseOrderByCreatedAtDesc(String recipientId, Pageable pageable);
 
     long countByRecipientIdAndIsReadFalse(String recipientId);
+
+    void deleteByTargetTypeAndTargetId(TargetType targetType, String targetId);
+
+    void deleteByRecipientIdAndActorIdAndNotificationTypeAndTargetTypeAndTargetId(
+            String recipientId,
+            String actorId,
+            NotificationType notificationType,
+            TargetType targetType,
+            String targetId
+    );
 }
+
+

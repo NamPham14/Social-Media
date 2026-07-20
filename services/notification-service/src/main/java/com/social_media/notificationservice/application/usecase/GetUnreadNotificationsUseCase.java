@@ -14,10 +14,11 @@ public class GetUnreadNotificationsUseCase {
     private final NotificationRepository notificationRepository;
     private final NotificationApiMapper mapper;
 
-    public List<NotificationResponse> execute(Long currentUserId, int limit) {
+    public List<NotificationResponse> execute(String currentUserId, int limit) {
         return notificationRepository.findUnreadByRecipientId(currentUserId, limit)
                 .stream()
                 .map(mapper::toResponse)
                 .toList();
     }
 }
+
