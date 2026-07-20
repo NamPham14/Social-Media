@@ -2,7 +2,7 @@ package com.social_media.commentservice.application.usecase;
 
 import com.social_media.commentservice.application.event.PostCommentsDeletedEvent;
 import com.social_media.commentservice.application.event.PostDeletedEvent;
-import com.social_media.commentservice.application.port.out.CommentDeletionOutbox;
+import com.social_media.commentservice.application.port.out.CommentEventOutbox;
 import com.social_media.commentservice.domain.repository.CommentRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,7 +26,7 @@ class DeleteCommentsByPostUseCaseImplTest {
     @Mock
     private CommentRepository commentRepository;
     @Mock
-    private CommentDeletionOutbox outbox;
+    private CommentEventOutbox outbox;
     @InjectMocks
     private DeleteCommentsByPostUseCaseImpl useCase;
 
@@ -56,6 +56,6 @@ class DeleteCommentsByPostUseCaseImplTest {
 
         assertThat(useCase.execute(event)).isZero();
 
-        verify(outbox, never()).append(org.mockito.ArgumentMatchers.any());
+        verify(outbox, never()).append(org.mockito.ArgumentMatchers.any(PostCommentsDeletedEvent.class));
     }
 }

@@ -4,7 +4,7 @@
 
 The owned synchronous slice and deletion-cleanup event slice are complete enough for integration
 with the rest of the project. The production-wide flow still depends on Post event reliability,
-managed Kafka topic/alert provisioning and any future Notification contracts owned by other teams.
+managed Kafka topic/alert provisioning and the UUID Notification consumers owned by another team.
 
 | Area | Status | Evidence or remaining condition |
 | --- | --- | --- |
@@ -16,7 +16,8 @@ managed Kafka topic/alert provisioning and any future Notification contracts own
 | Comment-to-Interaction integration | Complete | Real applications and isolated PostgreSQL databases are exercised over HTTP/Feign by the E2E module. |
 | Post provider integration | Cross-team dependency | Consumers currently call public `GET /api/v1/posts/{id}` and can process `PostDeleted`; the internal availability contract and reliable production of that event remain owned by Post Service. |
 | Deletion event reliability | Complete in owned services | Comment consumes `PostDeleted`, commits soft-delete plus outbox atomically, and relays `PostCommentsDeletedV1`; Interaction cleanup is idempotent with bounded retry and service-specific DLT recovery. |
-| Notification events | Gated | CR-NOTIFICATION-001 is still proposed. No Notification event should be published before UUID schema, recipient resolution and consumer idempotency are accepted. |
+| Notification event producers | Complete in owned services | UUID recipients are resolved from Post/Comment owners; versioned create/reply/reaction events commit through per-service outboxes with self/duplicate suppression. |
+| Notification event consumers | Cross-team dependency | Notification still models actor/recipient/target IDs as `Long`; it must migrate to UUID and add idempotent consumers, bounded retry and DLT before subscribing. |
 
 ## Responsibility boundary
 
@@ -46,12 +47,14 @@ It does not own target content/visibility, profiles, bookmarks or notifications.
 5. Read-only local endpoints do not call Post/Comment, so a provider outage does not take counter or discussion reads down.
 6. Post deletion cleanup is asynchronous: each service applies an idempotent local transaction;
    Comment records the downstream cleanup event in its outbox before commit.
+7. Notification publication is asynchronous and at-least-once: command state and the producer
+   outbox row commit together, and Notification deduplicates by `eventId` after its UUID migration.
 
 ## Deliberate limitations and learning debt
 
 - `Comment` and Interaction persistence models still carry JPA annotations in the domain package. This is a pragmatic Tactical DDD compromise; separating pure aggregates from persistence entities is an optional refactor, not a release blocker.
 - Availability calls execute inside application methods marked transactional. PostgreSQL connections are normally acquired lazily, but a later hardening pass may separate remote validation from the shortest possible database transaction.
-- Entity timestamps use `LocalDateTime`. Future integration-event timestamps must use UTC `Instant`/offset values.
+- Entity timestamps use `LocalDateTime`; integration-event timestamps use UTC `Instant` values.
 - A shared static internal token is appropriate for this project environment. Production would require secret management, rotation and preferably workload identity/mTLS.
 - Counter repair is a runbook operation; no public repair endpoint is intentionally exposed.
 - Module tests cover listener configuration and outbox relay behavior, but the current E2E does not
@@ -61,9 +64,9 @@ It does not own target content/visibility, profiles, bookmarks or notifications.
 
 The implementation demonstrates bounded contexts and ADRs, Tactical DDD ports/use cases, database-per-service, Flyway, REST contracts, Gateway trust boundaries, Eureka discovery, OpenFeign, failure classification, timeout/retry/circuit breaker, idempotency, database concurrency, batch composition, correlation, metrics, Testcontainers, WireMock and real-service E2E.
 
-The accepted deletion slice now demonstrates transaction plus outbox, versioned Kafka event,
-idempotent cleanup, bounded retry and DLT. Future asynchronous work should only be added for an
-accepted business contract and must include replay and end-to-end verification.
+The deletion and notification-producer slices demonstrate transaction plus outbox, versioned Kafka
+events, idempotent local behavior, bounded retry and DLT where applicable. Notification consumer
+E2E remains a release dependency owned by the Notification team.
 
 ## Release gate
 

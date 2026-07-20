@@ -13,8 +13,10 @@ public class FeignTargetAvailabilityAdapter implements TargetAvailabilityPort {
     private final CommentAvailabilityChecker commentChecker;
 
     @Override
-    public void ensureAvailable(TargetType targetType, UUID targetId, UUID actorId) {
-        if (targetType == TargetType.POST) postChecker.ensure(targetId, actorId);
-        else commentChecker.ensure(targetId);
+    public AvailableTarget getAvailable(TargetType targetType, UUID targetId, UUID actorId) {
+        UUID ownerId = targetType == TargetType.POST
+                ? postChecker.ensure(targetId, actorId)
+                : commentChecker.ensure(targetId);
+        return new AvailableTarget(targetType, targetId, ownerId);
     }
 }

@@ -13,5 +13,5 @@ public interface PostClient {
     ApiResponse<PostSnapshot> getPost(@PathVariable("postId") UUID postId,
                                       @RequestHeader("X-Auth-User-Id") UUID actorId);
 
-    record PostSnapshot(UUID id, String status) { }
+    record PostSnapshot(UUID id, UUID userId, String status) { }
 }

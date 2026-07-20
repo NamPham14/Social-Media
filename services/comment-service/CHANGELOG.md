@@ -8,8 +8,11 @@
 - Bounded Kafka retry and a Comment-specific DLT for `PostDeleted` consumer failures.
 - A `local` Spring profile aligned with the root Compose Comment database port.
 - Transactional Comment outbox relay for idempotent `PostCommentsDeletedV1` propagation.
+- Transactional `CommentCreatedV1` and `CommentRepliedV1` notification events with resolved UUID
+  recipients, self-action suppression and topic-aware outbox relay.
 - Authenticated actor boundary, stable domain errors, reply validation, edit/delete/get and paginated discussion APIs.
 - Internal comment availability contract and target validation port.
+- Immutable comment `ownerId` in the internal availability contract for reaction notifications.
 - PostgreSQL Testcontainers coverage for Flyway ownership, deleted-parent visibility and exact pagination.
 - Correlation-aware create/delete command logs and Micrometer latency/error metrics with bounded tags.
 - Single and batch active-comment count APIs for Feed/BFF composition, backed by one grouped query and a partial PostgreSQL index.
