@@ -42,7 +42,7 @@ public class FollowUserUseCaseImpl implements FollowUserUseCase {
         // Verify target user exists and is ACTIVE
         UUID followingId = command.followingId().value();
         try {
-            String status = identityServiceClient.getUserStatus(followingId);
+            String status = identityServiceClient.getUserStatus(followingId); //
             if (!"ACTIVE".equals(status)) {
                 throw new EntityNotFoundException("Target user is not active or not found");
             }

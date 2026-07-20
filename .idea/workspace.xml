@@ -5,29 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/controller/ApiPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/path/ApiPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/controller/FollowerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/controller/FollowerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/port/FollowEventPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/port/FollowEventPublisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.postman/resources.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/.postman/resources.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/api-gateway.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/api-gateway.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/FollowUserUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/FollowUserUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/UnfollowUserUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/UnfollowUserUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/messaging/KafkaEventProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/messaging/KafkaEventProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/messaging/LocalFollowEventListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/command/CreateNotificationFromEventCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/command/CreateNotificationFromEventCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/mapper/NotificationCommandMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/mapper/NotificationCommandMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/domain/model/aggregate/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/domain/model/aggregate/Notification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/domain/repository/NotificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/domain/repository/NotificationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/adapter/NotificationRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/adapter/NotificationRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/entity/NotificationEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/entity/NotificationEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/event/InterviewScheduledEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/event/InterviewScheduledEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/event/PostCreatedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/event/PostCreatedEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/event/PostLikedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/event/PostLikedEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/event/UserFollowedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/event/UserFollowedEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/repository/NotificationJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/repository/NotificationJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/shared/common-web/src/main/java/com/social_media/common/exception/ErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="467" />
+    <option name="cachedIndexableFilesCount" value="570" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,61 +40,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.6463756911134086" />
-      <entry key="MS500" value="4.143485695506923" />
-      <entry key="S2" value="6.8324684859071825" />
-      <entry key="S5" value="7.981870759512742" />
-      <entry key="S10" value="8.461280771272042" />
-      <entry key="S30" value="9.208267615359942" />
-      <entry key="S60" value="10.954437785364686" />
-      <entry key="M2" value="16.888477808671727" />
-      <entry key="M5" value="44.57352029987861" />
-      <entry key="M10" value="78.51262063585287" />
-      <entry key="M15" value="105.94652418503472" />
-      <entry key="M30" value="180.91853554695558" />
-      <entry key="H1" value="283.56150034515207" />
-      <entry key="H2" value="379.6161917466418" />
-      <entry key="H4" value="447.90895981495476" />
-      <entry key="D1" value="519.6706656955762" />
-      <entry key="W1" value="533.6226860319127" />
+      <entry key="MS100" value="1.1455520571616378" />
+      <entry key="MS500" value="2.3706834682223183" />
+      <entry key="S2" value="3.8724947700429264" />
+      <entry key="S5" value="4.570231367177717" />
+      <entry key="S10" value="5.942299949136777" />
+      <entry key="S30" value="12.888800975146266" />
+      <entry key="S60" value="18.254230902705054" />
+      <entry key="M2" value="27.333724548072226" />
+      <entry key="M5" value="65.33402189632764" />
+      <entry key="M10" value="120.04455060179276" />
+      <entry key="M15" value="161.18111060188383" />
+      <entry key="M30" value="255.32767254718578" />
+      <entry key="H1" value="375.5096492577551" />
+      <entry key="H2" value="488.4351864556211" />
+      <entry key="H4" value="569.7574194356603" />
+      <entry key="D1" value="656.1941622573546" />
+      <entry key="W1" value="673.1134646967895" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="4.1214167557992195E-95" />
-      <entry key="S5" value="2.0807856394636887E-38" />
-      <entry key="S10" value="1.8973505451411072E-19" />
-      <entry key="S30" value="8.953396441716966E-7" />
-      <entry key="S60" value="0.0013349422225008753" />
-      <entry key="M2" value="0.0516400898125622" />
-      <entry key="M5" value="0.4692631558904266" />
-      <entry key="M10" value="1.151779811447128" />
-      <entry key="M15" value="1.8702557831710427" />
-      <entry key="M30" value="3.880006380633611" />
-      <entry key="H1" value="6.284172919690038" />
-      <entry key="H2" value="8.237594493356667" />
-      <entry key="H4" value="9.49783182109962" />
-      <entry key="D1" value="10.73081496573738" />
-      <entry key="W1" value="10.961054961708156" />
+      <entry key="MS500" value="5.27591673E-314" />
+      <entry key="S2" value="4.7926364135120077E-79" />
+      <entry key="S5" value="4.701625118219576E-32" />
+      <entry key="S10" value="2.1824597575111182E-16" />
+      <entry key="S30" value="7.370859413440437E-6" />
+      <entry key="S60" value="0.004003030082433535" />
+      <entry key="M2" value="0.10509171274821506" />
+      <entry key="M5" value="0.8630177065141084" />
+      <entry key="M10" value="2.0246412566934255" />
+      <entry key="M15" value="2.985074890918456" />
+      <entry key="M30" value="5.338520191254944" />
+      <entry key="H1" value="8.155641172520296" />
+      <entry key="H2" value="10.525290200522159" />
+      <entry key="H4" value="12.093283310294973" />
+      <entry key="D1" value="13.65542273845307" />
+      <entry key="W1" value="13.950070970621733" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.6130397174065654" />
-      <entry key="MS500" value="4.126736073473426" />
-      <entry key="S2" value="6.825126694937862" />
-      <entry key="S5" value="7.978363684607949" />
-      <entry key="S10" value="8.459405313344124" />
-      <entry key="S30" value="9.207324888689534" />
-      <entry key="S60" value="10.95469068445314" />
-      <entry key="M2" value="16.938207334313905" />
-      <entry key="M5" value="45.03879895593643" />
-      <entry key="M10" value="79.66007175604433" />
-      <entry key="M15" value="107.81234968646581" />
-      <entry key="M30" value="184.79412267137883" />
-      <entry key="H1" value="289.8420781391236" />
-      <entry key="H2" value="387.8513974794505" />
-      <entry key="H4" value="457.4053994818922" />
-      <entry key="D1" value="530.4012154564434" />
-      <entry key="W1" value="544.5837022072208" />
+      <entry key="MS100" value="1.0945094295644968" />
+      <entry key="MS500" value="2.3061452763188575" />
+      <entry key="S2" value="3.8064798795098502" />
+      <entry key="S5" value="4.531226579695326" />
+      <entry key="S10" value="5.9134788983702675" />
+      <entry key="S30" value="12.871061045538843" />
+      <entry key="S60" value="18.24678210214111" />
+      <entry key="M2" value="27.428172506665554" />
+      <entry key="M5" value="66.18146246722544" />
+      <entry key="M10" value="122.05422169718572" />
+      <entry key="M15" value="164.1529845074396" />
+      <entry key="M30" value="260.6563081263049" />
+      <entry key="H1" value="383.6585376281585" />
+      <entry key="H2" value="498.9563402854379" />
+      <entry key="H4" value="581.8483793250322" />
+      <entry key="D1" value="669.8491546737026" />
+      <entry key="W1" value="687.0634730192785" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -178,14 +161,15 @@
               <entry key="ApiGatewayApplication" value="STOPPED" />
               <entry key="EurekaServerApplication" value="STOPPED" />
               <entry key="FollowerServiceApplication" value="STOPPED" />
-              <entry key="IdentityServiceApplication" value="FAILED" />
+              <entry key="IdentityServiceApplication" value="STOPPED" />
+              <entry key="ProfileServiceApplication" value="STOPPED" />
             </map>
           </value>
         </entry>
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.FollowerServiceApplication">
+  <component name="RunManager" selected="Spring Boot.IdentityServiceApplication">
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="api-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.apigateway.ApiGatewayApplication" />
@@ -299,6 +283,8 @@
       <workItem from="1784015455563" duration="2942000" />
       <workItem from="1784306512563" duration="2105000" />
       <workItem from="1784337643290" duration="12046000" />
+      <workItem from="1784365227465" duration="2433000" />
+      <workItem from="1784530861768" duration="699000" />
     </task>
     <servers />
   </component>
