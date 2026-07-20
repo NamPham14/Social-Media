@@ -5,6 +5,9 @@ import com.social_media.postservice.infrastructure.entity.ReportEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
@@ -13,5 +16,9 @@ import java.util.UUID;
 public interface ReportJpaRepository extends JpaRepository<ReportEntity, UUID> {
 
     Page<ReportEntity> findByStatus(ReportStatus status, Pageable pageable);
+
+    @Modifying
+    @Query("DELETE from ReportEntity r where r.postId = :postId")
+    void deleteByPostId(@Param("postId") UUID postId);
 }
 

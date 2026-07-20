@@ -6,7 +6,7 @@ import com.social_media.interactionservice.domain.model.TargetType;
 import java.util.UUID;
 
 public record CreateInteractionCommand(
-        UUID userId,
+        UUID actorId,
         TargetType targetType,
         UUID targetId,
         ReactionType reactionType

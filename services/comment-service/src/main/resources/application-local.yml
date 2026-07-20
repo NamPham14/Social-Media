@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5435/comment_service
+    username: postgres
+    password: 123456
+  jpa:
+    show-sql: true
+
+internal:
+  service-token: ${INTERNAL_SERVICE_TOKEN:local-development-token}

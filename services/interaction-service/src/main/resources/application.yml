@@ -1,21 +1,53 @@
 server:
   port: 8086
 
+internal:
+  service-token: ${INTERNAL_SERVICE_TOKEN:}
+
 spring:
   application:
     name: interaction-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/interaction_service
-    username: postgres
-    password: 1234
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
-    show-sql: true
+      ddl-auto: validate
+    show-sql: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+  flyway:
+    baseline-on-migrate: true
+    baseline-version: 0
+    locations: classpath:db/migration/interaction
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: interaction-service-target-deletion
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      properties:
+        enable.idempotence: true
+  cloud:
+    openfeign:
+      client:
+        config:
+          interactionPostClient:
+            # Two bounded attempts stay under about 4.1s: 1s connect + 2s read + 100ms backoff.
+            connectTimeout: 1000
+            readTimeout: 2000
+          interactionCommentClient:
+            # Keep the same availability-check budget for Comment targets.
+            connectTimeout: 1000
+            readTimeout: 2000
 
 eureka:
   client:
@@ -23,11 +55,62 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 management:
+  metrics:
+    tags:
+      service: ${spring.application.name}
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: health,info,metrics,circuitbreakers
 
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}
+
+resilience4j:
+  retry:
+    instances:
+      postAvailability:
+        max-attempts: 2
+        wait-duration: 100ms
+        ignore-exceptions:
+          - com.social_media.interactionservice.domain.exception.TargetNotFoundException
+          - com.social_media.interactionservice.domain.exception.ReactionConflictException
+          - com.social_media.interactionservice.domain.exception.DependencyRejectedException
+
+      commentAvailability:
+        max-attempts: 2
+        wait-duration: 100ms
+        ignore-exceptions:
+          - com.social_media.interactionservice.domain.exception.TargetNotFoundException
+          - com.social_media.interactionservice.domain.exception.DependencyRejectedException
+
+  circuitbreaker:
+    instances:
+      postAvailability:
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        ignore-exceptions:
+          - com.social_media.interactionservice.domain.exception.TargetNotFoundException
+          - com.social_media.interactionservice.domain.exception.ReactionConflictException
+          - com.social_media.interactionservice.domain.exception.DependencyRejectedException
+      commentAvailability:
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        ignore-exceptions:
+          - com.social_media.interactionservice.domain.exception.TargetNotFoundException
+          - com.social_media.interactionservice.domain.exception.DependencyRejectedException
+
+messaging:
+  topics:
+    post-deleted: post-deleted-topic
+    post-comments-deleted: post-comments-deleted-topic
+  retry:
+    max-attempts: 5
+    backoff-ms: 1000
+    dlt-suffix: -interaction-dlt
+    dlt-publish-timeout-seconds: 10

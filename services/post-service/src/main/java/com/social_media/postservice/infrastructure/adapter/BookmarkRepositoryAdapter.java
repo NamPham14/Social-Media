@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -55,6 +56,17 @@ public class BookmarkRepositoryAdapter implements BookmarkRepository {
     public void delete(Bookmark bookmark) {
         BookmarkEntity entity = bookmarkMapper.toEntity(bookmark);
         bookmarkJpaRepository.delete(entity);
+    }
+
+    @Override
+    public List<Bookmark> findAllByPostId(UUID postId) {
+        List<BookmarkEntity> bookmarkEntities = bookmarkJpaRepository.findAllByPostId(postId);
+        return bookmarkEntities.stream().map(bookmarkMapper::toDomain).toList();
+    }
+
+    @Override
+    public void deleteAllByPostId(UUID postId) {
+        bookmarkJpaRepository.deleteByPostId(postId);
     }
 }
 
