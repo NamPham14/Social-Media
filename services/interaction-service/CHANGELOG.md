@@ -7,6 +7,8 @@
 - Stable service-specific API error codes with correlation-aware 400/404/405/409/415/500/503 handling.
 - A `local` Spring profile aligned with the root Compose Interaction database port.
 - Bounded retry and service-specific DLT recovery for Post and Comment target cleanup events.
+- Transactional Interaction outbox and `ReactionCreatedV1` notification events with resolved UUID
+  recipients plus duplicate/self-action suppression.
 - Idempotent add/remove reaction flows and single/batch counter queries.
 - Target availability outbound port.
 - PostgreSQL Testcontainers coverage for concurrent writes, transaction rollback, safe removal and legacy BOOKMARK migration.

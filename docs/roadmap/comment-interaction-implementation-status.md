@@ -11,14 +11,17 @@
 - Phase 6a (deletion cleanup): idempotent `PostDeleted` consumers, transactional Comment outbox,
   polling relay for `PostCommentsDeletedV1`, bounded listener retry, service-specific DLTs and
   acknowledged DLT publishing.
+- Phase 6b (notification producers): transactional Comment/Interaction outboxes for
+  `CommentCreatedV1`, `CommentRepliedV1` and `ReactionCreatedV1`, resolved UUID recipients,
+  self/duplicate suppression, acknowledged relay publishing and rollback/commit coverage.
 - Phase 7: batch Interaction counter API plus single/batch active Comment counts, avoiding per-post Comment queries for Feed/BFF composition.
 - Phase 8 (local-command slice): correlation-aware structured command logs, bounded-cardinality business metrics, Actuator metrics/circuit endpoints and an operations runbook.
 - Phase 9 (synchronous slice): real Comment and Interaction applications, isolated PostgreSQL databases and HTTP/Feign E2E coverage for duplicate reaction, idempotent removal, deleted targets and dependency failure.
 
 ## Intentionally gated
 
-- Notification event/outbox work remains gated by acceptance of CR-NOTIFICATION-001. The accepted
-  deletion-cleanup event slice is implemented independently and does not publish Notification events.
+- Notification UUID consumers remain cross-team work under CR-NOTIFICATION-001. Producer contracts,
+  topics and outboxes are complete; the current Long-based Notification model must not consume them yet.
 - The preferred Post internal availability endpoint remains proposed in CR-POST-001. The current adapter consumes the existing `GET /api/v1/posts/{id}` contract and classifies only `PUBLIC` as available.
 - Kafka/Post-dependent full-flow E2E remains cross-team work; local listener, retry/DLT configuration
   and outbox relay behavior are covered by module tests.

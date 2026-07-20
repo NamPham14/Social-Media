@@ -1,8 +1,8 @@
-package com.social_media.commentservice.infrastructure.messaging.outbox;
+package com.social_media.interactionservice.infrastructure.messaging.outbox;
 
 import java.util.UUID;
 
-public record CommentOutboxMessage(
+public record InteractionOutboxMessage(
         UUID eventId,
         UUID aggregateId,
         String eventType,

@@ -21,11 +21,12 @@ public class CommentAvailabilityChecker {
 
     @Retry(name = "commentAvailability")
     @CircuitBreaker(name = "commentAvailability", fallbackMethod = "unavailable")
-    public void ensure(UUID id) {
+    public UUID ensure(UUID id) {
         try {
             CommentClient.Availability availability = client.getAvailability(id, serviceToken);
-            if (availability == null || !availability.available())
+            if (availability == null || availability.ownerId() == null || !availability.available())
                 throw new TargetNotFoundException("Comment '" + id + "' is unavailable");
+            return availability.ownerId();
         } catch (FeignException.NotFound ex) {
             throw new TargetNotFoundException("Comment '" + id + "' does not exist");
         } catch (FeignException.FeignClientException ex) {
@@ -36,7 +37,7 @@ public class CommentAvailabilityChecker {
     }
 
     @SuppressWarnings("unused")
-    private void unavailable(UUID id, Throwable failure) {
+    private UUID unavailable(UUID id, Throwable failure) {
         if (failure instanceof TargetNotFoundException notFound) throw notFound;
         if (failure instanceof DependencyRejectedException rejected) throw rejected;
         throw new DependencyUnavailableException("comment-service");

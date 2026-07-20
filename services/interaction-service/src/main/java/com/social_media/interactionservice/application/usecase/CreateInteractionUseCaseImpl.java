@@ -2,6 +2,8 @@ package com.social_media.interactionservice.application.usecase;
 
 import com.social_media.interactionservice.api.dto.InteractionResponse;
 import com.social_media.interactionservice.application.command.CreateInteractionCommand;
+import com.social_media.interactionservice.application.event.ReactionNotificationEvent;
+import com.social_media.interactionservice.application.port.out.InteractionEventOutbox;
 import com.social_media.interactionservice.domain.model.Interaction;
 import com.social_media.interactionservice.application.port.out.TargetAvailabilityPort;
 import com.social_media.interactionservice.domain.repository.InteractionCounterRepository;
@@ -17,11 +19,13 @@ public class CreateInteractionUseCaseImpl implements CreateInteractionUseCase {
     private final InteractionRepository interactionRepository;
     private final InteractionCounterRepository interactionCounterRepository;
     private final TargetAvailabilityPort targetAvailabilityPort;
+    private final InteractionEventOutbox eventOutbox;
 
     @Override
     @Transactional
     public InteractionResponse execute(CreateInteractionCommand command) {
-        targetAvailabilityPort.ensureAvailable(command.targetType(), command.targetId(), command.actorId());
+        TargetAvailabilityPort.AvailableTarget target = targetAvailabilityPort.getAvailable(
+                command.targetType(), command.targetId(), command.actorId());
         boolean created = interactionRepository.insertIfAbsent(
                 command.actorId(), command.targetType(), command.targetId(), command.reactionType());
         if (created) {
@@ -30,6 +34,9 @@ public class CreateInteractionUseCaseImpl implements CreateInteractionUseCase {
         Interaction interaction = interactionRepository.find(command.actorId(), command.targetType(),
                         command.targetId(), command.reactionType())
                 .orElseThrow(() -> new IllegalStateException("Reaction ledger insert was not observable"));
+        if (created && !interaction.getUserId().equals(target.ownerId())) {
+            eventOutbox.append(ReactionNotificationEvent.from(interaction, target.ownerId()));
+        }
         return toResponse(interaction, created);
     }
 

@@ -1,4 +1,4 @@
-package com.social_media.commentservice.infrastructure.messaging.outbox;
+package com.social_media.interactionservice.infrastructure.messaging.outbox;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,18 +21,18 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class CommentOutboxRelayTest {
+class InteractionOutboxRelayTest {
 
     @Mock
-    private CommentOutboxRepository outboxRepository;
+    private InteractionOutboxRepository outboxRepository;
     @Mock
     private KafkaTemplate<String, String> kafkaTemplate;
 
-    private CommentOutboxRelay relay;
+    private InteractionOutboxRelay relay;
 
     @BeforeEach
     void setUp() {
-        relay = new CommentOutboxRelay(outboxRepository, kafkaTemplate);
+        relay = new InteractionOutboxRelay(outboxRepository, kafkaTemplate);
         ReflectionTestUtils.setField(relay, "batchSize", 100);
         ReflectionTestUtils.setField(relay, "retryDelayMs", 5000L);
         ReflectionTestUtils.setField(relay, "publishTimeoutSeconds", 10L);
@@ -42,11 +42,11 @@ class CommentOutboxRelayTest {
     @Test
     void marksMessagePublishedAfterKafkaAcknowledgesIt() {
         UUID eventId = UUID.randomUUID();
-        UUID postId = UUID.randomUUID();
-        CommentOutboxMessage message = new CommentOutboxMessage(
-                eventId, postId, "PostCommentsDeletedV1", "post-comments-deleted-topic", "{}", 0);
+        UUID interactionId = UUID.randomUUID();
+        InteractionOutboxMessage message = new InteractionOutboxMessage(
+                eventId, interactionId, "ReactionCreatedV1", "reaction-created-topic", "{}", 0);
         when(outboxRepository.lockPendingBatch(100)).thenReturn(List.of(message));
-        when(kafkaTemplate.send("post-comments-deleted-topic", postId.toString(), "{}"))
+        when(kafkaTemplate.send("reaction-created-topic", interactionId.toString(), "{}"))
                 .thenReturn(CompletableFuture.completedFuture(null));
 
         relay.relayPendingEvents();
@@ -58,14 +58,14 @@ class CommentOutboxRelayTest {
     @Test
     void schedulesAnotherAttemptWhenKafkaRejectsTheMessage() {
         UUID eventId = UUID.randomUUID();
-        UUID postId = UUID.randomUUID();
-        CommentOutboxMessage message = new CommentOutboxMessage(
-                eventId, postId, "CommentCreatedV1", "comment-created-topic", "{}", 2);
+        UUID interactionId = UUID.randomUUID();
+        InteractionOutboxMessage message = new InteractionOutboxMessage(
+                eventId, interactionId, "ReactionCreatedV1", "reaction-created-topic", "{}", 2);
         CompletableFuture<org.springframework.kafka.support.SendResult<String, String>> failed =
                 new CompletableFuture<>();
         failed.completeExceptionally(new IllegalStateException("broker unavailable"));
         when(outboxRepository.lockPendingBatch(100)).thenReturn(List.of(message));
-        when(kafkaTemplate.send("comment-created-topic", postId.toString(), "{}"))
+        when(kafkaTemplate.send("reaction-created-topic", interactionId.toString(), "{}"))
                 .thenReturn(failed);
 
         relay.relayPendingEvents();

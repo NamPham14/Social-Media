@@ -128,6 +128,7 @@ class CommentInteractionSynchronousE2ETest {
                         "--spring.application.name=interaction-service-e2e",
                         "--spring.flyway.locations=classpath:db/migration/interaction",
                         "--internal.service-token=" + INTERNAL_TOKEN,
+                        "--messaging.topics.reaction-created=reaction-created-topic",
                         "--spring.cloud.openfeign.client.config.interactionCommentClient.url=" + commentUrl,
                         "--spring.cloud.openfeign.client.config.interactionCommentClient.connectTimeout=200",
                         "--spring.cloud.openfeign.client.config.interactionCommentClient.readTimeout=500",
@@ -158,6 +159,7 @@ class CommentInteractionSynchronousE2ETest {
                 "--eureka.client.enabled=false",
                 "--eureka.client.register-with-eureka=false",
                 "--eureka.client.fetch-registry=false",
+                "--messaging.outbox.enabled=false",
                 "--management.endpoints.enabled-by-default=false",
                 "--logging.level.root=WARN"
         };

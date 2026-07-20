@@ -2,7 +2,7 @@ package com.social_media.commentservice.application.usecase;
 
 import com.social_media.commentservice.application.event.PostCommentsDeletedEvent;
 import com.social_media.commentservice.application.event.PostDeletedEvent;
-import com.social_media.commentservice.application.port.out.CommentDeletionOutbox;
+import com.social_media.commentservice.application.port.out.CommentEventOutbox;
 import com.social_media.commentservice.domain.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ public class DeleteCommentsByPostUseCaseImpl implements DeleteCommentsByPostUseC
     private static final int EVENT_BATCH_SIZE = 500;
 
     private final CommentRepository commentRepository;
-    private final CommentDeletionOutbox outbox;
+    private final CommentEventOutbox outbox;
 
     @Override
     @Transactional

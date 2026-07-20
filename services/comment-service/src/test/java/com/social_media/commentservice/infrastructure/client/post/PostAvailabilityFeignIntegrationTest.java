@@ -106,7 +106,7 @@ class PostAvailabilityFeignIntegrationTest {
                 .willReturn(okJson(publicPostResponse(postId))));
         MDC.put("correlationId", correlationId);
 
-        assertThatCode(() -> availability.ensureCommentable(postId, actorId)).doesNotThrowAnyException();
+        assertThat(availability.getCommentable(postId, actorId).ownerId()).isNotNull();
 
         verify(1, getRequestedFor(urlEqualTo("/api/v1/posts/" + postId))
                 .withHeader("X-Auth-User-Id", equalTo(actorId.toString()))
@@ -118,7 +118,7 @@ class PostAvailabilityFeignIntegrationTest {
         UUID postId = UUID.randomUUID();
         stubFor(get(urlEqualTo("/api/v1/posts/" + postId)).willReturn(aResponse().withStatus(404)));
 
-        assertThatThrownBy(() -> availability.ensureCommentable(postId, UUID.randomUUID()))
+        assertThatThrownBy(() -> availability.getCommentable(postId, UUID.randomUUID()))
                 .isInstanceOf(TargetNotFoundException.class);
 
         verify(1, getRequestedFor(urlEqualTo("/api/v1/posts/" + postId)));
@@ -131,7 +131,7 @@ class PostAvailabilityFeignIntegrationTest {
         UUID postId = UUID.randomUUID();
         stubFor(get(urlEqualTo("/api/v1/posts/" + postId)).willReturn(aResponse().withStatus(403)));
 
-        assertThatThrownBy(() -> availability.ensureCommentable(postId, UUID.randomUUID()))
+        assertThatThrownBy(() -> availability.getCommentable(postId, UUID.randomUUID()))
                 .isInstanceOf(InvalidCommentException.class)
                 .hasMessage("Post is not commentable");
 
@@ -144,7 +144,7 @@ class PostAvailabilityFeignIntegrationTest {
         UUID postId = UUID.randomUUID();
         stubFor(get(urlEqualTo("/api/v1/posts/" + postId)).willReturn(aResponse().withStatus(401)));
 
-        assertThatThrownBy(() -> availability.ensureCommentable(postId, UUID.randomUUID()))
+        assertThatThrownBy(() -> availability.getCommentable(postId, UUID.randomUUID()))
                 .isInstanceOf(DependencyRejectedException.class)
                 .hasMessageContaining("HTTP 401");
 
@@ -157,7 +157,7 @@ class PostAvailabilityFeignIntegrationTest {
         UUID postId = UUID.randomUUID();
         stubFor(get(urlEqualTo("/api/v1/posts/" + postId)).willReturn(serverError()));
 
-        assertThatThrownBy(() -> availability.ensureCommentable(postId, UUID.randomUUID()))
+        assertThatThrownBy(() -> availability.getCommentable(postId, UUID.randomUUID()))
                 .isInstanceOf(DependencyUnavailableException.class);
 
         verify(2, getRequestedFor(urlEqualTo("/api/v1/posts/" + postId)));
@@ -169,7 +169,7 @@ class PostAvailabilityFeignIntegrationTest {
         stubFor(get(urlEqualTo("/api/v1/posts/" + postId))
                 .willReturn(okJson(publicPostResponse(postId)).withFixedDelay(1000)));
 
-        assertThatThrownBy(() -> availability.ensureCommentable(postId, UUID.randomUUID()))
+        assertThatThrownBy(() -> availability.getCommentable(postId, UUID.randomUUID()))
                 .isInstanceOf(DependencyUnavailableException.class);
 
         verify(2, getRequestedFor(urlEqualTo("/api/v1/posts/" + postId)));
@@ -181,11 +181,11 @@ class PostAvailabilityFeignIntegrationTest {
         UUID actorId = UUID.randomUUID();
         stubFor(get(urlEqualTo("/api/v1/posts/" + postId)).willReturn(serverError()));
 
-        assertThatThrownBy(() -> availability.ensureCommentable(postId, actorId))
+        assertThatThrownBy(() -> availability.getCommentable(postId, actorId))
                 .isInstanceOf(DependencyUnavailableException.class);
         assertThat(circuitBreaker.getState()).isEqualTo(CircuitBreaker.State.OPEN);
 
-        assertThatThrownBy(() -> availability.ensureCommentable(postId, actorId))
+        assertThatThrownBy(() -> availability.getCommentable(postId, actorId))
                 .isInstanceOf(DependencyUnavailableException.class);
         verify(2, getRequestedFor(urlEqualTo("/api/v1/posts/" + postId)));
 
@@ -193,14 +193,15 @@ class PostAvailabilityFeignIntegrationTest {
                 .willReturn(okJson(publicPostResponse(postId))));
         circuitBreaker.transitionToHalfOpenState();
 
-        assertThatCode(() -> availability.ensureCommentable(postId, actorId)).doesNotThrowAnyException();
+        assertThatCode(() -> availability.getCommentable(postId, actorId)).doesNotThrowAnyException();
         assertThat(circuitBreaker.getState()).isEqualTo(CircuitBreaker.State.CLOSED);
     }
 
     private String publicPostResponse(UUID postId) {
+        UUID ownerId = UUID.randomUUID();
         return """
                 {"code":1000,"message":"ok","status":200,
-                 "data":{"id":"%s","status":"PUBLIC"}}
-                """.formatted(postId);
+                 "data":{"id":"%s","userId":"%s","status":"PUBLIC"}}
+                """.formatted(postId, ownerId);
     }
 }
