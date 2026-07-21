@@ -41,6 +41,13 @@ public class Comment {
     @Column(name = "user_id", nullable = false, updatable = false)
     private UUID userId;
 
+    @Column(name = "author_name", length = 100)
+    private String authorName;
+
+    @Column(name = "author_avatar_url", length = 500)
+    private String authorAvatarUrl;
+
+
     @Column(name = "parent_id")
     private UUID parentId;
 
@@ -56,7 +63,7 @@ public class Comment {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    public static Comment create(UUID postId, UUID userId, UUID parentId, String content) {
+    public static Comment create(UUID postId, UUID userId,String authorName, String authorAvatarUrl, UUID parentId, String content) {
         if (postId == null) {
             throw new InvalidCommentException("Post id is required");
         }
@@ -73,6 +80,8 @@ public class Comment {
         Comment comment = new Comment();
         comment.postId = postId;
         comment.userId = userId;
+        comment.authorName = authorName;
+        comment.authorAvatarUrl = authorAvatarUrl;
         comment.parentId = parentId;
         comment.content = content.trim();
         comment.deleted = false;

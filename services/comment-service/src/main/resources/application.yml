@@ -31,6 +31,12 @@ spring:
             # Two bounded attempts stay under about 4.1s: 1s connect + 2s read + 100ms backoff.
             connectTimeout: 1000
             readTimeout: 2000
+  kafka:
+    consumer:
+      group-id: comment-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
 eureka:
   client:
