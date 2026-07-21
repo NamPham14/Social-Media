@@ -14,6 +14,7 @@ import com.social_media.postservice.application.usecase.CreatePostUseCase;
 import com.social_media.postservice.application.usecase.DeletePostUseCase;
 import com.social_media.postservice.application.usecase.FindAllPostsUseCase;
 import com.social_media.postservice.application.usecase.FindPostsByAuthorIdUseCase;
+import com.social_media.postservice.application.usecase.FindPostsByAuthorIdsUseCase;
 import com.social_media.postservice.application.usecase.GetPostByPostIdUseCase;
 import com.social_media.postservice.application.usecase.SearchPostsUseCase;
 import com.social_media.postservice.application.usecase.UpdatePostUseCase;
@@ -21,11 +22,13 @@ import com.social_media.postservice.config.security.SecurityUtils;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -35,6 +38,7 @@ public class PostController {
 
     private final GetPostByPostIdUseCase getPostByPostIdUseCase;
     private final FindPostsByAuthorIdUseCase findPostsByAuthorIdUseCase;
+    private final FindPostsByAuthorIdsUseCase findPostsByAuthorIdsUseCase;
     private final FindAllPostsUseCase findAllPostsUseCase;
     private final SearchPostsUseCase searchPostsUseCase;
     private final CreatePostUseCase createPostUseCase;
@@ -47,6 +51,20 @@ public class PostController {
                 .code(HttpStatus.OK.value())
                 .message("Get Post Success")
                 .data(getPostByPostIdUseCase.execute(postId))
+                .build();
+    }
+
+    @GetMapping(ApiPath.POSTS_BY_AUTHORS)
+    public ApiResponse<List<PostResponse>> getPostsByAuthorIds(
+            @RequestParam("authorIds") List<UUID> authorIds,
+            @RequestParam("page") int page,
+            @RequestParam("size") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<PostResponse> result = findPostsByAuthorIdsUseCase.execute(authorIds, pageable);
+        return ApiResponse.<List<PostResponse>>builder()
+                .code(HttpStatus.OK.value())
+                .message("Get Posts By AuthorIds Success")
+                .data(result.getContent())
                 .build();
     }
 

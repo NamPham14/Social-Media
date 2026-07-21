@@ -5,6 +5,7 @@ import com.social_media.followerservice.domain.shared.valueobject.UserId;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -18,6 +19,8 @@ public interface FollowRelationRepository {
     Page<FollowRelation> findByFollowerId(UserId followerId, Pageable pageable);
 
     Page<FollowRelation> findByFollowingId(UserId followingId, Pageable pageable);
+
+    List<UserId> findFollowingIdsByFollowerId(UserId followerId);
 
     void deleteByFollowerIdAndFollowingId(UserId followerId, UserId followingId);
 }
