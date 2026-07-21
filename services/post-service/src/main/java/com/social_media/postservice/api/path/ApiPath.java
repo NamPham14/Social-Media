@@ -24,4 +24,6 @@ public final class ApiPath {
 
     public static final String BOOKMARKS = "/bookmarks";
     public static final String BOOKMARK = "/bookmarks/{postId}";
+
+    public static final String POSTS_BY_AUTHORS = "/posts/by-authors";
 }

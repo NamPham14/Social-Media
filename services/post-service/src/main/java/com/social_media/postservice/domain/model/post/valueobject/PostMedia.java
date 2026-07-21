@@ -1,7 +1,6 @@
-package com.social_media.postservice.domain.model.post.entity;
+package com.social_media.postservice.domain.model.post.valueobject;
 
 //import com.social_media.postservice.domain.model.post.valueobject.MediaType;
-import com.social_media.postservice.domain.model.post.valueobject.MediaType;
 import lombok.*;
 
 import java.util.UUID;

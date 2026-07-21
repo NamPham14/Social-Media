@@ -1,8 +1,6 @@
 package com.social_media.postservice.domain.model.post.aggregate;
 
-import com.social_media.postservice.domain.model.post.valueobject.ModerationStatus;
-import com.social_media.postservice.domain.model.post.valueobject.PostStatus;
-import com.social_media.postservice.domain.model.post.entity.PostMedia;
+import com.social_media.postservice.domain.model.post.valueobject.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,8 +23,7 @@ public class Post {
 
     private UUID userId;
 
-    private String authorName;
-    private String authorAvatarUrl;
+    private AuthorSnapshot author;
 
     private String caption;
 
@@ -52,11 +49,30 @@ public class Post {
     @Builder.Default
     private List<PostMedia> medias = new ArrayList<>();
 
+//    public static Post create(UUID userId, String authorName, String authorAvatarUrl, String caption, String locationName) {
+//        Post post = new Post();
+//        post.userId = userId;
+//        post.authorName = authorName;
+//        post.authorAvatarUrl = authorAvatarUrl;
+//        post.caption = caption;
+//        post.locationName = locationName;
+//        post.status = PostStatus.PUBLIC;
+//        post.moderationStatus = ModerationStatus.NONE;
+//        post.medias = new ArrayList<>();
+//        post.createdAt = LocalDateTime.now();
+//        post.updatedAt = LocalDateTime.now();
+//        post.deleted = false;
+//        post.deletedAt = null;
+//        return post;
+//    }
+
     public static Post create(UUID userId, String authorName, String authorAvatarUrl, String caption, String locationName) {
         Post post = new Post();
         post.userId = userId;
-        post.authorName = authorName;
-        post.authorAvatarUrl = authorAvatarUrl;
+        post.author = AuthorSnapshot.builder()
+                .name(authorName)
+                .avatarUrl(authorAvatarUrl)
+                .build();
         post.caption = caption;
         post.locationName = locationName;
         post.status = PostStatus.PUBLIC;
@@ -136,4 +152,17 @@ public class Post {
     public void rule(String caption){
 
     }
+
+    public void applyModerationResult(ModerationResult result) {
+        if (this.deleted) {
+            return;
+        }
+        if (result.status() == ModerationStatus.REMOVED) {
+            this.moderationStatus = ModerationStatus.REMOVED;
+            this.status = PostStatus.PRIVATE;
+            this.updatedAt = LocalDateTime.now();
+        }
+    }
+
+
 }

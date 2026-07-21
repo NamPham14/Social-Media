@@ -35,8 +35,10 @@ public class PostResponse {
 
         res.id = post.getId();
         res.userId = post.getUserId();
-        res.authorName = post.getAuthorName();
-        res.authorAvatarUrl = post.getAuthorAvatarUrl();
+        if (post.getAuthor() != null) {
+            res.authorName = post.getAuthor().getName();
+            res.authorAvatarUrl = post.getAuthor().getAvatarUrl();
+        }
         res.caption = post.getCaption();
         res.locationName = post.getLocationName();
 

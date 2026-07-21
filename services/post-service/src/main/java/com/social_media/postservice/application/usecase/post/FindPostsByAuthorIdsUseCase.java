@@ -1,4 +1,4 @@
-package com.social_media.postservice.application.usecase;
+package com.social_media.postservice.application.usecase.post;
 
 import com.social_media.postservice.application.dto.PostResponse;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
@@ -10,20 +10,20 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class FindAllPostsUseCase {
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true) // huy thêm
+public class  FindPostsByAuthorIdsUseCase {
 
     PostRepository postRepository;
 
-    public Page<PostResponse> execute(Pageable pageable) {
-        Page<Post> page = postRepository.findAll(pageable);
-
-        if (page.isEmpty()) {
-            throw new com.social_media.postservice.application.exception.ResourceNotFoundException();
-        }
-
+    public Page<PostResponse> execute(List<UUID> authorIds, Pageable pageable) {
+        Page<Post> page = postRepository.findByAuthorIds(authorIds, pageable);
         return page.map(PostResponse::from);
     }
+
+
 }

@@ -27,12 +27,10 @@ public class ProfileEventConsumer {
         try {
             JsonNode payload = objectMapper.readTree(message);
 
-            // Bóc tách thông tin
             UUID userId = UUID.fromString(payload.get("userId").asText());
             String newName = payload.has("authorName") && !payload.get("authorName").isNull() ? payload.get("authorName").asText() : "Unknown";
             String newAvatar = payload.has("authorAvatarUrl") && !payload.get("authorAvatarUrl").isNull() ? payload.get("authorAvatarUrl").asText() : null;
 
-            // Xài tuyệt chiêu SQL Native (Hoặc JPQL) quét sạch toàn bộ DB và đổi tên trong chớp mắt
             postJpaRepository.updateAuthorInfo(userId, newName, newAvatar);
 
             log.info("Đã cập nhật thành công Tên/Avatar mới cho toàn bộ bài viết của User: {}", userId);

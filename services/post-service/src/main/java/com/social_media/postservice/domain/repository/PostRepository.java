@@ -23,4 +23,6 @@ public interface PostRepository {
     Post save(Post post);
 
     void delete(Post post);
+
+    Page<Post> findByAuthorIds(List<UUID> userIds, Pageable pageable);
 }

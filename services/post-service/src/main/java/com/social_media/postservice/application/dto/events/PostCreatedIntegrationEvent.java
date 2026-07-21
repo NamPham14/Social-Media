@@ -11,6 +11,8 @@ public class PostCreatedIntegrationEvent {
     String id;
     String postId;
     String authorId;
+    String authorName;
+    String authorAvatar;
     String caption;
     LocalDateTime createdAt;
 }

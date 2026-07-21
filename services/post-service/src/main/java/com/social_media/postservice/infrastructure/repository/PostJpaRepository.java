@@ -25,8 +25,11 @@ public interface PostJpaRepository extends JpaRepository<PostEntity, UUID> {
     Page<PostEntity> findByUserIdIn(List<UUID> userIds, Pageable pageable); // HUY THÊM
 
     @Modifying
-    @Query("UPDATE PostEntity p SET p.authorName = :authorName, p.authorAvatarUrl = :authorAvatarUrl WHERE p.userId = :userId")
+    @Query("UPDATE PostEntity p SET p.author.name = :authorName, p.author.avatarUrl = :authorAvatarUrl WHERE p.userId = :userId")
     void updateAuthorInfo(@Param("userId") UUID userId,
                           @Param("authorName") String authorName,
                           @Param("authorAvatarUrl") String authorAvatarUrl);
+
+    Page<PostEntity> findByUserIdIn(List<UUID> userIds, Pageable pageable);
+
 }

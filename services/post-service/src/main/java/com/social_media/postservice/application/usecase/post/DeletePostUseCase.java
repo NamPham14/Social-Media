@@ -1,15 +1,17 @@
-package com.social_media.postservice.application.usecase;
+package com.social_media.postservice.application.usecase.post;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.social_media.postservice.application.command.DeletePostCommand;
 import com.social_media.postservice.application.dto.events.PostDeleteIntegrationEvent;
+import com.social_media.postservice.application.exception.ResourceNotFoundException;
+import com.social_media.postservice.application.exception.UnauthorizedActionException;
 import com.social_media.postservice.application.ports.output.PostEventPublisher;
 import com.social_media.postservice.application.service.MediaService;
 import com.social_media.postservice.config.security.SecurityUtils;
 import com.social_media.postservice.domain.model.outbox.OutBox;
 import com.social_media.postservice.domain.model.outbox.OutboxStatus;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
-import com.social_media.postservice.domain.model.post.entity.PostMedia;
+import com.social_media.postservice.domain.model.post.valueobject.PostMedia;
 import com.social_media.postservice.domain.repository.BookmarkRepository;
 import com.social_media.postservice.domain.repository.OutBoxRepository;
 import com.social_media.postservice.domain.repository.PostRepository;
@@ -43,10 +45,10 @@ public class DeletePostUseCase {
 
     public void execute(DeletePostCommand command) {
         Post post = postRepository.findById(command.getPostId())
-                .orElseThrow(() -> new com.social_media.postservice.application.exception.ResourceNotFoundException());
+                .orElseThrow(() -> new ResourceNotFoundException());
 
         if (!post.getUserId().equals(command.getUserId())) {
-            throw new com.social_media.postservice.application.exception.UnauthorizedActionException();
+            throw new UnauthorizedActionException();
         }
 
         post.softDelete();

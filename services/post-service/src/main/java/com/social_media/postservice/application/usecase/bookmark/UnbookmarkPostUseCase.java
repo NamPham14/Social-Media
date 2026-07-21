@@ -1,7 +1,8 @@
-package com.social_media.postservice.application.usecase;
+package com.social_media.postservice.application.usecase.bookmark;
 
 import com.social_media.postservice.application.command.UnbookmarkPostCommand;
 //import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
+import com.social_media.postservice.application.exception.ResourceNotFoundException;
 import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
 import com.social_media.postservice.domain.repository.BookmarkRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class UnbookmarkPostUseCase {
     @Transactional
     public void execute(UnbookmarkPostCommand command) {
         Bookmark bookmark = bookmarkRepository.findByUserIdAndPostId(command.getUserId(), command.getPostId())
-                .orElseThrow(() -> new com.social_media.postservice.application.exception.ResourceNotFoundException());
+                .orElseThrow(() -> new ResourceNotFoundException());
 
         bookmarkRepository.delete(bookmark);
     }
