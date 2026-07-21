@@ -13,12 +13,14 @@ import com.social_media.postservice.domain.model.post.aggregate.Post;
 import com.social_media.postservice.domain.model.post.entity.PostMedia;
 import com.social_media.postservice.domain.model.post.valueobject.MediaType;
 import com.social_media.postservice.domain.repository.PostRepository;
+import com.social_media.postservice.infrastructure.client.profile.ProfileClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -30,6 +32,7 @@ public class CreatePostUseCase {
     private final PostRepository postRepository;
     private final IdentityServiceHelper identityServiceHelper;
     private final PostEventPublisher postEventPublisher;
+    private final ProfileClient profileClient;
 
     @Transactional
     public PostResponse execute(CreatePostCommand command) {
@@ -44,7 +47,22 @@ public class CreatePostUseCase {
 
         List<UploadResponse> uploads = mediaService.upload(command.getImages());
 
-        Post post = Post.create(command.getUserId(), command.getCaption(), command.getLocationName());
+        // Bấm điện thoại gọi sang Profile lấy Tên và Ảnh
+        String authorName = "Unknown";
+        String authorAvatar = null;
+        try {
+            Map<String,Object> profileData = profileClient.getProfileById(command.getUserId());
+            if(profileData != null &&  profileData.get("data") != null){
+                Map<String, Object> data = (Map<String, Object>) profileData.get("data");
+                authorName = (String) data.get("username");
+                authorAvatar = (String) data.get("avatarUrl");
+            }
+        }catch (Exception e){
+            // Nếu Profile bị sập mạng, cứ cho đăng bài tạm với tên Unknown
+            System.out.println("Không gọi được Profile Service: " + e.getMessage());
+        }
+
+        Post post = Post.create(command.getUserId(),authorName,authorAvatar, command.getCaption(), command.getLocationName());
         int index = 0;
         for (UploadResponse file : uploads) {
             PostMedia media = PostMedia.create(

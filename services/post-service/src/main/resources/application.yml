@@ -31,6 +31,12 @@ spring:
           compression.type: lz4 # Nén dữ liệu bằng thuật toán lz4 trước khi gửi để tiết kiệm băng thông
           spring.json.add.type.headers: false
 
+      consumer:
+      group-id: post-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
   rabbitmq:
     host: localhost             # Địa chỉ máy chủ RabbitMQ
     port: 5672                  # Port mặc định của RabbitMQ
@@ -48,7 +54,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: "*"
 
 cloudinary:
   cloud-name: dfvq2ckbi

@@ -25,6 +25,9 @@ public class Post {
 
     private UUID userId;
 
+    private String authorName;
+    private String authorAvatarUrl;
+
     private String caption;
 
     private String locationName;
@@ -49,9 +52,11 @@ public class Post {
     @Builder.Default
     private List<PostMedia> medias = new ArrayList<>();
 
-    public static Post create(UUID userId, String caption, String locationName) {
+    public static Post create(UUID userId, String authorName, String authorAvatarUrl, String caption, String locationName) {
         Post post = new Post();
         post.userId = userId;
+        post.authorName = authorName;
+        post.authorAvatarUrl = authorAvatarUrl;
         post.caption = caption;
         post.locationName = locationName;
         post.status = PostStatus.PUBLIC;

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -32,4 +33,11 @@ public interface CommentJpaRepository extends JpaRepository<Comment, UUID> {
             group by c.postId
             """)
     List<CommentCountProjection> countActiveByPostIds(@Param("postIds") Collection<UUID> postIds);
+
+
+    @Modifying
+    @Query("UPDATE Comment c SET c.authorName = :authorName, c.authorAvatarUrl = :authorAvatarUrl WHERE c.userId = :userId")
+    void updateAuthorInfo(@Param("userId") UUID userId,
+                          @Param("authorName") String authorName,
+                          @Param("authorAvatarUrl") String authorAvatarUrl);
 }
