@@ -4,7 +4,6 @@ package com.social_media.postservice.infrastructure.adapter;
 import com.social_media.postservice.domain.model.post.service.ModerationPort;
 import com.social_media.postservice.domain.model.post.valueobject.ModerationResult;
 import com.social_media.postservice.domain.model.post.valueobject.ModerationStatus;
-import com.social_media.postservice.infrastructure.client.moderation.service.GeminiModerationHelper;
 import com.social_media.postservice.infrastructure.client.moderation.dto.ModerationScores;
 import com.social_media.postservice.infrastructure.client.moderation.service.OllamaModerationHelper;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class OllamaModerationAdapter implements ModerationPort {
 
-    private final GeminiModerationHelper geminiModerationHelper;
     private final OllamaModerationHelper ollamaModerationHelper;
 
     private static final String VIOLATION_REASON =
