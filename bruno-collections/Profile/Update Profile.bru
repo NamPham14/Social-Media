@@ -1,0 +1,23 @@
+meta {
+  name: Update Profile
+  type: http
+  seq: 1
+}
+
+put {
+  url: http://localhost:8888/api/v1/profiles/{{user_id}}
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+    "fullName": "Nguyen Van B - Chuyên gia Kafka",
+    "bio": "Trùm Microservices System Design",
+    "avatarUrl": "https://i.pravatar.cc/300"
+  }
+}

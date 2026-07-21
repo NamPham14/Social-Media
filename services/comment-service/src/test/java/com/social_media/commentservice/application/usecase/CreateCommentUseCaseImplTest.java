@@ -7,6 +7,8 @@ import com.social_media.commentservice.application.port.out.PostAvailabilityPort
 import com.social_media.commentservice.domain.exception.InvalidCommentException;
 import com.social_media.commentservice.domain.model.Comment;
 import com.social_media.commentservice.domain.repository.CommentRepository;
+import com.social_media.commentservice.infrastructure.client.profile.ProfileClient;
+//import com.social_media.commentservice.infrastructure.client.profile.dto.ProfileResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Optional;
@@ -18,6 +20,7 @@ class CreateCommentUseCaseImplTest {
     private CommentRepository repository;
     private PostAvailabilityPort availability;
     private CommentEventOutbox outbox;
+    private ProfileClient profileClient;
     private CreateCommentUseCaseImpl useCase;
 
     @BeforeEach
@@ -25,7 +28,13 @@ class CreateCommentUseCaseImplTest {
         repository = mock(CommentRepository.class);
         availability = mock(PostAvailabilityPort.class);
         outbox = mock(CommentEventOutbox.class);
-        useCase = new CreateCommentUseCaseImpl(repository, availability, outbox);
+        profileClient = mock(ProfileClient.class);
+        useCase = new CreateCommentUseCaseImpl(repository, availability, outbox, profileClient);
+        
+//        when(profileClient.getProfile(any())).thenReturn(
+//                new ProfileResponse(UUID.randomUUID(), "Test User", "test-avatar.jpg", "test_bio")
+//        );
+        
         when(availability.getCommentable(any(), any())).thenAnswer(invocation ->
                 new PostAvailabilityPort.AvailablePost(invocation.getArgument(0), UUID.randomUUID()));
         when(repository.save(any())).thenAnswer(invocation -> invocation.getArgument(0));
@@ -100,7 +109,7 @@ class CreateCommentUseCaseImplTest {
     void rejectsParentFromAnotherPost() {
         UUID postId = UUID.randomUUID();
         UUID parentId = UUID.randomUUID();
-        Comment parent = Comment.create(UUID.randomUUID(), UUID.randomUUID(), null, "parent");
+        Comment parent = Comment.create(UUID.randomUUID(), UUID.randomUUID(), "Author", "Avatar", null, "parent");
         when(repository.findById(parentId)).thenReturn(Optional.of(parent));
         assertThatThrownBy(() -> useCase.execute(new CreateCommentCommand(
                 postId, UUID.randomUUID(), parentId, "reply")))
@@ -112,7 +121,7 @@ class CreateCommentUseCaseImplTest {
     void rejectsReplyToReply() {
         UUID postId = UUID.randomUUID();
         UUID parentId = UUID.randomUUID();
-        Comment reply = Comment.create(postId, UUID.randomUUID(), UUID.randomUUID(), "reply");
+        Comment reply = Comment.create(postId, UUID.randomUUID(), "Author", "Avatar", UUID.randomUUID(), "reply");
         when(repository.findById(parentId)).thenReturn(Optional.of(reply));
         assertThatThrownBy(() -> useCase.execute(new CreateCommentCommand(
                 postId, UUID.randomUUID(), parentId, "nested")))

@@ -6,26 +6,21 @@
   <component name="ChangeListManager">
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/api/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/api/controller/NotificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/api/dto/response/NotificationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/api/dto/response/NotificationResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/mapper/NotificationApiMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/mapper/NotificationApiMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/mapper/NotificationCommandMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/mapper/NotificationCommandMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/usecase/CountUnreadNotificationsUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/usecase/CountUnreadNotificationsUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/usecase/DeleteNotificationUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/usecase/DeleteNotificationUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/usecase/GetNotificationsUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/usecase/GetNotificationsUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/usecase/GetUnreadNotificationsUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/usecase/GetUnreadNotificationsUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/usecase/MarkAllNotificationsAsReadUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/usecase/MarkAllNotificationsAsReadUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/usecase/MarkNotificationAsReadUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/usecase/MarkNotificationAsReadUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/usecase/MarkNotificationAsUnreadUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/usecase/MarkNotificationAsUnreadUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/domain/repository/NotificationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/domain/repository/NotificationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/adapter/NotificationRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/adapter/NotificationRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/client/post/PostClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/client/post/dto/PostClientResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/consumer/PostCreatedKafkaConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/consumer/PostCreatedKafkaConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/event/PostCreatedEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/event/PostCreatedEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/repository/NotificationJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/repository/NotificationJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/eureka-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/eureka-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/api-gateway.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/api-gateway.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/client/profile/ProfileEventConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/client/profile/ProfileEventConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/repository/CommentJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/repository/CommentJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/comment-service/src/test/java/com/social_media/commentservice/application/usecase/CreateCommentUseCaseImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/test/java/com/social_media/commentservice/application/usecase/CreateCommentUseCaseImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/comment-service/src/test/java/com/social_media/commentservice/infrastructure/repository/CommentPostgresIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/test/java/com/social_media/commentservice/infrastructure/repository/CommentPostgresIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/interaction-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/interaction-service/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/adapter/OllamaModerationAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/adapter/OllamaModerationAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/moderation/GeminiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/moderation/GeminiClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/moderation/OllamaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/moderation/OllamaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,6 +112,9 @@
   &quot;fromUser&quot;: false
 }</component>
   <component name="ProjectId" id="3FojRNCirlYMWXSRQ13eGEec9ad" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -134,13 +132,20 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Spring Boot.ApiGatewayApplication.executor": "Run",
+    "Spring Boot.CommentServiceApplication.executor": "Run",
+    "Spring Boot.CommonEventsApplication.executor": "Run",
+    "Spring Boot.CommonSecurityApplication.executor": "Run",
+    "Spring Boot.CommonWebApplication.executor": "Run",
     "Spring Boot.EurekaServerApplication.executor": "Run",
     "Spring Boot.FollowerServiceApplication.executor": "Run",
     "Spring Boot.IdentityServiceApplication.executor": "Run",
+    "Spring Boot.InteractionServiceApplication.executor": "Run",
+    "Spring Boot.NotificationServiceApplication.executor": "Run",
+    "Spring Boot.PostServiceApplication.executor": "Run",
     "Spring Boot.ProfileServiceApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "notification-service",
+    "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/SUMMER26/MSS/New/Social-Media",
@@ -254,6 +259,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.ApiGatewayApplication" />
+      <item itemvalue="Spring Boot.CommentServiceApplication" />
+      <item itemvalue="Spring Boot.CommonEventsApplication" />
+      <item itemvalue="Spring Boot.CommonSecurityApplication" />
+      <item itemvalue="Spring Boot.CommonWebApplication" />
+      <item itemvalue="Spring Boot.EurekaServerApplication" />
+      <item itemvalue="Spring Boot.FollowerServiceApplication" />
+      <item itemvalue="Spring Boot.IdentityServiceApplication" />
+      <item itemvalue="Spring Boot.InteractionServiceApplication" />
+      <item itemvalue="Spring Boot.NotificationServiceApplication" />
+      <item itemvalue="Spring Boot.PostServiceApplication" />
+      <item itemvalue="Spring Boot.ProfileServiceApplication" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>

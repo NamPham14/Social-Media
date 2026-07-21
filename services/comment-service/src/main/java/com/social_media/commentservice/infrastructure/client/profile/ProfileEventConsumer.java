@@ -23,7 +23,7 @@ public class ProfileEventConsumer {
     @KafkaListener(topics = "profile-events", groupId = "comment-group")
     @Transactional
     public void consumeProfileEvent(String message) {
-        log.info("🔥 [COMMENT-SERVICE] Nhận tin nhắn đổi Profile: {}", message);
+        log.info(" [COMMENT-SERVICE] Nhận tin nhắn đổi Profile: {}", message);
         try {
             JsonNode payload = objectMapper.readTree(message);
             UUID userId = UUID.fromString(payload.get("userId").asText());
