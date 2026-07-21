@@ -6,22 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/api-gateway.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/api-gateway.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/UnfollowUserUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/UnfollowUserUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/event/UserFollowedEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/event/UserUnfollowedEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/exception/AlreadyFollowingException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/model/follower/aggregate/Follower.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/repository/FollowerRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/UserClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/mapper/FollowerMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/FollowerRepositoryAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/SpringDataFollowerRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/entity/FollowerInfraEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/CreatePostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/CreatePostUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,61 +44,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.4063025435599688" />
-      <entry key="MS500" value="3.3883774663595623" />
-      <entry key="S2" value="6.661345303593418" />
-      <entry key="S5" value="11.07180912058451" />
-      <entry key="S10" value="16.97635223173204" />
-      <entry key="S30" value="26.394942034527432" />
-      <entry key="S60" value="33.246570284679706" />
-      <entry key="M2" value="44.38902584715186" />
-      <entry key="M5" value="60.334533229298295" />
-      <entry key="M10" value="69.23217963143352" />
-      <entry key="M15" value="74.6018632657419" />
-      <entry key="M30" value="94.82885265477317" />
-      <entry key="H1" value="155.75762744808273" />
-      <entry key="H2" value="306.76989818063385" />
-      <entry key="H4" value="525.8730127069232" />
-      <entry key="D1" value="915.2074283215707" />
-      <entry key="W1" value="1015.0910006081353" />
+      <entry key="MS100" value="6.81717781233803E-4" />
+      <entry key="MS500" value="0.32714739446256547" />
+      <entry key="S2" value="2.1471267803222323" />
+      <entry key="S5" value="4.419730233056046" />
+      <entry key="S10" value="5.880848831176124" />
+      <entry key="S30" value="7.202760802485545" />
+      <entry key="S60" value="7.588683094058664" />
+      <entry key="M2" value="7.79105645014502" />
+      <entry key="M5" value="7.916889820837895" />
+      <entry key="M10" value="8.368491068706767" />
+      <entry key="M15" value="11.040938534834039" />
+      <entry key="M30" value="34.04278872547417" />
+      <entry key="H1" value="102.26414196480098" />
+      <entry key="H2" value="254.53305686007803" />
+      <entry key="H4" value="498.81741973961107" />
+      <entry key="D1" value="1007.3553610744647" />
+      <entry key="W1" value="1150.7850982227976" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="2.249360967024322E-118" />
-      <entry key="S2" value="3.872708383706055E-30" />
-      <entry key="S5" value="1.7200388885643387E-12" />
-      <entry key="S10" value="1.3472745244150888E-6" />
-      <entry key="S30" value="0.014254902243826435" />
-      <entry key="S60" value="0.16215156076905418" />
-      <entry key="M2" value="0.5633093724750987" />
-      <entry key="M5" value="1.2025420682086" />
-      <entry key="M10" value="1.7770932911970931" />
-      <entry key="M15" value="3.356499164046574" />
-      <entry key="M30" value="15.768564014232902" />
-      <entry key="H1" value="44.93757762547811" />
-      <entry key="H2" value="80.30218191357385" />
-      <entry key="H4" value="109.81905239496307" />
-      <entry key="D1" value="145.23656053759572" />
-      <entry key="W1" value="152.70685369562528" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0" />
+      <entry key="M2" value="1.000000000003084" />
+      <entry key="M5" value="1.0000569135499138" />
+      <entry key="M10" value="1.0160324100444003" />
+      <entry key="M15" value="1.1198213499573193" />
+      <entry key="M30" value="2.9348901174539117" />
+      <entry key="H1" value="15.54672471255253" />
+      <entry key="H2" value="46.65293924029899" />
+      <entry key="H4" value="84.66329211621354" />
+      <entry key="D1" value="142.75604145374749" />
+      <entry key="W1" value="156.559422607786" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.3698359058463188" />
-      <entry key="MS500" value="3.3709182165111296" />
-      <entry key="S2" value="6.652295431854978" />
-      <entry key="S5" value="11.063350393089578" />
-      <entry key="S10" value="16.967877449147952" />
-      <entry key="S30" value="26.40238487615047" />
-      <entry key="S60" value="33.3960542030733" />
-      <entry key="M2" value="44.93336923023026" />
-      <entry key="M5" value="61.5210442261255" />
-      <entry key="M10" value="70.99761862236929" />
-      <entry key="M15" value="77.94555217684274" />
-      <entry key="M30" value="110.57415748064207" />
-      <entry key="H1" value="200.66490885062666" />
-      <entry key="H2" value="387.0457323011003" />
-      <entry key="H4" value="635.6741877928735" />
-      <entry key="D1" value="1060.4400587654636" />
-      <entry key="W1" value="1167.7972640103378" />
+      <entry key="MS100" value="0.006754745061557167" />
+      <entry key="MS500" value="0.6479560366725676" />
+      <entry key="S2" value="2.8066660187757497" />
+      <entry key="S5" value="5.215646147071958" />
+      <entry key="S10" value="6.7582704964623685" />
+      <entry key="S30" value="8.155875537235515" />
+      <entry key="S60" value="8.564372538795608" />
+      <entry key="M2" value="8.7786745332318" />
+      <entry key="M5" value="8.91193747332699" />
+      <entry key="M10" value="9.381886104103787" />
+      <entry key="M15" value="12.158475627218284" />
+      <entry key="M30" value="36.973179136375435" />
+      <entry key="H1" value="117.79947675242644" />
+      <entry key="H2" value="301.16984100705565" />
+      <entry key="H4" value="583.4663681053936" />
+      <entry key="D1" value="1150.107422540993" />
+      <entry key="W1" value="1307.3438982906866" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
