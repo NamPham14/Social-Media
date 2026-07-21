@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/eureka-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/eureka-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/api-gateway.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/api-gateway.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/client/profile/ProfileEventConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/client/profile/ProfileEventConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/repository/CommentJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/repository/CommentJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/comment-service/src/test/java/com/social_media/commentservice/application/usecase/CreateCommentUseCaseImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/test/java/com/social_media/commentservice/application/usecase/CreateCommentUseCaseImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/comment-service/src/test/java/com/social_media/commentservice/infrastructure/repository/CommentPostgresIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/test/java/com/social_media/commentservice/infrastructure/repository/CommentPostgresIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/interaction-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/interaction-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/adapter/OllamaModerationAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/adapter/OllamaModerationAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/moderation/GeminiClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/moderation/GeminiClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/moderation/OllamaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/moderation/OllamaTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -145,7 +128,7 @@
     "Spring Boot.ProfileServiceApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "SMP-3-post-service",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/SUMMER26/MSS/New/Social-Media",
