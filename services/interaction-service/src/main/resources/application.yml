@@ -8,9 +8,9 @@ spring:
   application:
     name: interaction-service
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5436/interaction_service}
     username: ${SPRING_DATASOURCE_USERNAME:postgres}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    password: ${SPRING_DATASOURCE_PASSWORD:123456}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -109,6 +109,15 @@ messaging:
   topics:
     post-deleted: post-deleted-topic
     post-comments-deleted: post-comments-deleted-topic
+    reaction-created: reaction-created-topic
+  outbox:
+    enabled: true
+    poll-delay-ms: 1000
+    batch-size: 100
+    retry-delay-ms: 5000
+    publish-timeout-seconds: 10
+    retention-days: 7
+    cleanup-cron: "0 0 3 * * *"
   retry:
     max-attempts: 5
     backoff-ms: 1000

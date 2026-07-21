@@ -4,12 +4,12 @@ spring:
   application:
     name: post-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/post_service
+    url: jdbc:postgresql://localhost:5434/post_service
     username: postgres
-    password: 1234
+    password: 123456
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties.hibernate.format_sql: true
   cloud:
     openfeign:
@@ -31,18 +31,17 @@ spring:
           compression.type: lz4 # Nén dữ liệu bằng thuật toán lz4 trước khi gửi để tiết kiệm băng thông
           spring.json.add.type.headers: false
 
-    consumer:
+      consumer:
       group-id: post-group
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
-
 management:
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: "*"
 
 cloudinary:
   cloud-name: dfvq2ckbi
@@ -62,4 +61,3 @@ resilience4j:
     retry-aspect-order: 2
   circuitbreaker:
     circuit-breaker-aspect-order: 1
-

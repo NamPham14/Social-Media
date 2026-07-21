@@ -1,6 +1,8 @@
 package com.social_media.notificationservice.infrastructure.adapter;
 
 import com.social_media.notificationservice.domain.model.aggregate.Notification;
+import com.social_media.notificationservice.domain.model.enums.TargetType;
+import com.social_media.notificationservice.domain.model.enums.NotificationType;
 import com.social_media.notificationservice.domain.repository.NotificationRepository;
 import com.social_media.notificationservice.infrastructure.entity.NotificationEntity;
 import com.social_media.notificationservice.infrastructure.mapper.NotificationPersistenceMapper;
@@ -34,7 +36,7 @@ public class NotificationRepositoryAdapter implements NotificationRepository {
     }
 
     @Override
-    public Optional<Notification> findByIdAndRecipientId(Long id, Long recipientId) {
+    public Optional<Notification> findByIdAndRecipientId(Long id, String recipientId) {
         return jpaRepository.findByIdAndRecipientId(id, recipientId).map(mapper::toDomain);
     }
 
@@ -49,7 +51,7 @@ public class NotificationRepositoryAdapter implements NotificationRepository {
     }
 
     @Override
-    public List<Notification> findByRecipientId(Long recipientId, int limit) {
+    public List<Notification> findByRecipientId(String recipientId, int limit) {
         return jpaRepository.findByRecipientIdOrderByCreatedAtDesc(recipientId, pageRequest(limit))
                 .stream()
                 .map(mapper::toDomain)
@@ -57,7 +59,7 @@ public class NotificationRepositoryAdapter implements NotificationRepository {
     }
 
     @Override
-    public List<Notification> findUnreadByRecipientId(Long recipientId, int limit) {
+    public List<Notification> findUnreadByRecipientId(String recipientId, int limit) {
         return jpaRepository.findByRecipientIdAndIsReadFalseOrderByCreatedAtDesc(recipientId, pageRequest(limit))
                 .stream()
                 .map(mapper::toDomain)
@@ -65,13 +67,35 @@ public class NotificationRepositoryAdapter implements NotificationRepository {
     }
 
     @Override
-    public long countUnreadByRecipientId(Long recipientId) {
+    public long countUnreadByRecipientId(String recipientId) {
         return jpaRepository.countByRecipientIdAndIsReadFalse(recipientId);
     }
 
     @Override
     public void delete(Notification notification) {
         jpaRepository.delete(mapper.toEntity(notification));
+    }
+
+    @Override
+    public void deleteByTargetTypeAndTargetId(TargetType targetType, String targetId) {
+        jpaRepository.deleteByTargetTypeAndTargetId(targetType, targetId);
+    }
+
+    @Override
+    public void deleteByRecipientIdAndActorIdAndNotificationTypeAndTargetTypeAndTargetId(
+            String recipientId,
+            String actorId,
+            NotificationType notificationType,
+            TargetType targetType,
+            String targetId
+    ) {
+        jpaRepository.deleteByRecipientIdAndActorIdAndNotificationTypeAndTargetTypeAndTargetId(
+                recipientId,
+                actorId,
+                notificationType,
+                targetType,
+                targetId
+        );
     }
 
     private Pageable pageRequest(int limit) {
@@ -82,3 +106,5 @@ public class NotificationRepositoryAdapter implements NotificationRepository {
         return PageRequest.of(0, Math.min(limit, MAX_PAGE_SIZE));
     }
 }
+
+

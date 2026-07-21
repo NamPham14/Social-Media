@@ -4,7 +4,6 @@ import com.social_media.common.api.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.ServletRequestBindingException;
@@ -37,12 +36,18 @@ public class GlobalExceptionHandler {
         return buildResponse(HttpStatus.SERVICE_UNAVAILABLE, 2001, ex.getMessage());
     }
 
+    @ExceptionHandler(AppException.class)
+    public ResponseEntity<ApiResponse<Object>> handleAppException(AppException ex) {
+        ErrorCode errorCode = ex.getErrorCode();
+        return buildResponse(errorCode.getHttpStatus(), errorCode.getCode(), errorCode.getMessage());
+    }
+
 
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Object>> handleUncaughtException(Exception e) {
         log.error("Unhandled Exception. traceId={}", MDC.get("correlationId"), e);
-        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, 9999, "Uncategorized error");
+        return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, 9999, "Uncategorized error: " + e.getMessage() + " | Cause: " + (e.getCause() != null ? e.getCause().getMessage() : "none"));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

@@ -4,9 +4,9 @@ spring:
   application:
     name: notification-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/notification_service
+    url: jdbc:postgresql://localhost:5437/notification_service
     username: postgres
-    password: 1234
+    password: 123456
   jpa:
     hibernate:
       ddl-auto: update
@@ -38,3 +38,9 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}
+
+messaging:
+  topics:
+    reaction-created: reaction-created-topic
+    comment-created: comment-created-topic
+    comment-replied: comment-replied-topic

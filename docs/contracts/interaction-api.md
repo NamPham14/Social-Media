@@ -12,6 +12,9 @@ All actor-specific endpoints require `X-Auth-User-Id: <uuid>`. Valid reaction ty
 
 Bookmark is not part of this contract; Post Service owns it.
 
+A newly created (non-duplicate, non-self) reaction publishes `ReactionCreatedV1` through the
+Interaction transactional outbox. See `comment-interaction-notification-events.md`.
+
 Successful responses use common API code `1000`. Errors use stable Interaction codes in the
 `46000..46999` range, the matching HTTP status, a safe message and correlation `traceId`.
 

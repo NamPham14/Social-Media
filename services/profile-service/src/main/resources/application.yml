@@ -2,9 +2,9 @@ spring:
   application:
     name: profile-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/profile_db
+    url: jdbc:postgresql://localhost:5433/demo
     username: postgres
-    password: 1234
+    password: 123456
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -33,9 +33,9 @@ server:
   port: 8082
 
 cloudinary:
-  cloud-name: ${CLOUDINARY_CLOUD_NAME:demo}
-  api-key: ${CLOUDINARY_API_KEY:demo}
-  api-secret: ${CLOUDINARY_API_SECRET:demo}
+  cloud-name: ${CLOUDINARY_CLOUD_NAME:dummy}
+  api-key: ${CLOUDINARY_API_KEY:dummy}
+  api-secret: ${CLOUDINARY_API_SECRET:dummy}
 
 logging:
   level:

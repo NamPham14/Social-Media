@@ -41,4 +41,12 @@ public interface CommentJpaRepository extends JpaRepository<Comment, UUID> {
     @Query("update Comment c set c.deleted = true, c.updatedAt = CURRENT_TIMESTAMP " +
             "where c.postId = :postId and c.deleted = false")
     int softDeleteAllByPostId(@Param("postId") UUID postId);
+
+
+    @Modifying
+    @Query("UPDATE Comment c SET c.authorName = :authorName, c.authorAvatarUrl = :authorAvatarUrl WHERE c.userId = :userId")
+    void updateAuthorInfo(@Param("userId") UUID userId,
+                          @Param("authorName") String authorName,
+                          @Param("authorAvatarUrl") String authorAvatarUrl);
+
 }

@@ -1,0 +1,5 @@
+workspace:
+  id: 12fce50c-c3b5-4d74-8fec-6ed85e065301
+cloudResources:
+  collections:
+    ../postman/collections/New Collection: 44802137-a6541ba3-e1c7-4f53-9a4a-7bed95fb8582

@@ -19,12 +19,15 @@ public class PostAvailabilityChecker {
 
     @Retry(name = "postAvailability")
     @CircuitBreaker(name = "postAvailability", fallbackMethod = "unavailable")
-    public void ensure(UUID id, UUID actorId) {
+    public UUID ensure(UUID id, UUID actorId) {
         try {
             ApiResponse<PostClient.PostSnapshot> response = client.getPost(id, actorId);
             PostClient.PostSnapshot post = response == null ? null : response.getData();
-            if (post == null) throw new TargetNotFoundException("Post '" + id + "' does not exist");
+            if (post == null || post.id() == null || post.userId() == null) {
+                throw new TargetNotFoundException("Post '" + id + "' does not exist");
+            }
             if (!"PUBLIC".equals(post.status())) throw new ReactionConflictException("Post is not reactable");
+            return post.userId();
         } catch (FeignException.NotFound ex) {
             throw new TargetNotFoundException("Post '" + id + "' does not exist");
         } catch (FeignException.Forbidden ex) {
@@ -37,7 +40,7 @@ public class PostAvailabilityChecker {
     }
 
     @SuppressWarnings("unused")
-    private void unavailable(UUID id, UUID actorId, Throwable failure) {
+    private UUID unavailable(UUID id, UUID actorId, Throwable failure) {
         if (failure instanceof TargetNotFoundException notFound) throw notFound;
         if (failure instanceof ReactionConflictException conflict) throw conflict;
         if (failure instanceof DependencyRejectedException rejected) throw rejected;

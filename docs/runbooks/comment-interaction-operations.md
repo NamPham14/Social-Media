@@ -9,6 +9,9 @@
 - Provision Kafka topics with each DLT having at least as many partitions as its source topic:
   - `post-deleted-topic`
   - `post-comments-deleted-topic`
+  - `comment-created-topic`
+  - `comment-replied-topic`
+  - `reaction-created-topic`
   - `post-deleted-topic-comment-dlt`
   - `post-deleted-topic-interaction-dlt`
   - `post-comments-deleted-topic-interaction-dlt`
@@ -71,6 +74,13 @@ The `comment-interaction-e2e` module starts both real applications on random loc
   service-specific DLT.
 - DLT publishing waits for broker acknowledgement. If publishing fails, the original record is
   not treated as recovered and remains eligible for redelivery.
+- Comment writes `CommentCreatedV1`/`CommentRepliedV1` to `comment_outbox`, while Interaction
+  writes `ReactionCreatedV1` to `interaction_outbox`, in the same transaction as the command data.
+  Relays publish only after commit and retry failed sends without failing the client request.
+- Root comments target the post owner; replies target the parent-comment owner; reactions target
+  the Post/Comment owner. Duplicate reactions and self-actions intentionally create no event.
+- Monitor pending-row count, oldest pending `created_at`, attempts and `last_error` in both outbox
+  tables. A growing oldest age indicates broker/configuration failure and must alert operations.
 
 ### DLT triage and replay
 
@@ -82,5 +92,5 @@ The `comment-interaction-e2e` module starts both real applications on random loc
 4. Confirm an idempotent no-op or the expected deleted-row counts in service logs, then retain the
    DLT record according to the platform retention policy.
 
-Notification events remain gated by CR-NOTIFICATION-001 and are unrelated to this deletion cleanup
-pipeline.
+Notification consumption remains gated by the UUID migration in CR-NOTIFICATION-001. Do not point
+the current Long-based Notification consumers at these UUID V1 topics before that migration.

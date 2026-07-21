@@ -28,11 +28,11 @@ public class InternalCommentController {
             throw new InternalAccessDeniedException();
         }
         CommentResponse comment = getCommentUseCase.execute(commentId);
-        return new AvailabilityResponse(commentId, !comment.isDeleted(),
+        return new AvailabilityResponse(commentId, comment.getUserId(), !comment.isDeleted(),
                 comment.isDeleted() ? "COMMENT_DELETED" : null);
     }
 
-    public record AvailabilityResponse(UUID targetId, boolean available, String reason) { }
+    public record AvailabilityResponse(UUID targetId, UUID ownerId, boolean available, String reason) { }
 
     private boolean constantTimeEquals(String expected, String supplied) {
         return java.security.MessageDigest.isEqual(

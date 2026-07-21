@@ -16,7 +16,7 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true) // huy thêm
-public class FindPostsByAuthorIdsUseCase {
+public class  FindPostsByAuthorIdsUseCase {
 
     PostRepository postRepository;
 
