@@ -7,6 +7,21 @@
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs/api-gateway.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/api-gateway.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/UnfollowUserUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/UnfollowUserUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/event/UserFollowedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/event/UserUnfollowedEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/exception/AlreadyFollowingException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/model/follower/aggregate/Follower.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/repository/FollowerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/UserClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/mapper/FollowerMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/FollowerRepositoryAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/SpringDataFollowerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/entity/FollowerInfraEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/CreatePostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/CreatePostUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +29,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="583" />
+    <option name="cachedIndexableFilesCount" value="596" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -45,61 +60,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0000000000007099" />
-      <entry key="S30" value="1.0000892018609173" />
-      <entry key="S60" value="1.0094446736797662" />
-      <entry key="M2" value="1.0971837135938052" />
-      <entry key="M5" value="1.3970009283505853" />
-      <entry key="M10" value="2.104138927369129" />
-      <entry key="M15" value="4.588640952136375" />
-      <entry key="M30" value="22.69085035299884" />
-      <entry key="H1" value="83.69215098796327" />
-      <entry key="H2" value="235.47342028760374" />
-      <entry key="H4" value="453.92520412200923" />
-      <entry key="D1" value="839.0127667733651" />
-      <entry key="W1" value="937.3780403962378" />
+      <entry key="MS100" value="1.4063025435599688" />
+      <entry key="MS500" value="3.3883774663595623" />
+      <entry key="S2" value="6.661345303593418" />
+      <entry key="S5" value="11.07180912058451" />
+      <entry key="S10" value="16.97635223173204" />
+      <entry key="S30" value="26.394942034527432" />
+      <entry key="S60" value="33.246570284679706" />
+      <entry key="M2" value="44.38902584715186" />
+      <entry key="M5" value="60.334533229298295" />
+      <entry key="M10" value="69.23217963143352" />
+      <entry key="M15" value="74.6018632657419" />
+      <entry key="M30" value="94.82885265477317" />
+      <entry key="H1" value="155.75762744808273" />
+      <entry key="H2" value="306.76989818063385" />
+      <entry key="H4" value="525.8730127069232" />
+      <entry key="D1" value="915.2074283215707" />
+      <entry key="W1" value="1015.0910006081353" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="9.602906497151617E-244" />
-      <entry key="S10" value="6.016156004306639E-122" />
-      <entry key="S30" value="1.566375224953477E-40" />
-      <entry key="S60" value="4.7738123996264623E-20" />
-      <entry key="M2" value="9.459559564002414E-10" />
-      <entry key="M5" value="0.0017080787730320817" />
-      <entry key="M10" value="0.30603589860618374" />
-      <entry key="M15" value="2.0341546025503185" />
-      <entry key="M30" value="15.378008130115298" />
-      <entry key="H1" value="45.198713119146724" />
-      <entry key="H2" value="80.30276133508295" />
-      <entry key="H4" value="109.17980122899812" />
-      <entry key="D1" value="143.53513242291845" />
-      <entry key="W1" value="150.75166525321325" />
+      <entry key="MS500" value="2.249360967024322E-118" />
+      <entry key="S2" value="3.872708383706055E-30" />
+      <entry key="S5" value="1.7200388885643387E-12" />
+      <entry key="S10" value="1.3472745244150888E-6" />
+      <entry key="S30" value="0.014254902243826435" />
+      <entry key="S60" value="0.16215156076905418" />
+      <entry key="M2" value="0.5633093724750987" />
+      <entry key="M5" value="1.2025420682086" />
+      <entry key="M10" value="1.7770932911970931" />
+      <entry key="M15" value="3.356499164046574" />
+      <entry key="M30" value="15.768564014232902" />
+      <entry key="H1" value="44.93757762547811" />
+      <entry key="H2" value="80.30218191357385" />
+      <entry key="H4" value="109.81905239496307" />
+      <entry key="D1" value="145.23656053759572" />
+      <entry key="W1" value="152.70685369562528" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.040666932982560425" />
-      <entry key="MS500" value="0.527045711645369" />
-      <entry key="S2" value="0.8520440950748659" />
-      <entry key="S5" value="0.9379611024081963" />
-      <entry key="S10" value="0.9684839195410074" />
-      <entry key="S30" value="0.989470218228049" />
-      <entry key="S60" value="1.0040532772043111" />
-      <entry key="M2" value="1.0941662037237494" />
-      <entry key="M5" value="1.39704586934118" />
-      <entry key="M10" value="2.40754674845272" />
-      <entry key="M15" value="6.615756880962656" />
-      <entry key="M30" value="38.047407877287235" />
-      <entry key="H1" value="128.86113076547693" />
-      <entry key="H2" value="315.7502197384162" />
-      <entry key="H4" value="563.0874273281687" />
-      <entry key="D1" value="982.5440477729978" />
-      <entry key="W1" value="1088.1291275743954" />
+      <entry key="MS100" value="1.3698359058463188" />
+      <entry key="MS500" value="3.3709182165111296" />
+      <entry key="S2" value="6.652295431854978" />
+      <entry key="S5" value="11.063350393089578" />
+      <entry key="S10" value="16.967877449147952" />
+      <entry key="S30" value="26.40238487615047" />
+      <entry key="S60" value="33.3960542030733" />
+      <entry key="M2" value="44.93336923023026" />
+      <entry key="M5" value="61.5210442261255" />
+      <entry key="M10" value="70.99761862236929" />
+      <entry key="M15" value="77.94555217684274" />
+      <entry key="M30" value="110.57415748064207" />
+      <entry key="H1" value="200.66490885062666" />
+      <entry key="H2" value="387.0457323011003" />
+      <entry key="H4" value="635.6741877928735" />
+      <entry key="D1" value="1060.4400587654636" />
+      <entry key="W1" value="1167.7972640103378" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -128,6 +143,7 @@
     &quot;Spring Boot.FollowerServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.IdentityServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.NotificationServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.PostServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Spring Boot.ProfileServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
@@ -169,6 +185,7 @@
               <entry key="FollowerServiceApplication" value="STOPPED" />
               <entry key="IdentityServiceApplication" value="STOPPED" />
               <entry key="NotificationServiceApplication" value="FAILED" />
+              <entry key="PostServiceApplication" value="STOPPED" />
               <entry key="ProfileServiceApplication" value="STOPPED" />
             </map>
           </value>
@@ -176,7 +193,7 @@
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ProfileServiceApplication">
+  <component name="RunManager" selected="Spring Boot.PostServiceApplication">
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="api-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.apigateway.ApiGatewayApplication" />
@@ -298,6 +315,8 @@
       <workItem from="1784564164836" duration="992000" />
       <workItem from="1784597412066" duration="4143000" />
       <workItem from="1784621443691" duration="4407000" />
+      <workItem from="1784626479141" duration="3355000" />
+      <workItem from="1784630830331" duration="1381000" />
     </task>
     <servers />
   </component>
