@@ -4,6 +4,7 @@ import com.social_media.postservice.domain.model.post.aggregate.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -20,4 +21,6 @@ public interface PostRepository {
     Post save(Post post);
 
     void delete(Post post);
+
+    Page<Post> findByAuthorIds(List<UUID> userIds, Pageable pageable);
 }

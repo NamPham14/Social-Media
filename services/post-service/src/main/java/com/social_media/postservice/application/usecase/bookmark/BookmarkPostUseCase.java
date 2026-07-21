@@ -1,7 +1,8 @@
-package com.social_media.postservice.application.usecase;
+package com.social_media.postservice.application.usecase.bookmark;
 
 import com.social_media.postservice.application.command.BookmarkPostCommand;
 //import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
+import com.social_media.postservice.application.exception.ResourceNotFoundException;
 import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
 import com.social_media.postservice.domain.repository.BookmarkRepository;
@@ -20,7 +21,7 @@ public class BookmarkPostUseCase {
     @Transactional
     public void execute(BookmarkPostCommand command) {
         Post post = postRepository.findById(command.getPostId())
-                .orElseThrow(() -> new com.social_media.postservice.application.exception.ResourceNotFoundException());
+                .orElseThrow(() -> new ResourceNotFoundException());
 
         if (bookmarkRepository.existsByUserIdAndPostId(command.getUserId(), command.getPostId())) {
             throw new com.social_media.postservice.application.exception.DuplicateResourceException();

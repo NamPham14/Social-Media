@@ -1,4 +1,4 @@
-package com.social_media.postservice.application.usecase;
+package com.social_media.postservice.application.usecase.bookmark;
 
 //import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;
 import com.social_media.postservice.domain.model.bookmark.aggregate.Bookmark;

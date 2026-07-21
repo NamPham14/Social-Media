@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Repository
@@ -27,5 +28,6 @@ public interface PostJpaRepository extends JpaRepository<PostEntity, UUID> {
                           @Param("authorName") String authorName,
                           @Param("authorAvatarUrl") String authorAvatarUrl);
 
+    Page<PostEntity> findByUserIdIn(List<UUID> userIds, Pageable pageable);
 
 }

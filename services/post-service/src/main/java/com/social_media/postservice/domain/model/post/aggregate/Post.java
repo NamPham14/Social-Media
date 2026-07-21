@@ -3,7 +3,7 @@ package com.social_media.postservice.domain.model.post.aggregate;
 import com.social_media.postservice.domain.model.post.valueobject.AuthorSnapshot;
 import com.social_media.postservice.domain.model.post.valueobject.ModerationStatus;
 import com.social_media.postservice.domain.model.post.valueobject.PostStatus;
-import com.social_media.postservice.domain.model.post.entity.PostMedia;
+import com.social_media.postservice.domain.model.post.valueobject.PostMedia;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
