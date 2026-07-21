@@ -14,7 +14,7 @@ import com.social_media.postservice.application.usecase.CreatePostUseCase;
 import com.social_media.postservice.application.usecase.DeletePostUseCase;
 import com.social_media.postservice.application.usecase.FindAllPostsUseCase;
 import com.social_media.postservice.application.usecase.FindPostsByAuthorIdUseCase;
-import com.social_media.postservice.application.usecase.FindPostsByAuthorIdsUseCase;
+import com.social_media.postservice.application.usecase.FindPostsByAuthIdsUseCase;
 import com.social_media.postservice.application.usecase.GetPostByPostIdUseCase;
 import com.social_media.postservice.application.usecase.SearchPostsUseCase;
 import com.social_media.postservice.application.usecase.UpdatePostUseCase;
@@ -38,7 +38,7 @@ public class PostController {
 
     private final GetPostByPostIdUseCase getPostByPostIdUseCase;
     private final FindPostsByAuthorIdUseCase findPostsByAuthorIdUseCase;
-    private final FindPostsByAuthorIdsUseCase findPostsByAuthorIdsUseCase;
+    private final FindPostsByAuthIdsUseCase findPostsByAuthorIdsUseCase;
     private final FindAllPostsUseCase findAllPostsUseCase;
     private final SearchPostsUseCase searchPostsUseCase;
     private final CreatePostUseCase createPostUseCase;
