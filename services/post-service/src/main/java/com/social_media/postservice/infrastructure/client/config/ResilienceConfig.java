@@ -8,6 +8,9 @@ import io.github.resilience4j.retry.RetryRegistry;
 import io.github.resilience4j.retry.Retry;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.ResourceAccessException;
 
 import java.time.Duration;
 import java.util.concurrent.TimeoutException;
@@ -74,5 +77,70 @@ public class ResilienceConfig {
                 .waitDurationInOpenState(Duration.ofSeconds(10)) // Giữ mạch OPEN trong 10 giây rồi chuyển HALF-OPEN
                 .build();
         return circuitBreakerRegistry.circuitBreaker("identityCircuitBreaker", config);
+    }
+
+
+    @Bean
+    public Retry profileRetry(RetryRegistry retryRegistry) {
+        RetryConfig config = RetryConfig.custom()
+                .maxAttempts(3) // Thử lại tối đa 3 lần
+                .waitDuration(Duration.ofMillis(1000)) // Chờ 1 giây giữa các lần thử
+                .retryExceptions(
+                        feign.RetryableException.class,   // Lỗi kết nối ngoại vi từ Feign
+                        TimeoutException.class,          // Lỗi quá thời gian chờ (Read/Connect Timeout)
+                        feign.FeignException.GatewayTimeout.class, // 504
+                        feign.FeignException.ServiceUnavailable.class // 503
+                )
+                .ignoreExceptions(
+                        feign.FeignException.BadRequest.class,    // 400 - không nên retry
+                        feign.FeignException.Unauthorized.class,  // 401
+                        feign.FeignException.Forbidden.class,     // 403
+                        feign.FeignException.NotFound.class       // 404 - user không có profile, retry vô ích
+                )
+                .build();
+        return retryRegistry.retry("profileRetry", config);
+    }
+
+    @Bean
+    public CircuitBreaker profileCircuitBreaker(CircuitBreakerRegistry circuitBreakerRegistry) {
+        CircuitBreakerConfig config = CircuitBreakerConfig.custom()
+                .slidingWindowType(CircuitBreakerConfig.SlidingWindowType.COUNT_BASED)
+                .slidingWindowSize(10) // Thống kê dựa trên 10 request gần nhất
+                .failureRateThreshold(50) // >= 50% lỗi thì ngắt mạch (OPEN)
+                .slowCallRateThreshold(75) // >= 75% request chậm cũng ngắt mạch
+                .slowCallDurationThreshold(Duration.ofSeconds(3)) // Quá 3s coi là chậm
+                .waitDurationInOpenState(Duration.ofSeconds(10)) // Giữ mạch OPEN 10s rồi thử lại HALF-OPEN
+                .build();
+        return circuitBreakerRegistry.circuitBreaker("profileCircuitBreaker", config);
+    }
+
+    @Bean
+    public Retry geminiRetry(RetryRegistry retryRegistry) {
+        RetryConfig config = RetryConfig.custom()
+                .maxAttempts(3)
+                .waitDuration(Duration.ofSeconds(3)) // 429 thường chỉ cần đợi vài giây
+                .retryExceptions(
+                        ResourceAccessException.class,             // Timeout / Rớt mạng
+                        HttpServerErrorException.class,           // Lỗi 5xx
+                        HttpClientErrorException.TooManyRequests.class // CẦN THÊM: Bắt lỗi 429
+                )
+                .ignoreExceptions(
+                        IllegalStateException.class               // Lỗi parse JSON
+                )
+                .build();
+        return retryRegistry.retry("geminiRetry", config);
+    }
+
+    @Bean
+    public CircuitBreaker geminiCircuitBreaker(CircuitBreakerRegistry circuitBreakerRegistry) {
+        CircuitBreakerConfig config = CircuitBreakerConfig.custom()
+                .slidingWindowType(CircuitBreakerConfig.SlidingWindowType.COUNT_BASED)
+                .slidingWindowSize(10) // Thống kê dựa trên 10 request gần nhất
+                .failureRateThreshold(50) // >= 50% lỗi thì ngắt mạch (OPEN)
+                .slowCallRateThreshold(75) // >= 75% request chậm cũng ngắt mạch
+                .slowCallDurationThreshold(Duration.ofSeconds(3)) // Quá 3s coi là chậm
+                .waitDurationInOpenState(Duration.ofSeconds(30)) // Giữ mạch OPEN 30s rồi thử lại HALF-OPEN
+                .build();
+        return circuitBreakerRegistry.circuitBreaker("geminiCircuitBreaker", config);
     }
 }

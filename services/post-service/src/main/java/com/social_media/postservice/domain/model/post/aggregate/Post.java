@@ -1,9 +1,6 @@
 package com.social_media.postservice.domain.model.post.aggregate;
 
-import com.social_media.postservice.domain.model.post.valueobject.AuthorSnapshot;
-import com.social_media.postservice.domain.model.post.valueobject.ModerationStatus;
-import com.social_media.postservice.domain.model.post.valueobject.PostStatus;
-import com.social_media.postservice.domain.model.post.valueobject.PostMedia;
+import com.social_media.postservice.domain.model.post.valueobject.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -155,4 +152,17 @@ public class Post {
     public void rule(String caption){
 
     }
+
+    public void applyModerationResult(ModerationResult result) {
+        if (this.deleted) {
+            return;
+        }
+        if (result.status() == ModerationStatus.REMOVED) {
+            this.moderationStatus = ModerationStatus.REMOVED;
+            this.status = PostStatus.PRIVATE;
+            this.updatedAt = LocalDateTime.now();
+        }
+    }
+
+
 }

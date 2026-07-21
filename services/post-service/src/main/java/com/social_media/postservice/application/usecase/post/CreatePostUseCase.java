@@ -10,6 +10,7 @@ import com.social_media.postservice.application.ports.output.PostEventPublisher;
 import com.social_media.postservice.config.security.SecurityUtils;
 import com.social_media.postservice.domain.model.outbox.OutBox;
 import com.social_media.postservice.domain.model.outbox.OutboxStatus;
+import com.social_media.postservice.domain.model.post.event.PostCreatedEvent;
 import com.social_media.postservice.domain.model.post.valueobject.AuthorSnapshot;
 import com.social_media.postservice.domain.repository.OutBoxRepository;
 import com.social_media.postservice.infrastructure.client.identity.service.IdentityServiceHelper; // Tiêm Helper mới
@@ -22,6 +23,7 @@ import com.social_media.postservice.infrastructure.client.profile.ProfileClient;
 import com.social_media.postservice.infrastructure.client.profile.service.ProfileServiceHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,6 +44,7 @@ public class CreatePostUseCase {
     private final OutBoxRepository outBoxRepository;
     private final ObjectMapper objectMapper;
     private final ProfileServiceHelper profileServiceHelper;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     @Transactional
     public PostResponse execute(CreatePostCommand command) {
@@ -103,6 +106,10 @@ public class CreatePostUseCase {
                     .build();
 
             outBoxRepository.save(outBox);
+
+            applicationEventPublisher.publishEvent(
+                    new PostCreatedEvent(savedPost.getId(),savedPost.getCaption())
+            );
 
 
 
