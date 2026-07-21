@@ -1,6 +1,7 @@
-package com.social_media.postservice.application.usecase;
+package com.social_media.postservice.application.usecase.report;
 
 import com.social_media.postservice.application.command.ReportPostCommand;
+import com.social_media.postservice.application.exception.ResourceNotFoundException;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
 //import com.social_media.postservice.domain.model.report.aggregate.Report;
 import com.social_media.postservice.domain.model.report.aggregate.Report;
@@ -20,10 +21,10 @@ public class ReportPostUseCase {
     @Transactional
     public void execute(ReportPostCommand command) {
         Post post = postRepository.findById(command.getPostId())
-                .orElseThrow(() -> new com.social_media.postservice.application.exception.ResourceNotFoundException());
+                .orElseThrow(() -> new ResourceNotFoundException());
 
         if (post.isDeleted()) {
-            throw new com.social_media.postservice.application.exception.ResourceNotFoundException();
+            throw new ResourceNotFoundException();
         }
 
         Report report = Report.create(

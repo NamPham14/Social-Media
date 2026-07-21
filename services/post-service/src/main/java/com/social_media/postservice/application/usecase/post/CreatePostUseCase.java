@@ -1,4 +1,4 @@
-package com.social_media.postservice.application.usecase;
+package com.social_media.postservice.application.usecase.post;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.social_media.postservice.application.exception.CloudinaryUploadException;
 import com.social_media.postservice.application.exception.UnauthorizedActionException;
@@ -10,22 +10,25 @@ import com.social_media.postservice.application.ports.output.PostEventPublisher;
 import com.social_media.postservice.config.security.SecurityUtils;
 import com.social_media.postservice.domain.model.outbox.OutBox;
 import com.social_media.postservice.domain.model.outbox.OutboxStatus;
+import com.social_media.postservice.domain.model.post.event.PostCreatedEvent;
+import com.social_media.postservice.domain.model.post.valueobject.AuthorSnapshot;
 import com.social_media.postservice.domain.repository.OutBoxRepository;
 import com.social_media.postservice.infrastructure.client.identity.service.IdentityServiceHelper; // Tiêm Helper mới
 import com.social_media.postservice.application.service.MediaService;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
-import com.social_media.postservice.domain.model.post.entity.PostMedia;
+import com.social_media.postservice.domain.model.post.valueobject.PostMedia;
 import com.social_media.postservice.domain.model.post.valueobject.MediaType;
 import com.social_media.postservice.domain.repository.PostRepository;
 import com.social_media.postservice.infrastructure.client.profile.ProfileClient;
+import com.social_media.postservice.infrastructure.client.profile.service.ProfileServiceHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Service
@@ -36,39 +39,38 @@ public class CreatePostUseCase {
     private final MediaService mediaService;
     private final PostRepository postRepository;
     private final IdentityServiceHelper identityServiceHelper;
-    private final OutBoxRepository outBoxRepository;
-    private final ObjectMapper objectMapper;
     private final PostEventPublisher postEventPublisher;
     private final ProfileClient profileClient;
-
+    private final OutBoxRepository outBoxRepository;
+    private final ObjectMapper objectMapper;
+    private final ProfileServiceHelper profileServiceHelper;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     @Transactional
     public PostResponse execute(CreatePostCommand command) {
 
         String statusUser = identityServiceHelper.getSafeUserStatus(command.getUserId());
 
+        String idMaHopLe = "99999999-9999-9999-9999-999999999999";
+        //String statusUser = identityServiceHelper.getSafeUserStatus(UUID.fromString(idMaHopLe));
         if ("BANNED".equals(statusUser)) {
             throw new UnauthorizedActionException();
         }
 
         List<UploadResponse> uploads = mediaService.upload(command.getImages());
 
-        // Bấm điện thoại gọi sang Profile lấy Tên và Ảnh
-        String authorName = "Unknown";
-        String authorAvatar = null;
-        try {
-            Map<String,Object> profileData = profileClient.getProfileById(command.getUserId());
-            if(profileData != null &&  profileData.get("data") != null){
-                Map<String, Object> data = (Map<String, Object>) profileData.get("data");
-                authorName = (String) data.get("username");
-                authorAvatar = (String) data.get("avatarUrl");
-            }
-        }catch (Exception e){
-            // Nếu Profile bị sập mạng, cứ cho đăng bài tạm với tên Unknown
-            System.out.println("Không gọi được Profile Service: " + e.getMessage());
-        }
+        AuthorSnapshot author = profileServiceHelper.getAuthorSnapshot(command.getUserId());
 
-        Post post = Post.create(command.getUserId(),authorName,authorAvatar, command.getCaption(), command.getLocationName());
+//        Post post = Post.create(command.getUserId(),authorName,authorAvatar, command.getCaption(), command.getLocationName());
+
+        Post post = Post.create(
+                command.getUserId(),
+                author.getName(),
+                author.getAvatarUrl(),
+                command.getCaption(),
+                command.getLocationName()
+        );
+
         int index = 0;
         for (UploadResponse file : uploads) {
             PostMedia media = PostMedia.create(
@@ -86,10 +88,13 @@ public class CreatePostUseCase {
             PostCreatedIntegrationEvent postCreatedIntegrationEvent = new PostCreatedIntegrationEvent(
                     UUID.randomUUID().toString(),
                     savedPost.getId().toString(),
+                    savedPost.getAuthor().getName(),
+                    savedPost.getAuthor().getAvatarUrl(),
                     SecurityUtils.getCurrentUserId().toString(),
                     savedPost.getCaption(),
                     savedPost.getCreatedAt()
             );
+//            postEventPublisher.publishPostCreated(postCreatedIntegrationEvent);
 
             OutBox outBox = OutBox.builder()
                     .id(UUID.randomUUID())
@@ -101,6 +106,10 @@ public class CreatePostUseCase {
                     .build();
 
             outBoxRepository.save(outBox);
+
+            applicationEventPublisher.publishEvent(
+                    new PostCreatedEvent(savedPost.getId(),savedPost.getCaption())
+            );
 
 
 

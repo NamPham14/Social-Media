@@ -1,4 +1,4 @@
-package com.social_media.postservice.application.usecase;
+package com.social_media.postservice.application.usecase.report;
 
 //import com.social_media.postservice.domain.model.report.aggregate.Report;
 import com.social_media.postservice.domain.model.report.aggregate.Report;

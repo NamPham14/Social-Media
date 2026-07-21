@@ -1,12 +1,13 @@
-package com.social_media.postservice.application.usecase;
+package com.social_media.postservice.application.usecase.post;
 import com.social_media.postservice.application.command.UpdatePostCommand;
 import com.social_media.postservice.application.dto.PostResponse;
 import com.social_media.postservice.application.dto.UploadResponse;
+import com.social_media.postservice.application.exception.ResourceNotFoundException;
 import com.social_media.postservice.application.service.MediaService;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
-//import com.social_media.postservice.domain.model.post.entity.PostMedia;
-//import com.social_media.postservice.domain.model.post.entity.PostMedia;
-import com.social_media.postservice.domain.model.post.entity.PostMedia;
+//import com.social_media.postservice.domain.model.post.valueobject.PostMedia;
+//import com.social_media.postservice.domain.model.post.valueobject.PostMedia;
+import com.social_media.postservice.domain.model.post.valueobject.PostMedia;
 import com.social_media.postservice.domain.model.post.valueobject.MediaType;
 import com.social_media.postservice.domain.repository.PostRepository;
 //import com.social_media.postservice.domain.model.post.valueobject.MediaType;
@@ -31,7 +32,7 @@ public class UpdatePostUseCase {
     public PostResponse execute(UpdatePostCommand command) {
 
         Post post = postRepository.findById(command.getId())
-                .orElseThrow(() -> new com.social_media.postservice.application.exception.ResourceNotFoundException());
+                .orElseThrow(() -> new ResourceNotFoundException());
 
         post.update(command.getCaption(), command.getLocationName());
 

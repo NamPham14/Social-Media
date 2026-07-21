@@ -1,6 +1,7 @@
-package com.social_media.postservice.application.usecase;
+package com.social_media.postservice.application.usecase.post;
 
 import com.social_media.postservice.application.command.ChangePostVisibilityCommand;
+import com.social_media.postservice.application.exception.ResourceNotFoundException;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
 import com.social_media.postservice.domain.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class ChangePostVisibilityUseCase {
     public void execute(ChangePostVisibilityCommand app) {
 
         Post post = postRepository.findById(app.getPostId())
-                .orElseThrow(() -> new com.social_media.postservice.application.exception.ResourceNotFoundException());
+                .orElseThrow(() -> new ResourceNotFoundException());
 
         if (!post.getUserId().equals(app.getUserId())) {
             throw new com.social_media.postservice.application.exception.UnauthorizedActionException();

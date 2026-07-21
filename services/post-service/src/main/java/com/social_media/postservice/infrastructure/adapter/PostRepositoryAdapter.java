@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -61,5 +62,11 @@ public class PostRepositoryAdapter implements PostRepository {
     public void delete(Post post) {
         PostEntity entity = postMapper.toEntity(post);
         postJpaRepository.delete(entity);
+    }
+
+    @Override
+    public Page<Post> findByAuthorIds(List<UUID> userIds, Pageable pageable) {
+        return postJpaRepository.findByUserIdIn(userIds, pageable)
+                .map(postMapper::toDomain);
     }
 }
