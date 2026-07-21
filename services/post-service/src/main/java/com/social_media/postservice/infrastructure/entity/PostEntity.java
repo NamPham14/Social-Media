@@ -75,6 +75,12 @@ public class PostEntity {
     @Column(name = "removed_at")
     private LocalDateTime removedAt;
 
+    @Column(name = "author_name", length = 100)
+    private String authorName;
+
+    @Column(name = "author_avatar_url", length = 500)
+    private String authorAvatarUrl;
+
     @OneToMany(
             mappedBy = "post",
             cascade = CascadeType.ALL,

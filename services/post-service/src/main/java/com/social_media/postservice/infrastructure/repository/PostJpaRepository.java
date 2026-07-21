@@ -5,6 +5,7 @@ import com.social_media.postservice.infrastructure.entity.PostEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -20,4 +21,9 @@ public interface PostJpaRepository extends JpaRepository<PostEntity, UUID> {
 
     Page<PostEntity> findPostEntityByUserId(UUID userId, Pageable pageable);
 
+    @Modifying
+    @Query("UPDATE PostEntity p SET p.authorName = :authorName, p.authorAvatarUrl = :authorAvatarUrl WHERE p.userId = :userId")
+    void updateAuthorInfo(@Param("userId") UUID userId,
+                          @Param("authorName") String authorName,
+                          @Param("authorAvatarUrl") String authorAvatarUrl);
 }

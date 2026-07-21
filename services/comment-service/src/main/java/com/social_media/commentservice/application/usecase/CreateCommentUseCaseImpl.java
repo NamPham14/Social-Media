@@ -10,11 +10,13 @@ import com.social_media.commentservice.domain.exception.CommentNotFoundException
 import com.social_media.commentservice.domain.exception.InvalidCommentException;
 import com.social_media.commentservice.domain.model.Comment;
 import com.social_media.commentservice.domain.repository.CommentRepository;
+import com.social_media.commentservice.infrastructure.client.profile.ProfileClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.UUID;
+import java.util.Map;
+
 
 @Service
 @RequiredArgsConstructor
@@ -23,6 +25,8 @@ public class CreateCommentUseCaseImpl implements CreateCommentUseCase {
     private final CommentRepository commentRepository;
     private final PostAvailabilityPort postAvailabilityPort;
     private final CommentEventOutbox eventOutbox;
+    private final ProfileClient profileClient;
+
 
     @Override
     @Transactional
@@ -44,7 +48,21 @@ public class CreateCommentUseCaseImpl implements CreateCommentUseCase {
             }
             recipientId = parent.getUserId();
         }
-        Comment comment = Comment.create(command.postId(), command.actorId(), command.parentId(), command.content());
+
+        // Xin Tên và Ảnh từ Profile
+        String authorName = "Unknown";
+        String authorAvatar = null;
+        try {
+            Map<String, Object> profileData = profileClient.getProfileById(command.actorId());
+            if (profileData != null && profileData.get("data") != null) {
+                Map<String, Object> data = (Map<String, Object>) profileData.get("data");
+                authorName = (String) data.get("username");
+                authorAvatar = (String) data.get("avatarUrl");
+            }
+        } catch (Exception e) {
+            System.out.println("Lỗi gọi Profile: " + e.getMessage());
+        }
+        Comment comment = Comment.create(command.postId(), command.actorId(),  authorName, authorAvatar,command.parentId(), command.content());
         Comment saved = commentRepository.save(comment);
         if (!saved.getUserId().equals(recipientId)) {
             eventOutbox.append(CommentNotificationEvent.from(saved, recipientId));

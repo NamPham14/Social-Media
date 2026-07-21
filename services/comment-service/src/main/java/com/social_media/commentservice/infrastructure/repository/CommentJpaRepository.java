@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.UUID;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.query.Param;
@@ -34,6 +35,7 @@ public interface CommentJpaRepository extends JpaRepository<Comment, UUID> {
             """)
     List<CommentCountProjection> countActiveByPostIds(@Param("postIds") Collection<UUID> postIds);
 
+
     @Query("select c.id from Comment c where c.postId = :postId and c.deleted = false")
     List<UUID> findActiveIdsByPostId(@Param("postId") UUID postId);
 
@@ -41,4 +43,12 @@ public interface CommentJpaRepository extends JpaRepository<Comment, UUID> {
     @Query("update Comment c set c.deleted = true, c.updatedAt = CURRENT_TIMESTAMP " +
             "where c.postId = :postId and c.deleted = false")
     int softDeleteAllByPostId(@Param("postId") UUID postId);
+
+
+    @Modifying
+    @Query("UPDATE Comment c SET c.authorName = :authorName, c.authorAvatarUrl = :authorAvatarUrl WHERE c.userId = :userId")
+    void updateAuthorInfo(@Param("userId") UUID userId,
+                          @Param("authorName") String authorName,
+                          @Param("authorAvatarUrl") String authorAvatarUrl);
+
 }
