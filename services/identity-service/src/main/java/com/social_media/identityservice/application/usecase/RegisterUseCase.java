@@ -1,6 +1,9 @@
 package com.social_media.identityservice.application.usecase;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.social_media.identityservice.application.command.RegisterCommand;
+import com.social_media.identityservice.domain.repository.OutboxEventRepository;
 import com.social_media.identityservice.domain.shared.valueobject.RoleId;
 import com.social_media.identityservice.domain.model.role.aggregate.Role;
 import com.social_media.identityservice.domain.repository.RoleRepository;
@@ -23,6 +26,8 @@ public class RegisterUseCase {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final ProfileServiceHelper profileServiceHelper;
+    private final OutboxEventRepository outboxEventRepository;
+    private final ObjectMapper objectMapper;
 
     @Transactional
     public User register(RegisterCommand command) {
@@ -47,11 +52,24 @@ public class RegisterUseCase {
         User savedUser = userRepository.save(user);
 
         // Gọi sang Profile Service để tạo profile tương ứng (Sẽ chuyển sang Event sau)
-        profileServiceHelper.createSafeProfile(ProfileCreationRequest.builder()
-                .id(savedUser.getId().value())
-                .username(savedUser.getUsername())
-                .fullName(savedUser.getUsername())
-                .build());
+//        profileServiceHelper.createSafeProfile(ProfileCreationRequest.builder()
+//                .id(savedUser.getId().value())
+//                .username(savedUser.getUsername())
+//                .fullName(savedUser.getUsername())
+//                .build());
+
+        // ---------------- OUTBOX PATTERN ----------------
+        // Bước 1: Đóng gói thông tin User mới thành chuỗi JSON (Payload)
+        ObjectNode payload = objectMapper.createObjectNode();
+        payload.put("userId",savedUser.getId().value().toString());
+        payload.put("username", savedUser.getUsername());
+        payload.put("email", savedUser.getEmail());
+
+        // Bước 2: Lưu bức thư vào Outbox (Bảng outbox_events)
+        // Vì hành động này nằm trong hàm @Transactional, nó sẽ được lưu CÙNG LÚC với lệnh save(user) ở dòng trên.
+        outboxEventRepository.save(savedUser.getId().value().toString(),
+                "USER_REGISTERED",
+                payload.toString());
 
         return savedUser;
     }

@@ -17,6 +17,8 @@ public final class CommentMapper {
                 .id(comment.getId())
                 .postId(comment.getPostId())
                 .userId(comment.getUserId())
+                .authorName(comment.getAuthorName())
+                .authorAvatarUrl(comment.getAuthorAvatarUrl())
                 .parentId(comment.getParentId())
                 .content(hideDeletedContent ? "[deleted]" : comment.getContent())
                 .deleted(comment.isDeleted())

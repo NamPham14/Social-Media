@@ -17,6 +17,8 @@ public class PostResponse {
 
     private UUID id;
     private UUID userId;
+    private String authorName;
+    private String authorAvatarUrl;
 
     private String caption;
     private String locationName;
@@ -33,6 +35,10 @@ public class PostResponse {
 
         res.id = post.getId();
         res.userId = post.getUserId();
+        if (post.getAuthor() != null) {
+            res.authorName = post.getAuthor().getName();
+            res.authorAvatarUrl = post.getAuthor().getAvatarUrl();
+        }
         res.caption = post.getCaption();
         res.locationName = post.getLocationName();
 

@@ -1,5 +1,6 @@
 package com.social_media.postservice.domain.model.post.aggregate;
 
+import com.social_media.postservice.domain.model.post.valueobject.AuthorSnapshot;
 import com.social_media.postservice.domain.model.post.valueobject.ModerationStatus;
 import com.social_media.postservice.domain.model.post.valueobject.PostStatus;
 import com.social_media.postservice.domain.model.post.entity.PostMedia;
@@ -25,6 +26,8 @@ public class Post {
 
     private UUID userId;
 
+    private AuthorSnapshot author;
+
     private String caption;
 
     private String locationName;
@@ -49,9 +52,30 @@ public class Post {
     @Builder.Default
     private List<PostMedia> medias = new ArrayList<>();
 
-    public static Post create(UUID userId, String caption, String locationName) {
+//    public static Post create(UUID userId, String authorName, String authorAvatarUrl, String caption, String locationName) {
+//        Post post = new Post();
+//        post.userId = userId;
+//        post.authorName = authorName;
+//        post.authorAvatarUrl = authorAvatarUrl;
+//        post.caption = caption;
+//        post.locationName = locationName;
+//        post.status = PostStatus.PUBLIC;
+//        post.moderationStatus = ModerationStatus.NONE;
+//        post.medias = new ArrayList<>();
+//        post.createdAt = LocalDateTime.now();
+//        post.updatedAt = LocalDateTime.now();
+//        post.deleted = false;
+//        post.deletedAt = null;
+//        return post;
+//    }
+
+    public static Post create(UUID userId, String authorName, String authorAvatarUrl, String caption, String locationName) {
         Post post = new Post();
         post.userId = userId;
+        post.author = AuthorSnapshot.builder()
+                .name(authorName)
+                .avatarUrl(authorAvatarUrl)
+                .build();
         post.caption = caption;
         post.locationName = locationName;
         post.status = PostStatus.PUBLIC;
