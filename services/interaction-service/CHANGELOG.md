@@ -4,6 +4,11 @@
 
 ### Added
 
+- Stable service-specific API error codes with correlation-aware 400/404/405/409/415/500/503 handling.
+- A `local` Spring profile aligned with the root Compose Interaction database port.
+- Bounded retry and service-specific DLT recovery for Post and Comment target cleanup events.
+- Transactional Interaction outbox and `ReactionCreatedV1` notification events with resolved UUID
+  recipients plus duplicate/self-action suppression.
 - Idempotent add/remove reaction flows and single/batch counter queries.
 - Target availability outbound port.
 - PostgreSQL Testcontainers coverage for concurrent writes, transaction rollback, safe removal and legacy BOOKMARK migration.
@@ -20,6 +25,9 @@
 
 ### Changed
 
+- Successful API envelopes now consistently use common code `1000`.
+- Default runtime database credentials are externalized; SQL logging is local-profile only.
+- Poison Kafka records bypass retry and DLT publishing must receive broker acknowledgement.
 - Target-provider 4xx responses are non-retriable and excluded from circuit failure metrics; 403 Post responses remain reaction conflicts.
 - Namespaced Flyway resources under the Interaction bounded context so composed test/runtime classpaths cannot discover another service's migrations.
 

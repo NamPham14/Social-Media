@@ -8,14 +8,14 @@ spring:
   application:
     name: comment-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/comment_service
-    username: postgres
-    password: 1234
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: validate
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -23,6 +23,19 @@ spring:
     baseline-on-migrate: true
     baseline-version: 0
     locations: classpath:db/migration/comment
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: comment-service-post-deletion
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      properties:
+        enable.idempotence: true
   cloud:
     openfeign:
       client:
@@ -70,6 +83,7 @@ resilience4j:
           - com.social_media.commentservice.domain.exception.TargetNotFoundException
           - com.social_media.commentservice.domain.exception.InvalidCommentException
           - com.social_media.commentservice.domain.exception.DependencyRejectedException
+
   circuitbreaker:
     instances:
       postAvailability:
@@ -82,3 +96,23 @@ resilience4j:
           - com.social_media.commentservice.domain.exception.TargetNotFoundException
           - com.social_media.commentservice.domain.exception.InvalidCommentException
           - com.social_media.commentservice.domain.exception.DependencyRejectedException
+
+messaging:
+  topics:
+    post-deleted: post-deleted-topic
+    post-comments-deleted: post-comments-deleted-topic
+    comment-created: comment-created-topic
+    comment-replied: comment-replied-topic
+  outbox:
+    enabled: true
+    poll-delay-ms: 1000
+    batch-size: 100
+    retry-delay-ms: 5000
+    publish-timeout-seconds: 10
+    retention-days: 7
+    cleanup-cron: "0 0 3 * * *"
+  retry:
+    max-attempts: 5
+    backoff-ms: 1000
+    dlt-suffix: -comment-dlt
+    dlt-publish-timeout-seconds: 10

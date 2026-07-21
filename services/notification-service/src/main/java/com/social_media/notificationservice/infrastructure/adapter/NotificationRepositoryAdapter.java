@@ -1,6 +1,8 @@
 package com.social_media.notificationservice.infrastructure.adapter;
 
 import com.social_media.notificationservice.domain.model.aggregate.Notification;
+import com.social_media.notificationservice.domain.model.enums.TargetType;
+import com.social_media.notificationservice.domain.model.enums.NotificationType;
 import com.social_media.notificationservice.domain.repository.NotificationRepository;
 import com.social_media.notificationservice.infrastructure.entity.NotificationEntity;
 import com.social_media.notificationservice.infrastructure.mapper.NotificationPersistenceMapper;
@@ -74,6 +76,28 @@ public class NotificationRepositoryAdapter implements NotificationRepository {
         jpaRepository.delete(mapper.toEntity(notification));
     }
 
+    @Override
+    public void deleteByTargetTypeAndTargetId(TargetType targetType, String targetId) {
+        jpaRepository.deleteByTargetTypeAndTargetId(targetType, targetId);
+    }
+
+    @Override
+    public void deleteByRecipientIdAndActorIdAndNotificationTypeAndTargetTypeAndTargetId(
+            String recipientId,
+            String actorId,
+            NotificationType notificationType,
+            TargetType targetType,
+            String targetId
+    ) {
+        jpaRepository.deleteByRecipientIdAndActorIdAndNotificationTypeAndTargetTypeAndTargetId(
+                recipientId,
+                actorId,
+                notificationType,
+                targetType,
+                targetId
+        );
+    }
+
     private Pageable pageRequest(int limit) {
         if (limit <= 0) {
             throw new IllegalArgumentException("limit must be greater than 0");
@@ -82,3 +106,5 @@ public class NotificationRepositoryAdapter implements NotificationRepository {
         return PageRequest.of(0, Math.min(limit, MAX_PAGE_SIZE));
     }
 }
+
+

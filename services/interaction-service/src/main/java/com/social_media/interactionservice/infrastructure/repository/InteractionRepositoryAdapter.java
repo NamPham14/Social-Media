@@ -7,6 +7,7 @@ import com.social_media.interactionservice.domain.repository.InteractionReposito
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -37,5 +38,10 @@ public class InteractionRepositoryAdapter implements InteractionRepository {
     public List<Interaction> findActiveByActorAndTarget(UUID actorId, TargetType targetType, UUID targetId) {
         return interactionJpaRepository.findByUserIdAndTargetTypeAndTargetIdOrderByReactionTypeAsc(
                 actorId, targetType, targetId);
+    }
+
+    @Override
+    public int removeAllByTargets(TargetType targetType, Collection<UUID> targetIds) {
+        return targetIds.isEmpty() ? 0 : interactionJpaRepository.removeAllByTargets(targetType, targetIds);
     }
 }

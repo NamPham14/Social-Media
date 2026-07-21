@@ -4,9 +4,9 @@ spring:
   application:
     name: post-service
   datasource:
-    url: jdbc:postgresql://localhost:5434/post_service
+    url: jdbc:postgresql://localhost:5432/post_service
     username: postgres
-    password: 123456
+    password: 1234
   jpa:
     hibernate:
       ddl-auto: update
@@ -16,7 +16,7 @@ spring:
       okhttp:
         enabled: true
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer # từ string hoặc int => chuyển ra byte
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer # từ object chuyển ra JSON
@@ -49,6 +49,7 @@ spring:
         acknowledge-mode: auto  # Chế độ xác nhận tin nhắn (auto/manual)
         concurrency: 5          # Số lượng consumer tối thiểu
         max-concurrency: 10     # Số lượng consumer tối đa khi cần thiết
+
 
 management:
   endpoints:

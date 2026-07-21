@@ -3,6 +3,7 @@ package com.social_media.commentservice.domain.repository;
 import com.social_media.commentservice.domain.model.Comment;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -18,6 +19,10 @@ public interface CommentRepository {
     long countActiveByPostId(UUID postId);
 
     Map<UUID, Long> countActiveByPostIds(Collection<UUID> postIds);
+
+    List<UUID> findActiveIdsByPostId(UUID postId);
+
+    int softDeleteAllByPostId(UUID postId);
 
     Comment save(Comment comment);
 }

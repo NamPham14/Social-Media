@@ -39,4 +39,9 @@ public class InteractionCounterRepositoryAdapter implements InteractionCounterRe
     public List<InteractionCounter> findAll(Collection<InteractionCounterId> ids) {
         return interactionCounterJpaRepository.findAllById(ids);
     }
+
+    @Override
+    public int removeAllByTargets(TargetType targetType, Collection<UUID> targetIds) {
+        return targetIds.isEmpty() ? 0 : interactionCounterJpaRepository.removeAllByTargets(targetType, targetIds);
+    }
 }

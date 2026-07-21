@@ -1,4 +1,5 @@
 package com.social_media.postservice.application.usecase;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.social_media.postservice.application.exception.CloudinaryUploadException;
 import com.social_media.postservice.application.exception.UnauthorizedActionException;
 import com.social_media.postservice.application.command.CreatePostCommand;
@@ -17,7 +18,6 @@ import com.social_media.postservice.domain.model.post.entity.PostMedia;
 import com.social_media.postservice.domain.model.post.valueobject.MediaType;
 import com.social_media.postservice.domain.repository.PostRepository;
 import com.social_media.postservice.infrastructure.client.profile.ProfileClient;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -41,13 +41,12 @@ public class CreatePostUseCase {
     private final PostEventPublisher postEventPublisher;
     private final ProfileClient profileClient;
 
+
     @Transactional
     public PostResponse execute(CreatePostCommand command) {
 
         String statusUser = identityServiceHelper.getSafeUserStatus(command.getUserId());
 
-        String idMaHopLe = "99999999-9999-9999-9999-999999999999";
-        //String statusUser = identityServiceHelper.getSafeUserStatus(UUID.fromString(idMaHopLe));
         if ("BANNED".equals(statusUser)) {
             throw new UnauthorizedActionException();
         }

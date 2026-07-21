@@ -6,7 +6,6 @@ public enum NotificationType {
     POST_COMMENTED,
     COMMENT_REPLIED,
     USER_FOLLOWED,
-    USER_MENTIONED,
-    INTERVIEW_SCHEDULED,
     POST_CREATED,
 }
+

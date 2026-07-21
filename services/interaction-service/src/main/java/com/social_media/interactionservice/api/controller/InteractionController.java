@@ -32,6 +32,8 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class InteractionController {
 
+    private static final int SUCCESS_CODE = 1000;
+
     private final CreateInteractionUseCase createInteractionUseCase;
     private final RemoveInteractionUseCase removeInteractionUseCase;
     private final FindActorReactionsUseCase findActorReactionsUseCase;
@@ -49,7 +51,7 @@ public class InteractionController {
         );
 
         return ApiResponse.<InteractionResponse>builder()
-                .code(HttpStatus.OK.value())
+                .code(SUCCESS_CODE)
                 .status(HttpStatus.OK.value())
                 .message("Create Interaction Success")
                 .data(createInteractionUseCase.execute(command))
@@ -63,7 +65,7 @@ public class InteractionController {
             @PathVariable("targetId") UUID targetId,
             @PathVariable("reactionType") ReactionType reactionType) {
         boolean removed = removeInteractionUseCase.execute(actorId, targetType, targetId, reactionType);
-        return ApiResponse.<Boolean>builder().code(200).status(200)
+        return ApiResponse.<Boolean>builder().code(SUCCESS_CODE).status(200)
                 .message(removed ? "Remove Interaction Success" : "Interaction Already Absent")
                 .data(removed).build();
     }
@@ -73,7 +75,7 @@ public class InteractionController {
             @RequestHeader("X-Auth-User-Id") UUID actorId,
             @PathVariable("targetType") TargetType targetType,
             @PathVariable("targetId") UUID targetId) {
-        return ApiResponse.<List<InteractionResponse>>builder().code(200).status(200)
+        return ApiResponse.<List<InteractionResponse>>builder().code(SUCCESS_CODE).status(200)
                 .message("Get Actor Interactions Success")
                 .data(findActorReactionsUseCase.execute(actorId, targetType, targetId)).build();
     }
@@ -82,13 +84,13 @@ public class InteractionController {
     public ApiResponse<CounterResponse> counter(
             @PathVariable("targetType") TargetType targetType,
             @PathVariable("targetId") UUID targetId) {
-        return ApiResponse.<CounterResponse>builder().code(200).status(200).message("Get Counter Success")
+        return ApiResponse.<CounterResponse>builder().code(SUCCESS_CODE).status(200).message("Get Counter Success")
                 .data(getCountersUseCase.get(targetType, targetId)).build();
     }
 
     @PostMapping(ApiPath.COUNTERS_BATCH)
     public ApiResponse<List<CounterResponse>> counters(@Valid @RequestBody BatchCounterRequest request) {
-        return ApiResponse.<List<CounterResponse>>builder().code(200).status(200).message("Get Counters Success")
+        return ApiResponse.<List<CounterResponse>>builder().code(SUCCESS_CODE).status(200).message("Get Counters Success")
                 .data(getCountersUseCase.getBatch(request.targets())).build();
     }
 }

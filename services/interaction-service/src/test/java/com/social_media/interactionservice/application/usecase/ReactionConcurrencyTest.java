@@ -2,6 +2,7 @@ package com.social_media.interactionservice.application.usecase;
 
 import com.social_media.interactionservice.application.command.CreateInteractionCommand;
 import com.social_media.interactionservice.application.port.out.TargetAvailabilityPort;
+import com.social_media.interactionservice.application.port.out.InteractionEventOutbox;
 import com.social_media.interactionservice.domain.model.*;
 import com.social_media.interactionservice.domain.repository.*;
 import org.junit.jupiter.api.Test;
@@ -26,15 +27,20 @@ class ReactionConcurrencyTest {
             public boolean remove(UUID a, TargetType t, UUID id, ReactionType r) { return false; }
             public Optional<Interaction> find(UUID a, TargetType t, UUID id, ReactionType r) { return Optional.of(row); }
             public List<Interaction> findActiveByActorAndTarget(UUID a, TargetType t, UUID id) { return List.of(row); }
+            public int removeAllByTargets(TargetType t, Collection<UUID> ids) { return 0; }
         };
         InteractionCounterRepository counters = new InteractionCounterRepository() {
             public void increment(TargetType t, UUID id, ReactionType r) { increments.incrementAndGet(); }
             public void decrement(TargetType t, UUID id, ReactionType r) { }
             public Optional<InteractionCounter> find(TargetType t, UUID id) { return Optional.empty(); }
             public List<InteractionCounter> findAll(Collection<InteractionCounterId> ids) { return List.of(); }
+            public int removeAllByTargets(TargetType t, Collection<UUID> ids) { return 0; }
         };
-        TargetAvailabilityPort availability = (type, id, user) -> { };
-        CreateInteractionUseCaseImpl useCase = new CreateInteractionUseCaseImpl(repository, counters, availability);
+        TargetAvailabilityPort availability = (type, id, user) ->
+                new TargetAvailabilityPort.AvailableTarget(type, id, user);
+        InteractionEventOutbox outbox = event -> { };
+        CreateInteractionUseCaseImpl useCase = new CreateInteractionUseCaseImpl(
+                repository, counters, availability, outbox);
         CreateInteractionCommand command = new CreateInteractionCommand(actor, TargetType.POST, target, ReactionType.LIKE);
         ExecutorService pool = Executors.newFixedThreadPool(16);
         try {

@@ -1,10 +1,13 @@
 package com.social_media.interactionservice.infrastructure.repository;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.social_media.interactionservice.application.event.ReactionNotificationEvent;
 import com.social_media.interactionservice.domain.model.InteractionCounterId;
 import com.social_media.interactionservice.domain.model.ReactionType;
 import com.social_media.interactionservice.domain.model.TargetType;
 import com.social_media.interactionservice.domain.repository.InteractionCounterRepository;
 import com.social_media.interactionservice.domain.repository.InteractionRepository;
+import com.social_media.interactionservice.infrastructure.messaging.outbox.InteractionOutboxRepository;
 import org.flywaydb.core.Flyway;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -15,6 +18,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +27,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.Callable;
@@ -68,7 +73,7 @@ class InteractionPostgresIntegrationTest {
 
     @AfterEach
     void cleanDatabase() {
-        jdbcTemplate.execute("TRUNCATE TABLE interactions, interaction_counters");
+        jdbcTemplate.execute("TRUNCATE TABLE interactions, interaction_counters, interaction_outbox");
         jdbcTemplate.execute("DROP SCHEMA IF EXISTS legacy_migration CASCADE");
     }
 
@@ -190,6 +195,75 @@ class InteractionPostgresIntegrationTest {
                 """, Integer.class);
         assertThat(bookmarks).isZero();
         assertThat(bookmarkColumn).isZero();
+    }
+
+    @Test
+    void targetCleanupDeletesLedgerRowsAndCountersIdempotently() {
+        UUID firstCommentId = UUID.randomUUID();
+        UUID secondCommentId = UUID.randomUUID();
+        addReaction(UUID.randomUUID(), firstCommentId, ReactionType.LIKE);
+        addReaction(UUID.randomUUID(), secondCommentId, ReactionType.CLAP);
+
+        inTransaction(() -> {
+            assertThat(interactionRepository.removeAllByTargets(
+                    TargetType.COMMENT, List.of(firstCommentId, secondCommentId))).isEqualTo(2);
+            assertThat(counterRepository.removeAllByTargets(
+                    TargetType.COMMENT, List.of(firstCommentId, secondCommentId))).isEqualTo(2);
+        });
+
+        assertThat(counterRepository.find(TargetType.COMMENT, firstCommentId)).isEmpty();
+        assertThat(counterRepository.find(TargetType.COMMENT, secondCommentId)).isEmpty();
+        inTransaction(() -> {
+            assertThat(interactionRepository.removeAllByTargets(
+                    TargetType.COMMENT, List.of(firstCommentId, secondCommentId))).isZero();
+            assertThat(counterRepository.removeAllByTargets(
+                    TargetType.COMMENT, List.of(firstCommentId, secondCommentId))).isZero();
+        });
+    }
+
+    @Test
+    void interactionAndOutboxRowsShareTheSameDatabaseTransaction() {
+        UUID interactionId = UUID.randomUUID();
+        UUID actorId = UUID.randomUUID();
+        UUID targetId = UUID.randomUUID();
+        UUID recipientId = UUID.randomUUID();
+        ReactionNotificationEvent event = new ReactionNotificationEvent(
+                UUID.randomUUID(), ReactionNotificationEvent.REACTION_CREATED, 1, Instant.now(),
+                interactionId, TargetType.POST, targetId, ReactionType.LIKE, actorId, recipientId);
+        InteractionOutboxRepository outbox = new InteractionOutboxRepository(
+                jdbcTemplate, new ObjectMapper().findAndRegisterModules());
+        ReflectionTestUtils.setField(outbox, "reactionCreatedTopic", "reaction-created-topic");
+
+        new TransactionTemplate(transactionManager).executeWithoutResult(status -> {
+            jdbcTemplate.update("""
+                    INSERT INTO interactions
+                        (id, user_id, target_type, target_id, reaction_type, is_deleted, created_at)
+                    VALUES (?, ?, 'POST', ?, 'LIKE', false, NOW())
+                    """, interactionId, actorId, targetId);
+            outbox.append(event);
+            status.setRollbackOnly();
+        });
+
+        assertThat(jdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM interactions WHERE id = ?", Integer.class, interactionId)).isZero();
+        assertThat(jdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM interaction_outbox WHERE event_id = ?", Integer.class, event.eventId())).isZero();
+
+        new TransactionTemplate(transactionManager).executeWithoutResult(status -> {
+            jdbcTemplate.update("""
+                    INSERT INTO interactions
+                        (id, user_id, target_type, target_id, reaction_type, is_deleted, created_at)
+                    VALUES (?, ?, 'POST', ?, 'LIKE', false, NOW())
+                    """, interactionId, actorId, targetId);
+            outbox.append(event);
+        });
+
+        assertThat(jdbcTemplate.queryForObject(
+                "SELECT topic FROM interaction_outbox WHERE event_id = ?", String.class, event.eventId()))
+                .isEqualTo("reaction-created-topic");
+        assertThat(jdbcTemplate.queryForObject(
+                "SELECT payload ->> 'recipientId' FROM interaction_outbox WHERE event_id = ?",
+                String.class, event.eventId())).isEqualTo(recipientId.toString());
     }
 
     private void addReaction(UUID actorId, UUID targetId, ReactionType reactionType) {
