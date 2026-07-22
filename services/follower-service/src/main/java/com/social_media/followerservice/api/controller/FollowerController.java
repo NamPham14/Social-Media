@@ -8,13 +8,7 @@ import com.social_media.followerservice.api.dto.FollowResponse;
 import com.social_media.followerservice.api.path.ApiPath;
 import com.social_media.followerservice.application.command.FollowUserCommand;
 import com.social_media.followerservice.application.command.UnfollowUserCommand;
-import com.social_media.followerservice.application.usecase.GetFollowersCountUseCase;
-import com.social_media.followerservice.application.usecase.GetFollowersUseCase;
-import com.social_media.followerservice.application.usecase.GetFollowingCountUseCase;
-import com.social_media.followerservice.application.usecase.GetFollowingUseCase;
-import com.social_media.followerservice.application.usecase.GetNewsFeedUseCase;
-import com.social_media.followerservice.application.usecase.FollowUserUseCase;
-import com.social_media.followerservice.application.usecase.UnfollowUserUseCase;
+import com.social_media.followerservice.application.usecase.*;
 import com.social_media.followerservice.config.security.SecurityUtils;
 import com.social_media.followerservice.domain.shared.valueobject.UserId;
 import lombok.RequiredArgsConstructor;
@@ -39,7 +33,17 @@ public class FollowerController {
     private final GetFollowingCountUseCase getFollowingCountUseCase;
     private final GetNewsFeedUseCase getNewsFeedUseCase;
 
-    @PostMapping
+    // hiếu thêm
+    private final GetFollowingIdsUseCase getFollowingIdsUseCase;
+
+    // hiếu thêm
+    @GetMapping("/users/{id}/following-ids")
+    public ResponseEntity<ApiResponse<List<UUID>>> getFollowingIds(@PathVariable("id") UUID id) {
+        List<UUID> followingIds = getFollowingIdsUseCase.execute(id);
+        return ResponseEntity.ok(ApiResponse.success(followingIds, "Get following IDs successfully"));
+    }
+
+    @PostMapping("/follow")
     public ResponseEntity<ApiResponse<Void>> followUser(@RequestBody FollowRequest request) {
         UUID currentUserId = SecurityUtils.getCurrentUserId();
         FollowUserCommand cmd = new FollowUserCommand(UserId.from(currentUserId), UserId.from(request.getFollowingId()));

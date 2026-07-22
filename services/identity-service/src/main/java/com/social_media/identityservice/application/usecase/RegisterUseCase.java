@@ -63,6 +63,7 @@ public class RegisterUseCase {
         ObjectNode payload = objectMapper.createObjectNode();
         payload.put("userId",savedUser.getId().value().toString());
         payload.put("username", savedUser.getUsername());
+        payload.put("fullName", savedUser.getUsername());
         payload.put("email", savedUser.getEmail());
 
         // Bước 2: Lưu bức thư vào Outbox (Bảng outbox_events)

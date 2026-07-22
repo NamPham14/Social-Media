@@ -35,8 +35,30 @@ public class CommentRepositoryAdapter implements CommentRepository {
     }
 
     @Override
+    public PageResult<Comment> findActiveReplies(UUID parentId, int page, int size) {
+        var result = commentJpaRepository.findByParentIdAndDeletedFalse(parentId,
+                PageRequest.of(page, size, Sort.by("createdAt").ascending()));
+        return new PageResult<>(result.getContent(), result.getNumber(), result.getSize(),
+                result.getTotalElements(), result.getTotalPages());
+    }
+
+    @Override
     public boolean hasActiveReplies(UUID commentId) {
         return commentJpaRepository.existsByParentIdAndDeletedFalse(commentId);
+    }
+
+    @Override
+    public long countActiveReplies(UUID parentId) {
+        return commentJpaRepository.countByParentIdAndDeletedFalse(parentId);
+    }
+
+    @Override
+    public Map<UUID, Long> countActiveReplies(Collection<UUID> parentIds) {
+        if (parentIds.isEmpty()) return Map.of();
+        Map<UUID, Long> counts = new HashMap<>();
+        commentJpaRepository.countActiveRepliesByParentIds(parentIds)
+                .forEach(row -> counts.put(row.getParentId(), row.getReplyCount()));
+        return counts;
     }
 
     @Override

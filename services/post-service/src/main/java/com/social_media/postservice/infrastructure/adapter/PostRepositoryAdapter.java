@@ -75,4 +75,32 @@ public class PostRepositoryAdapter implements PostRepository {
         return postJpaRepository.findByUserIdIn(userIds, pageable)
                 .map(postMapper::toDomain);
     }
+
+    // hiếu thêm
+    @Override
+    public Page<Post> findAll(Pageable pageable, UUID viewerId, List<UUID> followingIds) {
+        return postJpaRepository.findAllVisible(viewerId, followingIds, pageable)
+                .map(postMapper::toDomain);
+    }
+
+    // hiếu thêm
+    @Override
+    public Page<Post> findByAuthorId(UUID userId, Pageable pageable, UUID viewerId, List<UUID> followingIds) {
+        return postJpaRepository.findVisibleByAuthorId(userId, viewerId, followingIds, pageable)
+                .map(postMapper::toDomain);
+    }
+
+    // hiếu thêm
+    @Override
+    public Page<Post> searchByKeyword(String keyword, Pageable pageable, UUID viewerId, List<UUID> followingIds) {
+        return postJpaRepository.searchVisible(keyword, viewerId, followingIds, pageable)
+                .map(postMapper::toDomain);
+    }
+
+    // hiếu thêm
+    @Override
+    public Page<Post> findByAuthorIds(List<UUID> userIds, Pageable pageable, UUID viewerId, List<UUID> followingIds) {
+        return postJpaRepository.findVisibleByAuthorIds(userIds, viewerId, followingIds, pageable)
+                .map(postMapper::toDomain);
+    }
 }

@@ -5,7 +5,7 @@
 
 ## Decision
 
-Post Service is the only owner of bookmarks. Interaction Service owns reactions only and therefore supports `LIKE` and `CLAP`, not `BOOKMARK`.
+Post Service is the only owner of bookmarks. Interaction Service owns reactions only and currently supports `LIKE`, not `BOOKMARK` or `CLAP`.
 
 ## Consequences
 

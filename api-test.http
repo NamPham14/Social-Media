@@ -1,0 +1,106 @@
+### =========================================================================
+### TẬP LỆNH TEST API DÀNH CHO INTELLIJ IDEA HTTP CLIENT
+### Hướng dẫn:
+### 1. Bấm nút "Play" (mũi tên xanh) ở từng Request từ trên xuống dưới.
+### 2. Dữ liệu token, userId, postId sẽ tự động được lưu để dùng cho các Request sau!
+### =========================================================================
+
+### 1. [IDENTITY] Đăng ký tài khoản (Register)
+POST http://localhost:8081/api/v1/identity/users/register
+Content-Type: application/json
+
+{
+  "username": "test_outbox_user",
+  "password": "Password123!",
+  "email": "outbox_user@gmail.com"
+}
+
+###
+
+### 2. [IDENTITY] Đăng nhập (Login)
+# Nhận Access Token và lưu vào biến toàn cục {{auth_token}}
+POST http://localhost:8081/api/v1/identity/auth/login
+Content-Type: application/json
+
+{
+  "username": "test_outbox_user",
+  "password": "Password123!"
+}
+
+> {%
+    client.global.set("auth_token", response.body.data.accessToken);
+%}
+
+###
+
+### 3. [PROFILE] Lấy thông tin Profile (dùng {{auth_token}})
+# Profile đáng lẽ đã được tạo thông qua Outbox pattern bắn từ Identity sang Profile
+GET http://localhost:8082/api/v1/profile/users
+Authorization: Bearer {{auth_token}}
+
+> {%
+    // Lưu lại ID của profile đầu tiên để test
+    if(response.body.data.content && response.body.data.content.length > 0) {
+        client.global.set("profile_id", response.body.data.content[0].id);
+    }
+%}
+
+###
+
+### 4. [PROFILE] Lấy chi tiết Profile
+GET http://localhost:8082/api/v1/profile/users/{{profile_id}}
+Authorization: Bearer {{auth_token}}
+
+###
+
+### 5. [PROFILE] Cập nhật Profile
+PUT http://localhost:8082/api/v1/profile/users/{{profile_id}}
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "fullName": "Test Outbox User",
+  "bio": "Developer testing outbox pattern",
+  "avatarUrl": "https://example.com/avatar.jpg"
+}
+
+###
+
+### 6. [POST] Tạo bài viết mới (ĐỂ TEST OUTBOX PATTERN)
+# Lưu ý: Yêu cầu của Post là multipart/form-data
+POST http://localhost:8083/api/v1/posts
+Authorization: Bearer {{auth_token}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="caption"
+
+Xin chào! Đây là bài viết test Outbox Pattern từ Post Service
+--WebAppBoundary
+Content-Disposition: form-data; name="locationName"
+
+Hanoi, Vietnam
+--WebAppBoundary--
+
+> {%
+    // Lưu lại postId sau khi tạo thành công
+    client.global.set("post_id", response.body.data.id);
+%}
+
+###
+
+### 7. [POST] Lấy danh sách bài viết
+GET http://localhost:8083/api/v1/posts
+Authorization: Bearer {{auth_token}}
+
+###
+
+### 8. [COMMENT] Bình luận vào bài viết vừa tạo (ĐỂ TEST OUTBOX PATTERN)
+POST http://localhost:8084/api/v1/comments
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+
+{
+  "postId": "{{post_id}}",
+  "content": "Đây là comment test gửi Outbox Pattern!"
+}

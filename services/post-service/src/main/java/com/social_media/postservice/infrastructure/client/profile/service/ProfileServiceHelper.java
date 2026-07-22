@@ -32,7 +32,7 @@ public class ProfileServiceHelper {
         if (response != null && response.getData() != null) {
             UserProfileResponse profile = response.getData();
             return AuthorSnapshot.builder()
-                    .name(profile.getUsername())
+                    .name(profile.getFullName() != null && !profile.getFullName().isEmpty() ? profile.getFullName() : profile.getUsername())
                     .avatarUrl(profile.getAvatarUrl())
                     .build();
         }

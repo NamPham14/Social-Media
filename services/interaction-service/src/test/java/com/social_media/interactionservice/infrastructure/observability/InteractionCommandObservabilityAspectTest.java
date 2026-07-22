@@ -49,11 +49,11 @@ class InteractionCommandObservabilityAspectTest {
     void duplicateCreateRecordsLatencyAndBoundedDuplicateTags() throws Throwable {
         UUID targetId = UUID.randomUUID();
         CreateInteractionCommand command = new CreateInteractionCommand(
-                UUID.randomUUID(), TargetType.COMMENT, targetId, ReactionType.CLAP);
+                UUID.randomUUID(), TargetType.COMMENT, targetId, ReactionType.LIKE);
         InteractionResponse response = InteractionResponse.builder()
                 .targetType(TargetType.COMMENT)
                 .targetId(targetId)
-                .reactionType(ReactionType.CLAP)
+                .reactionType(ReactionType.LIKE)
                 .duplicateIgnored(true)
                 .build();
         ProceedingJoinPoint joinPoint = mock(ProceedingJoinPoint.class);
@@ -65,7 +65,7 @@ class InteractionCommandObservabilityAspectTest {
         assertThat(meterRegistry.get(InteractionCommandObservabilityAspect.DURATION_METRIC)
                 .tags("operation", "create", "outcome", "success").timer().count()).isEqualTo(1);
         var duplicate = meterRegistry.get(InteractionCommandObservabilityAspect.DUPLICATE_METRIC)
-                .tags("target_type", "COMMENT", "reaction_type", "CLAP").counter();
+                .tags("target_type", "COMMENT", "reaction_type", "LIKE").counter();
         assertThat(duplicate.count()).isEqualTo(1);
         assertThat(duplicate.getId().getTags()).extracting(tag -> tag.getKey())
                 .containsExactlyInAnyOrder("target_type", "reaction_type");

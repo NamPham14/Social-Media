@@ -12,5 +12,5 @@ public interface PostClient {
     @GetMapping("/api/v1/posts/{postId}")
     ApiResponse<PostSnapshot> getPost(
             @PathVariable("postId") UUID postId,
-            @RequestHeader("X-Auth-User-Id") UUID actorId);
+            @RequestHeader(value = "X-Auth-User-Id", required = false) UUID actorId);
 }

@@ -7,16 +7,19 @@ This checklist tells other service owners exactly what Comment and Interaction n
 - Route `/comment/**` and `/interaction/**` with the existing prefix removal and preserve `X-Correlation-Id` in request and response.
 - Remove any client-supplied `X-Auth-User-Id`, then set exactly one value from the verified JWT subject. Reject a subject that is not a UUID.
 - Do not expose `/internal/**` as a public route. Internal calls use Eureka/service networking.
-- Verify 401 for missing/invalid JWT, 400 for malformed identifiers, and rate-limit command endpoints without breaking idempotent retries from clients.
+- Allow anonymous GET for public Post and Comment content routes (comment detail, root page, and replies). Keep raw count/batch APIs, create, edit, delete, LIKE, `/me`, and reactor-list routes internal or authenticated.
+- An absent JWT must remove the actor header and continue on anonymous read routes; an invalid JWT must still be rejected.
+- Verify 401 for protected commands, 400 for malformed identifiers, and rate-limit command endpoints without breaking idempotent retries from clients.
 - Add a Gateway integration test proving a forged actor header cannot override the JWT actor.
 
 ## P0 — Post Service owner
 
 - Review and accept `CR-POST-001`.
-- Implement `GET /internal/v1/posts/{postId}/availability?action=COMMENT|REACT` with an internal credential, correlation propagation and the agreed visibility/deletion policy.
+- Implement `GET /internal/v1/posts/{postId}/availability?action=COMMENT|REACT` with an internal credential, optional trusted actor, correlation propagation, `ownerId`, and the agreed visibility/deletion policy.
+- Anonymous (`actor` absent) must only receive `available=true` for a public, active post. Authenticated visibility remains Post-owned.
 - Return a classified 200 result for known unavailable business states; reserve 5xx for provider failure.
 - Keep the current public endpoint during rollout. After provider tests pass, Comment/Interaction owners will switch their Feign adapters and then retire the temporary dependency.
-- Decide whether availability also returns `ownerId`. Notification recipient resolution must be settled before event schemas are accepted.
+- Return `ownerId`; Comment uses it for post-owner moderation and Interaction uses it for self-notification suppression.
 - Publish a versioned, UUID-based `PostDeletedV1` through an outbox if the team wants existing comments/reactions hidden, archived or cleaned after deletion.
 
 ## P0 — Notification Service owner
@@ -31,19 +34,20 @@ This checklist tells other service owners exactly what Comment and Interaction n
 ## P1 — Feed/BFF owner
 
 - For a page of posts, call Comment `POST /api/v1/comments/counts/batch` once and Interaction `POST /api/v1/interactions/counters/batch` once. Do not call once per post.
-- For the signed-in actor, obtain reaction state only for targets the UI needs. If this becomes N+1, request an actor-reaction batch contract instead of duplicating the ledger.
+- For the signed-in actor, use Interaction `/summaries/batch`; it already returns count plus `likedByMe` in constant query count.
 - Treat missing count rows as zero and preserve target UUID/type when merging results.
 - Do not persist Comment/Interaction counters as a second source of truth unless a separate projection ADR defines reconciliation.
 
 ## P1 — Profile Service or BFF owner
 
-- Comment returns author UUID, not display name/avatar. Provide a batch Profile lookup or a profile projection for all distinct author UUIDs on the page.
-- Do not add profile snapshots to the Comment write model merely to render a page.
+- Comment stores an eventually consistent author display-name/avatar snapshot and always returns the author UUID.
+- Profile events must be versioned and replayable. Invalid events are retried/DLT'd; a missing snapshot must not prevent comment creation.
+- A BFF may batch-resolve fresh profiles when stronger freshness than the local snapshot is required.
 
 ## P1 — Frontend owner
 
 - Send JWT only; never send an authoritative actor ID in command bodies.
-- Model LIKE and CLAP as independent toggles; both may be active simultaneously.
+- Model V1 as a single LIKE toggle per actor and target; CLAP is not supported.
 - Treat duplicate add and repeated remove as successful idempotent outcomes.
 - Render deleted parents as `[deleted]` only when returned as placeholders; deleted leaves are omitted.
 - Use batch count responses for feed rendering and retain the correlation header when reporting failures.
@@ -59,10 +63,8 @@ This checklist tells other service owners exactly what Comment and Interaction n
 ## Work that returns to Comment/Interaction owners after acceptance
 
 1. Replace the temporary Post public-API adapters with the accepted internal availability contract.
-2. Add outbox tables and relay only after event payload and recipient ownership are accepted.
-3. Publish `CommentCreatedV1`, `CommentRepliedV1`, `CommentDeletedV1`, `ReactionCreatedV1` and `ReactionRemovedV1` only where a real consumer exists.
-4. Add idempotent consumers for accepted `PostDeletedV1` and `CommentDeletedV1` cleanup/tombstone policies.
-5. Extend E2E to Gateway → Post → Comment/Interaction → outbox/Kafka → Notification, including Kafka outage and duplicate delivery.
+2. Pass optional actor context on anonymous/authenticated reads and remove the temporary anonymous Post-check bypass.
+3. Extend E2E to Gateway → Post → Comment/Interaction → outbox/Kafka → Notification, including private-post leakage, Kafka outage, and duplicate delivery.
 
 ## Recommended rollout order
 
@@ -80,6 +82,8 @@ This checklist tells other service owners exactly what Comment and Interaction n
 
 ```text
 Please harden the Gateway contract for Comment and Interaction. Preserve X-Correlation-Id, strip any client-supplied X-Auth-User-Id, set exactly one actor UUID from the verified JWT subject, reject non-UUID subjects, and prevent public routing to /internal/**. Add an integration test proving a forged actor header cannot override the JWT actor. Keep provider changes in the Gateway PR and report the final route/header contract back to us.
+
+Additionally, allow missing JWT only on public Post/Comment GET read routes. With no JWT, remove X-Auth-User-Id and continue; with an invalid JWT, reject. Keep all mutations, LIKE, /me, and reactor-list routes protected. Add anonymous-public and anonymous-private integration tests.
 ```
 
 ### Post teammate
@@ -97,7 +101,7 @@ Please review docs/integration/requests/CR-NOTIFICATION-001-comment-reaction-eve
 ### Feed/BFF/Profile teammate
 
 ```text
-For each feed page, compose Comment POST /api/v1/comments/counts/batch and Interaction POST /api/v1/interactions/counters/batch once per page, not once per post. Resolve comment author UUIDs through one batch Profile call or an approved projection. Treat missing counters as zero and keep Comment/Interaction as the source of truth. If actor-reaction state becomes N+1, request a batch contract instead of copying the ledger.
+For each feed page, compose Comment POST /api/v1/comments/counts/batch and Interaction POST /api/v1/interactions/summaries/batch once per page, not once per post. The summary returns reactionCount plus likedByMe (false anonymously). Comment pages already include replyCount, reactionCount and likedByMe. Treat missing counters as zero and keep Comment/Interaction as the source of truth.
 ```
 
 ### DevOps teammate

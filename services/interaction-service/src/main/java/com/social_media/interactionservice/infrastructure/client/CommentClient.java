@@ -10,7 +10,8 @@ import java.util.UUID;
 public interface CommentClient {
     @GetMapping("/internal/v1/comments/{commentId}/availability")
     Availability getAvailability(@PathVariable("commentId") UUID commentId,
+                                 @RequestHeader("X-Auth-User-Id") UUID actorId,
                                  @RequestHeader("X-Internal-Service-Token") String serviceToken);
 
-    record Availability(UUID targetId, UUID ownerId, boolean available, String reason) { }
+    record Availability(UUID targetId, UUID postId, UUID ownerId, boolean available, String reason) { }
 }

@@ -23,9 +23,6 @@ public class InteractionCounter {
     @Column(name = "like_count", nullable = false)
     private int likeCount;
 
-    @Column(name = "clap_count", nullable = false)
-    private int clapCount;
-
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 

@@ -2,7 +2,7 @@
 
 - **Comment**: content authored directly on a post.
 - **Reply**: a comment referencing one top-level parent comment.
-- **Reaction**: one `LIKE` or `CLAP` applied by an actor to a target.
+- **Reaction**: one `LIKE` applied by an actor to a target in V1.
 - **Target**: a Post or Comment identified by UUID.
 - **Actor**: authenticated user from `X-Auth-User-Id`; never accepted from a body/query field.
 - **Owner**: actor who authored a comment.

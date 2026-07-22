@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter
-@Builder
+@Builder(toBuilder = true)
 public class CommentResponse {
     private UUID id;
     private UUID postId;
@@ -15,6 +15,9 @@ public class CommentResponse {
     private String authorName;
     private  String authorAvatarUrl;
     private UUID parentId;
+    private long replyCount;
+    private int reactionCount;
+    private boolean likedByMe;
     private String content;
     private boolean deleted;
     private LocalDateTime createdAt;

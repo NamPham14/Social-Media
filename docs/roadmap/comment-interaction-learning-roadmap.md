@@ -57,7 +57,7 @@ Tạo ADR cho từng quyết định, trạng thái ban đầu là `PROPOSED`:
 | ADR | Câu hỏi cần chốt | Khuyến nghị ban đầu |
 | --- | --- | --- |
 | ADR-001 | Bookmark thuộc Post hay Interaction? | Giữ tại Post; bỏ `BOOKMARK` khỏi Interaction |
-| ADR-002 | Một user được LIKE và CLAP đồng thời không? | Chốt theo yêu cầu UI trước khi đổi unique constraint |
+| ADR-002 | Một user được có nhiều reaction đồng thời không? | Không; V1 chỉ có LIKE và unique theo actor/target |
 | ADR-003 | Xóa parent comment có giữ replies không? | Soft-delete parent, hiển thị placeholder nếu còn replies |
 | ADR-004 | Reply được sâu bao nhiêu tầng? | Một tầng cho MVP, hoặc hỗ trợ tree có giới hạn rõ ràng |
 | ADR-005 | Kiểm tra target bằng Feign hay local projection? | Feign ở giai đoạn học sync; projection là bài nâng cao |
