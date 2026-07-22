@@ -1,17 +1,17 @@
 meta {
   name: Unfollow User
   type: http
-  seq: 2
+  seq: 3
 }
 
 post {
-  url: http://localhost:8084/api/v1/follow/internal/unfollow
+  url: http://localhost:8888/api/v1/follow/unfollow
   body: json
   auth: none
 }
 
 headers {
-  X-Auth-User-Id: {{followerId}}
+  Authorization: Bearer {{token}}
 }
 
 body:json {

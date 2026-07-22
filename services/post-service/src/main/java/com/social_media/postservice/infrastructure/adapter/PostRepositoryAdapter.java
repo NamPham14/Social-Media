@@ -70,12 +70,6 @@ public class PostRepositoryAdapter implements PostRepository {
         postJpaRepository.delete(entity);
     }
 
-    @Override
-    public Page<Post> findByAuthorIds(List<UUID> userIds, Pageable pageable) {
-        return postJpaRepository.findByUserIdIn(userIds, pageable)
-                .map(postMapper::toDomain);
-    }
-
     // hiếu thêm
     @Override
     public Page<Post> findAll(Pageable pageable, UUID viewerId, List<UUID> followingIds) {

@@ -1,11 +1,11 @@
 meta {
-  name: Get Following
+  name: Get Feeds
   type: http
-  seq: 7
+  seq: 8
 }
 
 get {
-  url: http://localhost:8888/api/v1/follow/users/{{userId}}/following?page=1&size=10
+  url: http://localhost:8888/api/v1/follow/feeds?page=1&size=10
   body: none
   auth: none
 }

@@ -30,7 +30,6 @@ public interface PostJpaRepository extends JpaRepository<PostEntity, UUID> {
                           @Param("authorName") String authorName,
                           @Param("authorAvatarUrl") String authorAvatarUrl);
 
-    Page<PostEntity> findByUserIdIn(List<UUID> userIds, Pageable pageable);
 
     // hiếu thêm
     @Query("""

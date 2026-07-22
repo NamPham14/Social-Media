@@ -5,17 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bruno-follower/Follow User.bru" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bruno-follower/Follow User.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bruno-follower/Get Followers.bru" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bruno-follower/Get Followers.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bruno-follower/Get Following.bru" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bruno-follower/Get Following.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bruno-follower/Unfollow User.bru" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bruno-follower/Unfollow User.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bruno-follower/bruno.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bruno-follower/bruno.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/controller/FollowerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/controller/FollowerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FollowRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FollowRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/path/ApiPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/path/ApiPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/GetFollowingIdsUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/GetFollowingIdsUseCaseImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/repository/FollowRelationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/repository/FollowRelationRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/adapter/FollowRelationRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/adapter/FollowRelationRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/repository/FollowRelationJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/repository/FollowRelationJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/config/FeignClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/config/FeignClientConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/path/ApiPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/path/ApiPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/PostRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/adapter/PostRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/adapter/PostRepositoryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,61 +62,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0003227631321874" />
-      <entry key="MS500" value="1.473373496630463" />
-      <entry key="S2" value="5.157729554229824" />
-      <entry key="S5" value="8.321101068228442" />
-      <entry key="S10" value="9.946703896387097" />
-      <entry key="S30" value="11.290800230643411" />
-      <entry key="S60" value="12.50343212084384" />
-      <entry key="M2" value="16.593102745227817" />
-      <entry key="M5" value="25.145356805421063" />
-      <entry key="M10" value="30.973423578265745" />
-      <entry key="M15" value="34.40240106305626" />
-      <entry key="M30" value="43.66620647531847" />
-      <entry key="H1" value="74.81526664514679" />
-      <entry key="H2" value="180.45714896851285" />
-      <entry key="H4" value="413.1475263424499" />
-      <entry key="D1" value="1067.2682440341516" />
-      <entry key="W1" value="1284.0495799331204" />
+      <entry key="MS100" value="1.7078173233595089" />
+      <entry key="MS500" value="3.355512901758714" />
+      <entry key="S2" value="6.621626737360613" />
+      <entry key="S5" value="12.050865016676232" />
+      <entry key="S10" value="19.17276575533692" />
+      <entry key="S30" value="30.58856564166373" />
+      <entry key="S60" value="35.89041841308368" />
+      <entry key="M2" value="42.13728943542791" />
+      <entry key="M5" value="52.27825186662145" />
+      <entry key="M10" value="58.87731747326223" />
+      <entry key="M15" value="62.608966847310796" />
+      <entry key="M30" value="72.18669994383579" />
+      <entry key="H1" value="103.43815070520787" />
+      <entry key="H2" value="209.03601883666693" />
+      <entry key="H4" value="441.68078687428266" />
+      <entry key="D1" value="1096.0703938140553" />
+      <entry key="W1" value="1313.015630477756" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
       <entry key="S5" value="0.0" />
-      <entry key="S10" value="3.748116541080642E-218" />
-      <entry key="S30" value="5.2963877748146286E-73" />
-      <entry key="S60" value="1.0288215356796543E-36" />
-      <entry key="M2" value="1.4343125343471015E-18" />
-      <entry key="M5" value="1.1059703698082883E-7" />
-      <entry key="M10" value="4.892306556492348E-4" />
-      <entry key="M15" value="0.008686030179750531" />
-      <entry key="M30" value="0.21414973475817345" />
-      <entry key="H1" value="2.865867771835625" />
-      <entry key="H2" value="18.864390260523237" />
-      <entry key="H4" value="53.92713574862972" />
-      <entry key="D1" value="135.047882850226" />
-      <entry key="W1" value="158.66288581445696" />
+      <entry key="S10" value="7.677804932910134E-219" />
+      <entry key="S30" value="3.122154836026551E-73" />
+      <entry key="S60" value="7.899095742566298E-37" />
+      <entry key="M2" value="1.2567892559799649E-18" />
+      <entry key="M5" value="1.049037366980808E-7" />
+      <entry key="M10" value="4.7647201245147906E-4" />
+      <entry key="M15" value="0.008534350781859205" />
+      <entry key="M30" value="0.21227171002997625" />
+      <entry key="H1" value="2.85327372740552" />
+      <entry key="H2" value="18.82289487883368" />
+      <entry key="H4" value="53.86779221911659" />
+      <entry key="D1" value="135.02310282364326" />
+      <entry key="W1" value="158.65872646460033" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9662502657511189" />
-      <entry key="MS500" value="1.463738637255456" />
-      <entry key="S2" value="5.149680086180463" />
-      <entry key="S5" value="8.31591454497734" />
-      <entry key="S10" value="9.943603237164544" />
-      <entry key="S30" value="11.289621167698177" />
-      <entry key="S60" value="12.50270095251269" />
-      <entry key="M2" value="16.592448962692522" />
-      <entry key="M5" value="25.144848539844116" />
-      <entry key="M10" value="30.97357512238981" />
-      <entry key="M15" value="34.410814656298754" />
-      <entry key="M30" value="43.87990136845281" />
-      <entry key="H1" value="77.67887014595155" />
-      <entry key="H2" value="199.31475861857018" />
-      <entry key="H4" value="467.0653074324775" />
-      <entry key="D1" value="1202.3123040317091" />
-      <entry key="W1" value="1442.7118259188262" />
+      <entry key="MS100" value="1.602354334767344" />
+      <entry key="MS500" value="3.3114956429801956" />
+      <entry key="S2" value="6.598385052433844" />
+      <entry key="S5" value="12.022802728545777" />
+      <entry key="S10" value="19.139435905503753" />
+      <entry key="S30" value="30.56600386228696" />
+      <entry key="S60" value="35.87669337823109" />
+      <entry key="M2" value="42.12948433486339" />
+      <entry key="M5" value="52.27470729599545" />
+      <entry key="M10" value="58.87590437142133" />
+      <entry key="M15" value="62.61618641814934" />
+      <entry key="M30" value="72.39799390879719" />
+      <entry key="H1" value="106.28890582590952" />
+      <entry key="H2" value="227.8520156666046" />
+      <entry key="H4" value="495.53916849957324" />
+      <entry key="D1" value="1231.0896634409203" />
+      <entry key="W1" value="1471.6737155522624" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -177,17 +185,17 @@
               <entry key="ApiGatewayApplication" value="STOPPED" />
               <entry key="EurekaServerApplication" value="STOPPED" />
               <entry key="FollowerServiceApplication" value="STOPPED" />
-              <entry key="IdentityServiceApplication" value="STOPPED" />
+              <entry key="IdentityServiceApplication" value="FAILED" />
               <entry key="NotificationServiceApplication" value="FAILED" />
-              <entry key="PostServiceApplication" value="STOPPED" />
-              <entry key="ProfileServiceApplication" value="STOPPED" />
+              <entry key="PostServiceApplication" value="FAILED" />
+              <entry key="ProfileServiceApplication" value="FAILED" />
             </map>
           </value>
         </entry>
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.FollowerServiceApplication">
+  <component name="RunManager" selected="Spring Boot.ProfileServiceApplication">
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="api-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.apigateway.ApiGatewayApplication" />

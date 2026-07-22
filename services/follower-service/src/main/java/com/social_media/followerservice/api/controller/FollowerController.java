@@ -43,7 +43,7 @@ public class FollowerController {
         return ResponseEntity.ok(ApiResponse.success(followingIds, "Get following IDs successfully"));
     }
 
-    @PostMapping("/follow")
+    @PostMapping
     public ResponseEntity<ApiResponse<Void>> followUser(@RequestBody FollowRequest request) {
         UUID currentUserId = SecurityUtils.getCurrentUserId();
         FollowUserCommand cmd = new FollowUserCommand(UserId.from(currentUserId), UserId.from(request.getFollowingId()));

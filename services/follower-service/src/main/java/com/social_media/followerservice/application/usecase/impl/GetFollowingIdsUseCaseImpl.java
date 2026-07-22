@@ -18,6 +18,9 @@ public class GetFollowingIdsUseCaseImpl implements GetFollowingIdsUseCase {
 
     @Override
     public List<UUID> execute(UUID userId) {
-        return followRelationRepository.findFollowingIdsByFollowerId(UserId.from(userId));
+        return followRelationRepository.findFollowingIdsByFollowerId(UserId.from(userId))
+                .stream()
+                .map(UserId::value)
+                .toList();
     }
 }
