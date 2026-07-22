@@ -14,7 +14,13 @@ public interface CommentRepository {
 
     PageResult<Comment> findVisibleByPostId(UUID postId, int page, int size);
 
+    PageResult<Comment> findActiveReplies(UUID parentId, int page, int size);
+
     boolean hasActiveReplies(UUID commentId);
+
+    long countActiveReplies(UUID parentId);
+
+    Map<UUID, Long> countActiveReplies(Collection<UUID> parentIds);
 
     long countActiveByPostId(UUID postId);
 

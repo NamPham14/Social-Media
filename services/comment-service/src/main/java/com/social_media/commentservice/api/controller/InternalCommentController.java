@@ -1,8 +1,9 @@
 package com.social_media.commentservice.api.controller;
 
-import com.social_media.commentservice.api.dto.CommentResponse;
 import com.social_media.commentservice.api.path.ApiPath;
-import com.social_media.commentservice.application.usecase.GetCommentUseCase;
+import com.social_media.commentservice.application.port.out.PostAvailabilityPort;
+import com.social_media.commentservice.domain.exception.CommentNotFoundException;
+import com.social_media.commentservice.domain.repository.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,7 +16,8 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 public class InternalCommentController {
-    private final GetCommentUseCase getCommentUseCase;
+    private final CommentRepository commentRepository;
+    private final PostAvailabilityPort postAvailabilityPort;
 
     @Value("${internal.service-token:}")
     private String serviceToken;
@@ -23,16 +25,22 @@ public class InternalCommentController {
     @GetMapping(ApiPath.INTERNAL_COMMENT_AVAILABILITY)
     public AvailabilityResponse availability(
             @PathVariable("commentId") UUID commentId,
+            @RequestHeader("X-Auth-User-Id") UUID actorId,
             @RequestHeader("X-Internal-Service-Token") String suppliedToken) {
         if (serviceToken.isBlank() || !constantTimeEquals(serviceToken, suppliedToken)) {
             throw new InternalAccessDeniedException();
         }
-        CommentResponse comment = getCommentUseCase.execute(commentId);
-        return new AvailabilityResponse(commentId, comment.getUserId(), !comment.isDeleted(),
+        var comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new CommentNotFoundException(commentId));
+        if (!comment.isDeleted()) {
+            postAvailabilityPort.getCommentable(comment.getPostId(), actorId);
+        }
+        return new AvailabilityResponse(commentId, comment.getPostId(), comment.getUserId(), !comment.isDeleted(),
                 comment.isDeleted() ? "COMMENT_DELETED" : null);
     }
 
-    public record AvailabilityResponse(UUID targetId, UUID ownerId, boolean available, String reason) { }
+    public record AvailabilityResponse(UUID targetId, UUID postId, UUID ownerId,
+                                       boolean available, String reason) { }
 
     private boolean constantTimeEquals(String expected, String supplied) {
         return java.security.MessageDigest.isEqual(

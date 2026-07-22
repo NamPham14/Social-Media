@@ -13,6 +13,10 @@ public final class CommentMapper {
     }
 
     public static CommentResponse toResponse(Comment comment, boolean hideDeletedContent) {
+        return toResponse(comment, hideDeletedContent, 0);
+    }
+
+    public static CommentResponse toResponse(Comment comment, boolean hideDeletedContent, long replyCount) {
         return CommentResponse.builder()
                 .id(comment.getId())
                 .postId(comment.getPostId())
@@ -20,6 +24,7 @@ public final class CommentMapper {
                 .authorName(comment.getAuthorName())
                 .authorAvatarUrl(comment.getAuthorAvatarUrl())
                 .parentId(comment.getParentId())
+                .replyCount(replyCount)
                 .content(hideDeletedContent ? "[deleted]" : comment.getContent())
                 .deleted(comment.isDeleted())
                 .createdAt(comment.getCreatedAt())

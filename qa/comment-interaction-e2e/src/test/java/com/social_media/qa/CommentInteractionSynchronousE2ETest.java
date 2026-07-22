@@ -187,8 +187,7 @@ class CommentInteractionSynchronousE2ETest {
                 "GET", interactionBaseUrl + "/api/v1/interactions/counters/COMMENT/" + commentId,
                 null, UUID.randomUUID().toString(), null);
         assertStatus(response, 200);
-        assertThat(data(response).path("likeCount").asInt()).isEqualTo(expectedLikes);
-        assertThat(data(response).path("clapCount").asInt()).isZero();
+        assertThat(data(response).path("reactionCount").asInt()).isEqualTo(expectedLikes);
     }
 
     private HttpResponse<String> request(

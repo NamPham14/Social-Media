@@ -13,7 +13,7 @@ import java.util.UUID;
 
 @FeignClient(
         name = "profile-service",
-        path = "/api/v1/profiles",
+        path = "/api/v1/profile/users",
         configuration = FeignClientConfig.class
 )
 public interface ProfileClient {

@@ -23,19 +23,19 @@ public class ProfileEventConsumer {
     @KafkaListener(topics = "profile-events", groupId = "comment-group")
     @Transactional
     public void consumeProfileEvent(String message) {
-        log.info(" [COMMENT-SERVICE] Nhận tin nhắn đổi Profile: {}", message);
+        log.debug("Received profile snapshot update");
         try {
             JsonNode payload = objectMapper.readTree(message);
             UUID userId = UUID.fromString(payload.get("userId").asText());
-            String newName = payload.has("authorName") && !payload.get("authorName").isNull() ? payload.get("authorName").asText() : "Unknown";
+            String newName = payload.has("authorName") && !payload.get("authorName").isNull() ? payload.get("authorName").asText() : null;
             String newAvatar = payload.has("authorAvatarUrl") && !payload.get("authorAvatarUrl").isNull() ? payload.get("authorAvatarUrl").asText() : null;
 
-            // Xóa sổ Avatar cũ của toàn bộ bình luận
             commentJpaRepository.updateAuthorInfo(userId, newName, newAvatar);
 
-            log.info("Đã cập nhật Avatar cho toàn bộ Bình luận của User: {}", userId);
+            log.info("Updated comment author snapshot userId={}", userId);
         } catch (Exception e) {
-            log.error(" Xử lý sự kiện thất bại!", e);
+            log.error("Xử lý profile event thất bại; Kafka error handler sẽ retry/DLT", e);
+            throw new IllegalArgumentException("Invalid profile event", e);
         }
     }
 }
