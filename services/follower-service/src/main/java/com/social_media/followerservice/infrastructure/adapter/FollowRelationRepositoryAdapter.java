@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -38,6 +39,15 @@ public class FollowRelationRepositoryAdapter implements FollowRelationRepository
     @Override public Page<FollowRelation> findByFollowingId(UserId followingId, Pageable p) {
         return jpaRepository.findByFollowingId(followingId.value(), p).map(mapper::toDomain);
     }
+
+    // hiếu thêm
+    @Override public List<UUID> findFollowingIdsByFollowerId(UserId followerId) {
+        return jpaRepository.findByFollowerId(followerId.value())
+                .stream()
+                .map(FollowRelationEntity::getFollowingId)
+                .toList();
+    }
+
     @Override public void deleteByFollowerIdAndFollowingId(UserId followerId, UserId followingId) {
         jpaRepository.deleteByFollowerIdAndFollowingId(followerId.value(), followingId.value());
     }

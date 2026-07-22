@@ -1,11 +1,15 @@
 package com.social_media.interactionservice.api.controller;
 
 import com.social_media.common.api.ApiResponse;
+import com.social_media.interactionservice.api.dto.BatchPostLikedRequest;
+import com.social_media.interactionservice.api.dto.BatchPostReactionRequest;
 import com.social_media.interactionservice.api.dto.CreateInteractionRequest;
 import com.social_media.interactionservice.api.dto.InteractionResponse;
 import com.social_media.interactionservice.api.dto.BatchCounterRequest;
 import com.social_media.interactionservice.api.dto.CounterResponse;
 import com.social_media.interactionservice.api.dto.InteractionSummaryResponse;
+import com.social_media.interactionservice.api.dto.PostLikedResponse;
+import com.social_media.interactionservice.api.dto.PostReactionResponse;
 import com.social_media.interactionservice.api.dto.ReactorResponse;
 import com.social_media.common.api.PageResponse;
 import com.social_media.interactionservice.api.path.ApiPath;
@@ -131,5 +135,28 @@ public class InteractionController {
         return ApiResponse.<PageResponse<ReactorResponse>>builder().code(SUCCESS_CODE).status(200)
                 .message("Get Reactors Success")
                 .data(getReactorsUseCase.execute(actorId, targetType, targetId, Math.max(page, 0), safeSize)).build();
+    }
+
+    // Hiếu thêm — endpoint mới chuyên cho post-service
+    @PostMapping(ApiPath.POST_REACTION_COUNTS)
+    public ApiResponse<List<PostReactionResponse>> getPostReactionCounts(
+            @Valid @RequestBody BatchPostReactionRequest request) {
+        return ApiResponse.<List<PostReactionResponse>>builder()
+                .code(SUCCESS_CODE).status(HttpStatus.OK.value())
+                .message("Get Post Reaction Counts Success")
+                .data(getCountersUseCase.getBatchByPostIds(request.postIds()))
+                .build();
+    }
+
+    // Hiếu thêm — endpoint check likedByMe
+    @PostMapping(ApiPath.POST_LIKED_BY_ME)
+    public ApiResponse<List<PostLikedResponse>> getPostLikedByMe(
+            @RequestHeader("X-Auth-User-Id") UUID actorId,
+            @Valid @RequestBody BatchPostLikedRequest request) {
+        return ApiResponse.<List<PostLikedResponse>>builder()
+                .code(SUCCESS_CODE).status(HttpStatus.OK.value())
+                .message("Get Post Liked By Me Success")
+                .data(getInteractionSummariesUseCase.getBatchLikedByMe(actorId, request.postIds()))
+                .build();
     }
 }

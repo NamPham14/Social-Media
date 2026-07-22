@@ -5,16 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/config/FeignClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/config/FeignClientConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/profile/dto/UserProfileResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/profile/dto/UserProfileResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/profile/service/ProfileServiceHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/profile/service/ProfileServiceHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/interaction-service/src/main/java/com/social_media/interactionservice/api/controller/InteractionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/interaction-service/src/main/java/com/social_media/interactionservice/api/controller/InteractionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/interaction-service/src/main/java/com/social_media/interactionservice/api/path/ApiPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/interaction-service/src/main/java/com/social_media/interactionservice/api/path/ApiPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/interaction-service/src/main/java/com/social_media/interactionservice/application/usecase/GetCountersUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/interaction-service/src/main/java/com/social_media/interactionservice/application/usecase/GetCountersUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/interaction-service/src/main/java/com/social_media/interactionservice/application/usecase/GetCountersUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/interaction-service/src/main/java/com/social_media/interactionservice/application/usecase/GetCountersUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/interaction-service/src/main/java/com/social_media/interactionservice/application/usecase/GetInteractionSummariesUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/interaction-service/src/main/java/com/social_media/interactionservice/application/usecase/GetInteractionSummariesUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/interaction-service/src/main/java/com/social_media/interactionservice/application/usecase/GetInteractionSummariesUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/interaction-service/src/main/java/com/social_media/interactionservice/application/usecase/GetInteractionSummariesUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/dto/PostResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/dto/PostResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/post/FindAllPostsUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/post/FindAllPostsUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/post/FindPostsByAuthorIdUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/post/FindPostsByAuthorIdUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/post/FindPostsByAuthorIdsUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/post/FindPostsByAuthorIdsUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/post/GetPostByPostIdUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/post/GetPostByPostIdUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/post/SearchPostsUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/post/SearchPostsUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/interaction/InteractionServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/interaction/InteractionServiceClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/interaction/dto/BatchCounterRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/interaction/dto/CounterResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/interaction/dto/TargetRef.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/interaction/service/InteractionServiceHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/interaction/service/InteractionServiceHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +130,6 @@
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
     &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
@@ -140,7 +147,7 @@
     &quot;Spring Boot.ProfileServiceApplication.executor&quot;: &quot;Run&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;SMP-3-post-service&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/SUMMER26/MSS/New/Social-Media&quot;,
@@ -168,8 +175,23 @@
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
+    <option name="configurationStatuses">
+      <map>
+        <entry key="SpringBootApplicationConfigurationType">
+          <value>
+            <map>
+              <entry key="ApiGatewayApplication" value="STOPPED" />
+              <entry key="EurekaServerApplication" value="STOPPED" />
+              <entry key="IdentityServiceApplication" value="STOPPED" />
+              <entry key="PostServiceApplication" value="STOPPED" />
+              <entry key="ProfileServiceApplication" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.IdentityServiceApplication">
+  <component name="RunManager" selected="Spring Boot.PostServiceApplication">
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="api-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.apigateway.ApiGatewayApplication" />
@@ -256,6 +278,7 @@
     </configuration>
     <list>
       <item itemvalue="Spring Boot.ApiGatewayApplication" />
+      <item itemvalue="Spring Boot.PostServiceApplication" />
       <item itemvalue="Spring Boot.IdentityServiceApplication" />
       <item itemvalue="Spring Boot.CommentServiceApplication" />
       <item itemvalue="Spring Boot.CommonEventsApplication" />
@@ -265,15 +288,14 @@
       <item itemvalue="Spring Boot.FollowerServiceApplication" />
       <item itemvalue="Spring Boot.InteractionServiceApplication" />
       <item itemvalue="Spring Boot.NotificationServiceApplication" />
-      <item itemvalue="Spring Boot.PostServiceApplication" />
       <item itemvalue="Spring Boot.ProfileServiceApplication" />
     </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
-        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.28238.7" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-IU-252.28238.7" />
       </set>
     </attachedChunks>
   </component>
@@ -299,12 +321,9 @@
       <workItem from="1784337643290" duration="12046000" />
       <workItem from="1784365227465" duration="2433000" />
       <workItem from="1784530861768" duration="699000" />
-      <workItem from="1784680269301" duration="23000" />
-      <workItem from="1784682321679" duration="1217000" />
-      <workItem from="1784683650444" duration="4670000" />
-      <workItem from="1784691614170" duration="5789000" />
-      <workItem from="1784708366992" duration="6766000" />
-      <workItem from="1784725491946" duration="7778000" />
+      <workItem from="1784681127183" duration="1813000" />
+      <workItem from="1784694390735" duration="3882000" />
+      <workItem from="1784709933826" duration="5132000" />
     </task>
     <servers />
   </component>

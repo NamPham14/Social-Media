@@ -114,6 +114,108 @@ public class ResilienceConfig {
         return circuitBreakerRegistry.circuitBreaker("profileCircuitBreaker", config);
     }
 
+    // hiếu thêm
+    @Bean
+    public Retry followerRetry(RetryRegistry retryRegistry) {
+        RetryConfig config = RetryConfig.custom()
+                .maxAttempts(3)
+                .waitDuration(Duration.ofMillis(1000))
+                .retryExceptions(
+                        feign.RetryableException.class,
+                        TimeoutException.class,
+                        feign.FeignException.GatewayTimeout.class,
+                        feign.FeignException.ServiceUnavailable.class
+                )
+                .ignoreExceptions(
+                        feign.FeignException.BadRequest.class,
+                        feign.FeignException.Unauthorized.class,
+                        feign.FeignException.Forbidden.class,
+                        feign.FeignException.NotFound.class
+                )
+                .build();
+        return retryRegistry.retry("followerRetry", config);
+    }
+
+    // hiếu thêm
+    @Bean
+    public CircuitBreaker followerCircuitBreaker(CircuitBreakerRegistry circuitBreakerRegistry) {
+        CircuitBreakerConfig config = CircuitBreakerConfig.custom()
+                .slidingWindowType(CircuitBreakerConfig.SlidingWindowType.COUNT_BASED)
+                .slidingWindowSize(10)
+                .failureRateThreshold(50)
+                .slowCallRateThreshold(75)
+                .slowCallDurationThreshold(Duration.ofSeconds(3))
+                .waitDurationInOpenState(Duration.ofSeconds(10))
+                .build();
+        return circuitBreakerRegistry.circuitBreaker("followerCircuitBreaker", config);
+    }
+
+    @Bean
+    public Retry interactionRetry(RetryRegistry retryRegistry) {
+        RetryConfig config = RetryConfig.custom()
+                .maxAttempts(3)
+                .waitDuration(Duration.ofMillis(1000))
+                .retryExceptions(
+                        feign.RetryableException.class,
+                        TimeoutException.class,
+                        feign.FeignException.GatewayTimeout.class,
+                        feign.FeignException.ServiceUnavailable.class
+                )
+                .ignoreExceptions(
+                        feign.FeignException.BadRequest.class,
+                        feign.FeignException.Unauthorized.class,
+                        feign.FeignException.Forbidden.class
+                )
+                .build();
+        return retryRegistry.retry("interactionRetry", config);
+    }
+
+    @Bean
+    public CircuitBreaker interactionCircuitBreaker(CircuitBreakerRegistry circuitBreakerRegistry) {
+        CircuitBreakerConfig config = CircuitBreakerConfig.custom()
+                .slidingWindowType(CircuitBreakerConfig.SlidingWindowType.COUNT_BASED)
+                .slidingWindowSize(10)
+                .failureRateThreshold(50)
+                .slowCallRateThreshold(75)
+                .slowCallDurationThreshold(Duration.ofSeconds(3))
+                .waitDurationInOpenState(Duration.ofSeconds(10))
+                .build();
+        return circuitBreakerRegistry.circuitBreaker("interactionCircuitBreaker", config);
+    }
+
+    @Bean
+    public Retry commentRetry(RetryRegistry retryRegistry) {
+        RetryConfig config = RetryConfig.custom()
+                .maxAttempts(3)
+                .waitDuration(Duration.ofMillis(1000))
+                .retryExceptions(
+                        feign.RetryableException.class,
+                        TimeoutException.class,
+                        feign.FeignException.GatewayTimeout.class,
+                        feign.FeignException.ServiceUnavailable.class
+                )
+                .ignoreExceptions(
+                        feign.FeignException.BadRequest.class,
+                        feign.FeignException.Unauthorized.class,
+                        feign.FeignException.Forbidden.class
+                )
+                .build();
+        return retryRegistry.retry("commentRetry", config);
+    }
+
+    @Bean
+    public CircuitBreaker commentCircuitBreaker(CircuitBreakerRegistry circuitBreakerRegistry) {
+        CircuitBreakerConfig config = CircuitBreakerConfig.custom()
+                .slidingWindowType(CircuitBreakerConfig.SlidingWindowType.COUNT_BASED)
+                .slidingWindowSize(10)
+                .failureRateThreshold(50)
+                .slowCallRateThreshold(75)
+                .slowCallDurationThreshold(Duration.ofSeconds(3))
+                .waitDurationInOpenState(Duration.ofSeconds(10))
+                .build();
+        return circuitBreakerRegistry.circuitBreaker("commentCircuitBreaker", config);
+    }
+
     @Bean
     public Retry geminiRetry(RetryRegistry retryRegistry) {
         RetryConfig config = RetryConfig.custom()

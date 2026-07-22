@@ -11,6 +11,11 @@ public final class ApiPath {
     public static final String SUMMARIES_BATCH = "/interactions/summaries/batch";
     public static final String REACTORS = "/interactions/reactors/{targetType}/{targetId}";
 
+    // Hiếu thêm
+    public static final String POST_REACTION_COUNTS = "/internal/posts/reaction-counts";
+    // Hiếu thêm
+    public static final String POST_LIKED_BY_ME = "/internal/posts/liked-by-me";
+
     private ApiPath() {
     }
 }
