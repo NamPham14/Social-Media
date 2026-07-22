@@ -31,7 +31,7 @@ public interface PostJpaRepository extends JpaRepository<PostEntity, UUID> {
                           @Param("authorAvatarUrl") String authorAvatarUrl);
 
 
-    // hiếu thêm
+  
     @Query("""
             SELECT p FROM PostEntity p
             WHERE p.moderationStatus = 'NONE'
@@ -45,7 +45,7 @@ public interface PostJpaRepository extends JpaRepository<PostEntity, UUID> {
                                     @Param("followingIds") List<UUID> followingIds,
                                     Pageable pageable);
 
-    // hiếu thêm
+
     @Query("""
             SELECT p FROM PostEntity p
             WHERE p.userId = :authorId
@@ -61,7 +61,7 @@ public interface PostJpaRepository extends JpaRepository<PostEntity, UUID> {
                                            @Param("followingIds") List<UUID> followingIds,
                                            Pageable pageable);
 
-    // hiếu thêm
+
     @Query("""
             SELECT p FROM PostEntity p
             WHERE LOWER(p.caption) LIKE LOWER(:keyword)
@@ -77,7 +77,7 @@ public interface PostJpaRepository extends JpaRepository<PostEntity, UUID> {
                                    @Param("followingIds") List<UUID> followingIds,
                                    Pageable pageable);
 
-    // hiếu thêm
+
     @Query("""
             SELECT p FROM PostEntity p
             WHERE p.userId IN :authorIds
