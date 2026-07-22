@@ -25,6 +25,9 @@ public class PostResponse {
 
     private String status;
 
+    private int likeCount;
+    private int commentCount;
+
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 

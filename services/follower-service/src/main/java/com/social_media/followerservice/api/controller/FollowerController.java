@@ -31,6 +31,16 @@ public class FollowerController {
     private final GetFollowingUseCase getFollowingUseCase;
     private final GetNewsFeedUseCase getNewsFeedUseCase;
 
+    // hiếu thêm
+    private final GetFollowingIdsUseCase getFollowingIdsUseCase;
+
+    // hiếu thêm
+    @GetMapping(ApiPath.INTERNAL + "/users/{id}/following-ids")
+    public ResponseEntity<ApiResponse<List<UUID>>> getFollowingIds(@PathVariable("id") UUID id) {
+        List<UUID> followingIds = getFollowingIdsUseCase.execute(id);
+        return ResponseEntity.ok(ApiResponse.success(followingIds, "Get following IDs successfully"));
+    }
+
     @PostMapping(ApiPath.INTERNAL + "/follow")
     public ResponseEntity<ApiResponse<Void>> followUser(@RequestBody FollowRequest request) {
         UUID currentUserId = SecurityUtils.getCurrentUserId();

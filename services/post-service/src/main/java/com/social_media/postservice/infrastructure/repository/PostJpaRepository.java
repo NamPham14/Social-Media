@@ -30,4 +30,66 @@ public interface PostJpaRepository extends JpaRepository<PostEntity, UUID> {
 
     Page<PostEntity> findByUserIdIn(List<UUID> userIds, Pageable pageable);
 
+    // hiếu thêm
+    @Query("""
+            SELECT p FROM PostEntity p
+            WHERE p.moderationStatus = 'NONE'
+              AND (
+                p.status = 'PUBLIC'
+                OR (p.status = 'PRIVATE' AND p.userId = :viewerId)
+                OR (p.status = 'FRIENDS' AND (p.userId = :viewerId OR p.userId IN :followingIds))
+              )
+            """)
+    Page<PostEntity> findAllVisible(@Param("viewerId") UUID viewerId,
+                                    @Param("followingIds") List<UUID> followingIds,
+                                    Pageable pageable);
+
+    // hiếu thêm
+    @Query("""
+            SELECT p FROM PostEntity p
+            WHERE p.userId = :authorId
+              AND p.moderationStatus = 'NONE'
+              AND (
+                p.status = 'PUBLIC'
+                OR (p.status = 'PRIVATE' AND p.userId = :viewerId)
+                OR (p.status = 'FRIENDS' AND (p.userId = :viewerId OR p.userId IN :followingIds))
+              )
+            """)
+    Page<PostEntity> findVisibleByAuthorId(@Param("authorId") UUID authorId,
+                                           @Param("viewerId") UUID viewerId,
+                                           @Param("followingIds") List<UUID> followingIds,
+                                           Pageable pageable);
+
+    // hiếu thêm
+    @Query("""
+            SELECT p FROM PostEntity p
+            WHERE LOWER(p.caption) LIKE LOWER(:keyword)
+              AND p.moderationStatus = 'NONE'
+              AND (
+                p.status = 'PUBLIC'
+                OR (p.status = 'PRIVATE' AND p.userId = :viewerId)
+                OR (p.status = 'FRIENDS' AND (p.userId = :viewerId OR p.userId IN :followingIds))
+              )
+            """)
+    Page<PostEntity> searchVisible(@Param("keyword") String keyword,
+                                   @Param("viewerId") UUID viewerId,
+                                   @Param("followingIds") List<UUID> followingIds,
+                                   Pageable pageable);
+
+    // hiếu thêm
+    @Query("""
+            SELECT p FROM PostEntity p
+            WHERE p.userId IN :authorIds
+              AND p.moderationStatus = 'NONE'
+              AND (
+                p.status = 'PUBLIC'
+                OR (p.status = 'PRIVATE' AND p.userId = :viewerId)
+                OR (p.status = 'FRIENDS' AND (p.userId = :viewerId OR p.userId IN :followingIds))
+              )
+            """)
+    Page<PostEntity> findVisibleByAuthorIds(@Param("authorIds") List<UUID> authorIds,
+                                            @Param("viewerId") UUID viewerId,
+                                            @Param("followingIds") List<UUID> followingIds,
+                                            Pageable pageable);
+
 }

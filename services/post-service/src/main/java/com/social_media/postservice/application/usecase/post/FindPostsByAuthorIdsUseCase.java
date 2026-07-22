@@ -1,8 +1,12 @@
 package com.social_media.postservice.application.usecase.post;
 
 import com.social_media.postservice.application.dto.PostResponse;
+import com.social_media.postservice.config.security.SecurityUtils;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
 import com.social_media.postservice.domain.repository.PostRepository;
+import com.social_media.postservice.infrastructure.client.comment.service.CommentServiceHelper;
+import com.social_media.postservice.infrastructure.client.follower.service.FollowerServiceHelper;
+import com.social_media.postservice.infrastructure.client.interaction.service.InteractionServiceHelper;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -11,19 +15,37 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true) // huy thêm
-public class  FindPostsByAuthorIdsUseCase {
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+public class FindPostsByAuthorIdsUseCase {
 
     PostRepository postRepository;
+    FollowerServiceHelper followerServiceHelper;
+    InteractionServiceHelper interactionServiceHelper;
+    CommentServiceHelper commentServiceHelper;
 
     public Page<PostResponse> execute(List<UUID> authorIds, Pageable pageable) {
-        Page<Post> page = postRepository.findByAuthorIds(authorIds, pageable);
-        return page.map(PostResponse::from);
-    }
+        UUID viewerId = SecurityUtils.getCurrentUserId();
+        List<UUID> followingIds = followerServiceHelper.getFollowingIds(viewerId);
 
+        Page<Post> page = postRepository.findByAuthorIds(authorIds, pageable, viewerId, followingIds);
+        Page<PostResponse> responsePage = page.map(PostResponse::from);
+
+        List<UUID> postIds = responsePage.getContent().stream().map(PostResponse::getId).toList();
+        if (!postIds.isEmpty()) {
+            Map<UUID, Integer> likeCounts = interactionServiceHelper.getLikeCounts(postIds);
+            Map<UUID, Integer> commentCounts = commentServiceHelper.getCommentCounts(postIds);
+            responsePage.getContent().forEach(r -> {
+                r.setLikeCount(likeCounts.getOrDefault(r.getId(), 0));
+                r.setCommentCount(commentCounts.getOrDefault(r.getId(), 0));
+            });
+        }
+
+        return responsePage;
+    }
 
 }
