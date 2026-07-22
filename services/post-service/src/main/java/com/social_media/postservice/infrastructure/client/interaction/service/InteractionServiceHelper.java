@@ -1,10 +1,12 @@
 package com.social_media.postservice.infrastructure.client.interaction.service;
 
 import com.social_media.common.api.ApiResponse;
+import com.social_media.postservice.config.security.SecurityUtils;
 import com.social_media.postservice.infrastructure.client.interaction.InteractionServiceClient;
-import com.social_media.postservice.infrastructure.client.interaction.dto.BatchCounterRequest;
-import com.social_media.postservice.infrastructure.client.interaction.dto.CounterResponse;
-import com.social_media.postservice.infrastructure.client.interaction.dto.TargetRef;
+import com.social_media.postservice.infrastructure.client.interaction.dto.BatchPostLikedRequest;
+import com.social_media.postservice.infrastructure.client.interaction.dto.BatchPostReactionRequest;
+import com.social_media.postservice.infrastructure.client.interaction.dto.PostLikedResponse;
+import com.social_media.postservice.infrastructure.client.interaction.dto.PostReactionResponse;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
@@ -26,16 +28,13 @@ public class InteractionServiceHelper {
     @Retry(name = "interactionRetry")
     @CircuitBreaker(name = "interactionCircuitBreaker", fallbackMethod = "fallbackGetLikeCounts")
     public Map<UUID, Integer> getLikeCounts(List<UUID> postIds) {
-        List<TargetRef> targets = postIds.stream()
-                .map(id -> TargetRef.builder().targetType("POST").targetId(id).build())
-                .toList();
-        BatchCounterRequest request = new BatchCounterRequest(targets);
+        BatchPostReactionRequest request = new BatchPostReactionRequest(postIds);
 
-        ApiResponse<List<CounterResponse>> response = interactionServiceClient.getCountersBatch(request);
+        ApiResponse<List<PostReactionResponse>> response = interactionServiceClient.getPostReactionCounts(request);
 
         if (response != null && response.getData() != null) {
             return response.getData().stream()
-                    .collect(Collectors.toMap(CounterResponse::getTargetId, c -> c.getLikeCount() + c.getClapCount()));
+                    .collect(Collectors.toMap(PostReactionResponse::getPostId, PostReactionResponse::getReactionCount));
         }
 
         return Map.of();
@@ -43,6 +42,27 @@ public class InteractionServiceHelper {
 
     public Map<UUID, Integer> fallbackGetLikeCounts(List<UUID> postIds, Throwable throwable) {
         log.warn("Fallback Interaction-Service: {}", throwable.getMessage());
+        return Map.of();
+    }
+
+    @Retry(name = "interactionRetry")
+    @CircuitBreaker(name = "interactionCircuitBreaker", fallbackMethod = "fallbackGetLikedByMe")
+    public Map<UUID, Boolean> getLikedByMe(List<UUID> postIds) {
+        UUID userId = SecurityUtils.getCurrentUserId();
+        BatchPostLikedRequest request = new BatchPostLikedRequest(postIds);
+
+        ApiResponse<List<PostLikedResponse>> response = interactionServiceClient.getPostLikedByMe(userId, request);
+
+        if (response != null && response.getData() != null) {
+            return response.getData().stream()
+                    .collect(Collectors.toMap(PostLikedResponse::getPostId, PostLikedResponse::isLikedByMe));
+        }
+
+        return Map.of();
+    }
+
+    public Map<UUID, Boolean> fallbackGetLikedByMe(List<UUID> postIds, Throwable throwable) {
+        log.warn("Fallback Interaction-Service getLikedByMe: {}", throwable.getMessage());
         return Map.of();
     }
 }

@@ -42,11 +42,12 @@ public class GetPostByPostIdUseCase {
 
         PostResponse response = PostResponse.from(post);
 
+        Map<UUID, Boolean> likedByMe = interactionServiceHelper.getLikedByMe(List.of(postId));
         Map<UUID, Integer> likeCounts = interactionServiceHelper.getLikeCounts(List.of(postId));
         Map<UUID, Integer> commentCounts = commentServiceHelper.getCommentCounts(List.of(postId));
         response.setLikeCount(likeCounts.getOrDefault(postId, 0));
         response.setCommentCount(commentCounts.getOrDefault(postId, 0));
-
+        response.setLiked(likedByMe.getOrDefault(postId, false));
         return response;
     }
 

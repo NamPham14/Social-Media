@@ -1,6 +1,7 @@
 package com.social_media.interactionservice.application.usecase;
 
 import com.social_media.interactionservice.api.dto.InteractionSummaryResponse;
+import com.social_media.interactionservice.api.dto.PostLikedResponse;
 import com.social_media.interactionservice.api.dto.TargetReferenceRequest;
 import com.social_media.interactionservice.domain.model.Interaction;
 import com.social_media.interactionservice.domain.model.InteractionCounter;
@@ -60,6 +61,20 @@ public class GetInteractionSummariesUseCaseImpl implements GetInteractionSummari
         return ids.stream()
                 .map(id -> new InteractionSummaryResponse(
                         id.getTargetType(), id.getTargetId(), counts.getOrDefault(id, 0), likedTargets.contains(id)))
+                .toList();
+    }
+
+    // Hiếu thêm
+    @Override
+    @Transactional(readOnly = true)
+    public List<PostLikedResponse> getBatchLikedByMe(UUID actorId, List<UUID> postIds) {
+        Set<UUID> likedIds = new HashSet<>();
+        if (actorId != null) {
+            interactionRepository.findActiveByActorAndTargets(actorId, postIds)
+                    .forEach(i -> likedIds.add(i.getTargetId()));
+        }
+        return postIds.stream()
+                .map(id -> new PostLikedResponse(id, likedIds.contains(id)))
                 .toList();
     }
 }

@@ -1,6 +1,7 @@
 package com.social_media.interactionservice.application.usecase;
 
 import com.social_media.interactionservice.api.dto.CounterResponse;
+import com.social_media.interactionservice.api.dto.PostReactionResponse;
 import com.social_media.interactionservice.api.dto.TargetReferenceRequest;
 import com.social_media.interactionservice.domain.model.InteractionCounter;
 import com.social_media.interactionservice.domain.model.InteractionCounterId;
@@ -32,6 +33,19 @@ public class GetCountersUseCaseImpl implements GetCountersUseCase {
         counterRepository.findAll(ids).forEach(c -> found.put(c.getId(), c));
         return ids.stream().map(id -> Optional.ofNullable(found.get(id)).map(this::response)
                 .orElse(new CounterResponse(id.getTargetType(), id.getTargetId(), 0))).toList();
+    }
+
+    // Hiếu thêm
+    @Override
+    @Transactional(readOnly = true)
+    public List<PostReactionResponse> getBatchByPostIds(List<UUID> postIds) {
+        List<InteractionCounterId> ids = postIds.stream()
+                .map(id -> new InteractionCounterId(TargetType.POST, id)).distinct().toList();
+        Map<InteractionCounterId, InteractionCounter> found = new HashMap<>();
+        counterRepository.findAll(ids).forEach(c -> found.put(c.getId(), c));
+        return ids.stream().map(id -> Optional.ofNullable(found.get(id))
+                .map(c -> new PostReactionResponse(id.getTargetId(), c.getLikeCount()))
+                .orElse(new PostReactionResponse(id.getTargetId(), 0))).toList();
     }
 
     private CounterResponse response(InteractionCounter c) {

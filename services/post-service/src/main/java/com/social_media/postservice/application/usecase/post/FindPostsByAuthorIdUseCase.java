@@ -39,10 +39,18 @@ public class FindPostsByAuthorIdUseCase {
         if (!postIds.isEmpty()) {
             Map<UUID, Integer> likeCounts = interactionServiceHelper.getLikeCounts(postIds);
             Map<UUID, Integer> commentCounts = commentServiceHelper.getCommentCounts(postIds);
-            responsePage.getContent().forEach(r -> {
-                r.setLikeCount(likeCounts.getOrDefault(r.getId(), 0));
-                r.setCommentCount(commentCounts.getOrDefault(r.getId(), 0));
-            });
+            // Hiếu thêm
+            Map<UUID, Boolean> likedByMe = interactionServiceHelper.getLikedByMe(postIds);
+
+            for (PostResponse post : responsePage.getContent()) {
+                int likeCount = likeCounts.getOrDefault(post.getId(), 0);
+                int commentCount = commentCounts.getOrDefault(post.getId(), 0);
+
+                post.setLikeCount(likeCount);
+                post.setCommentCount(commentCount);
+                post.setLiked(likedByMe.getOrDefault(post.getId(), false));
+
+            }
         }
 
         return responsePage;

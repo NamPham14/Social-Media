@@ -1,19 +1,16 @@
 package com.social_media.postservice.infrastructure.client.interaction.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.UUID;
 
+// Hiếu thêm
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CounterResponse {
-    private String targetType;
-    private UUID targetId;
-    private int likeCount;
-    private int clapCount;
+public class PostLikedResponse {
+    private UUID postId;
+    private boolean likedByMe;
 }
