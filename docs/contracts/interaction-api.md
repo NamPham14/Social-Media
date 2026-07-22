@@ -1,6 +1,8 @@
 # Interaction API contract V1
 
-All actor-specific endpoints require `X-Auth-User-Id: <uuid>`. Valid reaction types are `LIKE` and `CLAP`.
+Commands, `/me`, and reactor-list endpoints require `X-Auth-User-Id: <uuid>`. Summary endpoints accept
+an optional actor. The only valid reaction type in V1 is `LIKE`; one actor can have at most one reaction
+per target, regardless of reaction type.
 
 | Method | Path | Purpose |
 | --- | --- | --- |
@@ -9,8 +11,41 @@ All actor-specific endpoints require `X-Auth-User-Id: <uuid>`. Valid reaction ty
 | GET | `/api/v1/interactions/me/{targetType}/{targetId}` | Actor's active reactions |
 | GET | `/api/v1/interactions/counters/{targetType}/{targetId}` | Counter summary |
 | POST | `/api/v1/interactions/counters/batch` | Counter summaries for target references |
+| GET | `/api/v1/interactions/summaries/{targetType}/{targetId}` | Combined `reactionCount` and `likedByMe` for one target |
+| POST | `/api/v1/interactions/summaries/batch` | Combined summaries for up to 100 targets without N+1 requests |
+| GET | `/api/v1/interactions/reactors/{targetType}/{targetId}?page=0&size=20` | Page actors who currently LIKE the visible target |
 
 Bookmark is not part of this contract; Post Service owns it.
+
+The batch summary request is:
+
+```json
+{
+  "targets": [
+    { "targetType": "COMMENT", "targetId": "00000000-0000-0000-0000-000000000001" }
+  ]
+}
+```
+
+Each response item has this shape:
+
+```json
+{
+  "targetType": "COMMENT",
+  "targetId": "00000000-0000-0000-0000-000000000001",
+  "reactionCount": 20,
+  "likedByMe": true
+}
+```
+
+`commentCount` is intentionally not owned by Interaction Service. A feed/BFF should compose this endpoint
+with Comment Service's `/api/v1/comments/counts/batch`, once each per page. Missing counter/interaction rows
+produce `reactionCount: 0` and `likedByMe: false`, and duplicate target references are de-duplicated while
+preserving first-seen order. For anonymous requests, `likedByMe` is deterministically `false` and the
+actor-ledger query is skipped. Matching uses the composite `(targetType,targetId)`, including when a Post
+and Comment happen to share the same UUID.
+
+`CommentDeletedV1` is consumed idempotently to remove the deleted comment's reaction ledger and counter.
 
 A newly created (non-duplicate, non-self) reaction publishes `ReactionCreatedV1` through the
 Interaction transactional outbox. See `comment-interaction-notification-events.md`.

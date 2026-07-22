@@ -53,15 +53,13 @@ CREATE TABLE interactions (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE UNIQUE INDEX idx_user_reaction
-ON interactions (user_id, target_type, target_id, reaction_type);
+CREATE UNIQUE INDEX uq_interaction_actor_target
+ON interactions (user_id, target_type, target_id);
 
 CREATE TABLE interaction_counters (
     target_type VARCHAR(20),
     target_id UUID,
     like_count INT DEFAULT 0 CHECK (like_count >= 0),
-    clap_count INT DEFAULT 0 CHECK (clap_count >= 0),
-    bookmark_count INT DEFAULT 0 CHECK (bookmark_count >= 0),
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (target_type, target_id)
 );

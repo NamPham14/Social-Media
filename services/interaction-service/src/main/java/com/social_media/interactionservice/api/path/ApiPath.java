@@ -7,6 +7,9 @@ public final class ApiPath {
     public static final String MY_INTERACTIONS = "/interactions/me/{targetType}/{targetId}";
     public static final String COUNTER = "/interactions/counters/{targetType}/{targetId}";
     public static final String COUNTERS_BATCH = "/interactions/counters/batch";
+    public static final String SUMMARY = "/interactions/summaries/{targetType}/{targetId}";
+    public static final String SUMMARIES_BATCH = "/interactions/summaries/batch";
+    public static final String REACTORS = "/interactions/reactors/{targetType}/{targetId}";
 
     private ApiPath() {
     }

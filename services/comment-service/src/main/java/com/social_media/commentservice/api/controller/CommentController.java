@@ -11,6 +11,7 @@ import com.social_media.commentservice.application.command.CreateCommentCommand;
 import com.social_media.commentservice.application.usecase.CreateCommentUseCase;
 import com.social_media.commentservice.application.usecase.DeleteCommentUseCase;
 import com.social_media.commentservice.application.usecase.FindCommentsByPostUseCase;
+import com.social_media.commentservice.application.usecase.FindRepliesUseCase;
 import com.social_media.commentservice.application.usecase.GetCommentUseCase;
 import com.social_media.commentservice.application.usecase.GetCommentCountsUseCase;
 import com.social_media.commentservice.application.usecase.UpdateCommentUseCase;
@@ -45,6 +46,7 @@ public class CommentController {
     private final UpdateCommentUseCase updateCommentUseCase;
     private final GetCommentUseCase getCommentUseCase;
     private final GetCommentCountsUseCase getCommentCountsUseCase;
+    private final FindRepliesUseCase findRepliesUseCase;
 
     @PostMapping(ApiPath.COMMENTS)
     public ResponseEntity<ApiResponse<CommentResponse>> createComment(
@@ -68,14 +70,15 @@ public class CommentController {
     @GetMapping(ApiPath.COMMENTS_BY_POST)
     public ApiResponse<PageResponse<CommentResponse>> getCommentsByPost(
             @PathVariable("postId") UUID postId,
-            @org.springframework.web.bind.annotation.RequestParam(defaultValue = "0") int page,
-            @org.springframework.web.bind.annotation.RequestParam(defaultValue = "20") int size) {
+            @RequestHeader(value = "X-Auth-User-Id", required = false) UUID actorId,
+            @org.springframework.web.bind.annotation.RequestParam(name = "page", defaultValue = "0") int page,
+            @org.springframework.web.bind.annotation.RequestParam(name = "size", defaultValue = "20") int size) {
         int safeSize = Math.min(Math.max(size, 1), 100);
         return ApiResponse.<PageResponse<CommentResponse>>builder()
                 .code(SUCCESS_CODE)
                 .status(HttpStatus.OK.value())
                 .message("Get Comments By Post Success")
-                .data(findCommentsByPostUseCase.execute(postId, Math.max(page, 0), safeSize))
+                .data(findCommentsByPostUseCase.execute(postId, Math.max(page, 0), safeSize, actorId))
                 .build();
     }
 
@@ -125,9 +128,23 @@ public class CommentController {
     }
 
     @GetMapping(ApiPath.COMMENT_BY_ID)
-    public ApiResponse<CommentResponse> getComment(@PathVariable("commentId") UUID commentId) {
+    public ApiResponse<CommentResponse> getComment(
+            @PathVariable("commentId") UUID commentId,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) UUID actorId) {
         return ApiResponse.<CommentResponse>builder()
                 .code(SUCCESS_CODE).status(HttpStatus.OK.value())
-                .message("Get Comment Success").data(getCommentUseCase.execute(commentId)).build();
+                .message("Get Comment Success").data(getCommentUseCase.execute(commentId, actorId)).build();
+    }
+
+    @GetMapping(ApiPath.COMMENT_REPLIES)
+    public ApiResponse<PageResponse<CommentResponse>> getReplies(
+            @PathVariable("commentId") UUID commentId,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) UUID actorId,
+            @org.springframework.web.bind.annotation.RequestParam(name = "page", defaultValue = "0") int page,
+            @org.springframework.web.bind.annotation.RequestParam(name = "size", defaultValue = "20") int size) {
+        int safeSize = Math.min(Math.max(size, 1), 100);
+        return ApiResponse.<PageResponse<CommentResponse>>builder().code(SUCCESS_CODE).status(200)
+                .message("Get Comment Replies Success")
+                .data(findRepliesUseCase.execute(commentId, Math.max(page, 0), safeSize, actorId)).build();
     }
 }

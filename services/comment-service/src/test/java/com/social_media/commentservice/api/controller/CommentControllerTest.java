@@ -4,6 +4,7 @@ import com.social_media.commentservice.application.command.CreateCommentCommand;
 import com.social_media.commentservice.application.usecase.*;
 import com.social_media.commentservice.api.CommentExceptionHandler;
 import com.social_media.commentservice.api.dto.CommentCountResponse;
+import com.social_media.commentservice.api.dto.PageResponse;
 import com.social_media.commentservice.domain.exception.TargetNotFoundException;
 import com.social_media.commentservice.infrastructure.web.CorrelationIdFilter;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,14 +26,19 @@ import java.util.UUID;
 class CommentControllerTest {
     private CreateCommentUseCase create;
     private GetCommentCountsUseCase counts;
+    private FindCommentsByPostUseCase findComments;
+    private FindRepliesUseCase findReplies;
     private MockMvc mvc;
 
     @BeforeEach
     void setUp() {
         create = mock(CreateCommentUseCase.class);
         counts = mock(GetCommentCountsUseCase.class);
-        CommentController controller = new CommentController(create, mock(FindCommentsByPostUseCase.class),
-                mock(DeleteCommentUseCase.class), mock(UpdateCommentUseCase.class), mock(GetCommentUseCase.class), counts);
+        findComments = mock(FindCommentsByPostUseCase.class);
+        findReplies = mock(FindRepliesUseCase.class);
+        CommentController controller = new CommentController(create, findComments,
+                mock(DeleteCommentUseCase.class), mock(UpdateCommentUseCase.class), mock(GetCommentUseCase.class),
+                counts, findReplies);
         mvc = MockMvcBuilders.standaloneSetup(controller)
                 .setControllerAdvice(new CommentExceptionHandler())
                 .addFilters(new CorrelationIdFilter())
@@ -100,6 +106,22 @@ class CommentControllerTest {
                         .contentType(MediaType.APPLICATION_JSON).content("{\"postIds\":[null]}"))
                 .andExpect(status().isBadRequest());
         verifyNoInteractions(counts);
+    }
+
+    @Test
+    void discussionAndRepliesAllowAnonymousReadsWithoutInventingAnActor() throws Exception {
+        UUID postId = UUID.randomUUID();
+        UUID commentId = UUID.randomUUID();
+        when(findComments.execute(postId, 0, 20, null))
+                .thenReturn(new PageResponse<>(List.of(), 0, 20, 0, 0));
+        when(findReplies.execute(commentId, 0, 20, null))
+                .thenReturn(new PageResponse<>(List.of(), 0, 20, 0, 0));
+
+        mvc.perform(get("/api/v1/posts/{postId}/comments", postId)).andExpect(status().isOk());
+        mvc.perform(get("/api/v1/comments/{commentId}/replies", commentId)).andExpect(status().isOk());
+
+        verify(findComments).execute(postId, 0, 20, null);
+        verify(findReplies).execute(commentId, 0, 20, null);
     }
 
     @Test

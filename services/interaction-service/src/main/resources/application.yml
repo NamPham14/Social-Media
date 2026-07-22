@@ -109,6 +109,7 @@ messaging:
   topics:
     post-deleted: post-deleted-topic
     post-comments-deleted: post-comments-deleted-topic
+    comment-deleted: comment-deleted-topic
     reaction-created: reaction-created-topic
   outbox:
     enabled: true

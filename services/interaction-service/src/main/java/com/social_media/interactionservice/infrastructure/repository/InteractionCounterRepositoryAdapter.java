@@ -22,12 +22,12 @@ public class InteractionCounterRepositoryAdapter implements InteractionCounterRe
     @Override
     public void increment(TargetType targetType, UUID targetId, ReactionType reactionType) {
         interactionCounterJpaRepository.insertIfMissing(targetType.name(), targetId);
-        interactionCounterJpaRepository.increment(targetType.name(), targetId, reactionType.name());
+        interactionCounterJpaRepository.increment(targetType.name(), targetId);
     }
 
     @Override
     public void decrement(TargetType targetType, UUID targetId, ReactionType reactionType) {
-        interactionCounterJpaRepository.decrement(targetType.name(), targetId, reactionType.name());
+        interactionCounterJpaRepository.decrement(targetType.name(), targetId);
     }
 
     @Override
