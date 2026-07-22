@@ -97,6 +97,7 @@ messaging:
     post-comments-deleted: post-comments-deleted-topic
     comment-created: comment-created-topic
     comment-replied: comment-replied-topic
+    comment-deleted: comment-deleted-topic
   outbox:
     enabled: true
     poll-delay-ms: 1000

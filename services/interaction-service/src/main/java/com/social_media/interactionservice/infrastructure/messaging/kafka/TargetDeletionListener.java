@@ -44,6 +44,15 @@ public class TargetDeletionListener {
         logResult(eventId, TargetType.COMMENT, commentIds.size(), result);
     }
 
+    @KafkaListener(topics = "${messaging.topics.comment-deleted}")
+    public void onCommentDeleted(String payload) throws Exception {
+        JsonNode json = objectMapper.readTree(payload);
+        String eventId = requiredText(json, "id");
+        UUID commentId = UUID.fromString(requiredText(json, "commentId"));
+        var result = cleanupUseCase.execute(TargetType.COMMENT, List.of(commentId));
+        logResult(eventId, TargetType.COMMENT, 1, result);
+    }
+
     private void logResult(String eventId, TargetType targetType, int targetCount,
                            DeleteTargetInteractionsUseCase.CleanupResult result) {
         log.info("Consumed target deletion eventId={} targetType={} targetCount={} interactionsDeleted={} countersDeleted={}",

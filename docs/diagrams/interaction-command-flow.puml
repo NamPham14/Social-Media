@@ -11,7 +11,7 @@ participant "TargetAvailabilityPort" as TargetPort
 participant "Post or Comment Service" as Target
 database "Interaction DB" as DB
 
-User -> Gateway : POST /interaction/api/v1/interactions\nLIKE or CLAP
+User -> Gateway : POST /interaction/api/v1/interactions\nLIKE
 Gateway -> API : trusted actor + correlation ID
 API -> Create : command(actor, targetType, targetId, reactionType)
 Create -> TargetPort : ensureAvailable(...)
@@ -47,8 +47,8 @@ else Target available
 end
 
 note over Create,DB
-  ADR-002: LIKE and CLAP are independent.
-  Unique key includes reactionType.
+  ADR-002: one reaction per actor and target.
+  V1 supports LIKE only; unique key excludes reactionType.
 end note
 
 == Remove is local and idempotent ==

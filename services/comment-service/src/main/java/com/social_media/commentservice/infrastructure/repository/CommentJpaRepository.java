@@ -16,13 +16,26 @@ public interface CommentJpaRepository extends JpaRepository<Comment, UUID> {
     @Query("""
             select c from Comment c
             where c.postId = :postId
+              and c.parentId is null
               and (c.deleted = false or exists (
                   select r.id from Comment r where r.parentId = c.id and r.deleted = false
               ))
             """)
     Page<Comment> findVisibleByPostId(@Param("postId") UUID postId, Pageable pageable);
 
+    Page<Comment> findByParentIdAndDeletedFalse(UUID parentId, Pageable pageable);
+
     boolean existsByParentIdAndDeletedFalse(UUID parentId);
+
+    long countByParentIdAndDeletedFalse(UUID parentId);
+
+    @Query("""
+            select c.parentId as parentId, count(c.id) as replyCount
+            from Comment c
+            where c.parentId in :parentIds and c.deleted = false
+            group by c.parentId
+            """)
+    List<ReplyCountProjection> countActiveRepliesByParentIds(@Param("parentIds") Collection<UUID> parentIds);
 
     long countByPostIdAndDeletedFalse(UUID postId);
 
@@ -44,7 +57,8 @@ public interface CommentJpaRepository extends JpaRepository<Comment, UUID> {
 
 
     @Modifying
-    @Query("UPDATE Comment c SET c.authorName = :authorName, c.authorAvatarUrl = :authorAvatarUrl WHERE c.userId = :userId")
+    @Query("UPDATE Comment c SET c.authorName = COALESCE(:authorName, c.authorName), " +
+            "c.authorAvatarUrl = COALESCE(:authorAvatarUrl, c.authorAvatarUrl) WHERE c.userId = :userId")
     void updateAuthorInfo(@Param("userId") UUID userId,
                           @Param("authorName") String authorName,
                           @Param("authorAvatarUrl") String authorAvatarUrl);
