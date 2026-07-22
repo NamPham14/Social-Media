@@ -12,6 +12,5 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FollowRequest {
-    private UUID followerId;
     private UUID followingId;
 }

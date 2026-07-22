@@ -52,4 +52,14 @@ public class FollowRelationRepositoryAdapter implements FollowRelationRepository
     @Override public void deleteByFollowerIdAndFollowingId(UserId followerId, UserId followingId) {
         jpaRepository.deleteByFollowerIdAndFollowingId(followerId.value(), followingId.value());
     }
+
+    @Override
+    public long countByFollowerId(UserId followerId) {
+        return jpaRepository.countByFollowerId(followerId.value());
+    }
+
+    @Override
+    public long countByFollowingId(UserId followingId) {
+        return jpaRepository.countByFollowingId(followingId.value());
+    }
 }

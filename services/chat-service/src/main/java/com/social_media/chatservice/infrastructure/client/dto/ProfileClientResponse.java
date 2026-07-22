@@ -1,0 +1,17 @@
+package com.social_media.chatservice.infrastructure.client.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.UUID;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class ProfileClientResponse {
+    private UUID id;
+    private String username;
+    private String avatarUrl;
+    private String displayName;
+}

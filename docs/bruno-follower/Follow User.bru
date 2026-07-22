@@ -1,0 +1,21 @@
+meta {
+  name: Follow User
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://localhost:8084/api/v1/follow/internal/follow
+  body: json
+  auth: none
+}
+
+headers {
+  X-Auth-User-Id: {{followerId}}
+}
+
+body:json {
+{
+    "followingId": "c3c896da-b757-4d42-b48b-0637d520aa1e"
+}
+}

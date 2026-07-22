@@ -1,0 +1,10 @@
+{
+  "version": "1",
+  "name": "Follower Service",
+  "type": "collection",
+  "ignore": [],
+  "presets": {
+    "requestType": "http",
+    "url": "http://localhost:8084"
+  }
+}

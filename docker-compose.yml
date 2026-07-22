@@ -105,6 +105,23 @@ services:
       timeout: 5s
       retries: 10
 
+  chat-db:
+    image: postgres:16-alpine
+    container_name: social_media_chat_db
+    ports:
+      - "5438:5432"
+    environment:
+      POSTGRES_DB: chat_service
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - chat-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d chat_service"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
   # ===== KAFKA (KRaft mode) =====
   kafka:
     image: confluentinc/cp-kafka:7.6.0
@@ -297,6 +314,26 @@ services:
         condition: service_healthy
       notification-db:
         condition: service_healthy
+
+  chat-service:
+    build:
+      context: .
+      dockerfile: services/chat-service/Dockerfile
+    container_name: chat-service
+    ports:
+      - "8088:8088"
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
+      SPRING_DATASOURCE_URL: jdbc:postgresql://chat-db:5432/chat_service
+      SPRING_DATASOURCE_PASSWORD: 123456
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+      chat-db:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
       # ===== OBSERVABILITY STACK =====
 
   zipkin:
@@ -329,6 +366,7 @@ volumes:
   post-db-data:
   comment-db-data:
   interaction-db-data:
+  chat-db-data:
   notification-db-data:
   redis-data:
 

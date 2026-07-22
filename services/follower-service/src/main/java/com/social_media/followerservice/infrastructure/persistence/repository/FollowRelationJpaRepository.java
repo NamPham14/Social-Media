@@ -24,4 +24,8 @@ public interface FollowRelationJpaRepository extends JpaRepository<FollowRelatio
     List<UUID> findFollowingIdsByFollowerId(@Param("followerId") UUID followerId);
 
     void deleteByFollowerIdAndFollowingId(UUID followerId, UUID followingId);
+
+    long countByFollowerId(UUID followerId);
+
+    long countByFollowingId(UUID followingId);
 }

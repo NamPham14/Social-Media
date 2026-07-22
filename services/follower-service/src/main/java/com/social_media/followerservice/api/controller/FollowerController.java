@@ -8,7 +8,13 @@ import com.social_media.followerservice.api.dto.FollowResponse;
 import com.social_media.followerservice.api.path.ApiPath;
 import com.social_media.followerservice.application.command.FollowUserCommand;
 import com.social_media.followerservice.application.command.UnfollowUserCommand;
-import com.social_media.followerservice.application.usecase.*;
+import com.social_media.followerservice.application.usecase.GetFollowersCountUseCase;
+import com.social_media.followerservice.application.usecase.GetFollowersUseCase;
+import com.social_media.followerservice.application.usecase.GetFollowingCountUseCase;
+import com.social_media.followerservice.application.usecase.GetFollowingUseCase;
+import com.social_media.followerservice.application.usecase.GetNewsFeedUseCase;
+import com.social_media.followerservice.application.usecase.FollowUserUseCase;
+import com.social_media.followerservice.application.usecase.UnfollowUserUseCase;
 import com.social_media.followerservice.config.security.SecurityUtils;
 import com.social_media.followerservice.domain.shared.valueobject.UserId;
 import lombok.RequiredArgsConstructor;
@@ -29,9 +35,11 @@ public class FollowerController {
     private final UnfollowUserUseCase unfollowUserUseCase;
     private final GetFollowersUseCase getFollowersUseCase;
     private final GetFollowingUseCase getFollowingUseCase;
+    private final GetFollowersCountUseCase getFollowersCountUseCase;
+    private final GetFollowingCountUseCase getFollowingCountUseCase;
     private final GetNewsFeedUseCase getNewsFeedUseCase;
 
-    @PostMapping(ApiPath.INTERNAL + "/follow")
+    @PostMapping
     public ResponseEntity<ApiResponse<Void>> followUser(@RequestBody FollowRequest request) {
         UUID currentUserId = SecurityUtils.getCurrentUserId();
         FollowUserCommand cmd = new FollowUserCommand(UserId.from(currentUserId), UserId.from(request.getFollowingId()));
@@ -39,7 +47,7 @@ public class FollowerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.<Void>success(null, "Follow successfully"));
     }
 
-    @PostMapping(ApiPath.INTERNAL + "/unfollow")
+    @PostMapping("/unfollow")
     public ResponseEntity<ApiResponse<Void>> unfollowUser(@RequestBody FollowRequest request) {
         UUID currentUserId = SecurityUtils.getCurrentUserId();
         UnfollowUserCommand cmd = new UnfollowUserCommand(UserId.from(currentUserId), UserId.from(request.getFollowingId()));
@@ -54,6 +62,18 @@ public class FollowerController {
             @RequestParam(name = "size", defaultValue = "10") int size) {
         Page<FollowResponse> result = getFollowersUseCase.execute(id, page, size);
         return ResponseEntity.ok(ApiResponse.success(PageResponse.of(result), "Get followers successfully"));
+    }
+
+    @GetMapping("/users/{id}/followers/count")
+    public ResponseEntity<ApiResponse<Long>> getFollowersCount(@PathVariable("id") UUID id) {
+        long count = getFollowersCountUseCase.execute(id);
+        return ResponseEntity.ok(ApiResponse.success(count, "Get followers count successfully"));
+    }
+
+    @GetMapping("/users/{id}/following/count")
+    public ResponseEntity<ApiResponse<Long>> getFollowingCount(@PathVariable("id") UUID id) {
+        long count = getFollowingCountUseCase.execute(id);
+        return ResponseEntity.ok(ApiResponse.success(count, "Get following count successfully"));
     }
 
     @GetMapping("/users/{id}/following")

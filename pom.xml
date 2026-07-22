@@ -33,6 +33,7 @@
         <module>qa/comment-interaction-e2e</module>
         <module>services/notification-service</module>
         <module>services/follower-service</module>
+        <module>services/chat-service</module>
     </modules>
 
 

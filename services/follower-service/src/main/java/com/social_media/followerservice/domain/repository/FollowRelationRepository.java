@@ -23,4 +23,8 @@ public interface FollowRelationRepository {
     List<UserId> findFollowingIdsByFollowerId(UserId followerId);
 
     void deleteByFollowerIdAndFollowingId(UserId followerId, UserId followingId);
+
+    long countByFollowerId(UserId followerId);
+
+    long countByFollowingId(UserId followingId);
 }
