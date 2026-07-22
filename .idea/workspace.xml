@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/client/profile/ProfileClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/client/profile/ProfileClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/RegisterUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/RegisterUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/moderation/GeminiClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/profile/ProfileClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/profile/ProfileClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/config/FeignClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/config/FeignClientConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/profile/dto/UserProfileResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/profile/dto/UserProfileResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/profile/service/ProfileServiceHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/profile/service/ProfileServiceHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,13 +256,13 @@
     </configuration>
     <list>
       <item itemvalue="Spring Boot.ApiGatewayApplication" />
+      <item itemvalue="Spring Boot.IdentityServiceApplication" />
       <item itemvalue="Spring Boot.CommentServiceApplication" />
       <item itemvalue="Spring Boot.CommonEventsApplication" />
       <item itemvalue="Spring Boot.CommonSecurityApplication" />
       <item itemvalue="Spring Boot.CommonWebApplication" />
       <item itemvalue="Spring Boot.EurekaServerApplication" />
       <item itemvalue="Spring Boot.FollowerServiceApplication" />
-      <item itemvalue="Spring Boot.IdentityServiceApplication" />
       <item itemvalue="Spring Boot.InteractionServiceApplication" />
       <item itemvalue="Spring Boot.NotificationServiceApplication" />
       <item itemvalue="Spring Boot.PostServiceApplication" />
@@ -299,6 +304,7 @@
       <workItem from="1784683650444" duration="4670000" />
       <workItem from="1784691614170" duration="5789000" />
       <workItem from="1784708366992" duration="6766000" />
+      <workItem from="1784725491946" duration="7778000" />
     </task>
     <servers />
   </component>
