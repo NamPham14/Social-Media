@@ -24,7 +24,7 @@ public interface InteractionServiceClient {
     @PostMapping("/internal/posts/reaction-counts")
     ApiResponse<List<PostReactionResponse>> getPostReactionCounts(@RequestBody BatchPostReactionRequest request);
 
-    // Hiếu thêm
+
     @PostMapping("/internal/posts/liked-by-me")
     ApiResponse<List<PostLikedResponse>> getPostLikedByMe(
             @RequestHeader("X-Auth-User-Id") UUID actorId,
