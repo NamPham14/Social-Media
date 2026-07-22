@@ -2,6 +2,7 @@ package com.social_media.interactionservice.api.controller;
 
 import com.social_media.interactionservice.api.InteractionExceptionHandler;
 import com.social_media.interactionservice.api.dto.CounterResponse;
+import com.social_media.interactionservice.api.dto.InteractionSummaryResponse;
 import com.social_media.interactionservice.application.command.CreateInteractionCommand;
 import com.social_media.interactionservice.application.usecase.*;
 import com.social_media.interactionservice.domain.exception.TargetNotFoundException;
@@ -28,6 +29,7 @@ class InteractionControllerTest {
     private CreateInteractionUseCase create;
     private RemoveInteractionUseCase remove;
     private GetCountersUseCase counters;
+    private GetInteractionSummariesUseCase summaries;
     private MockMvc mvc;
 
     @BeforeEach
@@ -35,8 +37,10 @@ class InteractionControllerTest {
         create = mock(CreateInteractionUseCase.class);
         remove = mock(RemoveInteractionUseCase.class);
         counters = mock(GetCountersUseCase.class);
+        summaries = mock(GetInteractionSummariesUseCase.class);
         InteractionController controller = new InteractionController(
-                create, remove, mock(FindActorReactionsUseCase.class), counters);
+                create, remove, mock(FindActorReactionsUseCase.class), counters, summaries,
+                mock(GetReactorsUseCase.class));
         mvc = MockMvcBuilders.standaloneSetup(controller)
                 .setControllerAdvice(new InteractionExceptionHandler())
                 .addFilters(new CorrelationIdFilter())
@@ -87,14 +91,51 @@ class InteractionControllerTest {
     void counterBindsExplicitTargetPathVariables() throws Exception {
         UUID targetId = UUID.randomUUID();
         when(counters.get(TargetType.POST, targetId))
-                .thenReturn(new CounterResponse(TargetType.POST, targetId, 2, 1));
+                .thenReturn(new CounterResponse(TargetType.POST, targetId, 2));
 
         mvc.perform(get("/api/v1/interactions/counters/{targetType}/{targetId}", TargetType.POST, targetId))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.data.likeCount").value(2))
-                .andExpect(jsonPath("$.data.clapCount").value(1));
+                .andExpect(jsonPath("$.data.reactionCount").value(2));
 
         verify(counters).get(TargetType.POST, targetId);
+    }
+
+    @Test
+    void batchSummaryReturnsCountsAndActorStateInOneRequest() throws Exception {
+        UUID actorId = UUID.randomUUID();
+        UUID first = UUID.randomUUID();
+        UUID second = UUID.randomUUID();
+        when(summaries.getBatch(eq(actorId), anyList())).thenReturn(java.util.List.of(
+                new InteractionSummaryResponse(TargetType.COMMENT, first, 4, true),
+                new InteractionSummaryResponse(TargetType.COMMENT, second, 0, false)));
+
+        String body = "{\"targets\":["
+                + "{\"targetType\":\"COMMENT\",\"targetId\":\"" + first + "\"},"
+                + "{\"targetType\":\"COMMENT\",\"targetId\":\"" + second + "\"}]}";
+        mvc.perform(post("/api/v1/interactions/summaries/batch")
+                        .header("X-Auth-User-Id", actorId)
+                        .contentType(MediaType.APPLICATION_JSON).content(body))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data[0].reactionCount").value(4))
+                .andExpect(jsonPath("$.data[0].likedByMe").value(true))
+                .andExpect(jsonPath("$.data[1].likedByMe").value(false));
+
+        verify(summaries).getBatch(eq(actorId), argThat(targets -> targets.size() == 2));
+    }
+
+    @Test
+    void batchSummaryAllowsAnonymousCaller() throws Exception {
+        UUID targetId = UUID.randomUUID();
+        when(summaries.getBatch(eq(null), anyList())).thenReturn(java.util.List.of(
+                new InteractionSummaryResponse(TargetType.COMMENT, targetId, 4, false)));
+        String body = "{\"targets\":[{\"targetType\":\"COMMENT\",\"targetId\":\"" + targetId + "\"}]}";
+
+        mvc.perform(post("/api/v1/interactions/summaries/batch")
+                        .contentType(MediaType.APPLICATION_JSON).content(body))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.data[0].likedByMe").value(false));
+
+        verify(summaries).getBatch(eq(null), anyList());
     }
 
     @Test

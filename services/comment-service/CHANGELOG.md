@@ -4,6 +4,9 @@
 
 ### Added
 
+- Anonymous-capable comment detail/root/reply reads with batch `reactionCount` and `likedByMe` enrichment.
+- Root-only pagination, direct-reply pagination, grouped `replyCount`, and supporting PostgreSQL indexes.
+- Post-owner comment moderation and transactional `CommentDeletedV1` cleanup events.
 - Stable service-specific API error codes with correlation-aware 400/403/404/405/409/415/500/503 handling.
 - Bounded Kafka retry and a Comment-specific DLT for `PostDeleted` consumer failures.
 - A `local` Spring profile aligned with the root Compose Comment database port.
@@ -20,6 +23,8 @@
 
 ### Changed
 
+- Profile lookup and Interaction enrichment are non-critical decoration paths and degrade safely.
+- Invalid Profile events now flow to the configured Kafka retry/DLT path instead of being acknowledged.
 - Successful public API envelopes now consistently use common code `1000`.
 - Default runtime database credentials are externalized; SQL logging is local-profile only.
 - Poison Kafka records bypass retry and DLT publishing must receive broker acknowledgement.

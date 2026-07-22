@@ -21,8 +21,8 @@ import java.util.UUID;
         name = "interactions",
         uniqueConstraints = {
                 @UniqueConstraint(
-                        name = "idx_user_reaction",
-                        columnNames = {"user_id", "target_type", "target_id", "reaction_type"}
+                        name = "uq_interaction_actor_target",
+                        columnNames = {"user_id", "target_type", "target_id"}
                 )
         }
 )

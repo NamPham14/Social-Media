@@ -5,11 +5,16 @@ import com.social_media.interactionservice.api.dto.CreateInteractionRequest;
 import com.social_media.interactionservice.api.dto.InteractionResponse;
 import com.social_media.interactionservice.api.dto.BatchCounterRequest;
 import com.social_media.interactionservice.api.dto.CounterResponse;
+import com.social_media.interactionservice.api.dto.InteractionSummaryResponse;
+import com.social_media.interactionservice.api.dto.ReactorResponse;
+import com.social_media.common.api.PageResponse;
 import com.social_media.interactionservice.api.path.ApiPath;
 import com.social_media.interactionservice.application.command.CreateInteractionCommand;
 import com.social_media.interactionservice.application.usecase.CreateInteractionUseCase;
 import com.social_media.interactionservice.application.usecase.FindActorReactionsUseCase;
 import com.social_media.interactionservice.application.usecase.GetCountersUseCase;
+import com.social_media.interactionservice.application.usecase.GetInteractionSummariesUseCase;
+import com.social_media.interactionservice.application.usecase.GetReactorsUseCase;
 import com.social_media.interactionservice.application.usecase.RemoveInteractionUseCase;
 import com.social_media.interactionservice.domain.model.ReactionType;
 import com.social_media.interactionservice.domain.model.TargetType;
@@ -38,6 +43,8 @@ public class InteractionController {
     private final RemoveInteractionUseCase removeInteractionUseCase;
     private final FindActorReactionsUseCase findActorReactionsUseCase;
     private final GetCountersUseCase getCountersUseCase;
+    private final GetInteractionSummariesUseCase getInteractionSummariesUseCase;
+    private final GetReactorsUseCase getReactorsUseCase;
 
     @PostMapping(ApiPath.INTERACTIONS)
     public ApiResponse<InteractionResponse> createInteraction(
@@ -92,5 +99,37 @@ public class InteractionController {
     public ApiResponse<List<CounterResponse>> counters(@Valid @RequestBody BatchCounterRequest request) {
         return ApiResponse.<List<CounterResponse>>builder().code(SUCCESS_CODE).status(200).message("Get Counters Success")
                 .data(getCountersUseCase.getBatch(request.targets())).build();
+    }
+
+    @GetMapping(ApiPath.SUMMARY)
+    public ApiResponse<InteractionSummaryResponse> summary(
+            @RequestHeader(value = "X-Auth-User-Id", required = false) UUID actorId,
+            @PathVariable("targetType") TargetType targetType,
+            @PathVariable("targetId") UUID targetId) {
+        return ApiResponse.<InteractionSummaryResponse>builder().code(SUCCESS_CODE).status(200)
+                .message("Get Interaction Summary Success")
+                .data(getInteractionSummariesUseCase.get(actorId, targetType, targetId)).build();
+    }
+
+    @PostMapping(ApiPath.SUMMARIES_BATCH)
+    public ApiResponse<List<InteractionSummaryResponse>> summaries(
+            @RequestHeader(value = "X-Auth-User-Id", required = false) UUID actorId,
+            @Valid @RequestBody BatchCounterRequest request) {
+        return ApiResponse.<List<InteractionSummaryResponse>>builder().code(SUCCESS_CODE).status(200)
+                .message("Get Interaction Summaries Success")
+                .data(getInteractionSummariesUseCase.getBatch(actorId, request.targets())).build();
+    }
+
+    @GetMapping(ApiPath.REACTORS)
+    public ApiResponse<PageResponse<ReactorResponse>> reactors(
+            @RequestHeader("X-Auth-User-Id") UUID actorId,
+            @PathVariable("targetType") TargetType targetType,
+            @PathVariable("targetId") UUID targetId,
+            @org.springframework.web.bind.annotation.RequestParam(name = "page", defaultValue = "0") int page,
+            @org.springframework.web.bind.annotation.RequestParam(name = "size", defaultValue = "20") int size) {
+        int safeSize = Math.min(Math.max(size, 1), 100);
+        return ApiResponse.<PageResponse<ReactorResponse>>builder().code(SUCCESS_CODE).status(200)
+                .message("Get Reactors Success")
+                .data(getReactorsUseCase.execute(actorId, targetType, targetId, Math.max(page, 0), safeSize)).build();
     }
 }

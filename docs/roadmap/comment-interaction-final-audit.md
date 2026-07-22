@@ -8,13 +8,13 @@ managed Kafka topic/alert provisioning and the UUID Notification consumers owned
 
 | Area | Status | Evidence or remaining condition |
 | --- | --- | --- |
-| Bounded contexts and decisions | Complete | ADR-001..007 are accepted; Bookmark remains in Post; LIKE and CLAP may coexist; replies are one level; parent deletion is soft delete. |
-| Comment commands and queries | Complete | Create/reply/edit/idempotent delete/get/page/count/batch-count with actor ownership and PostgreSQL tests. |
-| Interaction commands and queries | Complete | Idempotent LIKE/CLAP add/remove/current state/single and batch counters with atomic SQL, concurrency and rollback tests. |
+| Bounded contexts and decisions | Complete | ADR-001..007 are accepted; Bookmark remains in Post; V1 supports one LIKE per actor/target; replies are one level; parent deletion is soft delete. |
+| Comment commands and queries | Complete in owned scope | Create/reply/edit/idempotent author-or-post-owner delete, root/reply pages, counts, and batch engagement enrichment. Anonymous visibility still needs the Post/Gateway contract below. |
+| Interaction commands and queries | Complete | Idempotent LIKE add/remove/current state plus single and batch summaries with atomic SQL, concurrency and rollback tests. |
 | Synchronous target validation | Complete for current contracts | Application ports, Feign adapters, Eureka names, correlation/internal-token propagation and fail-closed behavior are tested. |
 | Resilience and observability | Complete for synchronous calls | Explicit timeouts, bounded retry, per-dependency circuits, structured command logs, metrics and runbook. |
 | Comment-to-Interaction integration | Complete | Real applications and isolated PostgreSQL databases are exercised over HTTP/Feign by the E2E module. |
-| Post provider integration | Cross-team dependency | Consumers currently call public `GET /api/v1/posts/{id}` and can process `PostDeleted`; the internal availability contract and reliable production of that event remain owned by Post Service. |
+| Post provider integration | Cross-team dependency | Consumers currently call public `GET /api/v1/posts/{id}` for authenticated checks and can process `PostDeleted`; anonymous public/private classification, post-owner moderation on non-public posts, the internal availability contract, and reliable production of that event remain owned by Post Service. |
 | Deletion event reliability | Complete in owned services | Comment consumes `PostDeleted`, commits soft-delete plus outbox atomically, and relays `PostCommentsDeletedV1`; Interaction cleanup is idempotent with bounded retry and service-specific DLT recovery. |
 | Notification event producers | Complete in owned services | UUID recipients are resolved from Post/Comment owners; versioned create/reply/reaction events commit through per-service outboxes with self/duplicate suppression. |
 | Notification event consumers | Cross-team dependency | Notification still models actor/recipient/target IDs as `Long`; it must migrate to UUID and add idempotent consumers, bounded retry and DLT before subscribing. |
@@ -24,7 +24,7 @@ managed Kafka topic/alert provisioning and the UUID Notification consumers owned
 ### Comment Service owns
 
 - Comment/reply content, author UUID, post UUID, parent relation and timestamps.
-- One-level reply invariant, owner-only edit/delete and soft-delete placeholder behavior.
+- One-level reply invariant, author-only edit, author-or-post-owner delete, and soft-delete placeholder behavior.
 - Exact active comment count per post.
 - Internal Comment availability classification for Interaction.
 
@@ -32,9 +32,9 @@ It does not own Post visibility, user/profile data, reactions, bookmarks or noti
 
 ### Interaction Service owns
 
-- The reaction ledger `(actor, target type, target id, reaction type)`.
-- LIKE/CLAP coexistence, duplicate idempotency and idempotent removal.
-- Exact LIKE/CLAP counters and actor reaction state.
+- The reaction ledger `(actor, target type, target id)`.
+- Single-LIKE cardinality, duplicate idempotency and idempotent removal.
+- Exact reaction counters and batch actor state (`likedByMe`).
 
 It does not own target content/visibility, profiles, bookmarks or notifications.
 
@@ -44,7 +44,8 @@ It does not own target content/visibility, profiles, bookmarks or notifications.
 2. A create command validates its remote target through an application port and fails closed on an unverifiable target.
 3. Only local state is mutated in the service transaction. Interaction ledger and counter changes commit or roll back together.
 4. Duplicate add and repeated remove are normal idempotent outcomes, not generic database-error masking.
-5. Read-only local endpoints do not call Post/Comment, so a provider outage does not take counter or discussion reads down.
+5. Comment pages use one grouped reply-count query and one Interaction batch call. Interaction failure
+   degrades engagement fields without taking discussion reads down; authenticated Post visibility fails closed.
 6. Post deletion cleanup is asynchronous: each service applies an idempotent local transaction;
    Comment records the downstream cleanup event in its outbox before commit.
 7. Notification publication is asynchronous and at-least-once: command state and the producer
@@ -74,3 +75,8 @@ Comment and Interaction may be treated as complete for the current owned scope w
 tests and Docker-backed PostgreSQL integration tests remain green. The whole social-media flow is
 complete only after the cross-team handoff checklist in
 `docs/handoffs/comment-interaction-team-handoff.md` is closed.
+
+Anonymous Comment detail/root/reply reads currently call Post and fail closed unless its public response
+classifies the post as `PUBLIC`. Gateway must still allow only those intended GET routes and keep raw
+count/batch endpoints internal or authenticated. The accepted internal Post availability contract remains
+the release gate for richer owner/friend visibility and for retiring the temporary public Post dependency.

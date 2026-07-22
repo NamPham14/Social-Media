@@ -27,6 +27,10 @@ class ReactionConcurrencyTest {
             public boolean remove(UUID a, TargetType t, UUID id, ReactionType r) { return false; }
             public Optional<Interaction> find(UUID a, TargetType t, UUID id, ReactionType r) { return Optional.of(row); }
             public List<Interaction> findActiveByActorAndTarget(UUID a, TargetType t, UUID id) { return List.of(row); }
+            public List<Interaction> findActiveByActorAndTargets(UUID a, Collection<UUID> ids) { return List.of(row); }
+            public InteractionPage findReactors(TargetType t, UUID id, int page, int size) {
+                return new InteractionPage(List.of(row), page, size, 1, 1);
+            }
             public int removeAllByTargets(TargetType t, Collection<UUID> ids) { return 0; }
         };
         InteractionCounterRepository counters = new InteractionCounterRepository() {

@@ -103,7 +103,13 @@ public class Comment {
     }
 
     public boolean softDelete(UUID actorId) {
-        ensureOwner(actorId);
+        return softDelete(actorId, null);
+    }
+
+    public boolean softDelete(UUID actorId, UUID postOwnerId) {
+        if (!userId.equals(actorId) && !actorId.equals(postOwnerId)) {
+            throw new CommentAccessDeniedException();
+        }
         if (deleted) {
             return false;
         }
