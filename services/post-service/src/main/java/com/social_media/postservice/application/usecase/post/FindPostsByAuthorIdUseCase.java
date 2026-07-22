@@ -39,7 +39,7 @@ public class FindPostsByAuthorIdUseCase {
         if (!postIds.isEmpty()) {
             Map<UUID, Integer> likeCounts = interactionServiceHelper.getLikeCounts(postIds);
             Map<UUID, Integer> commentCounts = commentServiceHelper.getCommentCounts(postIds);
-            // Hiếu thêm
+            
             Map<UUID, Boolean> likedByMe = interactionServiceHelper.getLikedByMe(postIds);
 
             for (PostResponse post : responsePage.getContent()) {
