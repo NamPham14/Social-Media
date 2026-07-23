@@ -30,6 +30,7 @@ public class FollowerController {
     private final GetFollowersUseCase getFollowersUseCase;
     private final GetFollowingUseCase getFollowingUseCase;
     private final GetNewsFeedUseCase getNewsFeedUseCase;
+    private final GetFollowerIdsUseCase getFollowerIdsUseCase;
 
     @PostMapping(ApiPath.INTERNAL + "/follow")
     public ResponseEntity<ApiResponse<Void>> followUser(@RequestBody FollowRequest request) {
@@ -63,6 +64,15 @@ public class FollowerController {
             @RequestParam(name = "size", defaultValue = "10") int size) {
         Page<FollowResponse> result = getFollowingUseCase.execute(id, page, size);
         return ResponseEntity.ok(ApiResponse.success(PageResponse.of(result), "Get following successfully"));
+    }
+
+    @GetMapping(ApiPath.INTERNAL + "/users/{id}/follower-ids")
+    public ResponseEntity<ApiResponse<PageResponse<UUID>>> getFollowerIds(
+            @PathVariable("id") UUID id,
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            @RequestParam(name = "size", defaultValue = "100") int size) {
+        Page<UUID> result = getFollowerIdsUseCase.execute(id, page, size);
+        return ResponseEntity.ok(ApiResponse.success(PageResponse.of(result), "Get follower ids successfully"));
     }
 
     @GetMapping("/feeds")

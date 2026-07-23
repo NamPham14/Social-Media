@@ -49,6 +49,18 @@ public class NotificationCommandMapper {
         );
     }
 
+    public CreateNotificationFromEventCommand fromPostCreatedEvent(PostCreatedEvent event, String recipientId) {
+        return new CreateNotificationFromEventCommand(
+                event.id() + ":" + recipientId,
+                recipientId,
+                event.authorId(),
+                NotificationType.POST_CREATED,
+                TargetType.POST,
+                event.postId(),
+                "Người bạn theo dõi vừa đăng bài mới"
+        );
+    }
+
     public CreateNotificationFromEventCommand fromReactionCreatedEvent(ReactionCreatedEvent event) {
         TargetType targetType = TargetType.valueOf(event.targetType());
         NotificationType notificationType = switch (targetType) {
@@ -92,3 +104,4 @@ public class NotificationCommandMapper {
         );
     }
 }
+

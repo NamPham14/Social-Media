@@ -19,5 +19,7 @@ public interface FollowRelationRepository {
 
     Page<FollowRelation> findByFollowingId(UserId followingId, Pageable pageable);
 
+    Page<UUID> findFollowerIdsByFollowingId(UserId followingId, Pageable pageable);
+
     void deleteByFollowerIdAndFollowingId(UserId followerId, UserId followingId);
 }

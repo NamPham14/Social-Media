@@ -4,6 +4,7 @@ import com.social_media.followerservice.infrastructure.persistence.entity.Follow
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
@@ -16,6 +17,9 @@ public interface FollowRelationJpaRepository extends JpaRepository<FollowRelatio
     Page<FollowRelationEntity> findByFollowerId(UUID followerId, Pageable pageable);
 
     Page<FollowRelationEntity> findByFollowingId(UUID followingId, Pageable pageable);
+
+    @Query("select relation.followerId from FollowRelationEntity relation where relation.followingId = :followingId")
+    Page<UUID> findFollowerIdsByFollowingId(UUID followingId, Pageable pageable);
 
     void deleteByFollowerIdAndFollowingId(UUID followerId, UUID followingId);
 }
