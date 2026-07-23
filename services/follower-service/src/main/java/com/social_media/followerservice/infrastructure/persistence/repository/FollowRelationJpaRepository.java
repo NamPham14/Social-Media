@@ -22,6 +22,8 @@ public interface FollowRelationJpaRepository extends JpaRepository<FollowRelatio
 
     Page<FollowRelationEntity> findByFollowingId(UUID followingId, Pageable pageable);
 
+    @Query("select relation.followerId from FollowRelationEntity relation where relation.followingId = :followingId")
+    Page<UUID> findFollowerIdsByFollowingId(UUID followingId, Pageable pageable);
     @Query("SELECT fr.followingId FROM FollowRelationEntity fr WHERE fr.followerId = :followerId")
     List<UUID> findFollowingIdsByFollowerId(@Param("followerId") UUID followerId);
 

@@ -41,6 +41,8 @@ public class FollowRelationRepositoryAdapter implements FollowRelationRepository
         return jpaRepository.findByFollowingId(followingId.value(), p).map(mapper::toDomain);
     }
 
+    @Override public Page<UUID> findFollowerIdsByFollowingId(UserId followingId, Pageable p) {
+        return jpaRepository.findFollowerIdsByFollowingId(followingId.value(), p);
     @Override
     public List<UserId> findFollowingIdsByFollowerId(UserId followerId) {
         return jpaRepository.findFollowingIdsByFollowerId(followerId.value())
