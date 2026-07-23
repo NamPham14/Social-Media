@@ -27,6 +27,5 @@ public interface InteractionServiceClient {
 
     @PostMapping("/internal/posts/liked-by-me")
     ApiResponse<List<PostLikedResponse>> getPostLikedByMe(
-            @RequestHeader("X-Auth-User-Id") UUID actorId,
             @RequestBody BatchPostLikedRequest request);
 }

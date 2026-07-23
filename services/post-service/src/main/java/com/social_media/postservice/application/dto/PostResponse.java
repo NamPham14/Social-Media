@@ -1,6 +1,7 @@
 package com.social_media.postservice.application.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,9 +26,12 @@ public class PostResponse {
 
     private String status;
 
+    @JsonProperty("likesCount")
     private int likeCount;
+    @JsonProperty("commentsCount")
     private int commentCount;
 
+    @JsonProperty("isLiked")
     private boolean liked;
 
     private LocalDateTime createdAt;

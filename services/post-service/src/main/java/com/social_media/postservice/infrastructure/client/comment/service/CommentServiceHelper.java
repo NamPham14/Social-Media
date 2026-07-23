@@ -1,5 +1,6 @@
 package com.social_media.postservice.infrastructure.client.comment.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.social_media.common.api.ApiResponse;
 import com.social_media.postservice.infrastructure.client.comment.CommentServiceClient;
 import com.social_media.postservice.infrastructure.client.comment.dto.BatchCommentCountRequest;
@@ -30,7 +31,9 @@ public class CommentServiceHelper {
         ApiResponse<List<CommentCountResponse>> response = commentServiceClient.getCommentCounts(request);
 
         if (response != null && response.getData() != null) {
+            ObjectMapper mapper = new ObjectMapper();
             return response.getData().stream()
+                    .map(obj -> mapper.convertValue(obj, CommentCountResponse.class))
                     .collect(Collectors.toMap(CommentCountResponse::getPostId, r -> (int) r.getCommentCount()));
         }
 

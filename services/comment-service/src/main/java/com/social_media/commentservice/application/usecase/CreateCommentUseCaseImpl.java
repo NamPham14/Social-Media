@@ -55,7 +55,7 @@ public class CreateCommentUseCaseImpl implements CreateCommentUseCase {
         String authorName = null;
         String authorAvatar = null;
         try {
-            Map<String, Object> profileData = profileClient.getProfileById(command.actorId());
+            Map<String, Object> profileData = profileClient.getProfileById(command.actorId(), command.actorId().toString());
             if (profileData != null && profileData.get("data") != null) {
                 Map<String, Object> data = (Map<String, Object>) profileData.get("data");
                 authorName = (String) data.get("username");
