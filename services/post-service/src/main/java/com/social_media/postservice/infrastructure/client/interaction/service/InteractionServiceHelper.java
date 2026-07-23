@@ -33,7 +33,9 @@ public class InteractionServiceHelper {
         ApiResponse<List<PostReactionResponse>> response = interactionServiceClient.getPostReactionCounts(request);
 
         if (response != null && response.getData() != null) {
+            com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
             return response.getData().stream()
+                    .map(obj -> mapper.convertValue(obj, PostReactionResponse.class))
                     .collect(Collectors.toMap(PostReactionResponse::getPostId, PostReactionResponse::getReactionCount));
         }
 
@@ -48,13 +50,22 @@ public class InteractionServiceHelper {
     @Retry(name = "interactionRetry")
     @CircuitBreaker(name = "interactionCircuitBreaker", fallbackMethod = "fallbackGetLikedByMe")
     public Map<UUID, Boolean> getLikedByMe(List<UUID> postIds) {
-        UUID userId = SecurityUtils.getCurrentUserId();
         BatchPostLikedRequest request = new BatchPostLikedRequest(postIds);
 
-        ApiResponse<List<PostLikedResponse>> response = interactionServiceClient.getPostLikedByMe(userId, request);
+        UUID actorId = null;
+        try {
+            actorId = SecurityUtils.getCurrentUserId();
+        } catch (IllegalStateException e) {
+            log.warn("No authenticated user, getLikedByMe returning false for all");
+            return Map.of();
+        }
+
+        ApiResponse<List<PostLikedResponse>> response = interactionServiceClient.getPostLikedByMe(actorId, request);
 
         if (response != null && response.getData() != null) {
+            com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
             return response.getData().stream()
+                    .map(obj -> mapper.convertValue(obj, PostLikedResponse.class))
                     .collect(Collectors.toMap(PostLikedResponse::getPostId, PostLikedResponse::isLikedByMe));
         }
 
