@@ -1,0 +1,19 @@
+meta {
+  name: Register User
+  type: http
+  seq: 11
+}
+
+post {
+  url: http://localhost:8888/identity/api/v1/identity/users/register
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "testuser_1",
+    "email": "test1@example.com",
+    "password": "Password@123"
+  }
+}

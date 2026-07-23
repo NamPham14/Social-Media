@@ -14,6 +14,8 @@ public interface PostRepository {
 
     Page<Post> findByAuthorId(UUID userId, Pageable pageable);
 
+    Page<Post> findByAuthorIds(List<UUID> userIds, Pageable pageable); // HUY THÊM
+
     Page<Post> findAll(Pageable pageable);
 
     Page<Post> searchByKeyword(String keyword, Pageable pageable);
@@ -21,8 +23,6 @@ public interface PostRepository {
     Post save(Post post);
 
     void delete(Post post);
-
-    Page<Post> findByAuthorIds(List<UUID> userIds, Pageable pageable);
 
     // hiếu thêm
     Page<Post> findAll(Pageable pageable, UUID viewerId, List<UUID> followingIds);

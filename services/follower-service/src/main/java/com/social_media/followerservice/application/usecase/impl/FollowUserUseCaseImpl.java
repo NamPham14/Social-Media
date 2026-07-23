@@ -2,30 +2,37 @@ package com.social_media.followerservice.application.usecase.impl;
 
 import com.social_media.common.exception.EntityNotFoundException;
 import com.social_media.common.exception.ServiceUnavailableException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.social_media.followerservice.application.command.FollowUserCommand;
 import com.social_media.followerservice.application.exception.CannotFollowSelfException;
 import com.social_media.followerservice.application.exception.DuplicateFollowException;
-import com.social_media.followerservice.application.port.FollowEventPublisher;
 import com.social_media.followerservice.application.usecase.FollowUserUseCase;
 import com.social_media.followerservice.application.dto.events.UserFollowedEvent;
 import com.social_media.followerservice.domain.model.follow.aggregate.FollowRelation;
+import com.social_media.followerservice.domain.model.outbox.Outbox;
+import com.social_media.followerservice.domain.model.outbox.OutboxStatus;
 import com.social_media.followerservice.domain.repository.FollowRelationRepository;
+import com.social_media.followerservice.domain.repository.OutBoxRepository;
 import com.social_media.followerservice.infrastructure.client.IdentityServiceClient;
 import com.social_media.followerservice.infrastructure.client.ProfileServiceClient;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class FollowUserUseCaseImpl implements FollowUserUseCase {
 
     private final FollowRelationRepository followRelationRepository;
-    private final FollowEventPublisher followEventPublisher;
     private final IdentityServiceClient identityServiceClient;
     private final ProfileServiceClient profileServiceClient;
+    private final OutBoxRepository outBoxRepository;
+    private final ObjectMapper objectMapper;
 
     @Override
     @Transactional
@@ -70,14 +77,27 @@ public class FollowUserUseCaseImpl implements FollowUserUseCase {
             followerName = followerId.toString();
         }
 
-        followEventPublisher.publish(
-                new UserFollowedEvent(
-                        UUID.randomUUID().toString(),
-                        followerId.toString(),
-                        followingId.toString(),
-                        followerName
-                )
-        );
+        try {
+            UserFollowedEvent event = new UserFollowedEvent(
+                    UUID.randomUUID().toString(),
+                    followerId.toString(),
+                    followingId.toString(),
+                    followerName
+            );
+
+            Outbox outbox = Outbox.builder()
+                    .id(UUID.randomUUID())
+                    .topic("user-followed-topic")
+                    .eventType("USER_FOLLOWED")
+                    .payload(objectMapper.writeValueAsString(event))
+                    .status(OutboxStatus.NEW)
+                    .createdAt(LocalDateTime.now())
+                    .build();
+
+            outBoxRepository.save(outbox);
+        } catch (Exception e) {
+            log.error("Failed to persist outbox event for follow: {}", e.getMessage());
+        }
 
         return saved;
     }

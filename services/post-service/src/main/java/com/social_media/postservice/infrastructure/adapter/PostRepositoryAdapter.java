@@ -40,6 +40,12 @@ public class PostRepositoryAdapter implements PostRepository {
     }
 
     @Override
+    public Page<Post> findByAuthorIds(List<UUID> userIds, Pageable pageable) {   // huy thêm
+        return postJpaRepository.findByUserIdIn(userIds, pageable)
+                .map(postMapper::toDomain);
+    }
+
+    @Override
     public Page<Post> findAll(Pageable pageable) {
         return postJpaRepository.findAll(pageable)
                 .map(postMapper::toDomain);
@@ -62,12 +68,6 @@ public class PostRepositoryAdapter implements PostRepository {
     public void delete(Post post) {
         PostEntity entity = postMapper.toEntity(post);
         postJpaRepository.delete(entity);
-    }
-
-    @Override
-    public Page<Post> findByAuthorIds(List<UUID> userIds, Pageable pageable) {
-        return postJpaRepository.findByUserIdIn(userIds, pageable)
-                .map(postMapper::toDomain);
     }
 
     // hiếu thêm

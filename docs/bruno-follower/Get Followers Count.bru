@@ -1,0 +1,15 @@
+meta {
+  name: Get Followers Count
+  type: http
+  seq: 5
+}
+
+get {
+  url: http://localhost:8888/follow/api/v1/follow/users/f47ac10b-58cc-4372-a567-0e02b2c3d479/followers/count
+  body: none
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{token}}
+}

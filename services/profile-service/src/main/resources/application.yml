@@ -2,7 +2,6 @@ spring:
   application:
     name: profile-service
   datasource:
-#    url: jdbc:postgresql://localhost:5433/demo
     url: jdbc:postgresql://localhost:5432/profile_db
     username: postgres
     password: 123456

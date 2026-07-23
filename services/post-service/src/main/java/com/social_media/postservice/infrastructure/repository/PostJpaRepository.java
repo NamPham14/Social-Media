@@ -22,13 +22,14 @@ public interface PostJpaRepository extends JpaRepository<PostEntity, UUID> {
 
     Page<PostEntity> findPostEntityByUserId(UUID userId, Pageable pageable);
 
+    Page<PostEntity> findByUserIdIn(List<UUID> userIds, Pageable pageable); // HUY THÊM
+
     @Modifying
     @Query("UPDATE PostEntity p SET p.author.name = :authorName, p.author.avatarUrl = :authorAvatarUrl WHERE p.userId = :userId")
     void updateAuthorInfo(@Param("userId") UUID userId,
                           @Param("authorName") String authorName,
                           @Param("authorAvatarUrl") String authorAvatarUrl);
 
-    Page<PostEntity> findByUserIdIn(List<UUID> userIds, Pageable pageable);
 
   
     @Query("""

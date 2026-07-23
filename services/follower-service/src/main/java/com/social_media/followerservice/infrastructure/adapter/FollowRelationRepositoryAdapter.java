@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -40,15 +41,25 @@ public class FollowRelationRepositoryAdapter implements FollowRelationRepository
         return jpaRepository.findByFollowingId(followingId.value(), p).map(mapper::toDomain);
     }
 
-    // hiếu thêm
-    @Override public List<UUID> findFollowingIdsByFollowerId(UserId followerId) {
-        return jpaRepository.findByFollowerId(followerId.value())
+    @Override
+    public List<UserId> findFollowingIdsByFollowerId(UserId followerId) {
+        return jpaRepository.findFollowingIdsByFollowerId(followerId.value())
                 .stream()
-                .map(FollowRelationEntity::getFollowingId)
-                .toList();
+                .map(UserId::from)
+                .collect(Collectors.toList());
     }
 
     @Override public void deleteByFollowerIdAndFollowingId(UserId followerId, UserId followingId) {
         jpaRepository.deleteByFollowerIdAndFollowingId(followerId.value(), followingId.value());
+    }
+
+    @Override
+    public long countByFollowerId(UserId followerId) {
+        return jpaRepository.countByFollowerId(followerId.value());
+    }
+
+    @Override
+    public long countByFollowingId(UserId followingId) {
+        return jpaRepository.countByFollowingId(followingId.value());
     }
 }

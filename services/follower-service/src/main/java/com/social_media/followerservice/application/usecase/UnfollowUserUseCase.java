@@ -1,5 +1,4 @@
 package com.social_media.followerservice.application.usecase;
-import com.social_media.followerservice.application.command.UnfollowUserCommand;
 
 import com.social_media.followerservice.application.command.UnfollowUserCommand;
 

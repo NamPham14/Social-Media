@@ -51,6 +51,12 @@ spring:
                 - Path=/notification/**
               filters:
                 - StripPrefix=1
+            - id: follower-service
+              uri: lb://follower-service
+              predicates:
+                - Path=/follow/**
+              filters:
+                - StripPrefix=1
 
 logging:
   level:

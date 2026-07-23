@@ -1,4 +1,4 @@
-package com.social_media.followerservice.api.dto;
+package com.social_media.followerservice.infrastructure.client.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,6 +11,8 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class FollowRequest {
-    private UUID followingId;
+public class PostServiceMediaResponse {
+    private UUID id;
+    private String url;
+    private String type;
 }

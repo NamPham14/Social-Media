@@ -105,6 +105,23 @@ services:
       timeout: 5s
       retries: 10
 
+  follower-db:
+    image: postgres:16-alpine
+    container_name: social_media_follower_db
+    ports:
+      - "5439:5432"
+    environment:
+      POSTGRES_DB: follower_service
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    volumes:
+      - follower-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d follower_service"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
   # ===== KAFKA (KRaft mode) =====
   kafka:
     image: confluentinc/cp-kafka:7.6.0
@@ -257,12 +274,12 @@ services:
     container_name: follower-service
     environment:
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://eureka-server:8761/eureka/
-      SPRING_DATASOURCE_URL: jdbc:postgresql://identity-db:5432/social_media
+      SPRING_DATASOURCE_URL: jdbc:postgresql://follower-db:5432/follower_service
       SPRING_DATASOURCE_PASSWORD: 123456
     depends_on:
       eureka-server:
         condition: service_healthy
-      identity-db:
+      follower-db:
         condition: service_healthy
       kafka:
         condition: service_healthy
@@ -300,7 +317,8 @@ services:
         condition: service_healthy
       notification-db:
         condition: service_healthy
-      # ===== OBSERVABILITY STACK =====
+
+  # ===== OBSERVABILITY STACK =====
 
   zipkin:
     image: openzipkin/zipkin:latest
@@ -333,6 +351,7 @@ volumes:
   comment-db-data:
   interaction-db-data:
   notification-db-data:
+  follower-db-data:
   redis-data:
 
 

@@ -18,10 +18,13 @@ public interface FollowRelationRepository {
 
     Page<FollowRelation> findByFollowerId(UserId followerId, Pageable pageable);
 
-    // hiếu thêm
-    List<UUID> findFollowingIdsByFollowerId(UserId followerId);
-
     Page<FollowRelation> findByFollowingId(UserId followingId, Pageable pageable);
 
+    List<UserId> findFollowingIdsByFollowerId(UserId followerId);
+
     void deleteByFollowerIdAndFollowingId(UserId followerId, UserId followingId);
+
+    long countByFollowerId(UserId followerId);
+
+    long countByFollowingId(UserId followingId);
 }
