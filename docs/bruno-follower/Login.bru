@@ -1,0 +1,18 @@
+meta {
+  name: Login User
+  type: http
+  seq: 12
+}
+
+post {
+  url: http://localhost:8888/identity/api/v1/identity/auth/login
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username": "testuser_1",
+    "password": "Password@123"
+  }
+}

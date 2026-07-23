@@ -51,22 +51,12 @@ spring:
                 - Path=/notification/**
               filters:
                 - StripPrefix=1
-            - id: chat-service
-              uri: lb://chat-service
-              predicates:
-                - Path=/chat/**
-              filters:
-                - StripPrefix=1
             - id: follower-service
               uri: lb://follower-service
               predicates:
                 - Path=/follow/**
               filters:
                 - StripPrefix=1
-            - id: chat-service-ws
-              uri: lb:ws://chat-service
-              predicates:
-                - Path=/ws/**
 
 logging:
   level:

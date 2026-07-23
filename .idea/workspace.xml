@@ -6,24 +6,96 @@
   <component name="ChangeListManager">
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/bruno-follower/Follow User.bru" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bruno-follower/Follow User.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bruno-follower/Get Feeds.bru" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bruno-follower/Get Feeds.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bruno-follower/Get Followers Count.bru" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bruno-follower/Get Followers Count.bru" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/bruno-follower/Get Followers.bru" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bruno-follower/Get Followers.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bruno-follower/Get Following Count.bru" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bruno-follower/Get Following Count.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bruno-follower/Get Following IDs.bru" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bruno-follower/Get Following IDs.bru" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/bruno-follower/Get Following.bru" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bruno-follower/Get Following.bru" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/bruno-follower/Get News Feed.bru" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bruno-follower/Get News Feed.bru" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/bruno-follower/Unfollow User.bru" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bruno-follower/Unfollow User.bru" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/bruno-follower/bruno.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/bruno-follower/bruno.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/controller/FollowerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/controller/FollowerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/GetFollowingIdsUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/GetFollowingIdsUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/repository/FollowRelationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/repository/FollowRelationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/adapter/FollowRelationRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/adapter/FollowRelationRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/config/FeignClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/config/FeignClientConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/path/ApiPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/path/ApiPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/PostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/adapter/PostRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/adapter/PostRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/ChatServiceApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/api/controller/ChatWebSocketController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/api/controller/ConversationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/api/controller/MessageController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/api/dto/ConversationResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/api/dto/CreateConversationRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/api/dto/MessageResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/api/dto/SendMessageRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/command/CreateConversationCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/command/DeleteMessageCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/command/MarkAsReadCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/command/SendMessageCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/dto/events/MessageSentEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/exception/CannotCreateConversationWithSelfException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/exception/ChatError.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/exception/NotFollowingException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/exception/NotParticipantException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/exception/NotSenderException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/usecase/CreateConversationUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/usecase/DeleteMessageUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/usecase/GetConversationDetailUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/usecase/GetConversationsUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/usecase/GetMessagesUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/usecase/MarkAsReadUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/usecase/SendMessageUseCase.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/usecase/impl/CreateConversationUseCaseImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/usecase/impl/DeleteMessageUseCaseImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/usecase/impl/GetConversationDetailUseCaseImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/usecase/impl/GetConversationsUseCaseImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/usecase/impl/GetMessagesUseCaseImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/usecase/impl/MarkAsReadUseCaseImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/application/usecase/impl/SendMessageUseCaseImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/config/security/ChatAuthFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/config/security/ChatSecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/config/security/CustomUserDetail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/config/security/SecurityUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/domain/exception/UnauthorizedChatActionException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/domain/model/aggregate/Conversation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/domain/model/aggregate/Message.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/domain/model/enums/ConversationType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/domain/model/enums/MessageType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/domain/model/valueobject/ConversationParticipant.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/domain/repository/ConversationRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/domain/repository/MessageRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/domain/shared/valueobject/UserId.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/client/FollowerClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/client/ProfileClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/client/dto/FollowClientResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/client/dto/ProfileClientResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/config/FeignConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/config/JpaAuditingConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/config/KafkaConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/messaging/config/KafkaProducerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/messaging/producer/ChatEventProducer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/persistence/adapter/ConversationRepositoryAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/persistence/adapter/MessageRepositoryAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/persistence/entity/ConversationEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/persistence/entity/ConversationParticipantEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/persistence/entity/MessageEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/persistence/mapper/ConversationPersistenceMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/persistence/mapper/MessagePersistenceMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/persistence/repository/ConversationJpaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/persistence/repository/ConversationParticipantJpaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/persistence/repository/MessageJpaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/websocket/WebSocketConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/infrastructure/websocket/WebSocketEventListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/utils/mapper/ChatApiMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/java/com/social_media/chatservice/utils/path/ApiPath.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/chat-service/src/test/java/com/social_media/chatservice/ChatServiceApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +103,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="764" />
+    <option name="cachedIndexableFilesCount" value="814" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -62,61 +134,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.7078173233595089" />
-      <entry key="MS500" value="3.355512901758714" />
-      <entry key="S2" value="6.621626737360613" />
-      <entry key="S5" value="12.050865016676232" />
-      <entry key="S10" value="19.17276575533692" />
-      <entry key="S30" value="30.58856564166373" />
-      <entry key="S60" value="35.89041841308368" />
-      <entry key="M2" value="42.13728943542791" />
-      <entry key="M5" value="52.27825186662145" />
-      <entry key="M10" value="58.87731747326223" />
-      <entry key="M15" value="62.608966847310796" />
-      <entry key="M30" value="72.18669994383579" />
-      <entry key="H1" value="103.43815070520787" />
-      <entry key="H2" value="209.03601883666693" />
-      <entry key="H4" value="441.68078687428266" />
-      <entry key="D1" value="1096.0703938140553" />
-      <entry key="W1" value="1313.015630477756" />
+      <entry key="MS100" value="1.6190028634674776" />
+      <entry key="MS500" value="3.164861818470094" />
+      <entry key="S2" value="6.7040866543952475" />
+      <entry key="S5" value="13.026932738882923" />
+      <entry key="S10" value="19.464351392146913" />
+      <entry key="S30" value="27.717005948080594" />
+      <entry key="S60" value="31.910371535790574" />
+      <entry key="M2" value="41.20145268300721" />
+      <entry key="M5" value="65.05992658897569" />
+      <entry key="M10" value="84.73959468562884" />
+      <entry key="M15" value="97.1459017479382" />
+      <entry key="M30" value="123.04644578686742" />
+      <entry key="H1" value="163.62027839479538" />
+      <entry key="H2" value="264.9995346175679" />
+      <entry key="H4" value="492.1713533709435" />
+      <entry key="D1" value="1180.9157891169395" />
+      <entry key="W1" value="1419.5009609979013" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="7.677804932910134E-219" />
-      <entry key="S30" value="3.122154836026551E-73" />
-      <entry key="S60" value="7.899095742566298E-37" />
-      <entry key="M2" value="1.2567892559799649E-18" />
-      <entry key="M5" value="1.049037366980808E-7" />
-      <entry key="M10" value="4.7647201245147906E-4" />
-      <entry key="M15" value="0.008534350781859205" />
-      <entry key="M30" value="0.21227171002997625" />
-      <entry key="H1" value="2.85327372740552" />
-      <entry key="H2" value="18.82289487883368" />
-      <entry key="H4" value="53.86779221911659" />
-      <entry key="D1" value="135.02310282364326" />
-      <entry key="W1" value="158.65872646460033" />
+      <entry key="MS500" value="1.4991285840918481E-148" />
+      <entry key="S2" value="1.7304785430883633E-37" />
+      <entry key="S5" value="3.359444346077394E-15" />
+      <entry key="S10" value="9.705486962127298E-8" />
+      <entry key="S30" value="0.0095312472235573" />
+      <entry key="S60" value="0.17590285940647188" />
+      <entry key="M2" value="0.7971905859260595" />
+      <entry key="M5" value="2.0619941099353936" />
+      <entry key="M10" value="2.8621582699474777" />
+      <entry key="M15" value="3.198291497849459" />
+      <entry key="M30" value="3.6421387640913285" />
+      <entry key="H1" value="5.387921269194502" />
+      <entry key="H2" value="18.014453429540453" />
+      <entry key="H4" value="50.6087807683551" />
+      <entry key="D1" value="135.82176715672898" />
+      <entry key="W1" value="162.11606107722443" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.602354334767344" />
-      <entry key="MS500" value="3.3114956429801956" />
-      <entry key="S2" value="6.598385052433844" />
-      <entry key="S5" value="12.022802728545777" />
-      <entry key="S10" value="19.139435905503753" />
-      <entry key="S30" value="30.56600386228696" />
-      <entry key="S60" value="35.87669337823109" />
-      <entry key="M2" value="42.12948433486339" />
-      <entry key="M5" value="52.27470729599545" />
-      <entry key="M10" value="58.87590437142133" />
-      <entry key="M15" value="62.61618641814934" />
-      <entry key="M30" value="72.39799390879719" />
-      <entry key="H1" value="106.28890582590952" />
-      <entry key="H2" value="227.8520156666046" />
-      <entry key="H4" value="495.53916849957324" />
-      <entry key="D1" value="1231.0896634409203" />
-      <entry key="W1" value="1471.6737155522624" />
+      <entry key="MS100" value="1.474303298099807" />
+      <entry key="MS500" value="3.076655658577264" />
+      <entry key="S2" value="6.659584087929535" />
+      <entry key="S5" value="12.995578751480835" />
+      <entry key="S10" value="19.441246779930985" />
+      <entry key="S30" value="27.715234952679733" />
+      <entry key="S60" value="32.077846988306995" />
+      <entry key="M2" value="41.98875248846962" />
+      <entry key="M5" value="67.11188341927559" />
+      <entry key="M10" value="87.59442045487744" />
+      <entry key="M15" value="100.33854402381702" />
+      <entry key="M30" value="126.6851276270623" />
+      <entry key="H1" value="169.00509925877836" />
+      <entry key="H2" value="283.00794170792267" />
+      <entry key="H4" value="542.7715396528054" />
+      <entry key="D1" value="1316.7337389418633" />
+      <entry key="W1" value="1581.616372168738" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -127,47 +199,48 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.follower-service [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.follower-service [compile].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.EurekaServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.FollowerServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.IdentityServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.NotificationServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.PostServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ProfileServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;SMP-6-follower-service&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/SUMMER26/MSS/New/Social-Media&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.follower-service [clean].executor": "Run",
+    "Maven.follower-service [compile].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.ApiGatewayApplication.executor": "Run",
+    "Spring Boot.EurekaServerApplication.executor": "Run",
+    "Spring Boot.FollowerServiceApplication.executor": "Run",
+    "Spring Boot.IdentityServiceApplication.executor": "Run",
+    "Spring Boot.InteractionServiceApplication.executor": "Run",
+    "Spring Boot.NotificationServiceApplication.executor": "Run",
+    "Spring Boot.PostServiceApplication.executor": "Run",
+    "Spring Boot.ProfileServiceApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "SMP-6-follower-service",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/SUMMER26/MSS/New/Social-Media",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -186,16 +259,17 @@
               <entry key="EurekaServerApplication" value="STOPPED" />
               <entry key="FollowerServiceApplication" value="STOPPED" />
               <entry key="IdentityServiceApplication" value="FAILED" />
+              <entry key="InteractionServiceApplication" value="FAILED" />
               <entry key="NotificationServiceApplication" value="FAILED" />
-              <entry key="PostServiceApplication" value="FAILED" />
-              <entry key="ProfileServiceApplication" value="FAILED" />
+              <entry key="PostServiceApplication" value="STOPPED" />
+              <entry key="ProfileServiceApplication" value="STOPPED" />
             </map>
           </value>
         </entry>
       </map>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ProfileServiceApplication">
+  <component name="RunManager" selected="Spring Boot.IdentityServiceApplication">
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="api-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.apigateway.ApiGatewayApplication" />
@@ -331,6 +405,8 @@
       <workItem from="1784691935815" duration="4754000" />
       <workItem from="1784710848237" duration="9553000" />
       <workItem from="1784733581935" duration="1266000" />
+      <workItem from="1784776229796" duration="1000" />
+      <workItem from="1784779797917" duration="2852000" />
     </task>
     <servers />
   </component>
