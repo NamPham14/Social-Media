@@ -14,6 +14,7 @@ public final class ApiPath {
 
     public static final String POST_DELETE = "/posts/delete";
     public static final String POST_UPDATE = "/posts/update";
+    public static final String POST_VISIBILITY = "/posts/visibility";
 
     public static final String POST_REPORT = "/posts/{postId}/report";
     public static final String REPORTS = "/reports";

@@ -6,13 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/api/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/api/controller/NotificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/mapper/NotificationApiMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/mapper/NotificationApiMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/client/profile/ProfileClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/client/profile/ProfileClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/consumer/UserFollowedKafkaConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/consumer/UserFollowedKafkaConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/controller/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/application/usecase/DeleteCommentUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/application/usecase/DeleteCommentUseCaseImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/domain/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/domain/repository/CommentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/repository/CommentJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/repository/CommentJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/repository/CommentRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/repository/CommentRepositoryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/interaction-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/interaction-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/path/ApiPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/path/ApiPath.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -189,7 +190,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1784784403460</updated>
-      <workItem from="1784784404865" duration="8956000" />
+      <workItem from="1784784404865" duration="12411000" />
     </task>
     <servers />
   </component>

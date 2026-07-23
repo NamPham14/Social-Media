@@ -25,6 +25,8 @@ public interface CommentJpaRepository extends JpaRepository<Comment, UUID> {
 
     Page<Comment> findByParentIdAndDeletedFalse(UUID parentId, Pageable pageable);
 
+    List<Comment> findByParentIdAndDeletedFalse(UUID parentId);
+
     boolean existsByParentIdAndDeletedFalse(UUID parentId);
 
     long countByParentIdAndDeletedFalse(UUID parentId);

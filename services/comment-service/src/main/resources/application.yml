@@ -2,7 +2,7 @@ server:
   port: 8085
 
 internal:
-  service-token: ${INTERNAL_SERVICE_TOKEN:}
+  service-token: ${INTERNAL_SERVICE_TOKEN:local-development-token}
 
 spring:
   application:

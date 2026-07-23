@@ -30,6 +30,16 @@ public class DeleteCommentUseCaseImpl implements DeleteCommentUseCase {
         if (comment.softDelete(actorId, postOwnerId)) {
             commentRepository.save(comment);
             eventOutbox.append(CommentDeletedEvent.create(comment.getId(), comment.getPostId(), actorId));
+
+            if (comment.getParentId() == null) {
+                java.util.List<Comment> replies = commentRepository.findActiveRepliesList(commentId);
+                for (Comment reply : replies) {
+                    if (reply.softDelete(actorId, postOwnerId)) {
+                        commentRepository.save(reply);
+                        eventOutbox.append(CommentDeletedEvent.create(reply.getId(), reply.getPostId(), actorId));
+                    }
+                }
+            }
         }
     }
 }

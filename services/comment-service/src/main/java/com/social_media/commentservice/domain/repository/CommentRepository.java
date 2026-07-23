@@ -16,6 +16,8 @@ public interface CommentRepository {
 
     PageResult<Comment> findActiveReplies(UUID parentId, int page, int size);
 
+    List<Comment> findActiveRepliesList(UUID parentId);
+
     boolean hasActiveReplies(UUID commentId);
 
     long countActiveReplies(UUID parentId);

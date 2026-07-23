@@ -37,6 +37,7 @@ public class PostController {
     private final DeletePostUseCase deletePostUseCase;
     private final UpdatePostUseCase updatePostUseCase;
     private final FindPostsByAuthorIdsUseCase findPostsByAuthorIdsUseCase;
+    private final ChangePostVisibilityUseCase changePostVisibilityUseCase;
 
     @GetMapping(ApiPath.POST_BY_ID)
     public ApiResponse<PostResponse> getPost(@PathVariable("postId") UUID postId) {
@@ -132,6 +133,21 @@ public class PostController {
                 .code(HttpStatus.OK.value())
                 .message("Get Posts By AuthorIds Success")
                 .data(result.getContent())
+                .build();
+    }
+
+    @PatchMapping(ApiPath.POST_VISIBILITY)
+    public ApiResponse<Void> changeVisibility(@Valid @RequestBody com.social_media.postservice.api.dto.ChangePostVisibilityRequest request) {
+        com.social_media.postservice.application.command.ChangePostVisibilityCommand command = 
+                new com.social_media.postservice.application.command.ChangePostVisibilityCommand(
+                request.getPostId(),
+                SecurityUtils.getCurrentUserId(),
+                request.getNewStatus()
+        );
+        changePostVisibilityUseCase.execute(command);
+        return ApiResponse.<Void>builder()
+                .code(HttpStatus.OK.value())
+                .message("Change Post Visibility Success")
                 .build();
     }
 }

@@ -43,6 +43,11 @@ public class CommentRepositoryAdapter implements CommentRepository {
     }
 
     @Override
+    public List<Comment> findActiveRepliesList(UUID parentId) {
+        return commentJpaRepository.findByParentIdAndDeletedFalse(parentId);
+    }
+
+    @Override
     public boolean hasActiveReplies(UUID commentId) {
         return commentJpaRepository.existsByParentIdAndDeletedFalse(commentId);
     }
