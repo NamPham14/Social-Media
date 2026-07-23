@@ -72,8 +72,8 @@ public class PostRepositoryAdapter implements PostRepository {
 
     // hiếu thêm
     @Override
-    public Page<Post> findAll(Pageable pageable, UUID viewerId, List<UUID> followingIds) {
-        return postJpaRepository.findAllVisible(viewerId, followingIds, pageable)
+    public Page<Post> findAll(Pageable pageable, UUID viewerId) {
+        return postJpaRepository.findAllVisible(viewerId, pageable)
                 .map(postMapper::toDomain);
     }
 

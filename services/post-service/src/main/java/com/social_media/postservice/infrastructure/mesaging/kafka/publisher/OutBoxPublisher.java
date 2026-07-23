@@ -4,6 +4,8 @@ package com.social_media.postservice.infrastructure.mesaging.kafka.publisher;
 import com.social_media.postservice.domain.model.outbox.OutBox;
 import com.social_media.postservice.domain.model.outbox.OutboxStatus;
 import com.social_media.postservice.domain.repository.OutBoxRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -22,6 +24,7 @@ public class OutBoxPublisher {
 
     private final OutBoxRepository outBoxRepository;
     private final KafkaTemplate<String, Object> kafkaTemplate;
+    private final ObjectMapper objectMapper;
 
     private static final Duration SEND_TIMEOUT = Duration.ofSeconds(15);
 
@@ -31,7 +34,8 @@ public class OutBoxPublisher {
         List<OutBox> outBoxes = outBoxRepository.findByStatus(OutboxStatus.NEW);
         for (OutBox outBox : outBoxes) {
             try {
-                kafkaTemplate.send(outBox.getTopic(), outBox.getPayload())
+                JsonNode payloadNode = objectMapper.readTree(outBox.getPayload());
+                kafkaTemplate.send(outBox.getTopic(), payloadNode)
                         .get(SEND_TIMEOUT.getSeconds(), TimeUnit.SECONDS);
 
                 outBox.setStatus(OutboxStatus.SENT);

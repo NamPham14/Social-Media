@@ -38,11 +38,9 @@ public interface PostJpaRepository extends JpaRepository<PostEntity, UUID> {
               AND (
                 p.status = 'PUBLIC'
                 OR (p.status = 'PRIVATE' AND p.userId = :viewerId)
-                OR (p.status = 'FRIENDS' AND (p.userId = :viewerId OR p.userId IN :followingIds))
               )
             """)
     Page<PostEntity> findAllVisible(@Param("viewerId") UUID viewerId,
-                                    @Param("followingIds") List<UUID> followingIds,
                                     Pageable pageable);
 
 

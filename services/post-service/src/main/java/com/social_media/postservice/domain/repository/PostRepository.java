@@ -25,7 +25,7 @@ public interface PostRepository {
     void delete(Post post);
 
     // hiếu thêm
-    Page<Post> findAll(Pageable pageable, UUID viewerId, List<UUID> followingIds);
+    Page<Post> findAll(Pageable pageable, UUID viewerId);
 
     // hiếu thêm
     Page<Post> findByAuthorId(UUID userId, Pageable pageable, UUID viewerId, List<UUID> followingIds);

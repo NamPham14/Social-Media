@@ -56,7 +56,7 @@ public class Notification {
             String message
     ) {
         validateCreate(sourceEventId, recipientId, actorId, notificationType, targetType, targetId, message);
-        validateNotSelfAction(recipientId, actorId);
+        validateNotSelfAction(recipientId, actorId, notificationType);
 
         return new Notification(
                 null,
@@ -170,7 +170,10 @@ public class Notification {
         requireText(message, "message");
     }
 
-    private static void validateNotSelfAction(String recipientId, String actorId) {
+    private static void validateNotSelfAction(String recipientId, String actorId, NotificationType notificationType) {
+        if (notificationType == NotificationType.POST_CREATED) {
+            return; // Allow self notification for successful post creation
+        }
         if (recipientId.equals(actorId)) {
             throw new IllegalArgumentException("Cannot create notification for self action");
         }

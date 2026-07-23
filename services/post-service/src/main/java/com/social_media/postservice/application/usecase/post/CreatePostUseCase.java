@@ -88,9 +88,9 @@ public class CreatePostUseCase {
             PostCreatedIntegrationEvent postCreatedIntegrationEvent = new PostCreatedIntegrationEvent(
                     UUID.randomUUID().toString(),
                     savedPost.getId().toString(),
+                    SecurityUtils.getCurrentUserId().toString(),
                     savedPost.getAuthor().getName(),
                     savedPost.getAuthor().getAvatarUrl(),
-                    SecurityUtils.getCurrentUserId().toString(),
                     savedPost.getCaption(),
                     savedPost.getCreatedAt()
             );

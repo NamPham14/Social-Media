@@ -37,7 +37,7 @@ public class FollowerController {
     private final GetFollowingIdsUseCase getFollowingIdsUseCase;
 
     // hiếu thêm
-    @GetMapping("/users/{id}/following-ids")
+    @GetMapping({"/users/{id}/following-ids", "/internal/users/{id}/following-ids"})
     public ResponseEntity<ApiResponse<List<UUID>>> getFollowingIds(@PathVariable("id") UUID id) {
         List<UUID> followingIds = getFollowingIdsUseCase.execute(id);
         return ResponseEntity.ok(ApiResponse.success(followingIds, "Get following IDs successfully"));

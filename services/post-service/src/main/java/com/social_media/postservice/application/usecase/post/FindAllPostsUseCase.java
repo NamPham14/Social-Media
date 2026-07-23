@@ -31,9 +31,8 @@ public class FindAllPostsUseCase {
 
     public Page<PostResponse> execute(Pageable pageable) {
         UUID viewerId = SecurityUtils.getCurrentUserId();
-        List<UUID> followingIds = followerServiceHelper.getFollowingIds(viewerId);
-
-        Page<Post> page = postRepository.findAll(pageable, viewerId, followingIds);
+        
+        Page<Post> page = postRepository.findAll(pageable, viewerId);
 
         if (page.isEmpty()) {
             throw new ResourceNotFoundException();

@@ -6,14 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/application/usecase/DeleteCommentUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/application/usecase/DeleteCommentUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/domain/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/domain/repository/CommentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/repository/CommentJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/repository/CommentJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/repository/CommentRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/repository/CommentRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/interaction-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/interaction-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/controller/PostController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/path/ApiPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/api/path/ApiPath.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/controller/FollowerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/controller/FollowerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/domain/model/aggregate/Notification.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/domain/model/aggregate/Notification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/post/CreatePostUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/post/CreatePostUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/post/FindAllPostsUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/post/FindAllPostsUseCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/PostRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/adapter/PostRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/adapter/PostRepositoryAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mesaging/kafka/publisher/OutBoxPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/mesaging/kafka/publisher/OutBoxPublisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostJpaRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,13 +23,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="3GtIO4A0EqgPHkflWZzBu90XenW" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -38,33 +38,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.notification-service [clean].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.CommentServiceApplication.executor": "Run",
-    "Spring Boot.FollowerServiceApplication.executor": "Run",
-    "Spring Boot.IdentityServiceApplication.executor": "Run",
-    "Spring Boot.InteractionServiceApplication.executor": "Run",
-    "Spring Boot.NotificationServiceApplication.executor": "Run",
-    "Spring Boot.PostServiceApplication.executor": "Run",
-    "Spring Boot.ProfileServiceApplication.executor": "Run",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.configurations.included.in.services": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.notification-service [clean].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.CommentServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.FollowerServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.IdentityServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.InteractionServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.NotificationServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.PostServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ProfileServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -190,7 +190,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1784784403460</updated>
-      <workItem from="1784784404865" duration="12411000" />
+      <workItem from="1784784404865" duration="14952000" />
+      <workItem from="1784799940474" duration="1698000" />
+      <workItem from="1784815242220" duration="2003000" />
     </task>
     <servers />
   </component>

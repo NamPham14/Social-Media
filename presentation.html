@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thuyết trình Dự án Social Media Platform</title>
+    <!-- Tích hợp font Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Tích hợp Mermaid JS để vẽ Sequence Diagram -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --accent: #3b82f6;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: var(--dark);
+            overflow: hidden; /* Ngăn scroll, dùng nút để chuyển trang */
+        }
+
+        /* Container chứa slides */
+        .slider-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Từng slide */
+        .slide {
+            position: absolute;
+            width: 90vw;
+            max-width: 1200px;
+            height: 50.625vw; /* Tỉ lệ 16:9 */
+            max-height: 675px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+            transform: scale(0.95);
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        /* Layout bên trong slide */
+        .slide-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 40px;
+            font-size: 28px;
+            font-weight: 800;
+        }
+
+        .slide-content {
+            padding: 30px 40px;
+            flex-grow: 1;
+            font-size: 20px;
+            line-height: 1.6;
+            overflow-y: auto;
+        }
+
+        /* CSS cho Cover slide */
+        .slide-cover {
+            background: linear-gradient(135deg, #0f172a, #1e3a8a);
+            color: white;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .slide-cover h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            color: #60a5fa;
+        }
+        .slide-cover h2 {
+            font-size: 32px;
+            font-weight: 400;
+            color: #cbd5e1;
+            margin-bottom: 40px;
+        }
+        .slide-cover .team {
+            font-size: 24px;
+            color: #94a3b8;
+        }
+
+        /* Thành phần chung */
+        h3 {
+            color: var(--secondary);
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        ul {
+            padding-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Bảng */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 12px 16px;
+            text-align: left;
+        }
+        th {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+        }
+
+        /* Box / Diagram cơ bản */
+        .diagram-box {
+            background: #f8fafc;
+            border: 2px dashed #94a3b8;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+        
+        /* Mermaid Diagram Container */
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        /* Controls */
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            width: 90vw;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 20;
+            color: white;
+        }
+
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .page-counter {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* Speaker notes (chỉ hiện khi bật Inspect Element hoặc in) */
+        .speaker-notes {
+            display: none;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 14px;
+            margin-right: 5px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="slider-container">
+
+        <!-- Slide 1: Bìa -->
+        <section class="slide active slide-cover" id="slide-1">
+            <h1>Social Media Platform</h1>
+            <h2>Kiến trúc Microservices</h2>
+            <div class="team">
+                <p>Môn học: ...</p>
+                <p>Nhóm sinh viên thực hiện: ...</p>
+                <p>Giảng viên hướng dẫn: ...</p>
+            </div>
+            <div class="speaker-notes">
+                Ghi chú: Chào mừng thầy cô và các bạn. Hôm nay nhóm em xin trình bày về dự án Mạng Xã Hội được xây dựng hoàn toàn trên kiến trúc Microservices.
+            </div>
+        </section>
+
+        <!-- Slide 2: Giới thiệu & Mục tiêu -->
+        <section class="slide" id="slide-2">
+            <div class="slide-header">1. Giới thiệu Tổng quan & Bài toán</div>
+            <div class="slide-content">
+                <h3>Bài toán đặt ra</h3>
+                <ul>
+                    <li>Xây dựng một mạng xã hội (tương tự Facebook/Instagram) cho phép người dùng đăng bài, bình luận, và theo dõi nhau.</li>
+                    <li>Yêu cầu hệ thống phải <b>mở rộng tốt (Scalability)</b>, chịu tải cao, không bị chết toàn bộ hệ thống khi một module gặp lỗi.</li>
+                </ul>
+                <h3>Mục tiêu dự án</h3>
+                <ul>
+                    <li>Áp dụng triệt để kiến trúc <b>Microservices</b> để phân tách các miền nghiệp vụ (Domain-Driven Design).</li>
+                    <li>Sử dụng các Pattern chuẩn: API Gateway, Outbox Pattern, Circuit Breaker, Event-Driven Architecture.</li>
+                    <li>Tự động hóa triển khai bằng Docker.</li>
+                </ul>
+            </div>
+            <div class="speaker-notes">
+                Ghi chú: Bài toán của chúng em là tạo ra mạng xã hội chịu tải tốt. Nếu dùng Monolithic (kiến trúc khối), khi tính năng Comment bị lỗi có thể kéo theo tính năng Post sập. Microservices giải quyết được vấn đề này.
+            </div>
+        </section>
+
+        <!-- Slide 3: Công nghệ -->
+        <section class="slide" id="slide-3">
+            <div class="slide-header">2. Bộ Công nghệ Sử dụng (Tech Stack)</div>
+            <div class="slide-content">
+                <table>
+                    <tr><th>Thành phần</th><th>Công nghệ</th></tr>
+                    <tr><td>Frontend</td><td>React</td></tr>
+                    <tr><td>Backend Core</td><td>Spring Boot (Java)</td></tr>
+                    <tr><td>Routing & Bảo mật</td><td>Spring Cloud Gateway, Spring Security + JWT</td></tr>
+                    <tr><td>Giao tiếp Đồng bộ (Sync)</td><td>OpenFeign + Circuit Breaker (Resilience4j)</td></tr>
+                    <tr><td>Giao tiếp Bất đồng bộ (Async)</td><td>Apache Kafka (Outbox Pattern)</td></tr>
+                    <tr><td>Cơ sở dữ liệu</td><td>PostgreSQL (Mỗi service sở hữu Database độc lập)</td></tr>
+                    <tr><td>Triển khai</td><td>Docker</td></tr>
+                    <tr><td>Thư viện dùng chung</td><td>common-web, common-security</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Slide 4: Kiến trúc -->
+        <section class="slide" id="slide-4">
+            <div class="slide-header">3. Kiến trúc Tổng thể (Architecture)</div>
+            <div class="slide-content">
+                <p>Khách hàng gọi qua một cổng duy nhất (API Gateway), sau đó Request được định tuyến xuống các dịch vụ nội bộ.</p>
+                <div class="mermaid">
+                    graph TD
+                    Client[Client (React)] -->|HTTP/REST| API_GW[API Gateway]
+                    API_GW -->|Lọc JWT & Route| ID[Identity Service]
+                    API_GW -->|Route| PS[Post Service]
+                    API_GW -->|Route| PR[Profile Service]
+                    API_GW -->|Route| CS[Comment Service]
+                    
+                    PS <-->|OpenFeign| PR
+                    
+                    PS -->|Outbox/Kafka| K[Kafka Broker]
+                    PR -->|Outbox/Kafka| K
+                    
+                    K -->|Event| NS[Notification Service]
+                    K -->|Event| CS
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Danh sách Services -->
+        <section class="slide" id="slide-5">
+            <div class="slide-header">4. Phân rã Dịch vụ (Microservices List)</div>
+            <div class="slide-content">
+                <table>
+                    <tr><th>Tên Service</th><th>Chức năng & Nhiệm vụ chính</th></tr>
+                    <tr><td><span class="badge">identity-service</span></td><td>Đăng ký, Đăng nhập, kiểm tra Password, cấp và xác thực JWT.</td></tr>
+                    <tr><td><span class="badge">profile-service</span></td><td>Lưu trữ tên, bio, avatar người dùng. Xử lý logic cấm (ban) user.</td></tr>
+                    <tr><td><span class="badge">post-service</span></td><td>Tạo, xóa, phân quyền xem bài viết (Public/Friends/Private).</td></tr>
+                    <tr><td><span class="badge">comment-service</span></td><td>Quản lý bình luận đa cấp (Parent/Reply).</td></tr>
+                    <tr><td><span class="badge">interaction-service</span></td><td>Quản lý lượt Like bài viết, Like bình luận.</td></tr>
+                    <tr><td><span class="badge">follower-service</span></td><td>Xử lý logic theo dõi (Follow/Unfollow) và đếm lượt follow.</td></tr>
+                    <tr><td><span class="badge">notification-service</span></td><td>Lắng nghe Event từ Kafka và bắn thông báo tới Client.</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- Slide 6: Outbox Pattern -->
+        <section class="slide" id="slide-6">
+            <div class="slide-header">5. Event-Driven & Outbox Pattern</div>
+            <div class="slide-content">
+                <h3>Vấn đề: Dual Write Problem</h3>
+                <p>Làm sao để lưu bài viết vào Database và gửi thông báo lên Kafka mà không lo hệ thống mạng bị sập giữa chừng làm mất dữ liệu?</p>
+                
+                <h3>Giải pháp: Outbox Pattern</h3>
+                <ul>
+                    <li>Lưu dữ liệu nghiệp vụ (Post) + Lưu một dòng sự kiện vào bảng <b>outbox</b> trong <b>cùng một Transaction SQL</b>.</li>
+                    <li>Giao dịch này thành công thì cả 2 cùng lưu, thất bại thì rollback toàn bộ (Đảm bảo Consistency).</li>
+                    <li>Một Scheduler ngầm định kỳ quét bảng outbox, gửi sự kiện chưa gửi lên <b>Kafka</b>, sau đó cập nhật trạng thái <span class="highlight">SENT</span>.</li>
+                </ul>
+                <div class="diagram-box">
+                    DB Transaction [ Insert PostEntity + Insert OutBoxEntity ] ➡️ Scheduler ➡️ Kafka ➡️ Consumer Services
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Circuit Breaker -->
+        <section class="slide" id="slide-7">
+            <div class="slide-header">6. Giao tiếp Đồng bộ & Cầu dao điện (Circuit Breaker)</div>
+            <div class="slide-content">
+                <h3>OpenFeign</h3>
+                <p>Sử dụng <b>OpenFeign</b> để các service nội bộ gọi nhau qua HTTP REST một cách dễ dàng như gọi một hàm Java bình thường.</p>
+                
+                <h3>Circuit Breaker (Resilience4j)</h3>
+                <p>Tránh hiệu ứng Domino (Service A gọi Service B bị lỗi treo, làm Service A cũng treo theo).</p>
+                <ul>
+                    <li><span class="badge" style="background:green">CLOSED</span>: Hoạt động bình thường.</li>
+                    <li><span class="badge" style="background:red">OPEN</span>: Khi Service B lỗi liên tục/timeout, ngắt mạch ngay lập tức. Các request tiếp theo sẽ trả về hàm <b>Fallback</b> (dữ liệu mặc định) thay vì chờ đợi.</li>
+                    <li><span class="badge" style="background:orange">HALF-OPEN</span>: Thử cho 1 vài request đi qua để xem Service B đã phục hồi chưa. Khôi phục lại CLOSED nếu thành công.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Slide 8: Authentication -->
+        <section class="slide" id="slide-8">
+            <div class="slide-header">7. Cơ chế Bảo mật (JWT qua API Gateway)</div>
+            <div class="slide-content">
+                <p>Bảo mật tập trung, giảm tải cho các dịch vụ bên dưới.</p>
+                <ol>
+                    <li>Client Login thành công, nhận Access Token (JWT).</li>
+                    <li>Client đính JWT vào header <code>Authorization: Bearer</code> khi gọi API.</li>
+                    <li><b>API Gateway</b> (hoặc JwtFilter trong <code>common-security</code>) chặn lại, kiểm tra tính hợp lệ và thời hạn của chữ ký.</li>
+                    <li>Nếu OK: Trích xuất <code>userId</code> từ Token và gắn vào header nội bộ (VD: <code>X-Auth-User-Id</code>).</li>
+                    <li>Forward request xuống các Microservices con. Các service này chỉ cần đọc header <code>X-Auth-User-Id</code> để xử lý nghiệp vụ mà không cần tốn chi phí giải mã Token lần nữa.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Slide 9: Luồng Update Profile -->
+        <section class="slide" id="slide-9">
+            <div class="slide-header">8. Sequence: Update Profile (Đồng bộ Tên/Avatar)</div>
+            <div class="slide-content" style="display:flex; justify-content:center;">
+                <div class="mermaid" style="transform: scale(0.85); transform-origin: top;">
+                    sequenceDiagram
+                        participant C as Client
+                        participant PR as Profile Service
+                        participant K as Kafka
+                        participant PS as Post Service
+                    
+                        C->>PR: Đổi Avatar/Tên
+                        Note over PR: @Transactional
+                        PR->>PR: 1. Update Profile DB
+                        PR->>PR: 2. Insert Event vào bảng Outbox
+                        PR-->>C: 200 OK (Thành công)
+                    
+                        Note over PR: Trình chạy ngầm (Scheduler)
+                        PR->>K: Đọc Outbox & Publish ProfileUpdatedEvent
+                        K->>PS: Consume Event
+                        PS->>PS: Update Tên/Avatar cho toàn bộ bài Post cũ của User
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Xử lý Exception -->
+        <section class="slide" id="slide-10">
+            <div class="slide-header">9. Xử lý Lỗi Tập trung (Global Exception Handling)</div>
+            <div class="slide-content">
+                <h3>Module <code>common-web</code></h3>
+                <p>Sử dụng <b>@RestControllerAdvice</b> để gom toàn bộ ngoại lệ (Exception) về một nơi xử lý duy nhất.</p>
+                <ul>
+                    <li><b>Chuẩn hóa cấu trúc:</b> Dù lỗi xảy ra ở bất kỳ Service nào, Frontend luôn nhận được cùng một định dạng JSON: <code>{ code, message, timestamp, status }</code>.</li>
+                    <li><b>Lỗi Nghiệp vụ:</b> Các ngoại lệ tự định nghĩa như <code>ResourceNotFoundException</code>, <code>UnauthenticatedException</code>.</li>
+                    <li><b>Lỗi Giao tiếp:</b> Chặn bắt <code>FeignException</code> khi gọi API nội bộ thất bại.</li>
+                    <li><b>Lợi ích:</b> Code từng Microservice cực kỳ "sạch", không cần viết khối <code>try-catch</code> lặp đi lặp lại. Giúp đồng bộ giao tiếp với Frontend.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Slide 11: Kết luận -->
+        <section class="slide" id="slide-11">
+            <div class="slide-header">10. Kết luận & Demo</div>
+            <div class="slide-content" style="text-align: center; margin-top: 50px;">
+                <h1>Q & A</h1>
+                <h3 style="margin-top: 30px; font-weight: normal; color: var(--gray);">Cảm ơn thầy cô và các bạn đã lắng nghe.</h3>
+                <h3 style="font-weight: normal; color: var(--gray);">Sau đây, nhóm xin trình bày phần Demo sản phẩm.</h3>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Nút điều hướng -->
+    <div class="controls">
+        <button onclick="prevSlide()">❮ Back</button>
+        <div class="page-counter" id="counter">1 / 11</div>
+        <button onclick="nextSlide()">Next ❯</button>
+    </div>
+
+    <!-- Script điều hướng -->
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+
+        let currentSlide = 1;
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        function updateSlider() {
+            document.querySelectorAll('.slide').forEach((slide, index) => {
+                if (index + 1 === currentSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+            document.getElementById('counter').innerText = `${currentSlide} / ${totalSlides}`;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateSlider();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateSlider();
+            }
+        }
+
+        // Hỗ trợ phím mũi tên
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+    </script>
+</body>
+</html>
