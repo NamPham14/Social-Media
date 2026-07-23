@@ -6,17 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/application/usecase/CreateCommentUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/application/usecase/CreateCommentUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/client/profile/ProfileClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/comment-service/src/main/java/com/social_media/commentservice/infrastructure/client/profile/ProfileClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/dto/PostResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/dto/PostResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/comment/CommentServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/comment/CommentServiceClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/comment/service/CommentServiceHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/comment/service/CommentServiceHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/interaction-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/interaction-service/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/interaction/InteractionServiceClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/interaction/InteractionServiceClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/interaction/service/InteractionServiceHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/client/interaction/service/InteractionServiceHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,6 +110,8 @@
   "keyToString": {
     "Maven.follower-service [clean].executor": "Run",
     "Maven.follower-service [compile].executor": "Run",
+    "Maven.post-service [clean].executor": "Run",
+    "Maven.profile-service [clean].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -256,18 +250,18 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.ApiGatewayApplication" />
       <item itemvalue="Spring Boot.IdentityServiceApplication" />
       <item itemvalue="Spring Boot.PostServiceApplication" />
       <item itemvalue="Spring Boot.CommentServiceApplication" />
-      <item itemvalue="Spring Boot.CommonEventsApplication" />
-      <item itemvalue="Spring Boot.CommonSecurityApplication" />
-      <item itemvalue="Spring Boot.CommonWebApplication" />
-      <item itemvalue="Spring Boot.EurekaServerApplication" />
       <item itemvalue="Spring Boot.FollowerServiceApplication" />
       <item itemvalue="Spring Boot.InteractionServiceApplication" />
       <item itemvalue="Spring Boot.NotificationServiceApplication" />
       <item itemvalue="Spring Boot.ProfileServiceApplication" />
+      <item itemvalue="Spring Boot.ApiGatewayApplication" />
+      <item itemvalue="Spring Boot.EurekaServerApplication" />
+      <item itemvalue="Spring Boot.CommonEventsApplication" />
+      <item itemvalue="Spring Boot.CommonSecurityApplication" />
+      <item itemvalue="Spring Boot.CommonWebApplication" />
     </list>
   </component>
   <component name="SharedIndexes">

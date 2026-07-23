@@ -52,7 +52,15 @@ public class InteractionServiceHelper {
     public Map<UUID, Boolean> getLikedByMe(List<UUID> postIds) {
         BatchPostLikedRequest request = new BatchPostLikedRequest(postIds);
 
-        ApiResponse<List<PostLikedResponse>> response = interactionServiceClient.getPostLikedByMe(request);
+        UUID actorId = null;
+        try {
+            actorId = SecurityUtils.getCurrentUserId();
+        } catch (IllegalStateException e) {
+            log.warn("No authenticated user, getLikedByMe returning false for all");
+            return Map.of();
+        }
+
+        ApiResponse<List<PostLikedResponse>> response = interactionServiceClient.getPostLikedByMe(actorId, request);
 
         if (response != null && response.getData() != null) {
             com.fasterxml.jackson.databind.ObjectMapper mapper = new com.fasterxml.jackson.databind.ObjectMapper();
