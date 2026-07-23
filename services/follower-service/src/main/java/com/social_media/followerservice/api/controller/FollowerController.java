@@ -29,10 +29,22 @@ public class FollowerController {
     private final UnfollowUserUseCase unfollowUserUseCase;
     private final GetFollowersUseCase getFollowersUseCase;
     private final GetFollowingUseCase getFollowingUseCase;
+    private final GetFollowersCountUseCase getFollowersCountUseCase;
+    private final GetFollowingCountUseCase getFollowingCountUseCase;
     private final GetNewsFeedUseCase getNewsFeedUseCase;
     private final GetFollowerIdsUseCase getFollowerIdsUseCase;
 
-    @PostMapping(ApiPath.INTERNAL + "/follow")
+    // hiếu thêm
+    private final GetFollowingIdsUseCase getFollowingIdsUseCase;
+
+    // hiếu thêm
+    @GetMapping("/users/{id}/following-ids")
+    public ResponseEntity<ApiResponse<List<UUID>>> getFollowingIds(@PathVariable("id") UUID id) {
+        List<UUID> followingIds = getFollowingIdsUseCase.execute(id);
+        return ResponseEntity.ok(ApiResponse.success(followingIds, "Get following IDs successfully"));
+    }
+
+    @PostMapping
     public ResponseEntity<ApiResponse<Void>> followUser(@RequestBody FollowRequest request) {
         UUID currentUserId = SecurityUtils.getCurrentUserId();
         FollowUserCommand cmd = new FollowUserCommand(UserId.from(currentUserId), UserId.from(request.getFollowingId()));
@@ -40,7 +52,7 @@ public class FollowerController {
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.<Void>success(null, "Follow successfully"));
     }
 
-    @PostMapping(ApiPath.INTERNAL + "/unfollow")
+    @PostMapping("/unfollow")
     public ResponseEntity<ApiResponse<Void>> unfollowUser(@RequestBody FollowRequest request) {
         UUID currentUserId = SecurityUtils.getCurrentUserId();
         UnfollowUserCommand cmd = new UnfollowUserCommand(UserId.from(currentUserId), UserId.from(request.getFollowingId()));
@@ -55,6 +67,18 @@ public class FollowerController {
             @RequestParam(name = "size", defaultValue = "10") int size) {
         Page<FollowResponse> result = getFollowersUseCase.execute(id, page, size);
         return ResponseEntity.ok(ApiResponse.success(PageResponse.of(result), "Get followers successfully"));
+    }
+
+    @GetMapping("/users/{id}/followers/count")
+    public ResponseEntity<ApiResponse<Long>> getFollowersCount(@PathVariable("id") UUID id) {
+        long count = getFollowersCountUseCase.execute(id);
+        return ResponseEntity.ok(ApiResponse.success(count, "Get followers count successfully"));
+    }
+
+    @GetMapping("/users/{id}/following/count")
+    public ResponseEntity<ApiResponse<Long>> getFollowingCount(@PathVariable("id") UUID id) {
+        long count = getFollowingCountUseCase.execute(id);
+        return ResponseEntity.ok(ApiResponse.success(count, "Get following count successfully"));
     }
 
     @GetMapping("/users/{id}/following")

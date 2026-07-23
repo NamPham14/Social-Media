@@ -1,6 +1,7 @@
 package com.social_media.postservice.application.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.social_media.postservice.domain.model.post.aggregate.Post;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,11 +18,21 @@ public class PostResponse {
 
     private UUID id;
     private UUID userId;
+    private String authorName;
+    private String authorAvatarUrl;
 
     private String caption;
     private String locationName;
 
     private String status;
+
+    @JsonProperty("likesCount")
+    private int likeCount;
+    @JsonProperty("commentsCount")
+    private int commentCount;
+
+    @JsonProperty("isLiked")
+    private boolean liked;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -33,6 +44,10 @@ public class PostResponse {
 
         res.id = post.getId();
         res.userId = post.getUserId();
+        if (post.getAuthor() != null) {
+            res.authorName = post.getAuthor().getName();
+            res.authorAvatarUrl = post.getAuthor().getAvatarUrl();
+        }
         res.caption = post.getCaption();
         res.locationName = post.getLocationName();
 

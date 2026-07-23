@@ -37,8 +37,8 @@ public class NotificationController {
 
     @GetMapping(ApiPath.MY_NOTIFICATIONS)
     public ApiResponse<List<NotificationResponse>> getMyNotifications(
-            @RequestHeader("X-User-Id") String currentUserId,
-            @RequestParam(defaultValue = "20") int limit
+            @RequestHeader("X-Auth-User-Id") String currentUserId,
+            @RequestParam(name = "limit", defaultValue = "20") int limit
     ) {
         return ApiResponse.success(
                 getNotificationsUseCase.execute(currentUserId, limit),
@@ -48,8 +48,8 @@ public class NotificationController {
 
     @GetMapping(ApiPath.MY_UNREAD_NOTIFICATIONS)
     public ApiResponse<List<NotificationResponse>> getUnreadNotifications(
-            @RequestHeader("X-User-Id") String currentUserId,
-            @RequestParam(defaultValue = "20") int limit
+            @RequestHeader("X-Auth-User-Id") String currentUserId,
+            @RequestParam(name = "limit", defaultValue = "20") int limit
     ) {
         return ApiResponse.success(
                 getUnreadNotificationsUseCase.execute(currentUserId, limit),
@@ -59,7 +59,7 @@ public class NotificationController {
 
     @GetMapping(ApiPath.MY_UNREAD_COUNT)
     public ApiResponse<Long> countUnread(
-            @RequestHeader("X-User-Id") String currentUserId
+            @RequestHeader("X-Auth-User-Id") String currentUserId
     ) {
         return ApiResponse.success(
                 countUnreadNotificationsUseCase.execute(currentUserId),
@@ -69,7 +69,7 @@ public class NotificationController {
 
     @PatchMapping(ApiPath.MARK_ALL_AS_READ)
     public ApiResponse<Void> markAllAsRead(
-            @RequestHeader("X-User-Id") String currentUserId
+            @RequestHeader("X-Auth-User-Id") String currentUserId
     ) {
         markAllNotificationsAsReadUseCase.execute(currentUserId);
         return ApiResponse.success("Mark all notifications as read success");
@@ -77,8 +77,8 @@ public class NotificationController {
 
     @PatchMapping(ApiPath.MARK_AS_READ)
     public ApiResponse<Void> markAsRead(
-            @RequestHeader("X-User-Id") String currentUserId,
-            @PathVariable Long notificationId
+            @RequestHeader("X-Auth-User-Id") String currentUserId,
+            @PathVariable("notificationId") Long notificationId
     ) {
         markNotificationAsReadUseCase.execute(notificationId, currentUserId);
         return ApiResponse.success("Mark notification as read success");
@@ -86,8 +86,8 @@ public class NotificationController {
 
     @PatchMapping(ApiPath.MARK_AS_UNREAD)
     public ApiResponse<Void> markAsUnread(
-            @RequestHeader("X-User-Id") String currentUserId,
-            @PathVariable Long notificationId
+            @RequestHeader("X-Auth-User-Id") String currentUserId,
+            @PathVariable("notificationId") Long notificationId
     ) {
         markNotificationAsUnreadUseCase.execute(notificationId, currentUserId);
         return ApiResponse.success("Mark notification as unread success");
@@ -95,8 +95,8 @@ public class NotificationController {
 
     @DeleteMapping(ApiPath.DELETE)
     public ApiResponse<Void> delete(
-            @RequestHeader("X-User-Id") String currentUserId,
-            @PathVariable Long notificationId
+            @RequestHeader("X-Auth-User-Id") String currentUserId,
+            @PathVariable("notificationId") Long notificationId
     ) {
         deleteNotificationUseCase.execute(notificationId, currentUserId);
         return ApiResponse.success("Delete notification success");

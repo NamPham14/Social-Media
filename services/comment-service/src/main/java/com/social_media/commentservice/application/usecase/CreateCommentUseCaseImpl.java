@@ -10,19 +10,25 @@ import com.social_media.commentservice.domain.exception.CommentNotFoundException
 import com.social_media.commentservice.domain.exception.InvalidCommentException;
 import com.social_media.commentservice.domain.model.Comment;
 import com.social_media.commentservice.domain.repository.CommentRepository;
+import com.social_media.commentservice.infrastructure.client.profile.ProfileClient;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.UUID;
+import java.util.Map;
+
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class CreateCommentUseCaseImpl implements CreateCommentUseCase {
 
     private final CommentRepository commentRepository;
     private final PostAvailabilityPort postAvailabilityPort;
     private final CommentEventOutbox eventOutbox;
+    private final ProfileClient profileClient;
+
 
     @Override
     @Transactional
@@ -44,7 +50,24 @@ public class CreateCommentUseCaseImpl implements CreateCommentUseCase {
             }
             recipientId = parent.getUserId();
         }
-        Comment comment = Comment.create(command.postId(), command.actorId(), command.parentId(), command.content());
+
+        // Xin Tên và Ảnh từ Profile
+        String authorName = null;
+        String authorAvatar = null;
+        try {
+            Map<String, Object> profileData = profileClient.getProfileById(command.actorId(), command.actorId().toString());
+            if (profileData != null && profileData.get("data") != null) {
+                Map<String, Object> data = (Map<String, Object>) profileData.get("data");
+                String fullName = (String) data.get("fullName");
+                String username = (String) data.get("username");
+                authorName = fullName != null ? fullName : username;
+                authorAvatar = (String) data.get("avatarUrl");
+            }
+        } catch (RuntimeException failure) {
+            // Profile is presentation data. Do not fail comment creation; ProfileUpdated events repair the snapshot.
+            log.warn("Profile snapshot unavailable while creating comment actorId={}", command.actorId(), failure);
+        }
+        Comment comment = Comment.create(command.postId(), command.actorId(),  authorName, authorAvatar,command.parentId(), command.content());
         Comment saved = commentRepository.save(comment);
         if (!saved.getUserId().equals(recipientId)) {
             eventOutbox.append(CommentNotificationEvent.from(saved, recipientId));

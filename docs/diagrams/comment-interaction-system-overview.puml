@@ -15,7 +15,7 @@ component "Eureka" as Eureka
 package "Owned synchronous scope" #E8F5E9 {
   component "Comment Service\ncontent, replies, deletion, counts" as Comment
   database "Comment PostgreSQL\nFlyway namespace: comment" as CommentDB
-  component "Interaction Service\nLIKE/CLAP ledger + counters" as Interaction
+  component "Interaction Service\nLIKE ledger + counters + actor state" as Interaction
   database "Interaction PostgreSQL\nFlyway namespace: interaction" as InteractionDB
 }
 

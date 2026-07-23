@@ -8,11 +8,16 @@ strings and timestamps are UTC ISO-8601 values.
 | --- | --- | --- | --- |
 | `comment-created-topic` | `commentId` | `CommentCreatedV1` | A root comment is committed for another user's post |
 | `comment-replied-topic` | `commentId` | `CommentRepliedV1` | A reply is committed for another user's parent comment |
-| `reaction-created-topic` | `interactionId` | `ReactionCreatedV1` | A new LIKE/CLAP ledger row is committed for another user's target |
+| `reaction-created-topic` | `interactionId` | `ReactionCreatedV1` | A new LIKE ledger row is committed for another user's target |
+| `comment-deleted-topic` | `commentId` | `CommentDeletedV1` | A comment is effectively soft-deleted; consumed by Interaction for cleanup |
 
 Duplicate reaction requests and self-actions do not produce notification events. Removing a
 reaction does not retract an already delivered notification and therefore has no V1 notification
 event.
+
+`CommentDeletedV1` is a lifecycle event, not a notification event. Its payload contains `id`,
+`eventType`, `eventVersion`, `occurredAt`, `commentId`, `postId`, and `actorId`. Interaction treats repeated
+delivery as safe: deleting already-absent ledger/counter rows is a no-op.
 
 ## CommentCreatedV1 and CommentRepliedV1
 
@@ -51,7 +56,7 @@ for a reply.
 }
 ```
 
-`targetType` is `POST` or `COMMENT`; `reactionType` is `LIKE` or `CLAP`. Display names and message
+`targetType` is `POST` or `COMMENT`; `reactionType` is `LIKE` in V1. Display names and message
 text are intentionally excluded because they are mutable presentation data owned outside these
 bounded contexts.
 

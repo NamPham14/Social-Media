@@ -6,138 +6,61 @@
   <component name="ChangeListManager">
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/mapper/NotificationCommandMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/mapper/NotificationCommandMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/consumer/PostCreatedKafkaConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/consumer/PostCreatedKafkaConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/notification-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/api/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/api/controller/NotificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/mapper/NotificationApiMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/mapper/NotificationApiMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/client/profile/ProfileClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/client/profile/ProfileClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/consumer/UserFollowedKafkaConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/consumer/UserFollowedKafkaConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/controller/ProfileController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="570" />
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="KubernetesApiPersistence">{}</component>
-  <component name="KubernetesApiProvider">{
-  &quot;isMigrated&quot;: true
-}</component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
-      </MavenGeneralSettings>
-    </option>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="3GtIO4A0EqgPHkflWZzBu90XenW" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
   </component>
-  <component name="McpProjectServerCommands">
-    <commands />
-    <urls />
-  </component>
-  <component name="NextEditCompletionFeaturesState">
-    <decayedCancelled>
-      <entry key="MS100" value="1.1455520571616378" />
-      <entry key="MS500" value="2.3706834682223183" />
-      <entry key="S2" value="3.8724947700429264" />
-      <entry key="S5" value="4.570231367177717" />
-      <entry key="S10" value="5.942299949136777" />
-      <entry key="S30" value="12.888800975146266" />
-      <entry key="S60" value="18.254230902705054" />
-      <entry key="M2" value="27.333724548072226" />
-      <entry key="M5" value="65.33402189632764" />
-      <entry key="M10" value="120.04455060179276" />
-      <entry key="M15" value="161.18111060188383" />
-      <entry key="M30" value="255.32767254718578" />
-      <entry key="H1" value="375.5096492577551" />
-      <entry key="H2" value="488.4351864556211" />
-      <entry key="H4" value="569.7574194356603" />
-      <entry key="D1" value="656.1941622573546" />
-      <entry key="W1" value="673.1134646967895" />
-    </decayedCancelled>
-    <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="5.27591673E-314" />
-      <entry key="S2" value="4.7926364135120077E-79" />
-      <entry key="S5" value="4.701625118219576E-32" />
-      <entry key="S10" value="2.1824597575111182E-16" />
-      <entry key="S30" value="7.370859413440437E-6" />
-      <entry key="S60" value="0.004003030082433535" />
-      <entry key="M2" value="0.10509171274821506" />
-      <entry key="M5" value="0.8630177065141084" />
-      <entry key="M10" value="2.0246412566934255" />
-      <entry key="M15" value="2.985074890918456" />
-      <entry key="M30" value="5.338520191254944" />
-      <entry key="H1" value="8.155641172520296" />
-      <entry key="H2" value="10.525290200522159" />
-      <entry key="H4" value="12.093283310294973" />
-      <entry key="D1" value="13.65542273845307" />
-      <entry key="W1" value="13.950070970621733" />
-    </decayedSelected>
-    <decayedShown>
-      <entry key="MS100" value="1.0945094295644968" />
-      <entry key="MS500" value="2.3061452763188575" />
-      <entry key="S2" value="3.8064798795098502" />
-      <entry key="S5" value="4.531226579695326" />
-      <entry key="S10" value="5.9134788983702675" />
-      <entry key="S30" value="12.871061045538843" />
-      <entry key="S60" value="18.24678210214111" />
-      <entry key="M2" value="27.428172506665554" />
-      <entry key="M5" value="66.18146246722544" />
-      <entry key="M10" value="122.05422169718572" />
-      <entry key="M15" value="164.1529845074396" />
-      <entry key="M30" value="260.6563081263049" />
-      <entry key="H1" value="383.6585376281585" />
-      <entry key="H2" value="498.9563402854379" />
-      <entry key="H4" value="581.8483793250322" />
-      <entry key="D1" value="669.8491546737026" />
-      <entry key="W1" value="687.0634730192785" />
-    </decayedShown>
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5,
-  &quot;fromUser&quot;: false
-}</component>
-  <component name="ProjectId" id="3FojRNCirlYMWXSRQ13eGEec9ad" />
   <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Maven.follower-service [clean].executor": "Run",
-    "Maven.follower-service [compile].executor": "Run",
+    "Maven.notification-service [clean].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Spring Boot.ApiGatewayApplication.executor": "Run",
-    "Spring Boot.EurekaServerApplication.executor": "Run",
+    "Spring Boot.CommentServiceApplication.executor": "Run",
     "Spring Boot.FollowerServiceApplication.executor": "Run",
     "Spring Boot.IdentityServiceApplication.executor": "Run",
+    "Spring Boot.InteractionServiceApplication.executor": "Run",
+    "Spring Boot.NotificationServiceApplication.executor": "Run",
+    "Spring Boot.PostServiceApplication.executor": "Run",
     "Spring Boot.ProfileServiceApplication.executor": "Run",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "notification-service",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Acer/Desktop/Social-Media",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.code.analysis.last.selected.profile": "pProject Default",
     "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -151,7 +74,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.IdentityServiceApplication">
+  <component name="RunManager" selected="Spring Boot.ApiGatewayApplication">
     <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="api-gateway" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.social_media.apigateway.ApiGatewayApplication" />
@@ -236,41 +159,37 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.ProfileServiceApplication" />
+      <item itemvalue="Spring Boot.PostServiceApplication" />
+      <item itemvalue="Spring Boot.NotificationServiceApplication" />
+      <item itemvalue="Spring Boot.IdentityServiceApplication" />
+      <item itemvalue="Spring Boot.InteractionServiceApplication" />
+      <item itemvalue="Spring Boot.FollowerServiceApplication" />
+      <item itemvalue="Spring Boot.CommentServiceApplication" />
+      <item itemvalue="Spring Boot.ApiGatewayApplication" />
+      <item itemvalue="Spring Boot.CommonEventsApplication" />
+      <item itemvalue="Spring Boot.CommonSecurityApplication" />
+      <item itemvalue="Spring Boot.CommonWebApplication" />
+      <item itemvalue="Spring Boot.EurekaServerApplication" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
-        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.26927.53" />
+        <option value="bundled-js-predefined-d6986cc7102b-09060db00ec0-JavaScript-IU-251.26927.53" />
       </set>
     </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="" />
-      <created>1782748306677</created>
+      <created>1784784403460</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1782748306677</updated>
-      <workItem from="1782748307805" duration="934000" />
-      <workItem from="1782870703638" duration="180000" />
-      <workItem from="1783324741486" duration="7808000" />
-      <workItem from="1783575241120" duration="3958000" />
-      <workItem from="1783594109082" duration="5998000" />
-      <workItem from="1783662487676" duration="7851000" />
-      <workItem from="1783691793144" duration="37000" />
-      <workItem from="1783828807386" duration="349000" />
-      <workItem from="1783844169578" duration="3933000" />
-      <workItem from="1783863343346" duration="35000" />
-      <workItem from="1784015455563" duration="2942000" />
-      <workItem from="1784306512563" duration="2105000" />
-      <workItem from="1784337643290" duration="12046000" />
-      <workItem from="1784365227465" duration="2433000" />
-      <workItem from="1784530861768" duration="699000" />
-      <workItem from="1784570410800" duration="21000" />
-      <workItem from="1784646678033" duration="2341000" />
-      <workItem from="1784652790610" duration="52000" />
-      <workItem from="1784791357037" duration="4131000" />
+      <updated>1784784403460</updated>
+      <workItem from="1784784404865" duration="8956000" />
     </task>
     <servers />
   </component>

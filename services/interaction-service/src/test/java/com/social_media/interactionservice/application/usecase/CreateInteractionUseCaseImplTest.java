@@ -63,11 +63,11 @@ class CreateInteractionUseCaseImplTest {
     void duplicateDoesNotIncrementCounter() {
         UUID actor = UUID.randomUUID();
         UUID target = UUID.randomUUID();
-        Interaction row = Interaction.create(actor, TargetType.COMMENT, target, ReactionType.CLAP);
-        when(interactions.insertIfAbsent(actor, TargetType.COMMENT, target, ReactionType.CLAP)).thenReturn(false);
-        when(interactions.find(actor, TargetType.COMMENT, target, ReactionType.CLAP)).thenReturn(Optional.of(row));
+        Interaction row = Interaction.create(actor, TargetType.COMMENT, target, ReactionType.LIKE);
+        when(interactions.insertIfAbsent(actor, TargetType.COMMENT, target, ReactionType.LIKE)).thenReturn(false);
+        when(interactions.find(actor, TargetType.COMMENT, target, ReactionType.LIKE)).thenReturn(Optional.of(row));
 
-        var result = useCase.execute(new CreateInteractionCommand(actor, TargetType.COMMENT, target, ReactionType.CLAP));
+        var result = useCase.execute(new CreateInteractionCommand(actor, TargetType.COMMENT, target, ReactionType.LIKE));
 
         verify(counters, never()).increment(any(), any(), any());
         assertThat(result.isCreated()).isFalse();

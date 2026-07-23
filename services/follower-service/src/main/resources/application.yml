@@ -2,7 +2,7 @@ spring:
   application:
     name: follower-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/social_media
+    url: jdbc:postgresql://localhost:5439/follower_service
     username: postgres
     password: 123456
     driver-class-name: org.postgresql.Driver
@@ -17,7 +17,7 @@ spring:
     bootstrap-servers: localhost:9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
       acks: all
       properties:
         enable.idempotence: true

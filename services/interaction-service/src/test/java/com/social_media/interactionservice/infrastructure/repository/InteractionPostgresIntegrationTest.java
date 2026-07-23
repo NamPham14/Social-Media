@@ -107,18 +107,17 @@ class InteractionPostgresIntegrationTest {
         assertThat(countLedgerRows(actorId, targetId, ReactionType.LIKE)).isEqualTo(1);
         assertThat(counterRepository.find(TargetType.POST, targetId)).hasValueSatisfying(counter -> {
             assertThat(counter.getLikeCount()).isEqualTo(1);
-            assertThat(counter.getClapCount()).isZero();
         });
     }
 
     @Test
     void differentActorsIncrementTheSameTargetTwice() {
         UUID targetId = UUID.randomUUID();
-        addReaction(UUID.randomUUID(), targetId, ReactionType.CLAP);
-        addReaction(UUID.randomUUID(), targetId, ReactionType.CLAP);
+        addReaction(UUID.randomUUID(), targetId, ReactionType.LIKE);
+        addReaction(UUID.randomUUID(), targetId, ReactionType.LIKE);
 
         assertThat(counterRepository.find(TargetType.COMMENT, targetId))
-                .hasValueSatisfying(counter -> assertThat(counter.getClapCount()).isEqualTo(2));
+                .hasValueSatisfying(counter -> assertThat(counter.getLikeCount()).isEqualTo(2));
     }
 
     @Test
@@ -152,7 +151,7 @@ class InteractionPostgresIntegrationTest {
     }
 
     @Test
-    void legacyBookmarkMigrationRemovesRowsAndCounterColumn() {
+    void legacyMigrationsRemoveUnsupportedReactionsAndCounterColumns() {
         jdbcTemplate.execute("CREATE SCHEMA legacy_migration");
         jdbcTemplate.execute("""
                 CREATE TABLE legacy_migration.interactions (
@@ -193,8 +192,15 @@ class InteractionPostgresIntegrationTest {
                   AND table_name = 'interaction_counters'
                   AND column_name = 'bookmark_count'
                 """, Integer.class);
+        Integer clapColumn = jdbcTemplate.queryForObject("""
+                SELECT COUNT(*) FROM information_schema.columns
+                WHERE table_schema = 'legacy_migration'
+                  AND table_name = 'interaction_counters'
+                  AND column_name = 'clap_count'
+                """, Integer.class);
         assertThat(bookmarks).isZero();
         assertThat(bookmarkColumn).isZero();
+        assertThat(clapColumn).isZero();
     }
 
     @Test
@@ -202,7 +208,7 @@ class InteractionPostgresIntegrationTest {
         UUID firstCommentId = UUID.randomUUID();
         UUID secondCommentId = UUID.randomUUID();
         addReaction(UUID.randomUUID(), firstCommentId, ReactionType.LIKE);
-        addReaction(UUID.randomUUID(), secondCommentId, ReactionType.CLAP);
+        addReaction(UUID.randomUUID(), secondCommentId, ReactionType.LIKE);
 
         inTransaction(() -> {
             assertThat(interactionRepository.removeAllByTargets(

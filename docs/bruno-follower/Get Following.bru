@@ -1,0 +1,20 @@
+meta {
+  name: Get Following
+  type: http
+  seq: 7
+}
+
+get {
+  url: http://localhost:8888/follow/api/v1/follow/users/f47ac10b-58cc-4372-a567-0e02b2c3d479/following?page=1&size=10
+  body: none
+  auth: none
+}
+
+query {
+  page: 1
+  size: 10
+}
+
+headers {
+  Authorization: Bearer {{token}}
+}

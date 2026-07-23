@@ -14,24 +14,7 @@ spring:
       database: 1
   cloud:
     gateway:
-      server:
-        webflux:
-          globalcors:
-            cors-configurations:
-              '[/**]':
-                allowed-origins:
-                  - "http://localhost:3000"
-                  - "http://localhost:5173"
-                allowed-methods:
-                  - GET
-                  - POST
-                  - PATCH
-                  - DELETE
-                  - OPTIONS
-                allowed-headers: "*"
-                allow-credentials: true
-                max-age: 3600
-          routes:
+      routes:
             - id: identity-service
               uri: lb://identity-service
               predicates:
@@ -66,6 +49,12 @@ spring:
               uri: lb://notification-service
               predicates:
                 - Path=/notification/**
+              filters:
+                - StripPrefix=1
+            - id: follower-service
+              uri: lb://follower-service
+              predicates:
+                - Path=/follow/**
               filters:
                 - StripPrefix=1
 

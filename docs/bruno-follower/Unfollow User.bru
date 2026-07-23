@@ -1,0 +1,21 @@
+meta {
+  name: Unfollow User
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8888/follow/api/v1/follow/unfollow
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: Bearer {{token}}
+}
+
+body:json {
+  {
+    "followingId": "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+  }
+}

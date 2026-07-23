@@ -13,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -39,6 +40,12 @@ public class PostRepositoryAdapter implements PostRepository {
     }
 
     @Override
+    public Page<Post> findByAuthorIds(List<UUID> userIds, Pageable pageable) {   // huy thêm
+        return postJpaRepository.findByUserIdIn(userIds, pageable)
+                .map(postMapper::toDomain);
+    }
+
+    @Override
     public Page<Post> findAll(Pageable pageable) {
         return postJpaRepository.findAll(pageable)
                 .map(postMapper::toDomain);
@@ -61,5 +68,33 @@ public class PostRepositoryAdapter implements PostRepository {
     public void delete(Post post) {
         PostEntity entity = postMapper.toEntity(post);
         postJpaRepository.delete(entity);
+    }
+
+    // hiếu thêm
+    @Override
+    public Page<Post> findAll(Pageable pageable, UUID viewerId, List<UUID> followingIds) {
+        return postJpaRepository.findAllVisible(viewerId, followingIds, pageable)
+                .map(postMapper::toDomain);
+    }
+
+    // hiếu thêm
+    @Override
+    public Page<Post> findByAuthorId(UUID userId, Pageable pageable, UUID viewerId, List<UUID> followingIds) {
+        return postJpaRepository.findVisibleByAuthorId(userId, viewerId, followingIds, pageable)
+                .map(postMapper::toDomain);
+    }
+
+    // hiếu thêm
+    @Override
+    public Page<Post> searchByKeyword(String keyword, Pageable pageable, UUID viewerId, List<UUID> followingIds) {
+        return postJpaRepository.searchVisible(keyword, viewerId, followingIds, pageable)
+                .map(postMapper::toDomain);
+    }
+
+    // hiếu thêm
+    @Override
+    public Page<Post> findByAuthorIds(List<UUID> userIds, Pageable pageable, UUID viewerId, List<UUID> followingIds) {
+        return postJpaRepository.findVisibleByAuthorIds(userIds, viewerId, followingIds, pageable)
+                .map(postMapper::toDomain);
     }
 }

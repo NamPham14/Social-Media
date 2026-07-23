@@ -151,11 +151,13 @@ class TargetAvailabilityFeignIntegrationTest {
         stubFor(get(urlEqualTo("/internal/v1/comments/" + commentId + "/availability"))
                 .willReturn(okJson(commentAvailability(commentId, true))));
         MDC.put("correlationId", correlationId);
+        UUID actorId = UUID.randomUUID();
 
-        assertThatCode(() -> commentChecker.ensure(commentId)).doesNotThrowAnyException();
+        assertThatCode(() -> commentChecker.ensure(commentId, actorId)).doesNotThrowAnyException();
 
         verify(1, getRequestedFor(urlEqualTo("/internal/v1/comments/" + commentId + "/availability"))
                 .withHeader("X-Internal-Service-Token", equalTo("contract-test-token"))
+                .withHeader("X-Auth-User-Id", equalTo(actorId.toString()))
                 .withHeader("X-Correlation-Id", equalTo(correlationId)));
     }
 
@@ -165,7 +167,7 @@ class TargetAvailabilityFeignIntegrationTest {
         stubFor(get(urlEqualTo("/internal/v1/comments/" + commentId + "/availability"))
                 .willReturn(okJson(commentAvailability(commentId, false))));
 
-        assertThatThrownBy(() -> commentChecker.ensure(commentId))
+        assertThatThrownBy(() -> commentChecker.ensure(commentId, UUID.randomUUID()))
                 .isInstanceOf(TargetNotFoundException.class);
 
         verify(1, getRequestedFor(urlEqualTo("/internal/v1/comments/" + commentId + "/availability")));
@@ -178,7 +180,7 @@ class TargetAvailabilityFeignIntegrationTest {
         stubFor(get(urlEqualTo("/internal/v1/comments/" + commentId + "/availability"))
                 .willReturn(aResponse().withStatus(401)));
 
-        assertThatThrownBy(() -> commentChecker.ensure(commentId))
+        assertThatThrownBy(() -> commentChecker.ensure(commentId, UUID.randomUUID()))
                 .isInstanceOf(DependencyRejectedException.class)
                 .hasMessageContaining("HTTP 401");
 
@@ -192,7 +194,7 @@ class TargetAvailabilityFeignIntegrationTest {
         stubFor(get(urlEqualTo("/internal/v1/comments/" + commentId + "/availability"))
                 .willReturn(serverError()));
 
-        assertThatThrownBy(() -> commentChecker.ensure(commentId))
+        assertThatThrownBy(() -> commentChecker.ensure(commentId, UUID.randomUUID()))
                 .isInstanceOf(DependencyUnavailableException.class);
 
         verify(2, getRequestedFor(urlEqualTo("/internal/v1/comments/" + commentId + "/availability")));

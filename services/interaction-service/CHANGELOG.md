@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-07-22
+
+- Removed `CLAP`; V1 now accepts `LIKE` only and enforces one reaction per actor/target at the database level.
+- Added single and batch interaction summaries returning `reactionCount` plus `likedByMe`.
+- Batch summaries handle up to 100 targets with two repository queries, avoiding per-comment N+1 requests.
+- Added Flyway V4 cleanup for legacy CLAP data, constraints, and the obsolete `clap_count` column.
+- Added anonymous summaries (`likedByMe=false` without a ledger query), paginated reactor lookup, and
+  actor-aware Comment target validation through its containing Post.
+- Added idempotent reaction/counter cleanup from `CommentDeletedV1`.
+- Fixed batch actor-state matching to use `(targetType,targetId)` rather than UUID alone.
+
 ## Unreleased
 
 ### Added

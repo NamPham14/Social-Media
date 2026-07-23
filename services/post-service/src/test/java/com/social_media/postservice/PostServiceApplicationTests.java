@@ -1,12 +1,11 @@
 
-package com.social_media.identityservice;
+package com.social_media.postservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-
-class IdentityServiceApplicationTests {
+class PostServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

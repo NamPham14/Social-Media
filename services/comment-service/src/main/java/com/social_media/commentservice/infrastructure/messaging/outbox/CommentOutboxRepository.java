@@ -3,6 +3,7 @@ package com.social_media.commentservice.infrastructure.messaging.outbox;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.social_media.commentservice.application.event.CommentNotificationEvent;
+import com.social_media.commentservice.application.event.CommentDeletedEvent;
 import com.social_media.commentservice.application.event.PostCommentsDeletedEvent;
 import com.social_media.commentservice.application.port.out.CommentEventOutbox;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,9 @@ public class CommentOutboxRepository implements CommentEventOutbox {
     @Value("${messaging.topics.comment-replied}")
     private String commentRepliedTopic;
 
+    @Value("${messaging.topics.comment-deleted}")
+    private String commentDeletedTopic;
+
     @Override
     public void append(PostCommentsDeletedEvent event) {
         persist(UUID.fromString(event.id()), event.postId(), EVENT_TYPE, postCommentsDeletedTopic, event);
@@ -44,6 +48,11 @@ public class CommentOutboxRepository implements CommentEventOutbox {
         String topic = CommentNotificationEvent.COMMENT_CREATED.equals(event.eventType())
                 ? commentCreatedTopic : commentRepliedTopic;
         persist(event.eventId(), event.commentId(), event.eventType(), topic, event);
+    }
+
+    @Override
+    public void append(CommentDeletedEvent event) {
+        persist(UUID.fromString(event.id()), event.commentId(), event.eventType(), commentDeletedTopic, event);
     }
 
     private void persist(UUID eventId, UUID aggregateId, String eventType, String topic, Object event) {

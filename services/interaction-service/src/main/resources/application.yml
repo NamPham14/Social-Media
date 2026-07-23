@@ -8,9 +8,9 @@ spring:
   application:
     name: interaction-service
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5436/interaction_service}
     username: ${SPRING_DATASOURCE_USERNAME:postgres}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    password: ${SPRING_DATASOURCE_PASSWORD:123456}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -53,6 +53,9 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
 
 management:
   metrics:
@@ -62,10 +65,6 @@ management:
     web:
       exposure:
         include: health,info,metrics,circuitbreakers
-
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${server.port}
 
 resilience4j:
   retry:
@@ -109,6 +108,7 @@ messaging:
   topics:
     post-deleted: post-deleted-topic
     post-comments-deleted: post-comments-deleted-topic
+    comment-deleted: comment-deleted-topic
     reaction-created: reaction-created-topic
   outbox:
     enabled: true

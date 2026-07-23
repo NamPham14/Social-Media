@@ -56,6 +56,17 @@ public class ProfileController {
 
 
     /**
+     * get detail profile of user (Internal for Feign)
+     * @param id
+     * @return
+     */
+    @GetMapping(ApiPath.INTERNAL + "/users/{id}")
+    public ResponseEntity<ApiResponse<ProfileResponse>> getProfileInternal(@PathVariable("id") UUID id) {
+        Profile profile = getProfileUseCase.execute(id);
+        return ResponseEntity.ok(ApiResponse.success(profileMapper.toResponse(profile), "Get profile internal successfully"));
+    }
+
+    /**
      * get detail profile of user
      * @param id
      * @return

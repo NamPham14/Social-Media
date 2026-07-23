@@ -2,7 +2,7 @@ spring:
   application:
     name: profile-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/demo
+    url: jdbc:postgresql://localhost:5432/profile_db
     username: postgres
     password: 123456
     driver-class-name: org.postgresql.Driver
@@ -13,6 +13,14 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: profile-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
 eureka:
   client:
@@ -25,9 +33,9 @@ server:
   port: 8082
 
 cloudinary:
-  cloud-name: ${CLOUDINARY_CLOUD_NAME:dummy}
-  api-key: ${CLOUDINARY_API_KEY:dummy}
-  api-secret: ${CLOUDINARY_API_SECRET:dummy}
+  cloud-name: ${CLOUDINARY_CLOUD_NAME:dqdfnfhml}
+  api-key: ${CLOUDINARY_API_KEY:993738775593578}
+  api-secret: ${CLOUDINARY_API_SECRET:5NB3dn2JJGxKE6xk5c7kz3ATOic}
 
 logging:
   level:

@@ -12,13 +12,15 @@ import com.social_media.interactionservice.domain.model.TargetType;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface InteractionJpaRepository extends JpaRepository<Interaction, UUID> {
     @Modifying
     @Query(value = """
             INSERT INTO interactions (id, user_id, target_type, target_id, reaction_type, is_deleted, created_at)
             VALUES (:id, :actorId, :targetType, :targetId, :reactionType, false, NOW())
-            ON CONFLICT (user_id, target_type, target_id, reaction_type) DO NOTHING
+            ON CONFLICT (user_id, target_type, target_id) DO NOTHING
             """, nativeQuery = true)
     int insertIfAbsent(@Param("id") UUID id, @Param("actorId") UUID actorId,
                        @Param("targetType") String targetType, @Param("targetId") UUID targetId,
@@ -34,6 +36,11 @@ public interface InteractionJpaRepository extends JpaRepository<Interaction, UUI
 
     List<Interaction> findByUserIdAndTargetTypeAndTargetIdOrderByReactionTypeAsc(
             UUID actorId, TargetType targetType, UUID targetId);
+
+    List<Interaction> findByUserIdAndTargetIdIn(UUID actorId, Collection<UUID> targetIds);
+
+    Page<Interaction> findByTargetTypeAndTargetIdOrderByCreatedAtDesc(
+            TargetType targetType, UUID targetId, Pageable pageable);
 
     @Modifying(clearAutomatically = true, flushAutomatically = true)
     @Query("delete from Interaction i where i.targetType = :targetType and i.targetId in :targetIds")
