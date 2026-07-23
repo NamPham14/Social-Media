@@ -11,6 +11,6 @@ import java.util.UUID;
 @FeignClient(name = "profile-service")
 public interface ProfileClient {
 
-    @GetMapping("/api/v1/profile/users/{id}")
+    @GetMapping("/api/v1/profile/internal/users/{id}")
     ApiResponse<ProfileClientResponse> getProfile(@PathVariable("id") UUID id);
 }

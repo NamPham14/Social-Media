@@ -6,12 +6,14 @@ import com.social_media.notificationservice.domain.model.aggregate.Notification;
 import com.social_media.notificationservice.infrastructure.client.profile.ProfileClient;
 import com.social_media.notificationservice.infrastructure.client.profile.dto.ProfileClientResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class NotificationApiMapper {
 
     private final ProfileClient profileClient;
@@ -48,6 +50,7 @@ public class NotificationApiMapper {
 
             return new ProfileDisplay(displayName, profile.avatarUrl());
         } catch (Exception e) {
+            log.error("Failed to fetch profile for actorId: " + actorId, e);
             return ProfileDisplay.fallback(actorId);
         }
     }

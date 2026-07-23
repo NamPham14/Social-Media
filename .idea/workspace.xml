@@ -5,72 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.ai/mcp/mcp.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/bruno-follower/Follow User.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/bruno-follower/Get Feeds.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/bruno-follower/Get Followers Count.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/bruno-follower/Get Followers.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/bruno-follower/Get Following Count.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/bruno-follower/Get Following IDs.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/bruno-follower/Get Following.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/bruno-follower/Get News Feed.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/bruno-follower/Login.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/bruno-follower/Register.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/bruno-follower/Unfollow User.bru" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/bruno-follower/bruno.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetFollowersCountUseCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/GetFollowingCountUseCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/GetFollowersCountUseCaseImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/GetFollowingCountUseCaseImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/model/outbox/Outbox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/model/outbox/OutboxStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/repository/OutBoxRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/adapter/OutBoxRepositoryAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/dto/PostServiceMediaResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/dto/PostServicePostResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/messaging/OutBoxPublisher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/repository/OutBoxJpaRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/application/usecase/FindPostsByAuthIdsUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/FollowerServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/FollowerServiceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/controller/FollowerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/controller/FollowerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FollowRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/dto/FollowRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/path/ApiPath.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/api/path/ApiPath.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/port/FollowEventPublisher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/UnfollowUserUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/UnfollowUserUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/FollowUserUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/FollowUserUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/GetFollowingIdsUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/GetFollowingIdsUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/GetNewsFeedUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/GetNewsFeedUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/UnfollowUserUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/application/usecase/impl/UnfollowUserUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/event/UserFollowedEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/event/UserUnfollowedEvent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/exception/AlreadyFollowingException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/model/follower/aggregate/Follower.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/repository/FollowRelationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/repository/FollowRelationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/domain/repository/FollowerRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/adapter/FollowRelationRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/adapter/FollowRelationRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/ArticleClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/ArticleClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/UserClient.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/config/FeignClientConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/client/config/FeignClientConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/mapper/FollowerMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/messaging/KafkaEventProducer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/FollowerRepositoryAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/SpringDataFollowerRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/entity/FollowerInfraEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/repository/FollowRelationJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/java/com/social_media/followerservice/infrastructure/persistence/repository/FollowRelationJpaRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/follower-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/follower-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/PostRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/domain/repository/PostRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/adapter/PostRepositoryAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/adapter/PostRepositoryAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/java/com/social_media/postservice/infrastructure/repository/PostJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/post-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/notification-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/api/controller/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/api/controller/NotificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/mapper/NotificationApiMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/application/mapper/NotificationApiMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/client/profile/ProfileClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/client/profile/ProfileClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/consumer/UserFollowedKafkaConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/notification-service/src/main/java/com/social_media/notificationservice/infrastructure/messaging/kafka/consumer/UserFollowedKafkaConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/controller/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/api/controller/ProfileController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +22,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 1
 }]]></component>
@@ -93,6 +39,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Maven.notification-service [clean].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -100,7 +47,18 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Merging main",
+    "Spring Boot.CommentServiceApplication.executor": "Run",
+    "Spring Boot.FollowerServiceApplication.executor": "Run",
+    "Spring Boot.IdentityServiceApplication.executor": "Run",
+    "Spring Boot.InteractionServiceApplication.executor": "Run",
+    "Spring Boot.NotificationServiceApplication.executor": "Run",
+    "Spring Boot.PostServiceApplication.executor": "Run",
+    "Spring Boot.ProfileServiceApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "run.configurations.included.in.services": "true",
     "vue.rearranger.settings.migration": "true"
@@ -201,6 +159,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Spring Boot.ProfileServiceApplication" />
+      <item itemvalue="Spring Boot.PostServiceApplication" />
+      <item itemvalue="Spring Boot.NotificationServiceApplication" />
+      <item itemvalue="Spring Boot.IdentityServiceApplication" />
+      <item itemvalue="Spring Boot.InteractionServiceApplication" />
+      <item itemvalue="Spring Boot.FollowerServiceApplication" />
+      <item itemvalue="Spring Boot.CommentServiceApplication" />
+      <item itemvalue="Spring Boot.ApiGatewayApplication" />
+      <item itemvalue="Spring Boot.CommonEventsApplication" />
+      <item itemvalue="Spring Boot.CommonSecurityApplication" />
+      <item itemvalue="Spring Boot.CommonWebApplication" />
+      <item itemvalue="Spring Boot.EurekaServerApplication" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -217,7 +189,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1784784403460</updated>
-      <workItem from="1784784404865" duration="116000" />
+      <workItem from="1784784404865" duration="8956000" />
     </task>
     <servers />
   </component>
