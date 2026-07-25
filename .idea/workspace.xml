@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="1c1ecf1f-8825-422f-a4df-42320ba37798" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/filter/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/infra/api-gateway/src/main/java/com/social_media/apigateway/filter/AuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/api-gateway.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/api-gateway.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/RegisterUseCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/identity-service/src/main/java/com/social_media/identityservice/application/usecase/RegisterUseCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/UpdateProfileUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/UpdateProfileUseCaseImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/UploadAvatarUseCaseImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/profile-service/src/main/java/com/social_media/profileservice/application/usecase/impl/UploadAvatarUseCaseImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +191,7 @@
       <workItem from="1784815242220" duration="7340000" />
       <workItem from="1784848442077" duration="2921000" />
       <workItem from="1784853667070" duration="7248000" />
-      <workItem from="1784956476767" duration="1178000" />
+      <workItem from="1784956476767" duration="2471000" />
     </task>
     <servers />
   </component>

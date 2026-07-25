@@ -5,8 +5,12 @@ import com.social_media.profileservice.application.service.MediaService;
 import com.social_media.profileservice.application.usecase.UploadAvatarUseCase;
 import com.social_media.profileservice.domain.model.profile.aggregate.Profile;
 import com.social_media.profileservice.domain.repository.ProfileRepository;
+import com.social_media.profileservice.domain.repository.OutboxEventRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,7 +21,11 @@ import java.util.UUID;
 public class UploadAvatarUseCaseImpl implements UploadAvatarUseCase {
     private final ProfileRepository profileRepository;
     private final MediaService mediaService;
+    private final OutboxEventRepository outboxEventRepository;
+    private final ObjectMapper objectMapper;
+
     @Override
+    @Transactional
     public Profile execute(UUID profileId, MultipartFile file) throws IOException {
 
 
@@ -34,6 +42,22 @@ public class UploadAvatarUseCaseImpl implements UploadAvatarUseCase {
 
         String imageUrl = mediaService.uploadImage(file);
         profile.updateAvatarUrl(imageUrl);
-        return profileRepository.save(profile);
+        
+        Profile savedProfile = profileRepository.save(profile);
+
+        // -------- OUTBOX PATTERN --------
+        // Đóng gói thông tin để báo cho post-service biết Avatar đã thay đổi
+        ObjectNode payload = objectMapper.createObjectNode();
+        payload.put("userId", savedProfile.getId().value().toString());
+        payload.put("authorName", savedProfile.getFullName());
+        payload.put("authorAvatarUrl", savedProfile.getAvatarUrl());
+
+        outboxEventRepository.save(
+                savedProfile.getId().value().toString(),
+                "PROFILE_UPDATED",
+                payload.toString()
+        );
+
+        return savedProfile;
     }
 }
