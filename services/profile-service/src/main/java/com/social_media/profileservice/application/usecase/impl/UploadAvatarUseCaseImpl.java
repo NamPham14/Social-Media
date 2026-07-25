@@ -7,6 +7,7 @@ import com.social_media.profileservice.domain.model.profile.aggregate.Profile;
 import com.social_media.profileservice.domain.repository.ProfileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -18,6 +19,12 @@ public class UploadAvatarUseCaseImpl implements UploadAvatarUseCase {
     private final MediaService mediaService;
     @Override
     public Profile execute(UUID profileId, MultipartFile file) throws IOException {
+
+
+        String currentUserId = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!profileId.toString().equals(currentUserId)) {
+            throw new RuntimeException("Bạn không có quyền sửa ảnh đại diện của người khác!");
+        }
         Profile profile = profileRepository.findById(profileId)
                 .orElseThrow(ProfileNotFoundException::new);
         //Xóa ảnh cũ nếu có

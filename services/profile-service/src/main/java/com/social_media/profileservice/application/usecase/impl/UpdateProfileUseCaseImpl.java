@@ -9,6 +9,7 @@ import com.social_media.profileservice.domain.model.profile.aggregate.Profile;
 import com.social_media.profileservice.domain.repository.OutboxEventRepository;
 import com.social_media.profileservice.domain.repository.ProfileRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,12 @@ public class UpdateProfileUseCaseImpl implements UpdateProfileUseCase {
     @Override
     @Transactional
     public Profile execute(UpdateProfileCommand command) {
+
+
+        String currentUserId= (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!command.id().toString().equals(currentUserId)) {
+            throw new RuntimeException("Bạn không có quyền sửa hồ sơ của người khác!");
+        }
         // Tìm Profile
         Profile profile = profileRepository.findById(command.id())
                 .orElseThrow(ProfileNotFoundException::new);

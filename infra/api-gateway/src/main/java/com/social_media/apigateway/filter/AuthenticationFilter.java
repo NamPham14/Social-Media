@@ -56,11 +56,13 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
                         if (!jwtValidator.verifyToken(token)) {
                             return unauthenticated(exchange);
                         }
-
+                        // Giải mã JWT để lấy ra ID của User (trong thuật ngữ JWT gọi là subject)
                         String subject = jwtValidator.extractSubject(token);
                         if (subject != null) {
+                            // Tiến hành Mutation (Tạo bản sao) HTTP Request để Inject (Tiêm) Header định danh vào luồng nội bộ."
                             ServerWebExchange mutatedExchange = exchange.mutate()
                                     .request(exchange.getRequest().mutate()
+                                            // Gắn Header "X-Auth-User-Id" = <subject> (tức là UserID)
                                             .header(com.social_media.common.utils.SecurityConstants.HEADER_USER_ID, subject)
                                             .build())
                                     .build();
@@ -70,6 +72,7 @@ public class AuthenticationFilter implements GlobalFilter, Ordered {
                         return unauthenticated(exchange);
                     }
 
+                    //Cho phép Request (đã được chế biến) đi tiếp xuống Microservices bên dưới
                     return unauthenticated(exchange);
                 });
     }

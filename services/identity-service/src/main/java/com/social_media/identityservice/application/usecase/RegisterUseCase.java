@@ -59,14 +59,14 @@ public class RegisterUseCase {
 //                .build());
 
         // ---------------- OUTBOX PATTERN ----------------
-        // Bước 1: Đóng gói thông tin User mới thành chuỗi JSON (Payload)
+        //  Đóng gói thông tin User mới thành chuỗi JSON (Payload)
         ObjectNode payload = objectMapper.createObjectNode();
         payload.put("userId",savedUser.getId().value().toString());
         payload.put("username", savedUser.getUsername());
         payload.put("fullName", savedUser.getUsername());
         payload.put("email", savedUser.getEmail());
 
-        // Bước 2: Lưu bức thư vào Outbox (Bảng outbox_events)
+        //  Lưu bức thư vào Outbox (Bảng outbox_events)
         // Vì hành động này nằm trong hàm @Transactional, nó sẽ được lưu CÙNG LÚC với lệnh save(user) ở dòng trên.
         outboxEventRepository.save(savedUser.getId().value().toString(),
                 "USER_REGISTERED",
